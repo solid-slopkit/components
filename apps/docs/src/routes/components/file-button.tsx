@@ -10,6 +10,7 @@ import Multiple from '../../examples/file-button/multiple';
 import multipleCode from '../../examples/file-button/multiple.tsx?raw';
 import Icon from '../../examples/file-button/icon';
 import iconCode from '../../examples/file-button/icon.tsx?raw';
+import { withBase } from '../../base';
 
 export default function FileButtonPage() {
   return (
@@ -18,7 +19,7 @@ export default function FileButtonPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>FileButton</h1>
       <p class="docs-lead">
-        A <a href="/components/button">Button</a> that opens the browser's file picker and hands the chosen files to{' '}
+        A <a href={withBase('/components/button')}>Button</a> that opens the browser's file picker and hands the chosen files to{' '}
         <code>onChange</code>.
       </p>
 

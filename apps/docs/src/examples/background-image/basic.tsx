@@ -1,9 +1,10 @@
 import { BackgroundImage, Text, Title } from '@solid-slopkit/components';
+import landscape from '../example-landscape.svg';
 
 export default function Basic() {
   return (
     <BackgroundImage
-      src="/example-landscape.svg"
+      src={landscape}
       style={{ width: '100%', 'min-height': '14rem', 'border-radius': '12px', overflow: 'hidden', display: 'flex' }}
     >
       <div

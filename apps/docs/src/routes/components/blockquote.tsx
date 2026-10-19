@@ -10,6 +10,7 @@ import Colors from '../../examples/blockquote/colors';
 import colorsCode from '../../examples/blockquote/colors.tsx?raw';
 import Paragraphs from '../../examples/blockquote/paragraphs';
 import paragraphsCode from '../../examples/blockquote/paragraphs.tsx?raw';
+import { withBase } from '../../base';
 
 export default function BlockquotePage() {
   return (
@@ -40,8 +41,8 @@ export default function BlockquotePage() {
 
       <H2 id="paragraphs">Several paragraphs</H2>
       <p>
-        The quote takes block content. Space paragraphs with a <a href="/components/stack">Stack</a>; the outer margins of the
-        first and last child are removed, so a plain <code>p</code> sits flush too.
+        The quote takes block content. Space paragraphs with a <a href={withBase('/components/stack')}>Stack</a>; the outer
+        margins of the first and last child are removed, so a plain <code>p</code> sits flush too.
       </p>
       <Example component={Paragraphs} code={paragraphsCode} column />
 

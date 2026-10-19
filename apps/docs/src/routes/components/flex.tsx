@@ -8,6 +8,7 @@ import Basic from '../../examples/flex/basic';
 import basicCode from '../../examples/flex/basic.tsx?raw';
 import Display from '../../examples/flex/display';
 import displayCode from '../../examples/flex/display.tsx?raw';
+import { withBase } from '../../base';
 
 export default function FlexPage() {
   return (
@@ -17,7 +18,7 @@ export default function FlexPage() {
       <h1>Flex</h1>
       <p class="docs-lead">
         A <code>div</code> that is a flex container. It only takes flex props and <code>display</code>; for spacing and size, use
-        a <a href="/components/box">Box</a>. Must be rendered inside <code>&lt;SlopkitUi&gt;</code>.
+        a <a href={withBase('/components/box')}>Box</a>. Must be rendered inside <code>&lt;SlopkitUi&gt;</code>.
       </p>
 
       <H2 id="import">Import</H2>

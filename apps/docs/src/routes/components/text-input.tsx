@@ -10,6 +10,7 @@ import Validation from '../../examples/text-input/validation';
 import validationCode from '../../examples/text-input/validation.tsx?raw';
 import Variants from '../../examples/text-input/variants';
 import variantsCode from '../../examples/text-input/variants.tsx?raw';
+import { withBase } from '../../base';
 
 export default function TextInputPage() {
   return (
@@ -18,8 +19,8 @@ export default function TextInputPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>TextInput</h1>
       <p class="docs-lead">
-        A labelled one-line text field: an <a href="/components/input">Input</a> in an{' '}
-        <a href="/components/input-wrapper">InputWrapper</a>.
+        A labelled one-line text field: an <a href={withBase('/components/input')}>Input</a> in an{' '}
+        <a href={withBase('/components/input-wrapper')}>InputWrapper</a>.
       </p>
 
       <H2 id="import">Import</H2>

@@ -12,6 +12,7 @@ import Sizes from '../../examples/action-icon/sizes';
 import sizesCode from '../../examples/action-icon/sizes.tsx?raw';
 import Toggle from '../../examples/action-icon/toggle';
 import toggleCode from '../../examples/action-icon/toggle.tsx?raw';
+import { withBase } from '../../base';
 
 export default function ActionIconPage() {
   return (
@@ -20,8 +21,8 @@ export default function ActionIconPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>ActionIcon</h1>
       <p class="docs-lead">
-        A button that shows only an icon: a fixed-size square or circle <a href="/components/button">Button</a>, named by{' '}
-        <code>label</code>.
+        A button that shows only an icon: a fixed-size square or circle <a href={withBase('/components/button')}>Button</a>, named
+        by <code>label</code>.
       </p>
 
       <H2 id="import">Import</H2>
@@ -59,7 +60,7 @@ export default function ActionIconPage() {
       <H2 id="props">Props</H2>
       <p>
         Other props, such as <code>onClick</code> or <code>href</code>, are passed to the rendered element. For closing or
-        dismissing, use <a href="/components/close-button">CloseButton</a>.
+        dismissing, use <a href={withBase('/components/close-button')}>CloseButton</a>.
       </p>
       <PropsTable
         rows={[

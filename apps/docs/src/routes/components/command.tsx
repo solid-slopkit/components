@@ -8,6 +8,7 @@ import Inline from '../../examples/command/inline';
 import inlineCode from '../../examples/command/inline.tsx?raw';
 import Dialog from '../../examples/command/dialog';
 import dialogCode from '../../examples/command/dialog.tsx?raw';
+import { withBase } from '../../base';
 
 export default function CommandPage() {
   return (
@@ -78,7 +79,7 @@ export default function CommandPage() {
       <H2 id="props">Props</H2>
       <p>
         Command passes other props to its <code>div</code>. <code>Command.Input</code> passes its props to the{' '}
-        <a href="/components/input">Input</a> (a <code>ghost</code> one, <code>lg</code>, with a search icon that{' '}
+        <a href={withBase('/components/input')}>Input</a> (a <code>ghost</code> one, <code>lg</code>, with a search icon that{' '}
         <code>leftSection</code> replaces).
       </p>
       <PropsTable
@@ -118,7 +119,7 @@ export default function CommandPage() {
 
       <H2 id="dialog-props">CommandDialog</H2>
       <p>
-        The props above, plus <a href="/components/modal">Modal</a>'s <code>size</code> (default <code>lg</code>),{' '}
+        The props above, plus <a href={withBase('/components/modal')}>Modal</a>'s <code>size</code> (default <code>lg</code>),{' '}
         <code>centered</code>, <code>fullScreen</code>, <code>closeOnClickOutside</code>, <code>closeOnEscape</code>,{' '}
         <code>returnFocus</code>, <code>lockScroll</code>, <code>transition</code>, <code>transitionDuration</code> and{' '}
         <code>onExited</code>.

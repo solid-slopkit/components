@@ -8,6 +8,7 @@ import Basic from '../../examples/group/basic';
 import basicCode from '../../examples/group/basic.tsx?raw';
 import Grow from '../../examples/group/grow';
 import growCode from '../../examples/group/grow.tsx?raw';
+import { withBase } from '../../base';
 
 export default function GroupPage() {
   return (
@@ -16,8 +17,8 @@ export default function GroupPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>Group</h1>
       <p class="docs-lead">
-        Lays children out in a row: a <a href="/components/flex">Flex</a> with a gap that wraps and centers its children
-        vertically. Its props are not responsive; for a layout that changes per breakpoint, use Flex.
+        Lays children out in a row: a <a href={withBase('/components/flex')}>Flex</a> with a gap that wraps and centers its
+        children vertically. Its props are not responsive; for a layout that changes per breakpoint, use Flex.
       </p>
 
       <H2 id="import">Import</H2>

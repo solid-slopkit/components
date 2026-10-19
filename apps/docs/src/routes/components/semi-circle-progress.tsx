@@ -8,6 +8,7 @@ import Basic from '../../examples/semi-circle-progress/basic';
 import basicCode from '../../examples/semi-circle-progress/basic.tsx?raw';
 import Sizes from '../../examples/semi-circle-progress/sizes';
 import sizesCode from '../../examples/semi-circle-progress/sizes.tsx?raw';
+import { withBase } from '../../base';
 
 export default function SemiCircleProgressPage() {
   return (
@@ -25,8 +26,9 @@ export default function SemiCircleProgressPage() {
       <H2 id="usage">Usage</H2>
       <p>
         The arc runs from the left end over the top. Children sit centered along the bottom, inside the arc. It shares its main
-        props with <a href="/components/progress">Progress</a> and <a href="/components/ring-progress">RingProgress</a>; here the
-        gauge is named by the visible caption through <code>aria-labelledby</code>.
+        props with <a href={withBase('/components/progress')}>Progress</a> and{' '}
+        <a href={withBase('/components/ring-progress')}>RingProgress</a>; here the gauge is named by the visible caption through{' '}
+        <code>aria-labelledby</code>.
       </p>
       <Example component={Basic} code={basicCode} />
 

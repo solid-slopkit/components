@@ -8,9 +8,19 @@ pnpm dev
 
 In dev, `@solid-slopkit/components` and its CSS resolve to the package source (`slopkit-from-source.ts`), so edits to components show up immediately.
 
+## GitHub Pages
+
+The site is published at https://solid-slopkit.github.io/components/ by `.github/workflows/docs.yml` on every push to `main`. The workflow builds with `DOCS_BASE=/components/` (Vite's `base`), then `pnpm prerender` (`prerender.js`) renders every route file through the built SSR handler into `dist/client/<path>/index.html`, plus `404.html`. The pages hydrate as they do under `server.js`. To check a Pages build locally, build the package first, then:
+
+```bash
+DOCS_BASE=/components/ pnpm build && DOCS_BASE=/components/ pnpm prerender
+```
+
+Because the site lives under a base path, internal links go through `withBase()` from `src/base.ts`: `<a href={withBase('/components/button')}>`. The router only handles anchors under its base, so a bare `href="/components/button"` works in dev and breaks on Pages. `navigate()` adds the base itself. Compare the current location to a docs path with `isPath()`, which ignores the trailing slash Pages adds. Example images are imported (`import landscape from '../example-landscape.svg'`) so Vite puts them under the base too.
+
 ## Structure
 
-- `src/routes/` — pages. `components/button.tsx` is `/components/button`; `[...404].tsx` catches everything else.
+- `src/routes/` — pages. `components/button.tsx` is `/components/button`; `[...404].tsx` catches everything else. `prerender.js` builds one static page per route file.
 - `src/nav.ts` — the sidebar, grouped like the package's folders. Add an entry when you add a page.
 - `src/layout/` — the shell: header, sidebar (a drawer below 768px) and main area.
 - `src/components/` — doc building blocks:

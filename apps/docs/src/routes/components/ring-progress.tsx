@@ -12,6 +12,7 @@ import Sizes from '../../examples/ring-progress/sizes';
 import sizesCode from '../../examples/ring-progress/sizes.tsx?raw';
 import Stroke from '../../examples/ring-progress/stroke';
 import strokeCode from '../../examples/ring-progress/stroke.tsx?raw';
+import { withBase } from '../../base';
 
 export default function RingProgressPage() {
   return (
@@ -30,8 +31,8 @@ export default function RingProgressPage() {
       <H2 id="usage">Usage</H2>
       <p>
         The arc starts at the top and runs clockwise. Children are centered in the ring. It shares its main props with{' '}
-        <a href="/components/progress">Progress</a>: <code>value</code> from 0 to <code>max</code>, a <code>label</code> or{' '}
-        <code>aria-labelledby</code> for its name.
+        <a href={withBase('/components/progress')}>Progress</a>: <code>value</code> from 0 to <code>max</code>, a{' '}
+        <code>label</code> or <code>aria-labelledby</code> for its name.
       </p>
       <Example component={Basic} code={basicCode} />
 

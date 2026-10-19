@@ -10,6 +10,7 @@ import Size from '../../examples/title/size';
 import sizeCode from '../../examples/title/size.tsx?raw';
 import Colors from '../../examples/title/colors';
 import colorsCode from '../../examples/title/colors.tsx?raw';
+import { withBase } from '../../base';
 
 export default function TitlePage() {
   return (
@@ -28,7 +29,7 @@ export default function TitlePage() {
       <p>
         <code>order</code> renders <code>h1</code> to <code>h6</code> and gives it that level's look. The default is{' '}
         <code>1</code>. Pick it for the document outline. The margin is reset to <code>0</code>, so a{' '}
-        <a href="/components/stack">Stack</a> spaces headings.
+        <a href={withBase('/components/stack')}>Stack</a> spaces headings.
       </p>
       <Example component={Levels} code={levelsCode} column />
 
@@ -42,7 +43,7 @@ export default function TitlePage() {
       <p>
         <code>color</code> takes a color role; without it, Title inherits its parent's color. <code>dimmed</code> mutes it. The
         weight is <code>--slp-heading-weight</code> unless <code>weight</code> overrides it. For part of a heading in another
-        style, nest a <a href="/components/text">Text</a> with <code>as="span"</code> and <code>inherit</code>.
+        style, nest a <a href={withBase('/components/text')}>Text</a> with <code>as="span"</code> and <code>inherit</code>.
       </p>
       <Example component={Colors} code={colorsCode} column />
 

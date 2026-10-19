@@ -10,6 +10,7 @@ import Scaling from '../../examples/kbd/scaling';
 import scalingCode from '../../examples/kbd/scaling.tsx?raw';
 import Sizes from '../../examples/kbd/sizes';
 import sizesCode from '../../examples/kbd/sizes.tsx?raw';
+import { withBase } from '../../base';
 
 export default function KbdPage() {
   return (
@@ -32,8 +33,8 @@ export default function KbdPage() {
 
       <H2 id="scaling">Scaling with text</H2>
       <p>
-        Without <code>size</code>, a Kbd scales with the text around it, so it fits a <a href="/components/text">Text</a> or{' '}
-        <a href="/components/title">Title</a> of any size.
+        Without <code>size</code>, a Kbd scales with the text around it, so it fits a{' '}
+        <a href={withBase('/components/text')}>Text</a> or <a href={withBase('/components/title')}>Title</a> of any size.
       </p>
       <Example component={Scaling} code={scalingCode} column />
 

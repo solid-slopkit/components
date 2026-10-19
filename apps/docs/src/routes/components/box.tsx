@@ -18,6 +18,7 @@ import ResponsivePadding from '../../examples/box/responsive-padding';
 import responsivePaddingCode from '../../examples/box/responsive-padding.tsx?raw';
 import Style from '../../examples/box/style';
 import styleCode from '../../examples/box/style.tsx?raw';
+import { withBase } from '../../base';
 
 export default function BoxPage() {
   return (
@@ -67,7 +68,7 @@ export default function BoxPage() {
       <p>
         <code>display</code> takes <code>'none'</code>, <code>'block'</code>, <code>'inline'</code>, <code>'inline-block'</code>,{' '}
         <code>'grid'</code>, <code>'inline-grid'</code> or <code>'contents'</code>, per breakpoint. There is no{' '}
-        <code>'flex'</code>: for flex layouts, use <a href="/components/flex">Flex</a>.
+        <code>'flex'</code>: for flex layouts, use <a href={withBase('/components/flex')}>Flex</a>.
       </p>
       <Example component={Display} code={displayCode} column />
 

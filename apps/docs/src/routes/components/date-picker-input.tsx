@@ -10,6 +10,7 @@ import Multiple from '../../examples/date-picker-input/multiple';
 import multipleCode from '../../examples/date-picker-input/multiple.tsx?raw';
 import Range from '../../examples/date-picker-input/range';
 import rangeCode from '../../examples/date-picker-input/range.tsx?raw';
+import { withBase } from '../../base';
 
 export default function DatePickerInputPage() {
   return (
@@ -25,9 +26,9 @@ export default function DatePickerInputPage() {
       <H2 id="usage">Usage</H2>
       <p>
         The field is a button that shows the value, written in the locale, and opens a{' '}
-        <a href="/components/date-picker">DatePicker</a> in a dropdown. The calendar takes the focus; choosing a day closes it and
-        returns the focus to the field, and so does Escape; a press outside closes it too. <code>clearable</code> adds a button
-        that empties it.
+        <a href={withBase('/components/date-picker')}>DatePicker</a> in a dropdown. The calendar takes the focus; choosing a day
+        closes it and returns the focus to the field, and so does Escape; a press outside closes it too. <code>clearable</code>{' '}
+        adds a button that empties it.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -48,9 +49,9 @@ export default function DatePickerInputPage() {
 
       <H2 id="props">Props</H2>
       <p>
-        The <a href="/components/date-picker#props">DatePicker's props</a> go to the calendar, and <code>label</code>,{' '}
+        The <a href={withBase('/components/date-picker#props')}>DatePicker's props</a> go to the calendar, and <code>label</code>,{' '}
         <code>labelSection</code>, <code>description</code>, <code>error</code>, <code>required</code>, <code>withAsterisk</code>,{' '}
-        <code>size</code> and <code>id</code> work as on <a href="/components/text-input">TextInput</a>. Plus these:
+        <code>size</code> and <code>id</code> work as on <a href={withBase('/components/text-input')}>TextInput</a>. Plus these:
       </p>
       <PropsTable
         rows={[

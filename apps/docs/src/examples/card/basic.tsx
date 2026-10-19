@@ -1,9 +1,10 @@
 import { Badge, Button, Card, Text } from '@solid-slopkit/components';
+import landscape from '../example-landscape.svg';
 
 export default function Basic() {
   return (
     <Card style={{ width: '20rem' }}>
-      <Card.Image src="/example-landscape.svg" alt="Mountains at sunset" style={{ height: '10rem' }} />
+      <Card.Image src={landscape} alt="Mountains at sunset" style={{ height: '10rem' }} />
       <Card.Header>
         <Card.Title>Norway</Card.Title>
         <Card.Description>Fjords, mountains and the midnight sun.</Card.Description>

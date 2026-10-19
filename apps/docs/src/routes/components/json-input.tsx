@@ -6,6 +6,7 @@ import { PropsTable } from '../../components/PropsTable';
 
 import Basic from '../../examples/json-input/basic';
 import basicCode from '../../examples/json-input/basic.tsx?raw';
+import { withBase } from '../../base';
 
 export default function JsonInputPage() {
   return (
@@ -14,8 +15,8 @@ export default function JsonInputPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>JsonInput</h1>
       <p class="docs-lead">
-        A labelled field for JSON: a <a href="/components/textarea">Textarea</a> in a monospace font that checks the text when the
-        field loses focus, shows an error while it's invalid, and can format it.
+        A labelled field for JSON: a <a href={withBase('/components/textarea')}>Textarea</a> in a monospace font that checks the
+        text when the field loses focus, shows an error while it's invalid, and can format it.
       </p>
 
       <H2 id="import">Import</H2>

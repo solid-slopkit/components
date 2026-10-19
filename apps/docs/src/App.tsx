@@ -3,6 +3,7 @@ import { useLocation } from '@solidjs/router';
 import { Modals, Notifications, SlopkitUi } from '@solid-slopkit/components';
 import { Router } from './router';
 import { Shell } from './layout/Shell';
+import { isPath } from './base';
 import '@solid-slopkit/components/styles/slopkit.css';
 import '@solid-slopkit/components/styles/default-theme.css';
 import './themes.css';
@@ -13,7 +14,7 @@ import './App.css';
 function Frame(props: ParentProps) {
   const location = useLocation();
   return (
-    <Show when={location.pathname !== '/create'} fallback={props.children}>
+    <Show when={!isPath(location.pathname, '/create')} fallback={props.children}>
       <Shell>{props.children}</Shell>
     </Show>
   );

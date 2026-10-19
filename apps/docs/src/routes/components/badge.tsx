@@ -16,6 +16,7 @@ import Sections from '../../examples/badge/sections';
 import sectionsCode from '../../examples/badge/sections.tsx?raw';
 import CustomProperties from '../../examples/badge/custom-properties';
 import customPropertiesCode from '../../examples/badge/custom-properties.tsx?raw';
+import { withBase } from '../../base';
 
 export default function BadgePage() {
   return (
@@ -59,7 +60,8 @@ export default function BadgePage() {
       <H2 id="sections">Sections</H2>
       <p>
         <code>leftSection</code> and <code>rightSection</code> place content, usually icons, around the label. Icons are sized to
-        match the badge. Badge is not interactive; for something clickable, use a <a href="/components/button">Button</a>.
+        match the badge. Badge is not interactive; for something clickable, use a{' '}
+        <a href={withBase('/components/button')}>Button</a>.
       </p>
       <Example component={Sections} code={sectionsCode} />
 

@@ -8,6 +8,7 @@ import Vertical from '../../examples/space/vertical';
 import verticalCode from '../../examples/space/vertical.tsx?raw';
 import Horizontal from '../../examples/space/horizontal';
 import horizontalCode from '../../examples/space/horizontal.tsx?raw';
+import { withBase } from '../../base';
 
 export default function SpacePage() {
   return (
@@ -16,7 +17,8 @@ export default function SpacePage() {
       <p class="docs-eyebrow">Components</p>
       <h1>Space</h1>
       <p class="docs-lead">
-        Empty space between elements, for one-off gaps where a margin or a <a href="/components/stack">Stack</a> would be awkward.
+        Empty space between elements, for one-off gaps where a margin or a <a href={withBase('/components/stack')}>Stack</a> would
+        be awkward.
       </p>
 
       <H2 id="import">Import</H2>

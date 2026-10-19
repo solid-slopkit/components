@@ -1,10 +1,11 @@
 import { Image } from '@solid-slopkit/components';
+import placeholder from '../example-placeholder.svg';
 
 export default function Fallback() {
   return (
     <Image
       src="/missing-photo.jpg"
-      fallbackSrc="/example-placeholder.svg"
+      fallbackSrc={placeholder}
       alt="Product photo"
       width={240}
       height={160}

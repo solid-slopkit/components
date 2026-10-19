@@ -8,6 +8,7 @@ import Basic from '../../examples/native-select/basic';
 import basicCode from '../../examples/native-select/basic.tsx?raw';
 import Groups from '../../examples/native-select/groups';
 import groupsCode from '../../examples/native-select/groups.tsx?raw';
+import { withBase } from '../../base';
 
 export default function NativeSelectPage() {
   return (
@@ -16,8 +17,8 @@ export default function NativeSelectPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>NativeSelect</h1>
       <p class="docs-lead">
-        A labelled native <code>select</code> in an <a href="/components/input">Input</a> box, with a chevron. The browser draws
-        the list, so it behaves like any select on every device, including phones' own pickers.
+        A labelled native <code>select</code> in an <a href={withBase('/components/input')}>Input</a> box, with a chevron. The
+        browser draws the list, so it behaves like any select on every device, including phones' own pickers.
       </p>
 
       <H2 id="import">Import</H2>

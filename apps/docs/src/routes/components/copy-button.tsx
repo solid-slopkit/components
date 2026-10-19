@@ -10,6 +10,7 @@ import Variants from '../../examples/copy-button/variants';
 import variantsCode from '../../examples/copy-button/variants.tsx?raw';
 import Feedback from '../../examples/copy-button/feedback';
 import feedbackCode from '../../examples/copy-button/feedback.tsx?raw';
+import { withBase } from '../../base';
 
 export default function CopyButtonPage() {
   return (
@@ -18,8 +19,8 @@ export default function CopyButtonPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>CopyButton</h1>
       <p class="docs-lead">
-        An <a href="/components/action-icon">ActionIcon</a> that copies <code>value</code> to the clipboard, then shows a check
-        and says so for a moment.
+        An <a href={withBase('/components/action-icon')}>ActionIcon</a> that copies <code>value</code> to the clipboard, then
+        shows a check and says so for a moment.
       </p>
 
       <H2 id="import">Import</H2>

@@ -10,6 +10,7 @@ import Multiple from '../../examples/year-picker/multiple';
 import multipleCode from '../../examples/year-picker/multiple.tsx?raw';
 import Range from '../../examples/year-picker/range';
 import rangeCode from '../../examples/year-picker/range.tsx?raw';
+import { withBase } from '../../base';
 
 export default function YearPickerPage() {
   return (
@@ -24,10 +25,10 @@ export default function YearPickerPage() {
 
       <H2 id="usage">Usage</H2>
       <p>
-        A <a href="/components/calendar">Calendar</a> fixed at the years of a decade, with a value. <code>value</code> and{' '}
-        <code>onChange</code> hold the chosen year, the <code>Date</code> of its January 1 at local midnight, or <code>null</code>
-        . A click on the chosen year keeps it; with <code>allowDeselect</code> it clears it. It opens on the decade of the chosen
-        year, and previous and next move a decade.
+        A <a href={withBase('/components/calendar')}>Calendar</a> fixed at the years of a decade, with a value. <code>value</code>{' '}
+        and <code>onChange</code> hold the chosen year, the <code>Date</code> of its January 1 at local midnight, or{' '}
+        <code>null</code>. A click on the chosen year keeps it; with <code>allowDeselect</code> it clears it. It opens on the
+        decade of the chosen year, and previous and next move a decade.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -48,11 +49,11 @@ export default function YearPickerPage() {
 
       <H2 id="props">Props</H2>
       <p>
-        The <a href="/components/calendar#props">Calendar's props</a> for years (<code>date</code>, <code>defaultDate</code>,{' '}
-        <code>onDateChange</code>, <code>numberOfColumns</code>, <code>minDate</code>, <code>maxDate</code>,{' '}
-        <code>getYearProps</code>, <code>onYearClick</code>, <code>locale</code>, <code>color</code>, <code>size</code>,{' '}
-        <code>previousLabel</code>, <code>nextLabel</code>), plus these. Chosen years are added to what <code>getYearProps</code>{' '}
-        returns, and <code>onYearClick</code> is still called.
+        The <a href={withBase('/components/calendar#props')}>Calendar's props</a> for years (<code>date</code>,{' '}
+        <code>defaultDate</code>, <code>onDateChange</code>, <code>numberOfColumns</code>, <code>minDate</code>,{' '}
+        <code>maxDate</code>, <code>getYearProps</code>, <code>onYearClick</code>, <code>locale</code>, <code>color</code>,{' '}
+        <code>size</code>, <code>previousLabel</code>, <code>nextLabel</code>), plus these. Chosen years are added to what{' '}
+        <code>getYearProps</code> returns, and <code>onYearClick</code> is still called.
       </p>
       <PropsTable
         rows={[
@@ -87,7 +88,7 @@ export default function YearPickerPage() {
       <H2 id="styling">Styling</H2>
       <p>
         The root is the Calendar's <code>.slp-calendar</code>, with the <code>.slp-year-picker</code> class and{' '}
-        <code>data-type</code>; see the <a href="/components/calendar#styling">Calendar's slots</a>. Years are the{' '}
+        <code>data-type</code>; see the <a href={withBase('/components/calendar#styling')}>Calendar's slots</a>. Years are the{' '}
         <code>calendar-year</code> slot with <code>data-date</code> (<code>2026</code>). Chosen years have{' '}
         <code>data-selected</code>, and a range's years <code>data-in-range</code>, <code>data-first-in-range</code> and{' '}
         <code>data-last-in-range</code>.

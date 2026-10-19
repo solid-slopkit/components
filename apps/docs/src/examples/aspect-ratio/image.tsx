@@ -1,5 +1,6 @@
 import { For } from 'solid-js';
 import { AspectRatio, SimpleGrid } from '@solid-slopkit/components';
+import landscape from '../example-landscape.svg';
 
 export default function Image() {
   return (
@@ -14,7 +15,7 @@ export default function Image() {
         {({ ratio, label }) => (
           <figure style={{ margin: 0 }}>
             <AspectRatio ratio={ratio}>
-              <img src="/example-landscape.svg" alt="Mountains at sunset" />
+              <img src={landscape} alt="Mountains at sunset" />
             </AspectRatio>
             <figcaption>ratio={`{${label}}`}</figcaption>
           </figure>

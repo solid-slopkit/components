@@ -10,6 +10,7 @@ import Sizes from '../../examples/close-button/sizes';
 import sizesCode from '../../examples/close-button/sizes.tsx?raw';
 import Icon from '../../examples/close-button/icon';
 import iconCode from '../../examples/close-button/icon.tsx?raw';
+import { withBase } from '../../base';
 
 export default function CloseButtonPage() {
   return (
@@ -18,7 +19,8 @@ export default function CloseButtonPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>CloseButton</h1>
       <p class="docs-lead">
-        A square ghost <a href="/components/button">Button</a> with an X icon, for closing or dismissing what it sits in.
+        A square ghost <a href={withBase('/components/button')}>Button</a> with an X icon, for closing or dismissing what it sits
+        in.
       </p>
 
       <H2 id="import">Import</H2>

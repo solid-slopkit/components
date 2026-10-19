@@ -2,7 +2,7 @@
 
 [`@solid-slopkit/components`](./packages/components): a component library for SolidJS 2.x, with theming through CSS variables and a provider.
 
-[`apps/docs`](./apps/docs) is the documentation site. [CONTEXT-MAP.md](./CONTEXT-MAP.md) explains how the package relates to the other `@solid-slopkit` packages, and [AGENTS.md](./AGENTS.md) is the guide for coding agents.
+[`apps/docs`](./apps/docs) is the documentation site, published at https://solid-slopkit.github.io/components/. [CONTEXT-MAP.md](./CONTEXT-MAP.md) explains how the package relates to the other `@solid-slopkit` packages, and [AGENTS.md](./AGENTS.md) is the guide for coding agents.
 
 ## Installing
 

@@ -10,6 +10,7 @@ import Controlled from '../../examples/burger/controlled';
 import controlledCode from '../../examples/burger/controlled.tsx?raw';
 import Sizes from '../../examples/burger/sizes';
 import sizesCode from '../../examples/burger/sizes.tsx?raw';
+import { withBase } from '../../base';
 
 export default function BurgerPage() {
   return (
@@ -41,7 +42,7 @@ export default function BurgerPage() {
 
       <H2 id="sizes">Sizes and variants</H2>
       <p>
-        An <a href="/components/action-icon">ActionIcon</a>, <code>ghost</code> by default, with <code>variant</code>,{' '}
+        An <a href={withBase('/components/action-icon')}>ActionIcon</a>, <code>ghost</code> by default, with <code>variant</code>,{' '}
         <code>color</code> and <code>size</code>. The lines are in the current text color and grow with the size.
       </p>
       <Example component={Sizes} code={sizesCode} />

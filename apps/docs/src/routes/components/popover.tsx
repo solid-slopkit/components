@@ -10,6 +10,7 @@ import Position from '../../examples/popover/position';
 import positionCode from '../../examples/popover/position.tsx?raw';
 import Controlled from '../../examples/popover/controlled';
 import controlledCode from '../../examples/popover/controlled.tsx?raw';
+import { withBase } from '../../base';
 
 export default function PopoverPage() {
   return (
@@ -59,9 +60,10 @@ export default function PopoverPage() {
 
       <H2 id="animation">Animation</H2>
       <p>
-        The dropdown fades in and out. <code>transition</code> takes any of <a href="/components/transition">Transition</a>'s
-        presets, or <code>none</code>, and <code>transitionDuration</code> sets it in milliseconds, 150 by default. Under{' '}
-        <code>prefers-reduced-motion: reduce</code>, it doesn't animate.
+        The dropdown fades in and out. <code>transition</code> takes any of{' '}
+        <a href={withBase('/components/transition')}>Transition</a>'s presets, or <code>none</code>, and{' '}
+        <code>transitionDuration</code> sets it in milliseconds, 150 by default. Under <code>prefers-reduced-motion: reduce</code>
+        , it doesn't animate.
       </p>
 
       <H2 id="props">Props</H2>

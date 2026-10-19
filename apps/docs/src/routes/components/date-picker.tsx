@@ -10,6 +10,7 @@ import Multiple from '../../examples/date-picker/multiple';
 import multipleCode from '../../examples/date-picker/multiple.tsx?raw';
 import Range from '../../examples/date-picker/range';
 import rangeCode from '../../examples/date-picker/range.tsx?raw';
+import { withBase } from '../../base';
 
 export default function DatePickerPage() {
   return (
@@ -24,10 +25,10 @@ export default function DatePickerPage() {
 
       <H2 id="usage">Usage</H2>
       <p>
-        A <a href="/components/calendar">Calendar</a> with a value, so every Calendar prop works: levels, limits, columns, the
-        locale and the keyboard. <code>value</code> and <code>onChange</code> hold the chosen day, a <code>Date</code> at local
-        midnight or <code>null</code>. A click on the chosen day keeps it; with <code>allowDeselect</code> it clears it. It opens
-        on the month of the chosen day.
+        A <a href={withBase('/components/calendar')}>Calendar</a> with a value, so every Calendar prop works: levels, limits,
+        columns, the locale and the keyboard. <code>value</code> and <code>onChange</code> hold the chosen day, a{' '}
+        <code>Date</code> at local midnight or <code>null</code>. A click on the chosen day keeps it; with{' '}
+        <code>allowDeselect</code> it clears it. It opens on the month of the chosen day.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -47,8 +48,8 @@ export default function DatePickerPage() {
 
       <H2 id="props">Props</H2>
       <p>
-        The <a href="/components/calendar#props">Calendar's props</a>, except <code>minLevel</code>, plus these. Chosen days are
-        added to what <code>getDayProps</code> returns, and <code>onDayClick</code> is still called.
+        The <a href={withBase('/components/calendar#props')}>Calendar's props</a>, except <code>minLevel</code>, plus these.
+        Chosen days are added to what <code>getDayProps</code> returns, and <code>onDayClick</code> is still called.
       </p>
       <PropsTable
         rows={[
@@ -83,7 +84,7 @@ export default function DatePickerPage() {
       <H2 id="styling">Styling</H2>
       <p>
         The root is the Calendar's <code>.slp-calendar</code>, with the <code>.slp-date-picker</code> class and{' '}
-        <code>data-type</code>; see the <a href="/components/calendar#styling">Calendar's slots</a>. Chosen days have{' '}
+        <code>data-type</code>; see the <a href={withBase('/components/calendar#styling')}>Calendar's slots</a>. Chosen days have{' '}
         <code>data-selected</code>, and a range's days <code>data-in-range</code>, <code>data-first-in-range</code> and{' '}
         <code>data-last-in-range</code>.
       </p>

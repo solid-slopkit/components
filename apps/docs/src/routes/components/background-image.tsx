@@ -8,6 +8,7 @@ import Basic from '../../examples/background-image/basic';
 import basicCode from '../../examples/background-image/basic.tsx?raw';
 import Sizing from '../../examples/background-image/sizing';
 import sizingCode from '../../examples/background-image/sizing.tsx?raw';
+import { withBase } from '../../base';
 
 export default function BackgroundImagePage() {
   return (
@@ -40,8 +41,8 @@ export default function BackgroundImagePage() {
       <H2 id="accessibility">Accessibility</H2>
       <p>
         A background image has no text alternative, so it should be decorative. When the picture carries meaning, use an{' '}
-        <a href="/components/image">Image</a>, or give the box <code>role="img"</code> and an <code>aria-label</code> when it
-        holds no content.
+        <a href={withBase('/components/image')}>Image</a>, or give the box <code>role="img"</code> and an <code>aria-label</code>{' '}
+        when it holds no content.
       </p>
 
       <H2 id="props">Props</H2>

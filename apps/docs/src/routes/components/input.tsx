@@ -12,6 +12,7 @@ import Sizes from '../../examples/input/sizes';
 import sizesCode from '../../examples/input/sizes.tsx?raw';
 import Textarea from '../../examples/input/textarea';
 import textareaCode from '../../examples/input/textarea.tsx?raw';
+import { withBase } from '../../base';
 
 export default function InputPage() {
   return (
@@ -22,7 +23,7 @@ export default function InputPage() {
       <p class="docs-lead">
         A field box: a control, an <code>input</code> by default or any element with <code>as</code>, with optional sections on
         either side. The building block of the text fields; for a labelled field, put it in an{' '}
-        <a href="/components/input-wrapper">InputWrapper</a>.
+        <a href={withBase('/components/input-wrapper')}>InputWrapper</a>.
       </p>
 
       <H2 id="import">Import</H2>

@@ -10,6 +10,7 @@ import Multiple from '../../examples/month-picker/multiple';
 import multipleCode from '../../examples/month-picker/multiple.tsx?raw';
 import Range from '../../examples/month-picker/range';
 import rangeCode from '../../examples/month-picker/range.tsx?raw';
+import { withBase } from '../../base';
 
 export default function MonthPickerPage() {
   return (
@@ -24,11 +25,11 @@ export default function MonthPickerPage() {
 
       <H2 id="usage">Usage</H2>
       <p>
-        A <a href="/components/calendar">Calendar</a> that starts at the months of a year, with the years of a decade above them,
-        and a value. <code>value</code> and <code>onChange</code> hold the chosen month, the <code>Date</code> of its first day at
-        local midnight, or <code>null</code>. A click on the chosen month keeps it; with <code>allowDeselect</code> it clears it.
-        It opens on the year of the chosen month. The header's name of the year goes up to the decade, and a year goes back down
-        to its months.
+        A <a href={withBase('/components/calendar')}>Calendar</a> that starts at the months of a year, with the years of a decade
+        above them, and a value. <code>value</code> and <code>onChange</code> hold the chosen month, the <code>Date</code> of its
+        first day at local midnight, or <code>null</code>. A click on the chosen month keeps it; with <code>allowDeselect</code>{' '}
+        it clears it. It opens on the year of the chosen month. The header's name of the year goes up to the decade, and a year
+        goes back down to its months.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -49,7 +50,7 @@ export default function MonthPickerPage() {
 
       <H2 id="props">Props</H2>
       <p>
-        The <a href="/components/calendar#props">Calendar's props</a> for months and years (<code>date</code>,{' '}
+        The <a href={withBase('/components/calendar#props')}>Calendar's props</a> for months and years (<code>date</code>,{' '}
         <code>defaultDate</code>, <code>onDateChange</code>, <code>numberOfColumns</code>, <code>minDate</code>,{' '}
         <code>maxDate</code>, <code>getMonthProps</code>, <code>getYearProps</code>, <code>onMonthClick</code>,{' '}
         <code>onYearClick</code>, <code>locale</code>, <code>color</code>, <code>size</code>, <code>previousLabel</code>,{' '}
@@ -93,7 +94,7 @@ export default function MonthPickerPage() {
       <H2 id="styling">Styling</H2>
       <p>
         The root is the Calendar's <code>.slp-calendar</code>, with the <code>.slp-month-picker</code> class and{' '}
-        <code>data-type</code>; see the <a href="/components/calendar#styling">Calendar's slots</a>. Months are the{' '}
+        <code>data-type</code>; see the <a href={withBase('/components/calendar#styling')}>Calendar's slots</a>. Months are the{' '}
         <code>calendar-month</code> slot with <code>data-date</code> (<code>2026-10</code>). Chosen months have{' '}
         <code>data-selected</code>, and a range's months <code>data-in-range</code>, <code>data-first-in-range</code> and{' '}
         <code>data-last-in-range</code>.

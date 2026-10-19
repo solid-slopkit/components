@@ -8,6 +8,7 @@ import Basic from '../../examples/time-input/basic';
 import basicCode from '../../examples/time-input/basic.tsx?raw';
 import Seconds from '../../examples/time-input/seconds';
 import secondsCode from '../../examples/time-input/seconds.tsx?raw';
+import { withBase } from '../../base';
 
 export default function TimeInputPage() {
   return (
@@ -24,7 +25,7 @@ export default function TimeInputPage() {
       <p>
         The value is <code>HH:mm</code> in 24 hours, <code>''</code> while the time is incomplete. The browser writes it by the
         user's settings, lets each part be typed or stepped with the arrow keys, and may offer its own picker; for a time written
-        in the provider's locale, use <a href="/components/time-picker">TimePicker</a>. <code>minTime</code> and{' '}
+        in the provider's locale, use <a href={withBase('/components/time-picker')}>TimePicker</a>. <code>minTime</code> and{' '}
         <code>maxTime</code> make a time outside them invalid.
       </p>
       <Example component={Basic} code={basicCode} />
@@ -39,7 +40,7 @@ export default function TimeInputPage() {
       <p>
         Other props go to the <code>input</code>, and <code>label</code>, <code>labelSection</code>, <code>description</code>,{' '}
         <code>error</code>, <code>required</code>, <code>withAsterisk</code>, <code>size</code> and <code>id</code> work as on{' '}
-        <a href="/components/text-input">TextInput</a>.
+        <a href={withBase('/components/text-input')}>TextInput</a>.
       </p>
       <PropsTable
         rows={[
@@ -60,7 +61,7 @@ export default function TimeInputPage() {
       <H2 id="styling">Styling</H2>
       <p>
         The root is <code>.slp-time-input</code>, and the field box an <code>.slp-input</code>, styled as{' '}
-        <a href="/components/input#styling">Input's</a>.
+        <a href={withBase('/components/input#styling')}>Input's</a>.
       </p>
     </article>
   );

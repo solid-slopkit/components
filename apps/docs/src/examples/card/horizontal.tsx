@@ -1,9 +1,10 @@
 import { Button, Card, Text } from '@solid-slopkit/components';
+import landscape from '../example-landscape.svg';
 
 export default function Horizontal() {
   return (
     <Card orientation="horizontal" style={{ 'max-width': '32rem' }}>
-      <Card.Image src="/example-landscape.svg" alt="Mountains at sunset" />
+      <Card.Image src={landscape} alt="Mountains at sunset" />
       <Card.Header>
         <Card.Title>Norway</Card.Title>
       </Card.Header>

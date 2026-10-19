@@ -8,6 +8,7 @@ import Basic from '../../examples/center/basic';
 import basicCode from '../../examples/center/basic.tsx?raw';
 import Inline from '../../examples/center/inline';
 import inlineCode from '../../examples/center/inline.tsx?raw';
+import { withBase } from '../../base';
 
 export default function CenterPage() {
   return (
@@ -16,8 +17,8 @@ export default function CenterPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>Center</h1>
       <p class="docs-lead">
-        Centers its content horizontally and vertically: a <a href="/components/flex">Flex</a> with <code>align</code> and{' '}
-        <code>justify</code> set to <code>center</code>.
+        Centers its content horizontally and vertically: a <a href={withBase('/components/flex')}>Flex</a> with <code>align</code>{' '}
+        and <code>justify</code> set to <code>center</code>.
       </p>
 
       <H2 id="import">Import</H2>

@@ -2,6 +2,7 @@ import { For } from 'solid-js';
 import { useLocation } from '@solidjs/router';
 import { AppShell } from '@solid-slopkit/components';
 import { nav, type NavItem } from '../nav';
+import { isPath, withBase } from '../base';
 
 function NavMenu(props: { items: NavItem[] }) {
   const location = useLocation();
@@ -10,7 +11,7 @@ function NavMenu(props: { items: NavItem[] }) {
       <For each={props.items}>
         {(item) => (
           <AppShell.MenuItem>
-            <AppShell.MenuButton href={item.href} active={location.pathname === item.href}>
+            <AppShell.MenuButton href={withBase(item.href)} active={isPath(location.pathname, item.href)}>
               {item.title}
             </AppShell.MenuButton>
           </AppShell.MenuItem>
@@ -25,7 +26,7 @@ export function Sidebar() {
   return (
     <AppShell.Sidebar label="Navigation" class="docs-sidebar">
       <AppShell.SidebarHeader class="docs-sidebar-header">
-        <a class="docs-wordmark" href="/">
+        <a class="docs-wordmark" href={withBase('/')}>
           slopkit
         </a>
       </AppShell.SidebarHeader>

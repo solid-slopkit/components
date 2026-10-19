@@ -10,6 +10,7 @@ import Sizes from '../../examples/theme-icon/sizes';
 import sizesCode from '../../examples/theme-icon/sizes.tsx?raw';
 import Features from '../../examples/theme-icon/features';
 import featuresCode from '../../examples/theme-icon/features.tsx?raw';
+import { withBase } from '../../base';
 
 export default function ThemeIconPage() {
   return (
@@ -27,7 +28,7 @@ export default function ThemeIconPage() {
       <H2 id="usage">Usage</H2>
       <p>
         Next to a label, the icon is decoration: mark the SVG <code>aria-hidden</code>. ThemeIcon isn't interactive; for a
-        clickable icon, use a <a href="/components/button">Button</a> with <code>shape="square"</code>.
+        clickable icon, use a <a href={withBase('/components/button')}>Button</a> with <code>shape="square"</code>.
       </p>
       <Example component={Features} code={featuresCode} column />
 

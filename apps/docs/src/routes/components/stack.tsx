@@ -8,6 +8,7 @@ import Basic from '../../examples/stack/basic';
 import basicCode from '../../examples/stack/basic.tsx?raw';
 import Divided from '../../examples/stack/divided';
 import dividedCode from '../../examples/stack/divided.tsx?raw';
+import { withBase } from '../../base';
 
 export default function StackPage() {
   return (
@@ -16,8 +17,8 @@ export default function StackPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>Stack</h1>
       <p class="docs-lead">
-        Stacks children vertically: a column <a href="/components/flex">Flex</a> with a gap. Its props are not responsive; for a
-        layout that changes per breakpoint, use Flex.
+        Stacks children vertically: a column <a href={withBase('/components/flex')}>Flex</a> with a gap. Its props are not
+        responsive; for a layout that changes per breakpoint, use Flex.
       </p>
 
       <H2 id="import">Import</H2>

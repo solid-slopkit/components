@@ -2,7 +2,7 @@
   "name": "@solid-slopkit/components",
   "version": "0.1.0",
   "description": "Component library for SolidJS 2.x, styled with plain CSS and CSS variables",
-  "homepage": "https://github.com/solid-slopkit/components#readme",
+  "homepage": "https://solid-slopkit.github.io/components/",
   "license": "MIT",
   "repository": {
     "type": "git",

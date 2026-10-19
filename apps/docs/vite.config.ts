@@ -4,6 +4,8 @@ import solid from '@solidjs/vite-plugin';
 import { slopkitFromSource } from './slopkit-from-source.ts';
 
 export default defineConfig({
+  // GitHub Pages serves the site under /components/; the deploy workflow sets DOCS_BASE. Dev and tests run at the root.
+  base: process.env.DOCS_BASE ?? '/',
   // Turnkey client mode: no index.html and no mount file — the plugin generates
   // the entries around src/App.tsx (wrapped in src/Document.tsx) and `vite build`
   // prerenders the shell into a purely static dist/client.

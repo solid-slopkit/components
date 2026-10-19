@@ -10,6 +10,7 @@ import Vertical from '../../examples/divider/vertical';
 import verticalCode from '../../examples/divider/vertical.tsx?raw';
 import WithText from '../../examples/divider/with-text';
 import withTextCode from '../../examples/divider/with-text.tsx?raw';
+import { withBase } from '../../base';
 
 export default function DividerPage() {
   return (
@@ -27,15 +28,15 @@ export default function DividerPage() {
       <H2 id="usage">Usage</H2>
       <p>
         A horizontal divider fills the width of its container. It has no margin, so space it with the gap of a{' '}
-        <a href="/components/stack">Stack</a>. <code>variant</code> takes <code>solid</code>, <code>dashed</code> or{' '}
+        <a href={withBase('/components/stack')}>Stack</a>. <code>variant</code> takes <code>solid</code>, <code>dashed</code> or{' '}
         <code>dotted</code>, and <code>color</code> a color role; without one, the line is a muted text color.
       </p>
       <Example component={Basic} code={basicCode} column />
 
       <H2 id="vertical">Vertical</H2>
       <p>
-        A vertical divider is as tall as its row in a <a href="/components/group">Group</a> or Flex. HTML doesn't allow an{' '}
-        <code>hr</code> inside a <code>p</code>, so put it in a row or a <code>div</code>.
+        A vertical divider is as tall as its row in a <a href={withBase('/components/group')}>Group</a> or Flex. HTML doesn't
+        allow an <code>hr</code> inside a <code>p</code>, so put it in a row or a <code>div</code>.
       </p>
       <Example component={Vertical} code={verticalCode} />
 

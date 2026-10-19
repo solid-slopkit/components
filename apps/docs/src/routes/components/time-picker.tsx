@@ -10,6 +10,7 @@ import Dropdown from '../../examples/time-picker/dropdown';
 import dropdownCode from '../../examples/time-picker/dropdown.tsx?raw';
 import Seconds from '../../examples/time-picker/seconds';
 import secondsCode from '../../examples/time-picker/seconds.tsx?raw';
+import { withBase } from '../../base';
 
 export default function TimePickerPage() {
   return (
@@ -47,8 +48,8 @@ export default function TimePickerPage() {
       <H2 id="props">Props</H2>
       <p>
         <code>label</code>, <code>labelSection</code>, <code>description</code>, <code>error</code>, <code>required</code>,{' '}
-        <code>withAsterisk</code>, <code>size</code> and <code>id</code> work as on <a href="/components/text-input">TextInput</a>
-        , and other props go to the group of segments. Plus these:
+        <code>withAsterisk</code>, <code>size</code> and <code>id</code> work as on{' '}
+        <a href={withBase('/components/text-input')}>TextInput</a>, and other props go to the group of segments. Plus these:
       </p>
       <PropsTable
         rows={[

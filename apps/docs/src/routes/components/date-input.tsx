@@ -8,6 +8,7 @@ import Basic from '../../examples/date-input/basic';
 import basicCode from '../../examples/date-input/basic.tsx?raw';
 import Format from '../../examples/date-input/format';
 import formatCode from '../../examples/date-input/format.tsx?raw';
+import { withBase } from '../../base';
 
 export default function DateInputPage() {
   return (
@@ -24,8 +25,8 @@ export default function DateInputPage() {
       <p>
         Typed text that names a day sets it at once: an ISO day, or numbers in the locale's order (<code>10/15/2026</code> in
         English, <code>15.10.2026</code> in German). Leaving the field writes the day again, so text that isn't a day goes. A
-        click or ArrowDown opens a <a href="/components/date-picker">DatePicker</a> on the day's month; the focus stays in the
-        field, and Tab moves into the calendar.
+        click or ArrowDown opens a <a href={withBase('/components/date-picker')}>DatePicker</a> on the day's month; the focus
+        stays in the field, and Tab moves into the calendar.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -39,9 +40,10 @@ export default function DateInputPage() {
 
       <H2 id="props">Props</H2>
       <p>
-        The <a href="/components/date-picker#props">DatePicker's props</a> for one day go to the calendar, and <code>label</code>,{' '}
-        <code>labelSection</code>, <code>description</code>, <code>error</code>, <code>required</code>, <code>withAsterisk</code>,{' '}
-        <code>size</code> and <code>id</code> work as on <a href="/components/text-input">TextInput</a>. Plus these:
+        The <a href={withBase('/components/date-picker#props')}>DatePicker's props</a> for one day go to the calendar, and{' '}
+        <code>label</code>, <code>labelSection</code>, <code>description</code>, <code>error</code>, <code>required</code>,{' '}
+        <code>withAsterisk</code>, <code>size</code> and <code>id</code> work as on{' '}
+        <a href={withBase('/components/text-input')}>TextInput</a>. Plus these:
       </p>
       <PropsTable
         rows={[

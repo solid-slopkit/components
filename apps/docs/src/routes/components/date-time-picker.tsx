@@ -8,6 +8,7 @@ import Basic from '../../examples/date-time-picker/basic';
 import basicCode from '../../examples/date-time-picker/basic.tsx?raw';
 import Time from '../../examples/date-time-picker/time';
 import timeCode from '../../examples/date-time-picker/time.tsx?raw';
+import { withBase } from '../../base';
 
 export default function DateTimePickerPage() {
   return (
@@ -23,8 +24,9 @@ export default function DateTimePickerPage() {
       <H2 id="usage">Usage</H2>
       <p>
         The value is a <code>Date</code> with its time of day. The dropdown holds a{' '}
-        <a href="/components/date-picker">DatePicker</a>, a <a href="/components/time-picker">TimePicker</a> and a button that
-        closes it. Changes apply at once: a chosen day keeps the time, and a chosen time keeps the day.
+        <a href={withBase('/components/date-picker')}>DatePicker</a>, a{' '}
+        <a href={withBase('/components/time-picker')}>TimePicker</a> and a button that closes it. Changes apply at once: a chosen
+        day keeps the time, and a chosen time keeps the day.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -38,10 +40,10 @@ export default function DateTimePickerPage() {
 
       <H2 id="props">Props</H2>
       <p>
-        The <a href="/components/date-picker#props">DatePicker's props</a> for one day go to the calendar, and <code>label</code>,{' '}
-        <code>labelSection</code>, <code>description</code>, <code>error</code>, <code>required</code>, <code>withAsterisk</code>,{' '}
-        <code>size</code> and <code>id</code> work as on <a href="/components/text-input">TextInput</a>. Other props go to the
-        button. Plus these:
+        The <a href={withBase('/components/date-picker#props')}>DatePicker's props</a> for one day go to the calendar, and{' '}
+        <code>label</code>, <code>labelSection</code>, <code>description</code>, <code>error</code>, <code>required</code>,{' '}
+        <code>withAsterisk</code>, <code>size</code> and <code>id</code> work as on{' '}
+        <a href={withBase('/components/text-input')}>TextInput</a>. Other props go to the button. Plus these:
       </p>
       <PropsTable
         rows={[

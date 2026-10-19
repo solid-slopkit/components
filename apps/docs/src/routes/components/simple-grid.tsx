@@ -8,6 +8,7 @@ import Basic from '../../examples/simple-grid/basic';
 import basicCode from '../../examples/simple-grid/basic.tsx?raw';
 import Responsive from '../../examples/simple-grid/responsive';
 import responsiveCode from '../../examples/simple-grid/responsive.tsx?raw';
+import { withBase } from '../../base';
 
 export default function SimpleGridPage() {
   return (
@@ -28,7 +29,7 @@ export default function SimpleGridPage() {
       <H2 id="responsive">Responsive</H2>
       <p>
         <code>cols</code>, <code>spacing</code> and <code>verticalSpacing</code> take a value per breakpoint, like{' '}
-        <a href="/components/box">Box</a>'s props. Resize the window to see the columns change.
+        <a href={withBase('/components/box')}>Box</a>'s props. Resize the window to see the columns change.
       </p>
       <Example component={Responsive} code={responsiveCode} column />
 

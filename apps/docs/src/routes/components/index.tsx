@@ -3,6 +3,7 @@ import { Title } from '@solidjs/meta';
 import { CodeBlock } from '../../components/CodeBlock';
 import { H2 } from '../../components/Heading';
 import { nav } from '../../nav';
+import { withBase } from '../../base';
 
 // The same groups as the sidebar, so the two never drift apart.
 const componentGroups = nav.find((section) => section.title === 'Components')?.groups ?? [];
@@ -70,7 +71,7 @@ export function Toolbar() {
               <For each={group.items}>
                 {(item) => (
                   <li>
-                    <a href={item.href}>{item.title}</a>
+                    <a href={withBase(item.href)}>{item.title}</a>
                   </li>
                 )}
               </For>

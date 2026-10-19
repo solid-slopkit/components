@@ -8,6 +8,7 @@ import Basic from '../../examples/dropzone/basic';
 import basicCode from '../../examples/dropzone/basic.tsx?raw';
 import Browse from '../../examples/dropzone/browse';
 import browseCode from '../../examples/dropzone/browse.tsx?raw';
+import { withBase } from '../../base';
 
 export default function DropzonePage() {
   return (
@@ -18,7 +19,7 @@ export default function DropzonePage() {
       <p class="docs-lead">
         An area that takes files dropped on it, and opens the file picker when clicked. It checks the files and shows, while
         they're dragged over, whether it would take them. For a field that keeps the files, use{' '}
-        <a href="/components/file-input">FileInput</a>.
+        <a href={withBase('/components/file-input')}>FileInput</a>.
       </p>
 
       <H2 id="import">Import</H2>

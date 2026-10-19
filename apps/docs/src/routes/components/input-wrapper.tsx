@@ -12,6 +12,7 @@ import LabelSection from '../../examples/input-wrapper/label-section';
 import labelSectionCode from '../../examples/input-wrapper/label-section.tsx?raw';
 import Group from '../../examples/input-wrapper/group';
 import groupCode from '../../examples/input-wrapper/group.tsx?raw';
+import { withBase } from '../../base';
 
 export default function InputWrapperPage() {
   return (
@@ -20,8 +21,8 @@ export default function InputWrapperPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>InputWrapper</h1>
       <p class="docs-lead">
-        A label, description and error around a field. The field inside, such as an <a href="/components/input">Input</a>, gets
-        the ids, the invalid state and the size from it.
+        A label, description and error around a field. The field inside, such as an{' '}
+        <a href={withBase('/components/input')}>Input</a>, gets the ids, the invalid state and the size from it.
       </p>
 
       <H2 id="import">Import</H2>

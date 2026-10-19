@@ -10,6 +10,7 @@ import Sizes from '../../examples/switch/sizes';
 import sizesCode from '../../examples/switch/sizes.tsx?raw';
 import Group from '../../examples/switch/group';
 import groupCode from '../../examples/switch/group.tsx?raw';
+import { withBase } from '../../base';
 
 export default function SwitchPage() {
   return (
@@ -27,8 +28,8 @@ export default function SwitchPage() {
       <H2 id="usage">Usage</H2>
       <p>
         A switch is for a setting that takes effect at once; for a choice applied when a form is sent, use a{' '}
-        <a href="/components/checkbox">Checkbox</a>. Controlled with <code>checked</code> and <code>onChange</code>, or
-        uncontrolled. Screen readers say “Wi-Fi, switch, on”.
+        <a href={withBase('/components/checkbox')}>Checkbox</a>. Controlled with <code>checked</code> and <code>onChange</code>,
+        or uncontrolled. Screen readers say “Wi-Fi, switch, on”.
       </p>
       <Example component={Basic} code={basicCode} />
 

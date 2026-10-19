@@ -10,6 +10,7 @@ import Underline from '../../examples/anchor/underline';
 import underlineCode from '../../examples/anchor/underline.tsx?raw';
 import Variants from '../../examples/anchor/variants';
 import variantsCode from '../../examples/anchor/variants.tsx?raw';
+import { withBase } from '../../base';
 
 export default function AnchorPage() {
   return (
@@ -18,7 +19,7 @@ export default function AnchorPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>Anchor</h1>
       <p class="docs-lead">
-        A link: <a href="/components/text">Text</a> rendered as an <code>a</code>, in the primary color.
+        A link: <a href={withBase('/components/text')}>Text</a> rendered as an <code>a</code>, in the primary color.
       </p>
 
       <H2 id="import">Import</H2>

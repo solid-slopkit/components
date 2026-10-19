@@ -8,6 +8,7 @@ import Basic from '../../examples/range-slider/basic';
 import basicCode from '../../examples/range-slider/basic.tsx?raw';
 import Hours from '../../examples/range-slider/hours';
 import hoursCode from '../../examples/range-slider/hours.tsx?raw';
+import { withBase } from '../../base';
 
 export default function RangeSliderPage() {
   return (
@@ -17,7 +18,7 @@ export default function RangeSliderPage() {
       <h1>RangeSlider</h1>
       <p class="docs-lead">
         A range picked on a track: two thumbs with <code>role="slider"</code>, and the bar between them. Everything else works
-        like <a href="/components/slider">Slider</a>.
+        like <a href={withBase('/components/slider')}>Slider</a>.
       </p>
 
       <H2 id="import">Import</H2>

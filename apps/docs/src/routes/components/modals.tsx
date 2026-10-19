@@ -10,6 +10,7 @@ import Confirm from '../../examples/modals/confirm';
 import confirmCode from '../../examples/modals/confirm.tsx?raw';
 import Async from '../../examples/modals/async';
 import asyncCode from '../../examples/modals/async.tsx?raw';
+import { withBase } from '../../base';
 
 export default function ModalsPage() {
   return (
@@ -36,11 +37,11 @@ export default function ModalsPage() {
 
       <H2 id="usage">Usage</H2>
       <p>
-        <code>useModals().open(settings)</code> opens a <a href="/components/modal">Modal</a> with its props (<code>title</code>,{' '}
-        <code>size</code>, …) and <code>children</code>, and returns its id for <code>update</code> and <code>close</code>. Pass
-        the content as a function, as here: it then renders inside the modal, under the provider, so components and anything
-        reactive work. Plain text can be passed as is. The close button, Escape and the backdrop close it, and{' '}
-        <code>onClose</code> is called once it has gone.
+        <code>useModals().open(settings)</code> opens a <a href={withBase('/components/modal')}>Modal</a> with its props (
+        <code>title</code>, <code>size</code>, …) and <code>children</code>, and returns its id for <code>update</code> and{' '}
+        <code>close</code>. Pass the content as a function, as here: it then renders inside the modal, under the provider, so
+        components and anything reactive work. Plain text can be passed as is. The close button, Escape and the backdrop close it,
+        and <code>onClose</code> is called once it has gone.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -93,7 +94,8 @@ export async function leaveWithUnsavedChanges() {
 
       <H2 id="settings">Settings</H2>
       <p>
-        <a href="/components/modal">Modal</a>'s props (except <code>opened</code>, <code>onClose</code> and <code>onExited</code>
+        <a href={withBase('/components/modal')}>Modal</a>'s props (except <code>opened</code>, <code>onClose</code> and{' '}
+        <code>onExited</code>
         ), and:
       </p>
       <PropsTable
@@ -124,7 +126,7 @@ export async function leaveWithUnsavedChanges() {
 
       <H2 id="styling">Styling</H2>
       <p>
-        Each is a <a href="/components/modal">Modal</a> (<code>.slp-modal</code>). A confirm modal's buttons are in{' '}
+        Each is a <a href={withBase('/components/modal')}>Modal</a> (<code>.slp-modal</code>). A confirm modal's buttons are in{' '}
         <code>[data-slot="modals-confirm-actions"]</code>, after the content. The rules live in{' '}
         <code>@layer slopkit.components</code>, so unlayered CSS wins.
       </p>

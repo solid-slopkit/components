@@ -10,6 +10,7 @@ import Terms from '../../examples/highlight/terms';
 import termsCode from '../../examples/highlight/terms.tsx?raw';
 import Search from '../../examples/highlight/search';
 import searchCode from '../../examples/highlight/search.tsx?raw';
+import { withBase } from '../../base';
 
 export default function HighlightPage() {
   return (
@@ -18,7 +19,7 @@ export default function HighlightPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>Highlight</h1>
       <p class="docs-lead">
-        Text with every match of a term wrapped in a <a href="/components/mark">Mark</a>: a <code>span</code>.
+        Text with every match of a term wrapped in a <a href={withBase('/components/mark')}>Mark</a>: a <code>span</code>.
       </p>
 
       <H2 id="import">Import</H2>
@@ -27,7 +28,8 @@ export default function HighlightPage() {
       <H2 id="usage">Usage</H2>
       <p>
         The children are a string. Matching ignores case. Highlight only adds the marks, so put it inside a{' '}
-        <a href="/components/text">Text</a>, a <a href="/components/title">Title</a> or a link for its size and element.
+        <a href={withBase('/components/text')}>Text</a>, a <a href={withBase('/components/title')}>Title</a> or a link for its
+        size and element.
       </p>
       <Example component={Basic} code={basicCode} />
 

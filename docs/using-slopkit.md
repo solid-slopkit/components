@@ -4,6 +4,8 @@ This guide is for coding agents that add `@solid-slopkit/components` to a SolidJ
 
 Repository: https://github.com/solid-slopkit/components
 
+Docs site: https://solid-slopkit.github.io/components/. It is built from `main` and can be ahead of the latest release; the docs inside the installed package match the installed version, so prefer those.
+
 ## The package
 
 `@solid-slopkit/components` is the components, theming (CSS variables) and the `SlopkitUi` provider: layout, inputs, overlays, data display. It depends on no other `@solid-slopkit` package. Form state (`@solid-slopkit/forms`) and translations (`@solid-slopkit/i18n`) are separate packages that work with it through props: a forms binding fits an input, and i18n messages and the active locale go into components and the provider.

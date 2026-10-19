@@ -8,6 +8,7 @@ import Basic from '../../examples/textarea/basic';
 import basicCode from '../../examples/textarea/basic.tsx?raw';
 import Autosize from '../../examples/textarea/autosize';
 import autosizeCode from '../../examples/textarea/autosize.tsx?raw';
+import { withBase } from '../../base';
 
 export default function TextareaPage() {
   return (
@@ -16,8 +17,9 @@ export default function TextareaPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>Textarea</h1>
       <p class="docs-lead">
-        A labelled multi-line text field: an <a href="/components/input">Input</a> with a <code>textarea</code>, in an{' '}
-        <a href="/components/input-wrapper">InputWrapper</a>. With <code>autosize</code>, it grows and shrinks with its text.
+        A labelled multi-line text field: an <a href={withBase('/components/input')}>Input</a> with a <code>textarea</code>, in an{' '}
+        <a href={withBase('/components/input-wrapper')}>InputWrapper</a>. With <code>autosize</code>, it grows and shrinks with
+        its text.
       </p>
 
       <H2 id="import">Import</H2>
@@ -25,8 +27,9 @@ export default function TextareaPage() {
 
       <H2 id="usage">Usage</H2>
       <p>
-        Props are split like <a href="/components/text-input">TextInput</a>'s: the wrapper's go to the root, every other prop to
-        the <code>textarea</code>. Without <code>autosize</code>, <code>rows</code> sets the height and the user can drag it.
+        Props are split like <a href={withBase('/components/text-input')}>TextInput</a>'s: the wrapper's go to the root, every
+        other prop to the <code>textarea</code>. Without <code>autosize</code>, <code>rows</code> sets the height and the user can
+        drag it.
       </p>
       <Example component={Basic} code={basicCode} />
 

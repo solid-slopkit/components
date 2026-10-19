@@ -7,6 +7,7 @@ import Basic from '../../examples/year-picker-input/basic';
 import basicCode from '../../examples/year-picker-input/basic.tsx?raw';
 import Range from '../../examples/year-picker-input/range';
 import rangeCode from '../../examples/year-picker-input/range.tsx?raw';
+import { withBase } from '../../base';
 
 export default function YearPickerInputPage() {
   return (
@@ -21,9 +22,9 @@ export default function YearPickerInputPage() {
 
       <H2 id="usage">Usage</H2>
       <p>
-        It works as <a href="/components/date-picker-input">DatePickerInput</a> does, with a{' '}
-        <a href="/components/year-picker">YearPicker</a> in the dropdown. A year is the <code>Date</code> of its January 1,
-        written as "2026" by default; <code>valueFormat</code> takes other <code>Intl.DateTimeFormat</code> options.
+        It works as <a href={withBase('/components/date-picker-input')}>DatePickerInput</a> does, with a{' '}
+        <a href={withBase('/components/year-picker')}>YearPicker</a> in the dropdown. A year is the <code>Date</code> of its
+        January 1, written as "2026" by default; <code>valueFormat</code> takes other <code>Intl.DateTimeFormat</code> options.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -36,9 +37,9 @@ export default function YearPickerInputPage() {
 
       <H2 id="props">Props</H2>
       <p>
-        The <a href="/components/year-picker#props">YearPicker's props</a> go to the calendar, and the field takes{' '}
-        <a href="/components/date-picker-input#props">DatePickerInput's field props</a>. <code>valueFormat</code> defaults to{' '}
-        <code>{"{ year: 'numeric' }"}</code>.
+        The <a href={withBase('/components/year-picker#props')}>YearPicker's props</a> go to the calendar, and the field takes{' '}
+        <a href={withBase('/components/date-picker-input#props')}>DatePickerInput's field props</a>. <code>valueFormat</code>{' '}
+        defaults to <code>{"{ year: 'numeric' }"}</code>.
       </p>
 
       <H2 id="styling">Styling</H2>

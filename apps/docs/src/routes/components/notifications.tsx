@@ -10,6 +10,7 @@ import Update from '../../examples/notifications/update';
 import updateCode from '../../examples/notifications/update.tsx?raw';
 import Facade from '../../examples/notifications/facade';
 import facadeCode from '../../examples/notifications/facade.tsx?raw';
+import { withBase } from '../../base';
 
 export default function NotificationsPage() {
   return (
@@ -41,8 +42,8 @@ export default function NotificationsPage() {
       <p>
         <code>useNotifications()</code> returns <code>show</code>, <code>update</code>, <code>hide</code>, <code>clean</code> and{' '}
         <code>notifications</code>, an accessor of the list. <code>show</code> takes a <code>message</code> and the look of a{' '}
-        <a href="/components/notification">Notification</a> (<code>title</code>, <code>icon</code>, <code>color</code>,{' '}
-        <code>loading</code>), and returns the notification's id. Each closes after <code>autoClose</code> milliseconds, which
+        <a href={withBase('/components/notification')}>Notification</a> (<code>title</code>, <code>icon</code>, <code>color</code>
+        , <code>loading</code>), and returns the notification's id. Each closes after <code>autoClose</code> milliseconds, which
         pauses while the pointer or focus is in the region, or when its close button is pressed. New ones are announced politely;{' '}
         <code>role: 'alert'</code> interrupts, for errors.
       </p>
@@ -105,8 +106,8 @@ export default function NotificationsPage() {
         The region is <code>.slp-notifications</code>, with <code>data-position</code>, holding{' '}
         <code>[data-slot="notifications-list"]</code> and a <code>notifications-item</code> per notification, with{' '}
         <code>data-status</code> as it enters and leaves. Each holds a <code>.slp-notification</code>, styled as{' '}
-        <a href="/components/notification">Notification</a>. The rules live in <code>@layer slopkit.components</code>, so
-        unlayered CSS wins.
+        <a href={withBase('/components/notification')}>Notification</a>. The rules live in <code>@layer slopkit.components</code>,
+        so unlayered CSS wins.
       </p>
     </article>
   );

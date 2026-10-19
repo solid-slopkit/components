@@ -8,6 +8,7 @@ import Basic from '../../examples/password-input/basic';
 import basicCode from '../../examples/password-input/basic.tsx?raw';
 import Together from '../../examples/password-input/together';
 import togetherCode from '../../examples/password-input/together.tsx?raw';
+import { withBase } from '../../base';
 
 export default function PasswordInputPage() {
   return (
@@ -16,7 +17,8 @@ export default function PasswordInputPage() {
       <p class="docs-eyebrow">Components</p>
       <h1>PasswordInput</h1>
       <p class="docs-lead">
-        A labelled password field: a <a href="/components/text-input">TextInput</a> with a toggle that shows the password as text.
+        A labelled password field: a <a href={withBase('/components/text-input')}>TextInput</a> with a toggle that shows the
+        password as text.
       </p>
 
       <H2 id="import">Import</H2>

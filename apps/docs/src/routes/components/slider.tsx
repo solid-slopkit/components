@@ -8,6 +8,7 @@ import Basic from '../../examples/slider/basic';
 import basicCode from '../../examples/slider/basic.tsx?raw';
 import Marks from '../../examples/slider/marks';
 import marksCode from '../../examples/slider/marks.tsx?raw';
+import { withBase } from '../../base';
 
 export default function SliderPage() {
   return (
@@ -17,7 +18,7 @@ export default function SliderPage() {
       <h1>Slider</h1>
       <p class="docs-lead">
         A value picked on a track: a thumb with <code>role="slider"</code> that the pointer drags and the keyboard steps. For two
-        values, use <a href="/components/range-slider">RangeSlider</a>.
+        values, use <a href={withBase('/components/range-slider')}>RangeSlider</a>.
       </p>
 
       <H2 id="import">Import</H2>

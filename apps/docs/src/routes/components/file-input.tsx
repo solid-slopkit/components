@@ -8,6 +8,7 @@ import Basic from '../../examples/file-input/basic';
 import basicCode from '../../examples/file-input/basic.tsx?raw';
 import Multiple from '../../examples/file-input/multiple';
 import multipleCode from '../../examples/file-input/multiple.tsx?raw';
+import { withBase } from '../../base';
 
 export default function FileInputPage() {
   return (
@@ -17,7 +18,7 @@ export default function FileInputPage() {
       <h1>FileInput</h1>
       <p class="docs-lead">
         A labelled field for files: it looks like a text field, and its control is a button that opens the file picker and shows
-        the chosen names. For a plain button, use <a href="/components/file-button">FileButton</a>.
+        the chosen names. For a plain button, use <a href={withBase('/components/file-button')}>FileButton</a>.
       </p>
 
       <H2 id="import">Import</H2>

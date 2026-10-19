@@ -18,6 +18,7 @@ import Truncation from '../../examples/text/truncation';
 import truncationCode from '../../examples/text/truncation.tsx?raw';
 import Polymorphic from '../../examples/text/polymorphic';
 import polymorphicCode from '../../examples/text/polymorphic.tsx?raw';
+import { withBase } from '../../base';
 
 export default function TextPage() {
   return (
@@ -34,8 +35,8 @@ export default function TextPage() {
 
       <H2 id="usage">Usage</H2>
       <p>
-        The margin is reset to <code>0</code>, so space paragraphs with a <a href="/components/stack">Stack</a>. Text doesn't take
-        style props.
+        The margin is reset to <code>0</code>, so space paragraphs with a <a href={withBase('/components/stack')}>Stack</a>. Text
+        doesn't take style props.
       </p>
       <Example component={Basic} code={basicCode} column />
 

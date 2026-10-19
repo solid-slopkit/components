@@ -12,6 +12,7 @@ import Icons from '../../examples/list/icons';
 import iconsCode from '../../examples/list/icons.tsx?raw';
 import Nested from '../../examples/list/nested';
 import nestedCode from '../../examples/list/nested.tsx?raw';
+import { withBase } from '../../base';
 
 const sizes = "'xs' | 'sm' | 'md' | 'lg' | 'xl'";
 
@@ -32,7 +33,8 @@ export default function ListPage() {
       <H2 id="usage">Usage</H2>
       <p>
         Items keep the browser's markers. Without <code>size</code>, a list inherits the font size and line height around it;{' '}
-        <code>spacing</code> adds a gap between items. List has no margin; space it with a <a href="/components/stack">Stack</a>.
+        <code>spacing</code> adds a gap between items. List has no margin; space it with a{' '}
+        <a href={withBase('/components/stack')}>Stack</a>.
       </p>
       <Example component={Basic} code={basicCode} column />
 

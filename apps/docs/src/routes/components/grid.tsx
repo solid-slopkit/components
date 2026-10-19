@@ -14,6 +14,7 @@ import Offset from '../../examples/grid/offset';
 import offsetCode from '../../examples/grid/offset.tsx?raw';
 import Grow from '../../examples/grid/grow';
 import growCode from '../../examples/grid/grow.tsx?raw';
+import { withBase } from '../../base';
 
 export default function GridPage() {
   return (
@@ -23,7 +24,7 @@ export default function GridPage() {
       <h1>Grid</h1>
       <p class="docs-lead">
         A flex grid of 12 columns. Each <code>Grid.Col</code> spans some of them, and columns wrap to a new row when a row is
-        full. For a grid where every cell is the same width, use <a href="/components/simple-grid">SimpleGrid</a>.
+        full. For a grid where every cell is the same width, use <a href={withBase('/components/simple-grid')}>SimpleGrid</a>.
       </p>
 
       <H2 id="import">Import</H2>
@@ -38,8 +39,8 @@ export default function GridPage() {
       <H2 id="responsive">Responsive</H2>
       <p>
         <code>span</code>, <code>offset</code>, <code>order</code> and the grid's <code>gutter</code> take a value per breakpoint,
-        like <a href="/components/box">Box</a>'s props. <code>columns</code>, <code>justify</code> and <code>align</code> are not
-        responsive.
+        like <a href={withBase('/components/box')}>Box</a>'s props. <code>columns</code>, <code>justify</code> and{' '}
+        <code>align</code> are not responsive.
       </p>
       <Example component={Responsive} code={responsiveCode} column />
 

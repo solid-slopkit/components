@@ -10,6 +10,7 @@ import Block from '../../examples/code/block';
 import blockCode from '../../examples/code/block.tsx?raw';
 import Scrolling from '../../examples/code/scrolling';
 import scrollingCode from '../../examples/code/scrolling.tsx?raw';
+import { withBase } from '../../base';
 
 export default function CodePage() {
   return (
@@ -32,7 +33,7 @@ export default function CodePage() {
       <p>
         <code>block</code> renders a <code>pre</code> that keeps line breaks and indentation. Pass the source as a string: JSX
         collapses whitespace in plain text children. HTML doesn't allow a <code>pre</code> inside a <code>p</code>, so put a block
-        in a <a href="/components/stack">Stack</a> or a <code>div</code>.
+        in a <a href={withBase('/components/stack')}>Stack</a> or a <code>div</code>.
       </p>
       <Example component={Block} code={blockCode} />
 

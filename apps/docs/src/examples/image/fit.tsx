@@ -1,5 +1,6 @@
 import { For } from 'solid-js';
 import { Image, Stack, Text } from '@solid-slopkit/components';
+import landscape from '../example-landscape.svg';
 
 const fits = ['cover', 'contain', 'fill', 'none', 'scale-down'] as const;
 
@@ -9,7 +10,7 @@ export default function Fit() {
       {(fit) => (
         <Stack gap={1} align="center">
           <Image
-            src="/example-landscape.svg"
+            src={landscape}
             alt=""
             fit={fit}
             width={120}

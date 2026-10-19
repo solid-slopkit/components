@@ -20,6 +20,7 @@ import {
   type Option,
   type Preset,
 } from '../create/presets';
+import { withBase } from '../base';
 
 type Control = { key: keyof Preset; label: string; icon: (value: string) => JSX.Element };
 
@@ -105,15 +106,15 @@ export default function Create() {
       <Title>Create a theme · slopkit</Title>
       <Group justify="space-between" wrap="nowrap" class="create-header" role="banner">
         <Group gap={6} wrap="nowrap">
-          <a class="docs-wordmark" href="/">
+          <a class="docs-wordmark" href={withBase('/')}>
             slopkit
           </a>
           <Box display={{ base: 'none', sm: 'block' }}>
             <Group gap={4} class="create-header-nav" role="navigation" aria-label="Main">
-              <a href="/">Docs</a>
-              <a href="/components">Components</a>
-              <a href="/components/theming">Theming</a>
-              <a href="/create" aria-current="page">
+              <a href={withBase('/')}>Docs</a>
+              <a href={withBase('/components')}>Components</a>
+              <a href={withBase('/components/theming')}>Theming</a>
+              <a href={withBase('/create')} aria-current="page">
                 Create
               </a>
             </Group>
