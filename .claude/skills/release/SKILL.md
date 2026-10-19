@@ -1,11 +1,11 @@
 ---
 name: release
-description: Release @solid-slopkit/components under a new version - apply changesets, run the checks, commit, tag v<version>, push, and watch the release workflow. Use when the user asks to release, cut a release, publish, ship a version, or bump the version.
+description: Release @solid-slopkit/components under a new version - apply changesets, run the checks, commit, tag v<version>, push, and watch the release workflow publish to npm. Use when the user asks to release, cut a release, publish, ship a version, or bump the version.
 ---
 
 # Releasing slopkit components
 
-`@solid-slopkit/components` is released as a tarball on a GitHub Release tagged `v<version>` (ADR 0001). Changesets sets the version. Pushing the tag starts `.github/workflows/release.yml`, which runs every check, packs, and publishes the release. The README's "Releasing" section is the human version of these steps.
+`@solid-slopkit/components` is published to npm, one version per `v<version>` tag (ADR 0001). Changesets sets the version. Pushing the tag starts `.github/workflows/release.yml`, which runs every check, packs, publishes the tarball to npm through trusted publishing, and creates a GitHub Release with the changelog as notes. The README's "Releasing" section is the human version of these steps.
 
 Committing, tagging and pushing are the user's calls. Stop and ask before each one, show what will happen, and never force-push a tag the user hasn't told you to move.
 
@@ -15,7 +15,7 @@ Run every command with mise's Node: start each shell with `eval "$(mise env -s b
 
 - `git status --short` is clean, and the branch is `main`, up to date with `origin/main` (`git fetch origin && git status -sb`). If not, tell the user and ask how to proceed. Don't switch branches or pull over their work yourself.
 - The current version: `node -e "import('./scripts/packages.mjs').then((m) => console.log(m.sharedVersion()))"` (`packages.mjs` reads every `packages/*` folder; there is one).
-- The last release: `git tag -l 'v*' --sort=-v:refname | head -1` (none before the first release).
+- The last release: `git tag -l 'v*' --sort=-v:refname | head -1` (none before the first release), and what npm has: `npm view @solid-slopkit/components versions` (an E404 means nothing is on npm yet; see "First publish" below).
 
 ## 2. Make sure there are changesets
 
@@ -85,10 +85,21 @@ gh run watch <run-id> --exit-status
 gh release view v<version>
 ```
 
-Report the release URL and the tarball attached to it. If the run fails, read the failing step's log (`gh run view <run-id> --log-failed`), explain the cause, and ask the user how to proceed. Nothing is published when it fails. After a fix lands on `main`, the tag can be moved to it (`git tag -f v<version> && git push -f origin v<version>`), but only when the user says so. If the tag was already shared, a new patch version is safer.
+Then check npm: `npm view @solid-slopkit/components@<version> version dist.tarball`. Report the npm version, the package page (`https://www.npmjs.com/package/@solid-slopkit/components`) and the release URL. If the run fails, read the failing step's log (`gh run view <run-id> --log-failed`), explain the cause, and ask the user how to proceed. If it failed before the "Publish to npm" step, nothing is published: after a fix lands on `main`, the tag can be moved to it (`git tag -f v<version> && git push -f origin v<version>`), but only when the user says so. If the tag was already shared, a new patch version is safer. If it failed after publishing, the version is on npm for good (npm never accepts the same version twice): rerun the workflow (`gh run rerun <run-id> --failed`), which skips the publish and continues, or release a new patch version if the cause needs a code fix.
+
+## First publish
+
+npm only lets a package trust a workflow once the package exists. If `npm view @solid-slopkit/components` says E404, tell the user before tagging that these one-time steps are theirs (they need their npm login and 2FA):
+
+1. Own the `@solid-slopkit` scope on npm (an npm organization of that name).
+2. Publish the first version by hand from the packed tarball: `pnpm release:pack && npm publish release/solid-slopkit-components-<version>.tgz --access public`. Then push the tag as usual: the workflow skips the publish and creates the GitHub Release.
+3. On npmjs.com, under the package's Settings → Trusted publishing, add GitHub Actions with the repository `solid-slopkit/components` and the workflow `release.yml`.
+
+Every later release publishes from the workflow.
 
 ## Don'ts
 
 - Don't edit versions in `package.json` by hand; changesets own them.
-- Don't use `changeset publish` or `changeset pack`: they ask the npm registry what to release, and this package isn't on npm.
+- Don't publish from your machine (`npm publish`, `pnpm publish`, `changeset publish`). The workflow publishes the tarball it tested, with provenance. The one exception is the first publish below, and only when the user runs it.
+- Don't unpublish or deprecate versions on npm unless the user asks for it.
 - Don't tick roadmap boxes (`packages/components/docs/roadmap.md`) as part of a release unless the user asked for that roadmap step.

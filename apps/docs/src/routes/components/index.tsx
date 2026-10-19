@@ -4,8 +4,6 @@ import { CodeBlock } from '../../components/CodeBlock';
 import { H2 } from '../../components/Heading';
 import { nav } from '../../nav';
 
-const RELEASES_URL = 'https://github.com/solid-slopkit/components/releases';
-
 // The same groups as the sidebar, so the two never drift apart.
 const componentGroups = nav.find((section) => section.title === 'Components')?.groups ?? [];
 
@@ -22,11 +20,9 @@ export default function ComponentsOverview() {
 
       <H2 id="installation">Installation</H2>
       <p>
-        <code>@solid-slopkit/components</code> isn't published to npm. Each version is a tarball attached to a{' '}
-        <a href={RELEASES_URL}>GitHub Release</a>, and you install it from there. Replace <code>0.0.1</code> with the version you
-        want.
+        Install <code>@solid-slopkit/components</code> from npm.
       </p>
-      <CodeBlock lang="bash" code={`pnpm add ${RELEASES_URL}/download/v0.0.1/solid-slopkit-components-0.0.1.tgz`} />
+      <CodeBlock lang="bash" code="pnpm add @solid-slopkit/components" />
       <p>
         It needs <code>solid-js</code> and <code>@solidjs/web</code> 2.x. The package ships uncompiled JSX, so the app must
         compile it with <code>@solidjs/vite-plugin</code>, the same way it compiles its own components.

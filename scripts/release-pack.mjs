@@ -1,5 +1,6 @@
-// Builds every package and packs each into release/ for one GitHub Release (ADR 0001). All packages share one version,
-// which Changesets sets; this refuses to pack when they don't, or when a tarball for that version already exists.
+// Builds every package and packs each into release/, for scripts/release-publish.mjs to publish to npm (ADR 0001).
+// All packages share one version, which Changesets sets; this refuses to pack when they don't, or when a tarball for
+// that version already exists.
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';

@@ -10,7 +10,7 @@ export default function Variants() {
       </Accordion.Item>
       <Accordion.Item value="how">
         <Accordion.Control>How do I install it?</Accordion.Control>
-        <Accordion.Panel>From a tarball attached to a GitHub Release.</Accordion.Panel>
+        <Accordion.Panel>From npm: pnpm add @solid-slopkit/components.</Accordion.Panel>
       </Accordion.Item>
       <Accordion.Item value="why">
         <Accordion.Control>Why plain CSS?</Accordion.Control>

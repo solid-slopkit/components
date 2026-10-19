@@ -11,7 +11,7 @@ The installed packages ship agent skills that match their exact installed versio
 
 ## Releasing
 
-Each version is a GitHub Release tarball (ADR 0001). To cut a release, follow `.claude/skills/release/SKILL.md`: it applies the changesets, runs the checks, and asks before committing, tagging or pushing.
+Each version is published to npm by the release workflow (ADR 0001). To cut a release, follow `.claude/skills/release/SKILL.md`: it applies the changesets, runs the checks, and asks before committing, tagging or pushing.
 
 ## Reactive diagnostics — capture evidence instead of guessing
 

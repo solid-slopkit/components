@@ -6,10 +6,10 @@
 
 ## Installing
 
-The package isn't published to npm. Each version is a tarball attached to a [GitHub Release](https://github.com/solid-slopkit/components/releases) tagged `v<version>` (ADR 0001). [docs/using-slopkit.md](./docs/using-slopkit.md) is the setup guide for coding agents: point an agent at it to install and wire up the package in an app. To install by hand:
+The package is published to npm (ADR 0001). [docs/using-slopkit.md](./docs/using-slopkit.md) is the setup guide for coding agents: point an agent at it to install and wire up the package in an app. To install by hand:
 
 ```bash
-pnpm add https://github.com/solid-slopkit/components/releases/download/v0.1.0/solid-slopkit-components-0.1.0.tgz
+pnpm add @solid-slopkit/components
 ```
 
 ## Developing
@@ -54,11 +54,23 @@ An agent can run the whole release with the `release` skill (`.claude/skills/rel
    git push origin main v0.2.0
    ```
 
-5. **Watch the workflow.** It checks that the tag matches the package's version and that no changesets are left unapplied, runs every check, packs the package, and creates the GitHub Release with the tarball and the changelog section as notes:
+5. **Watch the workflow.** It checks that the tag matches the package's version and that no changesets are left unapplied, runs every check, packs the package, publishes the tarball to npm, and creates the GitHub Release with the changelog section as notes:
 
    ```bash
    gh run watch "$(gh run list --workflow release.yml --limit 1 --json databaseId --jq '.[0].databaseId')"
+   npm view @solid-slopkit/components@0.2.0 version
    gh release view v0.2.0
    ```
 
-If the workflow fails, nothing is published. Fix the cause on `main`, then move the tag to the fixed commit (`git tag -f v0.2.0 && git push -f origin v0.2.0`), or bump to a new version if the tag was already shared.
+If the workflow fails before its "Publish to npm" step, nothing is published. Fix the cause on `main`, then move the tag to the fixed commit (`git tag -f v0.2.0 && git push -f origin v0.2.0`), or bump to a new version if the tag was already shared. If it fails after publishing, that version is on npm for good: rerun the failed jobs (`gh run rerun <run-id> --failed`), which skips the publish, or release a new patch version.
+
+### Publishing setup
+
+The workflow publishes with npm trusted publishing (GitHub OIDC), so the repo has no npm token. npm only lets a package trust a workflow once the package exists, so the first version is published by hand, by someone who owns the `@solid-slopkit` scope on npm:
+
+```bash
+pnpm release:pack
+npm publish release/solid-slopkit-components-<version>.tgz --access public
+```
+
+Then, on npmjs.com, open the package's Settings → Trusted publishing and add GitHub Actions with the repository `solid-slopkit/components` and the workflow `release.yml`. Push the version's tag as usual afterwards: the workflow sees the version on npm, skips the publish and creates the GitHub Release.
