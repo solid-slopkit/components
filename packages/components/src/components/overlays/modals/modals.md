@@ -3,7 +3,7 @@
 Open modals from code, without keeping their state yourself, and ask the user to confirm. `<Modals>` shows them; `useModals()` and the `modals` facade open them.
 
 ```tsx
-import { Modals, useModals, modals } from '@solid-slopkit/ui';
+import { Modals, useModals, modals } from '@solid-slopkit/components';
 ```
 
 ## Setup

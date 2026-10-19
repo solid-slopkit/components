@@ -1,4 +1,4 @@
-import { DateInput, createDay } from '@solid-slopkit/ui/dates';
+import { DateInput, createDay } from '@solid-slopkit/components/dates';
 
 export default function Format() {
   return (

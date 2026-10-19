@@ -5,7 +5,7 @@ A calendar to choose days with: one day, several, or a range from one day to ano
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see the [Calendar](../calendar/calendar.md)'s **Keyboard**.
 
 ```tsx
-import { DatePicker } from '@solid-slopkit/ui/dates';
+import { DatePicker } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

@@ -1,4 +1,4 @@
-import { Code, Text } from '@solid-slopkit/ui';
+import { Code, Text } from '@solid-slopkit/components';
 
 export default function Inline() {
   return (

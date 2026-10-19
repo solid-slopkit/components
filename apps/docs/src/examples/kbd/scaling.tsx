@@ -1,4 +1,4 @@
-import { Kbd, Text, Title } from '@solid-slopkit/ui';
+import { Kbd, Text, Title } from '@solid-slopkit/components';
 
 export default function Scaling() {
   return (

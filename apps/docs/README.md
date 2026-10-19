@@ -1,17 +1,17 @@
 ## slopkit docs
 
-Documentation site for the slopkit packages: header + sidebar + main content, built with SolidJS 2, `@solidjs/router` file-system routes and `vite`.
+Documentation site for `@solid-slopkit/components`: header + sidebar + main content, built with SolidJS 2, `@solidjs/router` file-system routes and `vite`.
 
 ```bash
 pnpm dev
 ```
 
-In dev, `@solid-slopkit/ui` and its CSS resolve to the package source (`slopkit-from-source.ts`), so edits to components show up immediately.
+In dev, `@solid-slopkit/components` and its CSS resolve to the package source (`slopkit-from-source.ts`), so edits to components show up immediately.
 
 ## Structure
 
-- `src/routes/` — pages. `ui/button.tsx` is `/ui/button`; `[...404].tsx` catches everything else.
-- `src/nav.ts` — the sidebar, grouped by package. Add an entry when you add a page.
+- `src/routes/` — pages. `components/button.tsx` is `/components/button`; `[...404].tsx` catches everything else.
+- `src/nav.ts` — the sidebar, grouped like the package's folders. Add an entry when you add a page.
 - `src/layout/` — the shell: header, sidebar (a drawer below 768px) and main area.
 - `src/components/` — doc building blocks:
   - `Example` renders a live example above its source.

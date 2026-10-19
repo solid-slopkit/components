@@ -3,7 +3,7 @@
 A link in a navigation list, such as a sidebar, with the current page drawn as active.
 
 ```tsx
-import { NavLink } from '@solid-slopkit/ui';
+import { NavLink } from '@solid-slopkit/components';
 ```
 
 ## Usage

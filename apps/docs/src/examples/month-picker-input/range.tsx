@@ -1,4 +1,4 @@
-import { MonthPickerInput, createDay } from '@solid-slopkit/ui/dates';
+import { MonthPickerInput, createDay } from '@solid-slopkit/components/dates';
 
 export default function Range() {
   return (

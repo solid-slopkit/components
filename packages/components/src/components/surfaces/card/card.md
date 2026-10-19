@@ -3,7 +3,7 @@
 Content grouped on a surface, built from fixed parts: `Card.Header`, `Card.Image`, `Card.Body` and `Card.Footer`, with `Card.Title` and `Card.Description` for the heading.
 
 ```tsx
-import { Card } from '@solid-slopkit/ui';
+import { Card } from '@solid-slopkit/components';
 ```
 
 ## Usage

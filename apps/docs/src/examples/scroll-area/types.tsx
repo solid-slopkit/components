@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Paper, ScrollArea, SegmentedControl, Stack, Text, type ScrollAreaType } from '@solid-slopkit/ui';
+import { Paper, ScrollArea, SegmentedControl, Stack, Text, type ScrollAreaType } from '@solid-slopkit/components';
 
 const lines = Array.from({ length: 15 }, (_, index) => `Line ${index + 1} of the content.`);
 

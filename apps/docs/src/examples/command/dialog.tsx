@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 import { FileText, House, Search, User } from '@lucide/solid';
-import { Button, Command, CommandDialog, Group, Kbd, Text, useNotifications } from '@solid-slopkit/ui';
+import { Button, Command, CommandDialog, Group, Kbd, Text, useNotifications } from '@solid-slopkit/components';
 
 export default function Dialog() {
   const [opened, setOpened] = createSignal(false);

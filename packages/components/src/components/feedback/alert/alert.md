@@ -3,7 +3,7 @@
 A message that needs the reader's attention: a `div` with `role="alert"`, an optional icon and title, and a close button with `onClose`.
 
 ```tsx
-import { Alert } from '@solid-slopkit/ui';
+import { Alert } from '@solid-slopkit/components';
 ```
 
 ## Usage

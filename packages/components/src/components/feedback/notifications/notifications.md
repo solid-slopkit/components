@@ -3,7 +3,7 @@
 Show notifications from anywhere in the app. They stack in a corner of the screen and close on their own. `<Notifications>` is the region they appear in; `useNotifications()` and the `notifications` facade show them.
 
 ```tsx
-import { Notifications, useNotifications, notifications } from '@solid-slopkit/ui';
+import { Notifications, useNotifications, notifications } from '@solid-slopkit/components';
 ```
 
 ## Setup

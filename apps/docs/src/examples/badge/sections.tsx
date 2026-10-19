@@ -1,4 +1,4 @@
-import { Badge } from '@solid-slopkit/ui';
+import { Badge } from '@solid-slopkit/components';
 import { Check, Clock, Star } from '@lucide/solid';
 
 export default function Sections() {

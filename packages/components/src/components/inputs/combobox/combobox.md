@@ -5,7 +5,7 @@ The building block for picking from a list of options while focus stays on a fie
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard** and **Focus** below.
 
 ```tsx
-import { Combobox, createCombobox } from '@solid-slopkit/ui';
+import { Combobox, createCombobox } from '@solid-slopkit/components';
 ```
 
 ## Usage

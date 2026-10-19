@@ -4,7 +4,7 @@
 
 ## Considered Options
 
-- **Raw `.ts`/`.tsx` with `exports` pointing at `src`.** Rejected: `skipLibCheck` does not cover `.ts` files, so consumers would type-check the library source under their own compiler options. Stricter settings would then fail inside `@solid-slopkit/ui`.
+- **Raw `.ts`/`.tsx` with `exports` pointing at `src`.** Rejected: `skipLibCheck` does not cover `.ts` files, so consumers would type-check the library source under their own compiler options. Stricter settings would then fail inside `@solid-slopkit/components`.
 - **Precompiled server/client/dev builds.** Rejected: the consumer's Solid plugin already does this, and doing it here would lock the output to one Solid compiler version.
 - **Tarballs committed to the repo:** rejected, because binaries would pile up in git history.
 - **Git URL installs** (`github:org/slopkit#tag`): rejected, because pnpm can't install one package out of a monorepo from a git URL.

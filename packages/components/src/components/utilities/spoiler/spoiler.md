@@ -3,7 +3,7 @@
 Content cut to a height, with a control under it that shows the rest and hides it again.
 
 ```tsx
-import { Spoiler } from '@solid-slopkit/ui';
+import { Spoiler } from '@solid-slopkit/components';
 ```
 
 ## Usage

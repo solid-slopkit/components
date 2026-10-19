@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { ColorSwatch } from '@solid-slopkit/ui';
+import { ColorSwatch } from '@solid-slopkit/components';
 import { Check } from '@lucide/solid';
 
 const colors = [

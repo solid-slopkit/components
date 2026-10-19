@@ -5,7 +5,7 @@ An angle picked on a dial: a circle with `role="slider"`, 0° at the top and clo
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Pointer**, **Keyboard** and **Screen readers** below.
 
 ```tsx
-import { AngleSlider } from '@solid-slopkit/ui';
+import { AngleSlider } from '@solid-slopkit/components';
 ```
 
 ## Usage

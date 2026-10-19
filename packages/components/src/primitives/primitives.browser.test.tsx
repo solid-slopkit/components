@@ -1,4 +1,4 @@
-// The `@solid-slopkit/ui/primitives` entry, used the way primitives.md shows: an overlay put together from the
+// The `@solid-slopkit/components/primitives` entry, used the way primitives.md shows: an overlay put together from the
 // exported primitives, and the keyboard ones on a toolbar. Each primitive has its own tests next to its source.
 import { render } from '@solidjs/testing-library';
 import { captureArtifact } from '@solidjs/diagnostics';
@@ -97,7 +97,7 @@ function Toolbar() {
   );
 }
 
-describe('@solid-slopkit/ui/primitives', () => {
+describe('@solid-slopkit/components/primitives', () => {
   test('exports the stable primitives only', () => {
     expect(Object.keys(primitives).sort()).toEqual([
       'createDismissal',

@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button } from '@solid-slopkit/ui';
+import { Button } from '@solid-slopkit/components';
 import { Bold } from '@lucide/solid';
 
 export default function Active() {

@@ -1,4 +1,4 @@
-import { Select } from '@solid-slopkit/ui';
+import { Select } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

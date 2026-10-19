@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Checkbox, Stack } from '@solid-slopkit/ui';
+import { Checkbox, Stack } from '@solid-slopkit/components';
 
 const items = ['Receipts', 'Invoices', 'Statements'];
 

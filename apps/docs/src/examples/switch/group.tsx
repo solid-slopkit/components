@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Stack, Switch, Text } from '@solid-slopkit/ui';
+import { Stack, Switch, Text } from '@solid-slopkit/components';
 
 export default function Group() {
   const [channels, setChannels] = createSignal<string[]>(['email']);

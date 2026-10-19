@@ -3,7 +3,7 @@
 A quotation set off from the text: a `figure` with the `blockquote` and its attribution.
 
 ```tsx
-import { Blockquote } from '@solid-slopkit/ui';
+import { Blockquote } from '@solid-slopkit/components';
 ```
 
 ## Usage

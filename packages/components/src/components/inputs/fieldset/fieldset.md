@@ -3,7 +3,7 @@
 A group of related fields: a `fieldset`, with its `legend` as a caption inside the box.
 
 ```tsx
-import { Fieldset } from '@solid-slopkit/ui';
+import { Fieldset } from '@solid-slopkit/components';
 ```
 
 ## Usage

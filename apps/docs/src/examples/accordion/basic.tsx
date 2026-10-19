@@ -1,5 +1,5 @@
 import { CreditCard, RotateCcw, Truck } from '@lucide/solid';
-import { Accordion } from '@solid-slopkit/ui';
+import { Accordion } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

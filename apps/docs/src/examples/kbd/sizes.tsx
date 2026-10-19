@@ -1,4 +1,4 @@
-import { Group, Kbd } from '@solid-slopkit/ui';
+import { Group, Kbd } from '@solid-slopkit/components';
 
 export default function Sizes() {
   return (

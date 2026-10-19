@@ -3,7 +3,7 @@
 A short description of its target, shown in the browser's top layer while the target is hovered or has keyboard focus.
 
 ```tsx
-import { Tooltip } from '@solid-slopkit/ui';
+import { Tooltip } from '@solid-slopkit/components';
 ```
 
 ## Usage

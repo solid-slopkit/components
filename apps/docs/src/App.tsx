@@ -1,10 +1,10 @@
 import { Loading, Show, type ParentProps } from 'solid-js';
 import { useLocation } from '@solidjs/router';
-import { Modals, Notifications, SlopkitUi } from '@solid-slopkit/ui';
+import { Modals, Notifications, SlopkitUi } from '@solid-slopkit/components';
 import { Router } from './router';
 import { Shell } from './layout/Shell';
-import '@solid-slopkit/ui/styles/slopkit.css';
-import '@solid-slopkit/ui/styles/default-theme.css';
+import '@solid-slopkit/components/styles/slopkit.css';
+import '@solid-slopkit/components/styles/default-theme.css';
 import './themes.css';
 
 import './App.css';

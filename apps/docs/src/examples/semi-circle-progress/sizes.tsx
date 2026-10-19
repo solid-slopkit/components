@@ -1,4 +1,4 @@
-import { SemiCircleProgress } from '@solid-slopkit/ui';
+import { SemiCircleProgress } from '@solid-slopkit/components';
 
 export default function Sizes() {
   return (

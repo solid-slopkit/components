@@ -1,4 +1,4 @@
-import { Timeline } from '@solid-slopkit/ui';
+import { Timeline } from '@solid-slopkit/components';
 import { House, PackageCheck, ShoppingCart, Truck } from '@lucide/solid';
 
 export default function Basic() {

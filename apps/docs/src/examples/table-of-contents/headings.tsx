@@ -1,4 +1,4 @@
-import { Group, TableOfContents, type TableOfContentsHeading } from '@solid-slopkit/ui';
+import { Group, TableOfContents, type TableOfContentsHeading } from '@solid-slopkit/components';
 
 const headings: TableOfContentsHeading[] = [
   { id: 'import', label: 'Import', depth: 2 },

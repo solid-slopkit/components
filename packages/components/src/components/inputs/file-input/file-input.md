@@ -3,7 +3,7 @@
 A labelled field for files: it looks like a text field, and its control is a button that opens the browser's file picker and shows the chosen file names. A hidden `input type="file"` keeps the files for a form. For a plain button that hands files to your code, use FileButton.
 
 ```tsx
-import { FileInput } from '@solid-slopkit/ui';
+import { FileInput } from '@solid-slopkit/components';
 ```
 
 ## Usage

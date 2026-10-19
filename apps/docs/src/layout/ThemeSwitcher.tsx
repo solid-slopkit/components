@@ -1,4 +1,4 @@
-import { SegmentedControl } from '@solid-slopkit/ui';
+import { SegmentedControl } from '@solid-slopkit/components';
 import { THEMES, type DocsTheme } from './preferences';
 
 const LABELS: Record<DocsTheme, string> = { default: 'Default', orange: 'Orange', green: 'Green' };

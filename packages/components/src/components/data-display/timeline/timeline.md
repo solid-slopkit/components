@@ -3,7 +3,7 @@
 A sequence of events in order: an `ol` of `Timeline.Item`, joined by a line.
 
 ```tsx
-import { Timeline } from '@solid-slopkit/ui';
+import { Timeline } from '@solid-slopkit/components';
 ```
 
 ## Usage

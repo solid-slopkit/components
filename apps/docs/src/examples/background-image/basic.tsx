@@ -1,4 +1,4 @@
-import { BackgroundImage, Text, Title } from '@solid-slopkit/ui';
+import { BackgroundImage, Text, Title } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

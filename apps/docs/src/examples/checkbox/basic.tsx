@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Checkbox, Stack } from '@solid-slopkit/ui';
+import { Checkbox, Stack } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [accepted, setAccepted] = createSignal(false);

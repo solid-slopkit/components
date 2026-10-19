@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { CopyButton, Group, Text } from '@solid-slopkit/ui';
+import { CopyButton, Group, Text } from '@solid-slopkit/components';
 
 export default function Feedback() {
   const [message, setMessage] = createSignal('');

@@ -1,4 +1,4 @@
-import { Button } from '@solid-slopkit/ui';
+import { Button } from '@solid-slopkit/components';
 import { Heart, Plus } from '@lucide/solid';
 
 export default function Shapes() {

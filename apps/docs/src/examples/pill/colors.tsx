@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Pill } from '@solid-slopkit/ui';
+import { Pill } from '@solid-slopkit/components';
 
 const colors = ['neutral', 'primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error'] as const;
 

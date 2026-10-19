@@ -1,4 +1,4 @@
-import { PinInput, Stack } from '@solid-slopkit/ui';
+import { PinInput, Stack } from '@solid-slopkit/components';
 
 export default function Options() {
   return (

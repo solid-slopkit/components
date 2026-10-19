@@ -5,7 +5,7 @@ A grid of times to choose one from, such as the free slots of a booking, written
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard** and **Screen readers** below.
 
 ```tsx
-import { TimeGrid, getTimeRange } from '@solid-slopkit/ui/dates';
+import { TimeGrid, getTimeRange } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

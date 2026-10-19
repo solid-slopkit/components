@@ -1,5 +1,5 @@
 import { createSignal, onCleanup } from 'solid-js';
-import { Button, Group, LoadingOverlay, Paper, Stack, TextInput } from '@solid-slopkit/ui';
+import { Button, Group, LoadingOverlay, Paper, Stack, TextInput } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [saving, setSaving] = createSignal(false);

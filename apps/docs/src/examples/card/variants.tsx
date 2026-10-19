@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Card, SimpleGrid, Text } from '@solid-slopkit/ui';
+import { Card, SimpleGrid, Text } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

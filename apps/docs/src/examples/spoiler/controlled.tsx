@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Spoiler, Stack, Switch, Text } from '@solid-slopkit/ui';
+import { Spoiler, Stack, Switch, Text } from '@solid-slopkit/components';
 
 export default function Controlled() {
   const [expanded, setExpanded] = createSignal(false);

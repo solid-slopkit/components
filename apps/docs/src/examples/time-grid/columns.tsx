@@ -1,4 +1,4 @@
-import { TimeGrid, getTimeRange } from '@solid-slopkit/ui/dates';
+import { TimeGrid, getTimeRange } from '@solid-slopkit/components/dates';
 
 export default function Columns() {
   return (

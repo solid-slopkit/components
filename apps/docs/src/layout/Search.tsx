@@ -1,7 +1,7 @@
 import { createSignal, For, onSettled } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
 import { FileText, Search as SearchIcon } from '@lucide/solid';
-import { Button, Command, CommandDialog, Kbd } from '@solid-slopkit/ui';
+import { Button, Command, CommandDialog, Kbd } from '@solid-slopkit/components';
 import { nav, type NavItem } from '../nav';
 
 // Every page in the sidebar, under the same headings: a section's own pages, then each of its groups.

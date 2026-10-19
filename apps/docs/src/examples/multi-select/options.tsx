@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { MultiSelect, Stack, Text } from '@solid-slopkit/ui';
+import { MultiSelect, Stack, Text } from '@solid-slopkit/components';
 
 export default function Options() {
   const [cities, setCities] = createSignal<string[]>(['osl']);

@@ -3,7 +3,7 @@
 A person or entity: their picture, or a placeholder with initials or an icon. A `span`. `Avatar.Group` stacks several.
 
 ```tsx
-import { Avatar } from '@solid-slopkit/ui';
+import { Avatar } from '@solid-slopkit/components';
 ```
 
 ## Usage

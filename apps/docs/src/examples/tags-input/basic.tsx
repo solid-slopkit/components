@@ -1,4 +1,4 @@
-import { TagsInput } from '@solid-slopkit/ui';
+import { TagsInput } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

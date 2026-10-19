@@ -1,5 +1,5 @@
 import { Globe } from '@lucide/solid';
-import { Select, Stack } from '@solid-slopkit/ui';
+import { Select, Stack } from '@solid-slopkit/components';
 
 const sizes = ['Small', 'Medium', 'Large'];
 

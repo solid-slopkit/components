@@ -5,7 +5,7 @@ A labelled field that picks several values from a list in a dropdown: the select
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard** and **Pointer** below.
 
 ```tsx
-import { MultiSelect } from '@solid-slopkit/ui';
+import { MultiSelect } from '@solid-slopkit/components';
 ```
 
 ## Usage

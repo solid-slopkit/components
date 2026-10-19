@@ -1,4 +1,4 @@
-import { Divider, Group, Text } from '@solid-slopkit/ui';
+import { Divider, Group, Text } from '@solid-slopkit/components';
 
 export default function WithText() {
   return (

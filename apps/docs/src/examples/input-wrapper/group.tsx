@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { InputWrapper, useInputWrapper } from '@solid-slopkit/ui';
+import { InputWrapper, useInputWrapper } from '@solid-slopkit/components';
 
 // A custom group reads the wrapper's ids and points at its label itself.
 function PlanChoice() {

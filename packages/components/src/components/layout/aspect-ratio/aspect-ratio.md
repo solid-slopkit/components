@@ -3,7 +3,7 @@
 Keeps its child at a width-to-height ratio, filling the available width. Use it for images, videos and embeds whose height should follow their width.
 
 ```tsx
-import { AspectRatio } from '@solid-slopkit/ui';
+import { AspectRatio } from '@solid-slopkit/components';
 ```
 
 ## Usage

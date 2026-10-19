@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Rating, Text } from '@solid-slopkit/ui';
+import { Rating, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [rating, setRating] = createSignal(3);

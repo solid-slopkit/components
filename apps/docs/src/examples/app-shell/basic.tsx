@@ -12,7 +12,7 @@ import {
   Plus,
   Settings,
 } from '@lucide/solid';
-import { AppShell, Avatar, Text } from '@solid-slopkit/ui';
+import { AppShell, Avatar, Text } from '@solid-slopkit/components';
 
 const pages = [
   { href: '#home', label: 'Home', icon: House },

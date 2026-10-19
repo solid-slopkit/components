@@ -1,4 +1,4 @@
-# @solid-slopkit/ui roadmap to 0.0.1
+# @solid-slopkit/components roadmap to 0.0.1
 
 0.0.1 is the first release. It ships the components listed below (ADR 0006). Decisions live in [docs/adr](./adr) (repo-wide ones in [/docs/adr](../../../docs/adr)) and vocabulary in [CONTEXT.md](../CONTEXT.md).
 
@@ -16,7 +16,7 @@
 - Keyboard and ARIA behavior tested.
 - `axe-core` passes for each variant and state the tests render.
 - `toHaveNoDiagnostics()`, plus a re-run budget on the main interaction (`@solidjs/diagnostics/vitest`).
-- An SSR test: the server render hydrates without a mismatch, and the server log has no Solid diagnostics (e.g. `SERVER_WRITE`). Put the scenarios in `<component>.fixtures.tsx` (functions returning JSX) and assert each one with `expectHydration('./<component>.fixtures.tsx', '<name>')` from `packages/ui/test/ssr.tsx`.
+- An SSR test: the server render hydrates without a mismatch, and the server log has no Solid diagnostics (e.g. `SERVER_WRITE`). Put the scenarios in `<component>.fixtures.tsx` (functions returning JSX) and assert each one with `expectHydration('./<component>.fixtures.tsx', '<name>')` from `packages/components/test/ssr.tsx`.
 - Tests that need the top layer, focus, layout, positioning or real key events go in the browser project (`*.browser.test.tsx`), the rest in jsdom.
 - CSS reads only tokens (no `light-dark()`, no hard-coded colors; black, white and transparent as mixing primitives for shading are fine), and goes in `@layer slopkit.components` (ADR 0005).
 - Built-in strings (accessible names, empty states) are props with English defaults.
@@ -26,22 +26,22 @@
 
 ## Done
 
-Layout: Box, Flex, Stack, Group, SimpleGrid, Grid, Container, Center, AspectRatio, Space. Buttons: ActionIcon, Burger, Button, CloseButton, CopyButton, FileButton. Inputs: AngleSlider, Autocomplete, Checkbox, Chip, ColorInput, ColorPicker, Combobox, Dropzone, Fieldset, FileInput, Input, InputWrapper, JsonInput, MultiSelect, NativeSelect, NumberInput, PasswordInput, Pill, PillsInput, PinInput, Radio, RangeSlider, Rating, SegmentedControl, Select, Slider, Switch, TagsInput, TextInput, Textarea. Typography: Text, Title, Anchor, Kbd, Code, Blockquote, List, Mark, Highlight, VisuallyHidden. Surfaces: Paper, Card. Data display: Badge, Carousel (`@solid-slopkit/ui/carousel`), Divider, Image, BackgroundImage, Avatar, ThemeIcon, ColorSwatch, Indicator, Timeline, Table, NumberFormatter. Feedback: Loader, Skeleton, Progress, RingProgress, SemiCircleProgress, Alert, Notification, Notifications. Navigation: Accordion, AppShell, Breadcrumbs, Command (with CommandDialog), NavLink, Pagination, Stepper, TableOfContents, Tabs, Tree. Overlays: Affix, Dialog, Drawer, HoverCard, LoadingOverlay, Menu, Modal, Modals, Overlay, Popover, Tooltip. Utilities: Collapse, FloatingIndicator, ScrollArea, Spoiler, Transition. Provider: SlopkitUi (generated style registry, notification and modal stores).
+Layout: Box, Flex, Stack, Group, SimpleGrid, Grid, Container, Center, AspectRatio, Space. Buttons: ActionIcon, Burger, Button, CloseButton, CopyButton, FileButton. Inputs: AngleSlider, Autocomplete, Checkbox, Chip, ColorInput, ColorPicker, Combobox, Dropzone, Fieldset, FileInput, Input, InputWrapper, JsonInput, MultiSelect, NativeSelect, NumberInput, PasswordInput, Pill, PillsInput, PinInput, Radio, RangeSlider, Rating, SegmentedControl, Select, Slider, Switch, TagsInput, TextInput, Textarea. Typography: Text, Title, Anchor, Kbd, Code, Blockquote, List, Mark, Highlight, VisuallyHidden. Surfaces: Paper, Card. Data display: Badge, Carousel (`@solid-slopkit/components/carousel`), Divider, Image, BackgroundImage, Avatar, ThemeIcon, ColorSwatch, Indicator, Timeline, Table, NumberFormatter. Feedback: Loader, Skeleton, Progress, RingProgress, SemiCircleProgress, Alert, Notification, Notifications. Navigation: Accordion, AppShell, Breadcrumbs, Command (with CommandDialog), NavLink, Pagination, Stepper, TableOfContents, Tabs, Tree. Overlays: Affix, Dialog, Drawer, HoverCard, LoadingOverlay, Menu, Modal, Modals, Overlay, Popover, Tooltip. Utilities: Collapse, FloatingIndicator, ScrollArea, Spoiler, Transition. Provider: SlopkitUi (generated style registry, notification and modal stores).
 
 ---
 
 ## M0 — Foundations
 
 - [x] **M0.01** Clean up `package.json`: remove the `./dates` export until M7, make `./slopkit.css` / `./slopkit.min.css` / `./styles/*` point at files the build actually produces (or remove them), and keep `files` in line with ADR 0012 (`dist`, `llm`, `skills`).
-- [x] **M0.02** Silence the `$$moduleUrl` `NAMESPACE_CONFLICT` warning in the docs production build. The Solid plugin adds `export const $$moduleUrl` to every module it compiles for the server except under `node_modules`. The docs app resolves `@solid-slopkit/ui` through a workspace symlink to `packages/ui`, so our `export *` index files re-export several. Consumers install the tarball under `node_modules` and never get it, which was verified with a packed tarball in a scratch SSR app. Fixed with a narrow warning filter in `apps/docs/vite.config.ts`.
+- [x] **M0.02** Silence the `$$moduleUrl` `NAMESPACE_CONFLICT` warning in the docs production build. The Solid plugin adds `export const $$moduleUrl` to every module it compiles for the server except under `node_modules`. The docs app resolves `@solid-slopkit/components` through a workspace symlink to `packages/components`, so our `export *` index files re-export several. Consumers install the tarball under `node_modules` and never get it, which was verified with a packed tarball in a scratch SSR app. Fixed with a narrow warning filter in `apps/docs/vite.config.ts`.
 - [x] **M0.03** Make `pnpm lint` run. oxlint fails to load `oxlint.config.ts` ("Unknown file extension .ts") on Node 22.17, so linting is currently off. Make it work on the Node versions the repo supports, then fix or report what the restored lint finds.
 - [x] **M0.04** Move to pnpm 12 and refresh dependencies. The `packageManager` pin is gone, and the lockfile was regenerated from scratch: Solid rc.14, vite-plugin next.49, router next.38, vite 8.3.4, oxlint 1.87, playwright 1.64, and `@types/node` ^24 to match the Node pin.
-- [x] **M0.05** Make `pnpm format:check` pass. Eight files predate it and aren't formatted: root `package.json`, `.zed/settings.json`, `file-routes.d.ts`, `pnpm-workspace.yaml`, `apps/docs/src/routes/ui/button.tsx`, `packages/ui/src/styles/slopkit.css`, and both `packages/ui` tsconfigs. Run `oxfmt`, or ignore generated files, and keep the result committed.
+- [x] **M0.05** Make `pnpm format:check` pass. Eight files predate it and aren't formatted: root `package.json`, `.zed/settings.json`, `file-routes.d.ts`, `pnpm-workspace.yaml`, `apps/docs/src/routes/ui/button.tsx`, `packages/components/src/styles/slopkit.css`, and both `packages/components` tsconfigs. Run `oxfmt`, or ignore generated files, and keep the result committed.
 - [x] **M0.06** Upgrade to TypeScript 7 (the native compiler). TS 7 changed the `rootDir` default, which nested the output under `dist/*/src/`, so `tsconfig.build.json` now sets `rootDir: "src"`. Afterwards the emitted `.jsx`/`.js` were byte-identical to TS 5.9's, the `.d.ts` differed only cosmetically, and a tarball consumer type-checks with both TS 5.9 and TS 7.
 - [x] **M0.07** Upgrade jsdom 25 → 30. The 20 "Could not parse CSS stylesheet" messages are gone (jsdom 25 rejected the provider's generated `@layer` rules), and the tests still pass. `engines.node` is now jsdom 30's range, `^22.22.2 || >=24.15.0`.
 - [x] **M0.08** `pnpm release:pack`: build and `pnpm pack` into `release/`, refusing to overwrite an existing tarball. `.github/workflows/release-ui.yml` runs on a `ui-v<version>` tag: it checks the tag against the package version, runs every check, packs, and attaches the tarball to a GitHub Release (ADR 0001). The install docs on the UI overview point at the release URL (the repo is public, so no token is needed). Since replaced by one release for every package, tagged `v<version>` (ADR 0001).
 - [x] **M0.09** A vitest browser project (Chromium via `@vitest/browser-playwright`) next to jsdom, for `*.browser.test.tsx`. It loads the real stylesheets. The first browser test checks that the SegmentedControl indicator covers the selected item, and the release workflow installs Chromium.
-- [x] **M0.10** An SSR/hydration test helper that every component's SSR test uses: `packages/ui/test/ssr.tsx`. Its own Vite server compiles each fixture for the server and, hydratably, for the client (Vitest's transform never produces hydratable code). It fails on any console message or thrown error on either side, and on any server element hydration didn't reuse.
+- [x] **M0.10** An SSR/hydration test helper that every component's SSR test uses: `packages/components/test/ssr.tsx`. Its own Vite server compiles each fixture for the server and, hydratably, for the client (Vitest's transform never produces hydratable code). It fails on any console message or thrown error on either side, and on any server element hydration didn't reuse.
 - [x] **M0.11** The default theme gets a dark set with `light-dark()`. Add `color-scheme` and `[data-slp-color-scheme]` in `slopkit.base` (ADR 0005).
 - [x] **M0.12** `useColorScheme()` on the provider: preference plus resolved scheme, persistence, and the pre-hydration head script.
 - [x] **M0.13** `locale` on the provider, used by `Intl` (ADR 0009).
@@ -180,9 +180,9 @@ Layout: Box, Flex, Stack, Group, SimpleGrid, Grid, Container, Center, AspectRati
 - [x] **M6.02** Modals manager: provider store, `useModals()`, the `modals` facade, confirm modal
 - [x] **M6.03** Command and CommandDialog: a composable search over commands, inline or in a modal opened with ⌘K (replaced the provider-driven Spotlight)
 - [x] **M6.04** Dropzone (own implementation, no dependency)
-- [x] **M6.05** Carousel at `@solid-slopkit/ui/carousel`, with `embla-carousel` as an optional peer (ADR 0002)
+- [x] **M6.05** Carousel at `@solid-slopkit/components/carousel`, with `embla-carousel` as an optional peer (ADR 0002)
 
-## M7 — Dates (`@solid-slopkit/ui/dates`, native `Date` + `Intl`, ADR 0003)
+## M7 — Dates (`@solid-slopkit/components/dates`, native `Date` + `Intl`, ADR 0003)
 
 - [x] **M7.01** Add the `./dates` subpath export, plus date utilities on `Date` and `Intl` (week start, month grid, formatting by provider `locale`)
 - [x] **M7.02** Primitive: grid keyboard navigation (days, months, years)
@@ -202,7 +202,7 @@ Layout: Box, Flex, Stack, Group, SimpleGrid, Grid, Container, Center, AspectRati
 
 ## M8 — Release 0.0.1
 
-- [x] **M8.01** Export the stable primitives from `@solid-slopkit/ui/primitives` (ADR 0007)
+- [x] **M8.01** Export the stable primitives from `@solid-slopkit/components/primitives` (ADR 0007)
 - [x] **M8.02** Decide the default theme's values (it is a work in progress until then), then write the docs Theming page and the theming skill (both removed until then, so they can't mislead) and update the LLM references that quote them.
 - [x] **M8.03** Audit the docs, LLM references and skills against the shipped API
 - [x] **M8.04** Tag `v0.0.1` and publish the GitHub Release

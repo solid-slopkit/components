@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { JsonInput, Text } from '@solid-slopkit/ui';
+import { JsonInput, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [config, setConfig] = createSignal('{"theme":"dark","features":["search","export"]}');

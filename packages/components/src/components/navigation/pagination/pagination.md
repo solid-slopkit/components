@@ -3,7 +3,7 @@
 A row of buttons, or links, to move between pages of content: the first and last pages, the pages around the current one, a gap where pages are left out, and previous and next.
 
 ```tsx
-import { Pagination } from '@solid-slopkit/ui';
+import { Pagination } from '@solid-slopkit/components';
 ```
 
 ## Usage

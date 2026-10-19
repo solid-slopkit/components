@@ -1,6 +1,6 @@
 # Dates on native Date and Intl, no date library
 
-The date components (`@solid-slopkit/ui/dates`) work on native `Date` and format and localize with `Intl` (`DateTimeFormat`, `Locale` week info). Most of what a date library would add is locale formatting, which `Intl` now covers without shipping per-locale data, and dropping it keeps the package free of a date-library dependency.
+The date components (`@solid-slopkit/components/dates`) work on native `Date` and format and localize with `Intl` (`DateTimeFormat`, `Locale` week info). Most of what a date library would add is locale formatting, which `Intl` now covers without shipping per-locale data, and dropping it keeps the package free of a date-library dependency.
 
 ## Considered Options
 

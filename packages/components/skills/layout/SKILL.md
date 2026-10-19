@@ -1,13 +1,13 @@
 ---
 name: slopkit-layout
-description: Lay out @solid-slopkit/ui apps — pick the right layout component (Stack, Group, Flex, SimpleGrid, Grid, Container, Center, AspectRatio, Space, Box), use style props and responsive values, and space components that take no style props. Use when building page structure, an app frame with a sidebar (AppShell), toolbars, forms, card grids or responsive layouts.
+description: Lay out @solid-slopkit/components apps — pick the right layout component (Stack, Group, Flex, SimpleGrid, Grid, Container, Center, AspectRatio, Space, Box), use style props and responsive values, and space components that take no style props. Use when building page structure, an app frame with a sidebar (AppShell), toolbars, forms, card grids or responsive layouts.
 ---
 
-# Layout and style props in @solid-slopkit/ui
+# Layout and style props in @solid-slopkit/components
 
 Layout is done with layout components, not with margins on every element. Only layout components take **style props**, and each takes its own set: padding, margin and size props (`p*`, `m*`, `w`, `h`, …) are on `Box` alone; `Flex` has the flex props; Stack, Group, SimpleGrid, Grid, Container, Center, AspectRatio and Space each take only the props in the table below. Every other component, like `Button`, takes `class` and `style` like a plain element and is placed by a layout component around it.
 
-Each component's full props are in its reference, linked from `node_modules/@solid-slopkit/ui/dist/source/llms.md`. The Box reference documents every style prop.
+Each component's full props are in its reference, linked from `node_modules/@solid-slopkit/components/dist/source/llms.md`. The Box reference documents every style prop.
 
 Layout components must render inside `<SlopkitUi>`: their style props become generated CSS classes that the provider collects. They throw without it (all but Center, which has no style props).
 

@@ -1,7 +1,6 @@
 import { fileRoutes } from 'filesystem-routing/vite';
 import { defineConfig } from 'vitest/config';
 import solid from '@solidjs/vite-plugin';
-import { slopkitI18n } from '../../packages/i18n/src/vite.ts';
 import { slopkitFromSource } from './slopkit-from-source.ts';
 
 export default defineConfig({
@@ -10,8 +9,6 @@ export default defineConfig({
   // prerenders the shell into a purely static dist/client.
   plugins: [
     slopkitFromSource(),
-    // Translation files of the i18n examples. From source, so the dev server needs no i18n build.
-    slopkitI18n({ locales: ['en', 'de', 'uk'], defaultLocale: 'en' }),
     // `extensions` makes @solidjs/vite-plugin also compile the `?pick=` route
     // modules the fileRoutes plugin emits (their ids end in a query string).
     solid({ start: true, ssr: true, extensions: ['.jsx', '.tsx'], diagnostics: true }),
@@ -35,8 +32,8 @@ export default defineConfig({
     rolldownOptions: {
       onwarn(warning, warn) {
         // The Solid plugin appends `export const $$moduleUrl` to every module it compiles for the
-        // server, except under node_modules. Here @solid-slopkit/ui is a workspace symlink resolved to
-        // packages/ui, so its modules get one each and the `export *` index files re-export several.
+        // server, except under node_modules. Here @solid-slopkit/components is a workspace symlink resolved to
+        // packages/components, so its modules get one each and the `export *` index files re-export several.
         // Consumers install it under node_modules and never see this.
         if (warning.code === 'NAMESPACE_CONFLICT' && warning.message.includes('"$$moduleUrl"')) return;
         warn(warning);

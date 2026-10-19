@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Select, Stack, Text } from '@solid-slopkit/ui';
+import { Select, Stack, Text } from '@solid-slopkit/components';
 
 export default function Searchable() {
   const [city, setCity] = createSignal<string | null>('osl');

@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Pill, PillsInput } from '@solid-slopkit/ui';
+import { Pill, PillsInput } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [tags, setTags] = createSignal(['design', 'research']);

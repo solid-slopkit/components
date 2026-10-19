@@ -3,7 +3,7 @@
 A panel that slides in from an edge of the viewport, such as navigation or filters: a modal `<dialog>` in the browser's top layer, which makes the rest of the page inert and keeps focus inside.
 
 ```tsx
-import { Drawer } from '@solid-slopkit/ui';
+import { Drawer } from '@solid-slopkit/components';
 ```
 
 ## Usage

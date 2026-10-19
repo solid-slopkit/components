@@ -3,7 +3,7 @@
 A labelled one-line text field: an [Input](../input/input.md) in an [InputWrapper](../input-wrapper/input-wrapper.md).
 
 ```tsx
-import { TextInput } from '@solid-slopkit/ui';
+import { TextInput } from '@solid-slopkit/components';
 ```
 
 ## Usage

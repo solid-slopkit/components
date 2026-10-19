@@ -5,7 +5,7 @@ A labelled field for a month, several months or a range: a button that shows the
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Dropdown** below.
 
 ```tsx
-import { MonthPickerInput } from '@solid-slopkit/ui/dates';
+import { MonthPickerInput } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

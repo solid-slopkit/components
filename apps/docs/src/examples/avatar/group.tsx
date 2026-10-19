@@ -1,4 +1,4 @@
-import { Avatar } from '@solid-slopkit/ui';
+import { Avatar } from '@solid-slopkit/components';
 
 export default function Group() {
   return (

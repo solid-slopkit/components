@@ -9,7 +9,7 @@ pnpm add embla-carousel
 ```
 
 ```tsx
-import { Carousel } from '@solid-slopkit/ui/carousel';
+import { Carousel } from '@solid-slopkit/components/carousel';
 ```
 
 ## Usage

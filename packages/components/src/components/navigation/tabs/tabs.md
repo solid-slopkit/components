@@ -3,7 +3,7 @@
 Tabs that switch between panels of content: a `tablist` of tab buttons, and a `tabpanel` for each.
 
 ```tsx
-import { Tabs } from '@solid-slopkit/ui';
+import { Tabs } from '@solid-slopkit/components';
 ```
 
 ## Usage

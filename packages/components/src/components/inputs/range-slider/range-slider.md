@@ -5,7 +5,7 @@ A range picked on a track: two thumbs with `role="slider"`, and the bar between 
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Pointer**, **Keyboard** and **Screen readers** below.
 
 ```tsx
-import { RangeSlider } from '@solid-slopkit/ui';
+import { RangeSlider } from '@solid-slopkit/components';
 ```
 
 ## Usage

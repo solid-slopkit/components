@@ -1,5 +1,5 @@
 import { For, Show } from 'solid-js';
-import { Flex, Stack } from '@solid-slopkit/ui';
+import { Flex, Stack } from '@solid-slopkit/components';
 
 // Small drawings for the theme builder's preview cards. The library has no chart component, so these are plain
 // markup colored with the canvas's chart colors (--create-chart-1 … -5, derived from the theme in create.css).

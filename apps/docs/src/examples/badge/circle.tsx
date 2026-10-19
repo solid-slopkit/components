@@ -1,4 +1,4 @@
-import { Badge, Group, Text } from '@solid-slopkit/ui';
+import { Badge, Group, Text } from '@solid-slopkit/components';
 
 export default function Circle() {
   return (

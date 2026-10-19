@@ -1,4 +1,4 @@
-import { Pagination, Stack } from '@solid-slopkit/ui';
+import { Pagination, Stack } from '@solid-slopkit/components';
 
 export default function Options() {
   return (

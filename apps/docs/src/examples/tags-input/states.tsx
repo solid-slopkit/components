@@ -1,5 +1,5 @@
 import { Hash } from '@lucide/solid';
-import { Stack, TagsInput } from '@solid-slopkit/ui';
+import { Stack, TagsInput } from '@solid-slopkit/components';
 
 export default function States() {
   return (

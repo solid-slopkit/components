@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Paper, SimpleGrid, Stack, Text, Transition, type TransitionName } from '@solid-slopkit/ui';
+import { Button, Paper, SimpleGrid, Stack, Text, Transition, type TransitionName } from '@solid-slopkit/components';
 
 const presets: TransitionName[] = [
   'fade',

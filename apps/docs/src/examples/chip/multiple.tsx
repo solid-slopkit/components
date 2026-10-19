@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Chip, Text } from '@solid-slopkit/ui';
+import { Chip, Text } from '@solid-slopkit/components';
 
 const filters = ['Vegan', 'Gluten free', 'Spicy', 'Nut free', 'Under 30 minutes'];
 

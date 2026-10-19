@@ -3,7 +3,7 @@
 A labelled password field: a [TextInput](../text-input/text-input.md) with a toggle that shows the password as text.
 
 ```tsx
-import { PasswordInput } from '@solid-slopkit/ui';
+import { PasswordInput } from '@solid-slopkit/components';
 ```
 
 ## Usage

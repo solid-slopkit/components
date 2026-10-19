@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Radio, Stack, Text } from '@solid-slopkit/ui';
+import { Radio, Stack, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [plan, setPlan] = createSignal('monthly');

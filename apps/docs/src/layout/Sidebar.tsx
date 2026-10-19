@@ -1,6 +1,6 @@
 import { For } from 'solid-js';
 import { useLocation } from '@solidjs/router';
-import { AppShell } from '@solid-slopkit/ui';
+import { AppShell } from '@solid-slopkit/components';
 import { nav, type NavItem } from '../nav';
 
 function NavMenu(props: { items: NavItem[] }) {

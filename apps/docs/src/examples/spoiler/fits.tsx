@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button, Spoiler, Stack, Text } from '@solid-slopkit/ui';
+import { Button, Spoiler, Stack, Text } from '@solid-slopkit/components';
 
 const sentence = 'Each line adds to the note. ';
 

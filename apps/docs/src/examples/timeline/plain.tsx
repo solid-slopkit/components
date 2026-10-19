@@ -1,4 +1,4 @@
-import { Timeline } from '@solid-slopkit/ui';
+import { Timeline } from '@solid-slopkit/components';
 
 export default function Plain() {
   return (

@@ -1,5 +1,5 @@
-import { Stack } from '@solid-slopkit/ui';
-import { MiniCalendar, createDay } from '@solid-slopkit/ui/dates';
+import { Stack } from '@solid-slopkit/components';
+import { MiniCalendar, createDay } from '@solid-slopkit/components/dates';
 
 export default function Options() {
   return (

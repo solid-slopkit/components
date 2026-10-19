@@ -1,5 +1,5 @@
 import { Trash2 } from '@lucide/solid';
-import { Badge, Button, Group, Text, VisuallyHidden } from '@solid-slopkit/ui';
+import { Badge, Button, Group, Text, VisuallyHidden } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

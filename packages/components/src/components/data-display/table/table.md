@@ -3,7 +3,7 @@
 Rows and columns of data: a `table`, built from `Table.Thead`, `Table.Tbody`, `Table.Tfoot`, `Table.Tr`, `Table.Th`, `Table.Td` and `Table.Caption`.
 
 ```tsx
-import { Table } from '@solid-slopkit/ui';
+import { Table } from '@solid-slopkit/components';
 ```
 
 ## Usage

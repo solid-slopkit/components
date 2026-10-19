@@ -1,5 +1,5 @@
 import { Ellipsis, ExternalLink } from '@lucide/solid';
-import { ActionIcon, Menu } from '@solid-slopkit/ui';
+import { ActionIcon, Menu } from '@solid-slopkit/components';
 
 export default function Links() {
   return (
@@ -18,7 +18,7 @@ export default function Links() {
         <Menu.Item as="a" href="#changelog">
           Changelog
         </Menu.Item>
-        <Menu.Item as="a" href="https://github.com/yhorbachov/solid-slopkit" target="_blank" rightSection={<ExternalLink />}>
+        <Menu.Item as="a" href="https://github.com/solid-slopkit/components" target="_blank" rightSection={<ExternalLink />}>
           Source
         </Menu.Item>
       </Menu.Dropdown>

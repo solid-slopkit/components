@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Pill, Stack } from '@solid-slopkit/ui';
+import { Pill, Stack } from '@solid-slopkit/components';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 

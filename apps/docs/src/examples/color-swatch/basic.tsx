@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { ColorSwatch, Group, Text } from '@solid-slopkit/ui';
+import { ColorSwatch, Group, Text } from '@solid-slopkit/components';
 
 const colors = [
   { name: 'Grape', value: '#7048e8' },

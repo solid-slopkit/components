@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { ColorInput, Stack, Text } from '@solid-slopkit/ui';
+import { ColorInput, Stack, Text } from '@solid-slopkit/components';
 
 export default function Formats() {
   const [color, setColor] = createSignal('rgba(25, 113, 194, 0.6)');

@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { NativeSelect, Text } from '@solid-slopkit/ui';
+import { NativeSelect, Text } from '@solid-slopkit/components';
 
 export default function Groups() {
   const [city, setCity] = createSignal('');

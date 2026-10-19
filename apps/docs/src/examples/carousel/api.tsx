@@ -1,6 +1,6 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Group, Stack, Text } from '@solid-slopkit/ui';
-import { Carousel, type EmblaCarouselType } from '@solid-slopkit/ui/carousel';
+import { Button, Group, Stack, Text } from '@solid-slopkit/components';
+import { Carousel, type EmblaCarouselType } from '@solid-slopkit/components/carousel';
 
 const steps = ['Pick a plan', 'Add your team', 'Connect a repo', 'Deploy'];
 

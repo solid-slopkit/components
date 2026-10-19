@@ -1,4 +1,4 @@
-import { Button, notifications } from '@solid-slopkit/ui';
+import { Button, notifications } from '@solid-slopkit/components';
 
 // Outside any component, such as in the app's fetch helper.
 async function request(url: string) {

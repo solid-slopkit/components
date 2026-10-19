@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
-import { Stack, Text } from '@solid-slopkit/ui';
-import { DateTimePicker } from '@solid-slopkit/ui/dates';
+import { Stack, Text } from '@solid-slopkit/components';
+import { DateTimePicker } from '@solid-slopkit/components/dates';
 
 export default function Basic() {
   const [when, setWhen] = createSignal<Date | null>(new Date(2026, 9, 15, 9, 30));

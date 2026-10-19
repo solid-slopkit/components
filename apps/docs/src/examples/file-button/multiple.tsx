@@ -1,5 +1,5 @@
 import { createSignal, For, Show } from 'solid-js';
-import { FileButton, List, Stack, Text } from '@solid-slopkit/ui';
+import { FileButton, List, Stack, Text } from '@solid-slopkit/components';
 
 export default function Multiple() {
   const [files, setFiles] = createSignal<File[]>([]);

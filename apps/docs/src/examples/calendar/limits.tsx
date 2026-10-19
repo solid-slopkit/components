@@ -1,4 +1,4 @@
-import { Calendar, createDay } from '@solid-slopkit/ui/dates';
+import { Calendar, createDay } from '@solid-slopkit/components/dates';
 
 // Weekdays from October 5 to November 20 only.
 export default function Limits() {

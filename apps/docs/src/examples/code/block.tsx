@@ -1,6 +1,6 @@
-import { Code } from '@solid-slopkit/ui';
+import { Code } from '@solid-slopkit/components';
 
-const source = `import { Code } from '@solid-slopkit/ui';
+const source = `import { Code } from '@solid-slopkit/components';
 
 export function Snippet() {
   return <Code block>{'const answer = 42;'}</Code>;

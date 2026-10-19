@@ -1,4 +1,4 @@
-import { BackgroundImage, Text } from '@solid-slopkit/ui';
+import { BackgroundImage, Text } from '@solid-slopkit/components';
 
 const box = { width: '10rem', height: '10rem', 'border-radius': '8px', 'background-color': 'var(--slp-color-base-200)' };
 

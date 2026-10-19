@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 import { Paperclip } from '@lucide/solid';
-import { FileButton, Group, Text } from '@solid-slopkit/ui';
+import { FileButton, Group, Text } from '@solid-slopkit/components';
 
 export default function Icon() {
   const [file, setFile] = createSignal<File>();

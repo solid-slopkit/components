@@ -3,7 +3,7 @@
 Floating content anchored to a target, such as a small form or details: a non-modal dialog in the browser's top layer.
 
 ```tsx
-import { Popover } from '@solid-slopkit/ui';
+import { Popover } from '@solid-slopkit/components';
 ```
 
 ## Usage

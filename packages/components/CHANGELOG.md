@@ -1,4 +1,4 @@
-# @solid-slopkit/ui
+# @solid-slopkit/components
 
 ## 0.1.0
 

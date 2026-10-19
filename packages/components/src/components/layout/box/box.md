@@ -3,7 +3,7 @@
 A `div` with padding, margin, size and display style props. The base of the layout components.
 
 ```tsx
-import { Box } from '@solid-slopkit/ui';
+import { Box } from '@solid-slopkit/components';
 ```
 
 ## Usage

@@ -1,4 +1,4 @@
-import { List } from '@solid-slopkit/ui';
+import { List } from '@solid-slopkit/components';
 
 export default function Nested() {
   return (

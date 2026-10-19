@@ -3,7 +3,7 @@
 A link: [Text](../text/text.md) rendered as an `a`, in the primary color.
 
 ```tsx
-import { Anchor } from '@solid-slopkit/ui';
+import { Anchor } from '@solid-slopkit/components';
 ```
 
 ## Usage

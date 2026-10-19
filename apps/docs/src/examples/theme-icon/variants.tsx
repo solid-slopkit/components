@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { ThemeIcon } from '@solid-slopkit/ui';
+import { ThemeIcon } from '@solid-slopkit/components';
 import { Sparkles } from '@lucide/solid';
 
 const colors = [undefined, 'neutral', 'primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error'] as const;

@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Progress, Stack } from '@solid-slopkit/ui';
+import { Progress, Stack } from '@solid-slopkit/components';
 
 const colors = ['primary', 'secondary', 'info', 'success', 'warning', 'error'] as const;
 

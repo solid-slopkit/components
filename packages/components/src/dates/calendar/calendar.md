@@ -5,7 +5,7 @@ A calendar: the days of a month, the months of a year, or the years of a decade,
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard** and **Screen readers** below.
 
 ```tsx
-import { Calendar } from '@solid-slopkit/ui/dates';
+import { Calendar } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

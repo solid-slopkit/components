@@ -5,7 +5,7 @@ A labelled field for a day, several days or a range: a button that shows the val
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Dropdown** below.
 
 ```tsx
-import { DatePickerInput } from '@solid-slopkit/ui/dates';
+import { DatePickerInput } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

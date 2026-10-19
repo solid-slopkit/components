@@ -3,7 +3,7 @@
 A box that scrolls its content, with thin scrollbars drawn over it that look the same in every browser and color scheme.
 
 ```tsx
-import { ScrollArea } from '@solid-slopkit/ui';
+import { ScrollArea } from '@solid-slopkit/components';
 ```
 
 ## Usage

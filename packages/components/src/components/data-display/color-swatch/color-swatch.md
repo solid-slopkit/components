@@ -3,7 +3,7 @@
 A sample of a color: a round `span` filled with it, over a checkerboard that shows transparency.
 
 ```tsx
-import { ColorSwatch } from '@solid-slopkit/ui';
+import { ColorSwatch } from '@solid-slopkit/components';
 ```
 
 ## Usage

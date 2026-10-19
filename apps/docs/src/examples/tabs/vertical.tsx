@@ -1,4 +1,4 @@
-import { Tabs, Text } from '@solid-slopkit/ui';
+import { Tabs, Text } from '@solid-slopkit/components';
 
 export default function Vertical() {
   return (

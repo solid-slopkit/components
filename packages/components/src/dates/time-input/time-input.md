@@ -3,7 +3,7 @@
 A labelled field for a time of day: the browser's time input in an [Input](../../components/inputs/input/input.md)'s box. For a time written by the provider's locale, with a dropdown, use [TimePicker](../time-picker/time-picker.md).
 
 ```tsx
-import { TimeInput } from '@solid-slopkit/ui/dates';
+import { TimeInput } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

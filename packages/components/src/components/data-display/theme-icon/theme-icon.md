@@ -3,7 +3,7 @@
 An icon in a colored box: a `span` that centers its child and sizes an SVG to fit.
 
 ```tsx
-import { ThemeIcon } from '@solid-slopkit/ui';
+import { ThemeIcon } from '@solid-slopkit/components';
 ```
 
 ## Usage

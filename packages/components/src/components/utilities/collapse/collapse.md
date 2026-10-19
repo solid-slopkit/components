@@ -3,7 +3,7 @@
 A title that shows and hides the content under it, built from `Collapse.Title` and `Collapse.Content`. The height animates in CSS.
 
 ```tsx
-import { Collapse } from '@solid-slopkit/ui';
+import { Collapse } from '@solid-slopkit/components';
 ```
 
 ## Usage

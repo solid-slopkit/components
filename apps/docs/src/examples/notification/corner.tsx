@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Notification } from '@solid-slopkit/ui';
+import { Button, Notification } from '@solid-slopkit/components';
 
 interface Item {
   id: number;

@@ -1,5 +1,5 @@
 import type { ParentProps } from 'solid-js';
-import { AppShell } from '@solid-slopkit/ui';
+import { AppShell } from '@solid-slopkit/components';
 import { Header } from './Header';
 import { Sidebar } from './Sidebar';
 

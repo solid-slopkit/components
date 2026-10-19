@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
-import { Stack, Text } from '@solid-slopkit/ui';
-import { Calendar, createDay, useFormatDate, type CalendarLevel } from '@solid-slopkit/ui/dates';
+import { Stack, Text } from '@solid-slopkit/components';
+import { Calendar, createDay, useFormatDate, type CalendarLevel } from '@solid-slopkit/components/dates';
 
 // A month picker: the months of a year, and above them the years of a decade.
 export default function Levels() {

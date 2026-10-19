@@ -1,6 +1,6 @@
 import { For } from 'solid-js';
 import { ChevronRight, House } from '@lucide/solid';
-import { Anchor, Breadcrumbs, Stack, Text } from '@solid-slopkit/ui';
+import { Anchor, Breadcrumbs, Stack, Text } from '@solid-slopkit/components';
 
 const path = [
   { title: 'Projects', href: '#projects' },

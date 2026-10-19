@@ -1,4 +1,4 @@
-import { Box, Center } from '@solid-slopkit/ui';
+import { Box, Center } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

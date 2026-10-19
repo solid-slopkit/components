@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Text, Textarea } from '@solid-slopkit/ui';
+import { Text, Textarea } from '@solid-slopkit/components';
 
 export default function Autosize() {
   const [message, setMessage] = createSignal('');

@@ -3,7 +3,7 @@
 A surface that groups content: a `div` with a background, padding and radius, and optionally a border and a shadow.
 
 ```tsx
-import { Paper } from '@solid-slopkit/ui';
+import { Paper } from '@solid-slopkit/components';
 ```
 
 ## Usage

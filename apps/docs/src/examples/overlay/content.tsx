@@ -1,4 +1,4 @@
-import { Loader, Overlay, Paper, Text } from '@solid-slopkit/ui';
+import { Loader, Overlay, Paper, Text } from '@solid-slopkit/components';
 
 export default function Content() {
   return (

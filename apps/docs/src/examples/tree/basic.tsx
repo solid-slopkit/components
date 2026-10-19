@@ -1,4 +1,4 @@
-import { Tree } from '@solid-slopkit/ui';
+import { Tree } from '@solid-slopkit/components';
 import { files } from './data';
 
 export default function Basic() {

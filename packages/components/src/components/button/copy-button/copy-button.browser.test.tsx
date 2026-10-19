@@ -10,14 +10,14 @@ afterEach(() => {
 describe('<CopyButton /> in a browser', () => {
   test('Tab reaches it; Enter copies the value and confirms it', async () => {
     const writeText = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue();
-    const { getByRole } = render(() => <CopyButton value="npm i @solid-slopkit/ui" />);
+    const { getByRole } = render(() => <CopyButton value="npm i @solid-slopkit/components" />);
 
     await userEvent.tab();
     expect(getByRole('button', { name: 'Copy' })).toHaveFocus();
     await userEvent.keyboard('{Enter}');
 
     await expect.poll(() => getByRole('button').getAttribute('aria-label')).toBe('Copied');
-    expect(writeText).toHaveBeenCalledWith('npm i @solid-slopkit/ui');
+    expect(writeText).toHaveBeenCalledWith('npm i @solid-slopkit/components');
     // The button keeps focus while its icon and name change.
     expect(getByRole('button')).toHaveFocus();
   });

@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Checkbox, SimpleGrid, Text } from '@solid-slopkit/ui';
+import { Checkbox, SimpleGrid, Text } from '@solid-slopkit/components';
 
 const plans = [
   { value: 'backups', title: 'Daily backups', text: 'Kept for 30 days.' },

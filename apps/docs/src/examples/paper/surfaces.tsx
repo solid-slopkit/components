@@ -1,4 +1,4 @@
-import { Group, Paper, Stack } from '@solid-slopkit/ui';
+import { Group, Paper, Stack } from '@solid-slopkit/components';
 
 export default function Surfaces() {
   return (

@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Button, Group, Popover, Text, type PopoverPosition } from '@solid-slopkit/ui';
+import { Button, Group, Popover, Text, type PopoverPosition } from '@solid-slopkit/components';
 
 const positions: PopoverPosition[] = ['top', 'right-start', 'bottom-end', 'left'];
 

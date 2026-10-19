@@ -3,7 +3,7 @@
 A checkbox with a label: a native `input type="checkbox"` drawn as a box with a check, next to a label, description and error. Alone, in a Checkbox.Group, or as a Checkbox.Card.
 
 ```tsx
-import { Checkbox } from '@solid-slopkit/ui';
+import { Checkbox } from '@solid-slopkit/components';
 ```
 
 ## Usage

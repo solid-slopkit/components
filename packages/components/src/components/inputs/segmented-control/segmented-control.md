@@ -7,7 +7,7 @@ Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see [Acce
 Two to five short options fit; a longer list belongs in a [Select](../select/select.md). It has no `label` prop: name it with `aria-label` or `aria-labelledby`.
 
 ```tsx
-import { SegmentedControl } from '@solid-slopkit/ui';
+import { SegmentedControl } from '@solid-slopkit/components';
 ```
 
 ## Usage

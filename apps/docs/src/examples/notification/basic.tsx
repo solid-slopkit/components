@@ -1,4 +1,4 @@
-import { Notification, Stack } from '@solid-slopkit/ui';
+import { Notification, Stack } from '@solid-slopkit/components';
 import { Check, CircleAlert } from '@lucide/solid';
 
 export default function Basic() {

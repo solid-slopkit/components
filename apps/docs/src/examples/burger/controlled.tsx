@@ -1,5 +1,5 @@
 import { createSignal, Show } from 'solid-js';
-import { Anchor, Burger, Paper, Stack } from '@solid-slopkit/ui';
+import { Anchor, Burger, Paper, Stack } from '@solid-slopkit/components';
 
 export default function Controlled() {
   const [opened, setOpened] = createSignal(false);

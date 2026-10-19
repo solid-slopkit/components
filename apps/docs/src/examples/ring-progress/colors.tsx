@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { RingProgress, Text } from '@solid-slopkit/ui';
+import { RingProgress, Text } from '@solid-slopkit/components';
 
 const rings = [
   { color: 'primary', value: 25 },

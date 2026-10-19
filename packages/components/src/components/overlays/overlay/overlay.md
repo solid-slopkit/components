@@ -3,7 +3,7 @@
 A layer over its parent, such as behind a loader or a message.
 
 ```tsx
-import { Overlay } from '@solid-slopkit/ui';
+import { Overlay } from '@solid-slopkit/components';
 ```
 
 ## Usage

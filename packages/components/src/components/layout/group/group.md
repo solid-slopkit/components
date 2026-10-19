@@ -3,7 +3,7 @@
 Lays children out in a row: a [Flex](../flex/flex.md) with a gap that wraps and centers its children vertically.
 
 ```tsx
-import { Group } from '@solid-slopkit/ui';
+import { Group } from '@solid-slopkit/components';
 ```
 
 ## Usage

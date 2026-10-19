@@ -1,4 +1,4 @@
-import { Button, useNotifications } from '@solid-slopkit/ui';
+import { Button, useNotifications } from '@solid-slopkit/components';
 
 export default function Update() {
   const notifications = useNotifications();

@@ -1,4 +1,4 @@
-import { Blockquote, Stack, Text } from '@solid-slopkit/ui';
+import { Blockquote, Stack, Text } from '@solid-slopkit/components';
 
 export default function Paragraphs() {
   return (

@@ -3,7 +3,7 @@
 An on/off switch with a label: a native checkbox with `role="switch"`, drawn as a track with a sliding thumb, next to a label, description and error.
 
 ```tsx
-import { Switch } from '@solid-slopkit/ui';
+import { Switch } from '@solid-slopkit/components';
 ```
 
 ## Usage

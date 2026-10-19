@@ -1,4 +1,4 @@
-import { Slider, Stack } from '@solid-slopkit/ui';
+import { Slider, Stack } from '@solid-slopkit/components';
 
 export default function Marks() {
   return (

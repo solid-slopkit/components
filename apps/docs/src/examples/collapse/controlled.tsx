@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button, Collapse, Group, Paper, Stack, Text } from '@solid-slopkit/ui';
+import { Button, Collapse, Group, Paper, Stack, Text } from '@solid-slopkit/components';
 
 export default function Controlled() {
   const [opened, setOpened] = createSignal(false);

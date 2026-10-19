@@ -3,7 +3,7 @@
 A square ghost [Button](../button/button.md) with an X icon, for closing or dismissing what it sits in.
 
 ```tsx
-import { CloseButton } from '@solid-slopkit/ui';
+import { CloseButton } from '@solid-slopkit/components';
 ```
 
 ## Usage

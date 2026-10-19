@@ -3,7 +3,7 @@
 Triggers an action. Its look comes entirely from theme tokens.
 
 ```tsx
-import { Button } from '@solid-slopkit/ui';
+import { Button } from '@solid-slopkit/components';
 ```
 
 ## Usage

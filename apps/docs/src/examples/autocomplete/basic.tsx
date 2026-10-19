@@ -1,4 +1,4 @@
-import { Autocomplete } from '@solid-slopkit/ui';
+import { Autocomplete } from '@solid-slopkit/components';
 
 const cities = [
   'Amsterdam',

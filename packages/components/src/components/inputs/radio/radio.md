@@ -3,7 +3,7 @@
 A radio with a label: a native `input type="radio"` drawn as a circle, next to a label, description and error. Radios are one choice of several: put them in a Radio.Group, or use Radio.Card for bigger targets.
 
 ```tsx
-import { Radio } from '@solid-slopkit/ui';
+import { Radio } from '@solid-slopkit/components';
 ```
 
 ## Usage

@@ -1,20 +1,20 @@
 ---
 name: slopkit-theming
-description: Theme @solid-slopkit/ui apps — change the default look, write a new theme, scope a theme to part of the page, add a light/dark toggle, and customize one component with CSS. Use when changing colors, control sizes or fonts, or adding dark mode.
+description: Theme @solid-slopkit/components apps — change the default look, write a new theme, scope a theme to part of the page, add a light/dark toggle, and customize one component with CSS. Use when changing colors, control sizes or fonts, or adding dark mode.
 ---
 
-# Theming and color scheme in @solid-slopkit/ui
+# Theming and color scheme in @solid-slopkit/components
 
 Everything visual in this library comes from CSS custom properties, the **tokens** (`--slp-*`). Components only read tokens, so a theme is just CSS that sets them. There is no JS theme object and nothing to pass to the provider. The light/dark **color scheme** is separate from the theme: a theme supplies values for one or both schemes, and the user's preference picks between them.
 
-Component references (props, selectors, CSS variables) are in `node_modules/@solid-slopkit/ui/dist/source/llms.md`.
+Component references (props, selectors, CSS variables) are in `node_modules/@solid-slopkit/components/dist/source/llms.md`.
 
 ## Setup
 
 ```tsx
-import { SlopkitUi } from '@solid-slopkit/ui';
-import '@solid-slopkit/ui/styles/slopkit.css'; // layers, palettes, base styles, color scheme
-import '@solid-slopkit/ui/styles/default-theme.css'; // the default theme, light and dark
+import { SlopkitUi } from '@solid-slopkit/components';
+import '@solid-slopkit/components/styles/slopkit.css'; // layers, palettes, base styles, color scheme
+import '@solid-slopkit/components/styles/default-theme.css'; // the default theme, light and dark
 import './theme.css'; // your overrides and themes, after the two above
 
 export function Root() {
@@ -118,7 +118,7 @@ By default the page follows the OS: `slopkit.css` sets `color-scheme: light dark
 `useColorScheme()` gives the user a choice that persists:
 
 ```tsx
-import { Button, useColorScheme } from '@solid-slopkit/ui';
+import { Button, useColorScheme } from '@solid-slopkit/components';
 
 function SchemeToggle() {
   const scheme = useColorScheme();

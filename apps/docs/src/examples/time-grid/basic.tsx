@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
-import { Stack, Text } from '@solid-slopkit/ui';
-import { TimeGrid, getTimeRange } from '@solid-slopkit/ui/dates';
+import { Stack, Text } from '@solid-slopkit/components';
+import { TimeGrid, getTimeRange } from '@solid-slopkit/components/dates';
 
 export default function Basic() {
   const [slot, setSlot] = createSignal<string | null>('10:30');

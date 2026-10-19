@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Group, Paper, ScrollArea, Stack, Text } from '@solid-slopkit/ui';
+import { Button, Group, Paper, ScrollArea, Stack, Text } from '@solid-slopkit/components';
 
 const messages = Array.from({ length: 30 }, (_, index) => `Message ${index + 1}`);
 

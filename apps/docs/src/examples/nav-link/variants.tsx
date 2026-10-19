@@ -1,4 +1,4 @@
-import { Group, NavLink, Stack } from '@solid-slopkit/ui';
+import { Group, NavLink, Stack } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

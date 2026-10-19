@@ -1,5 +1,5 @@
-import { Group, Indicator } from '@solid-slopkit/ui';
-import { Calendar, createDay } from '@solid-slopkit/ui/dates';
+import { Group, Indicator } from '@solid-slopkit/components';
+import { Calendar, createDay } from '@solid-slopkit/components/dates';
 
 const events = new Set([6, 13, 22]);
 

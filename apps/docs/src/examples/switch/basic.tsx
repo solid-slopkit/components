@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Stack, Switch } from '@solid-slopkit/ui';
+import { Stack, Switch } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [wifi, setWifi] = createSignal(true);

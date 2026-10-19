@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Badge } from '@solid-slopkit/ui';
+import { Badge } from '@solid-slopkit/components';
 
 const colors = ['neutral', 'primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error'] as const;
 const variants = ['solid', 'soft', 'outline', 'dash'] as const;

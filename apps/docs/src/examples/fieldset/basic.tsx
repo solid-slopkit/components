@@ -1,4 +1,4 @@
-import { Fieldset, Input, InputWrapper } from '@solid-slopkit/ui';
+import { Fieldset, Input, InputWrapper } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

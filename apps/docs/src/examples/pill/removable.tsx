@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Pill, Stack } from '@solid-slopkit/ui';
+import { Button, Pill, Stack } from '@solid-slopkit/components';
 
 const all = ['Berlin', 'Lisbon', 'Oslo', 'Prague', 'Vienna'];
 

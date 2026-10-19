@@ -1,5 +1,5 @@
 import { Tags } from '@lucide/solid';
-import { MultiSelect, Stack } from '@solid-slopkit/ui';
+import { MultiSelect, Stack } from '@solid-slopkit/components';
 
 const topics = ['Design', 'Engineering', 'Marketing', 'Sales'];
 

@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Indicator, Stack, Text } from '@solid-slopkit/ui';
+import { Indicator, Stack, Text } from '@solid-slopkit/components';
 
 const positions = [
   'top-start',

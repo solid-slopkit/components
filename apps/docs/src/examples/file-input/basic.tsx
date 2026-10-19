@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 import { FileText } from '@lucide/solid';
-import { FileInput, Text } from '@solid-slopkit/ui';
+import { FileInput, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [resume, setResume] = createSignal<File | null>(null);

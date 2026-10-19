@@ -1,6 +1,6 @@
 import { createSignal, For, onCleanup, Show } from 'solid-js';
 import { ImageUp, Upload, X } from '@lucide/solid';
-import { Dropzone, Group, List, Stack, Text, type DropzoneRejection } from '@solid-slopkit/ui';
+import { Dropzone, Group, List, Stack, Text, type DropzoneRejection } from '@solid-slopkit/components';
 
 const MB = 1024 ** 2;
 

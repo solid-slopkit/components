@@ -3,7 +3,7 @@
 A small window in a corner of the viewport that leaves the page usable, such as a feedback prompt or a chat: a non-modal `role="dialog"` in the browser's top layer.
 
 ```tsx
-import { Dialog } from '@solid-slopkit/ui';
+import { Dialog } from '@solid-slopkit/components';
 ```
 
 ## Usage

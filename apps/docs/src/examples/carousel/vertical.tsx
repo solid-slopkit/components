@@ -1,6 +1,6 @@
 import { For } from 'solid-js';
-import { Paper, Text } from '@solid-slopkit/ui';
-import { Carousel } from '@solid-slopkit/ui/carousel';
+import { Paper, Text } from '@solid-slopkit/components';
+import { Carousel } from '@solid-slopkit/components/carousel';
 
 const quotes = ['Ship small, ship often.', 'Name things for what they do.', 'Measure before you tune.'];
 

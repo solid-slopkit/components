@@ -3,7 +3,7 @@
 A box with an image behind its content: a `div` whose background covers it.
 
 ```tsx
-import { BackgroundImage } from '@solid-slopkit/ui';
+import { BackgroundImage } from '@solid-slopkit/components';
 ```
 
 ## Usage

@@ -5,7 +5,7 @@ A strip of days to choose one from, between previous and next buttons that move 
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard** and **Screen readers** below.
 
 ```tsx
-import { MiniCalendar } from '@solid-slopkit/ui/dates';
+import { MiniCalendar } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

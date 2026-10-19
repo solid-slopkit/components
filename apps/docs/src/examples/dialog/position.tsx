@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Dialog, Group, Text, type DialogPosition } from '@solid-slopkit/ui';
+import { Button, Dialog, Group, Text, type DialogPosition } from '@solid-slopkit/components';
 
 const positions: DialogPosition[] = ['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'];
 

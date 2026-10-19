@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Checkbox, Group, Text } from '@solid-slopkit/ui';
+import { Checkbox, Group, Text } from '@solid-slopkit/components';
 
 export default function CheckboxGroupExample() {
   const [toppings, setToppings] = createSignal<string[]>(['cheese']);

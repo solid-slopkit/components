@@ -1,4 +1,4 @@
-import { Progress, Stack } from '@solid-slopkit/ui';
+import { Progress, Stack } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

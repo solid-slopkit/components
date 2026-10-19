@@ -1,6 +1,6 @@
 import { For } from 'solid-js';
 import { Heart } from '@lucide/solid';
-import { ActionIcon, Group, type ActionIconVariant } from '@solid-slopkit/ui';
+import { ActionIcon, Group, type ActionIconVariant } from '@solid-slopkit/components';
 
 const variants: ActionIconVariant[] = ['ghost', 'solid', 'soft', 'outline', 'dash'];
 

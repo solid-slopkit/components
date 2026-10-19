@@ -3,7 +3,7 @@
 A keyboard key: a `kbd`, drawn as a keycap.
 
 ```tsx
-import { Kbd } from '@solid-slopkit/ui';
+import { Kbd } from '@solid-slopkit/components';
 ```
 
 ## Usage

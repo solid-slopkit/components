@@ -3,7 +3,7 @@
 A list of items: a `ul`, or an `ol` with `ordered`. Its children are `List.Item`.
 
 ```tsx
-import { List } from '@solid-slopkit/ui';
+import { List } from '@solid-slopkit/components';
 ```
 
 ## Usage

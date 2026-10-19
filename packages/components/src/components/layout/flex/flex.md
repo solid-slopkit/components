@@ -3,7 +3,7 @@
 A `div` that is a flex container, with responsive flex style props. For spacing and size, nest it in or around a [Box](../box/box.md).
 
 ```tsx
-import { Flex } from '@solid-slopkit/ui';
+import { Flex } from '@solid-slopkit/components';
 ```
 
 ## Usage

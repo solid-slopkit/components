@@ -5,7 +5,7 @@ A value picked on a track: a thumb with `role="slider"` that the pointer drags a
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Pointer**, **Keyboard** and **Screen readers** below.
 
 ```tsx
-import { Slider } from '@solid-slopkit/ui';
+import { Slider } from '@solid-slopkit/components';
 ```
 
 ## Usage

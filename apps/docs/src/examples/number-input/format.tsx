@@ -1,4 +1,4 @@
-import { NumberInput, Stack } from '@solid-slopkit/ui';
+import { NumberInput, Stack } from '@solid-slopkit/components';
 
 export default function Format() {
   return (

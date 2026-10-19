@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { NumberInput, Text } from '@solid-slopkit/ui';
+import { NumberInput, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [quantity, setQuantity] = createSignal<number | undefined>(1);

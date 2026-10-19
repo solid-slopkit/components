@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Accordion, Stack, Text } from '@solid-slopkit/ui';
+import { Accordion, Stack, Text } from '@solid-slopkit/components';
 
 export default function Multiple() {
   const [open, setOpen] = createSignal<string[]>(['account']);

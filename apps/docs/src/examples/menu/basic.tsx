@@ -1,5 +1,5 @@
 import { Archive, Copy, Pencil, Trash2 } from '@lucide/solid';
-import { Button, Kbd, Menu } from '@solid-slopkit/ui';
+import { Button, Kbd, Menu } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

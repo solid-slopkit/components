@@ -1,4 +1,4 @@
-import { AngleSlider } from '@solid-slopkit/ui';
+import { AngleSlider } from '@solid-slopkit/components';
 
 const points = ['North', 'North-east', 'East', 'South-east', 'South', 'South-west', 'West', 'North-west'];
 const short = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];

@@ -3,7 +3,7 @@
 Stacks children vertically: a column [Flex](../flex/flex.md) with a gap.
 
 ```tsx
-import { Stack } from '@solid-slopkit/ui';
+import { Stack } from '@solid-slopkit/components';
 ```
 
 ## Usage

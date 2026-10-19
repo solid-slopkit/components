@@ -3,7 +3,7 @@
 A list of actions behind a button, in the browser's top layer: the menu button pattern.
 
 ```tsx
-import { Menu } from '@solid-slopkit/ui';
+import { Menu } from '@solid-slopkit/components';
 ```
 
 ## Usage

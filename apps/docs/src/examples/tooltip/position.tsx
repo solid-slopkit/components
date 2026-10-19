@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Button, Group, Tooltip, type TooltipPosition } from '@solid-slopkit/ui';
+import { Button, Group, Tooltip, type TooltipPosition } from '@solid-slopkit/components';
 
 const positions: TooltipPosition[] = ['top', 'right', 'bottom-start', 'left'];
 

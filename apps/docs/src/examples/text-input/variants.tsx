@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Stack, TextInput } from '@solid-slopkit/ui';
+import { Stack, TextInput } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

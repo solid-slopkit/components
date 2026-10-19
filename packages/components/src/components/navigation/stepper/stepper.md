@@ -3,7 +3,7 @@
 Progress through steps, such as a form split into parts: the steps in order with the current one marked, and the current step's content under them.
 
 ```tsx
-import { Stepper } from '@solid-slopkit/ui';
+import { Stepper } from '@solid-slopkit/components';
 ```
 
 ## Usage

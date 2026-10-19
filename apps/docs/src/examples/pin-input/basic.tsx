@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { PinInput, Text } from '@solid-slopkit/ui';
+import { PinInput, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [status, setStatus] = createSignal('');

@@ -1,4 +1,4 @@
-import { TimePicker } from '@solid-slopkit/ui/dates';
+import { TimePicker } from '@solid-slopkit/components/dates';
 
 export default function Dropdown() {
   return (

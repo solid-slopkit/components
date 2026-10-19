@@ -3,7 +3,7 @@
 A [Button](../button/button.md) that opens the browser's file picker and hands the chosen files to `onChange`.
 
 ```tsx
-import { FileButton } from '@solid-slopkit/ui';
+import { FileButton } from '@solid-slopkit/components';
 ```
 
 ## Usage

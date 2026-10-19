@@ -1,4 +1,4 @@
-import { Pill } from '@solid-slopkit/ui';
+import { Pill } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

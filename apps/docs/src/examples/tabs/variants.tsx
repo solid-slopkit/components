@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Stack, Tabs, type TabsVariant } from '@solid-slopkit/ui';
+import { Stack, Tabs, type TabsVariant } from '@solid-slopkit/components';
 
 const variants: TabsVariant[] = ['underline', 'outline', 'pills'];
 

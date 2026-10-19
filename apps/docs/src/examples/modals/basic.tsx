@@ -1,4 +1,4 @@
-import { Button, TextInput, useModals } from '@solid-slopkit/ui';
+import { Button, TextInput, useModals } from '@solid-slopkit/components';
 
 export default function Basic() {
   const modals = useModals();

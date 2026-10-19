@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { ColorPicker, Group, Text } from '@solid-slopkit/ui';
+import { ColorPicker, Group, Text } from '@solid-slopkit/components';
 
 export default function Alpha() {
   const [color, setColor] = createSignal('rgba(224, 49, 49, 0.6)');

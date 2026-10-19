@@ -3,7 +3,7 @@
 A label, description and error around a field. The field inside, such as an [Input](../input/input.md), gets the ids, the invalid state and the size from it, so the texts are wired for screen readers without passing ids around.
 
 ```tsx
-import { InputWrapper } from '@solid-slopkit/ui';
+import { InputWrapper } from '@solid-slopkit/components';
 ```
 
 ## Usage

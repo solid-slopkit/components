@@ -1,6 +1,6 @@
 import { createSignal, Show } from 'solid-js';
 import { Search } from '@lucide/solid';
-import { CloseButton, Input, Stack } from '@solid-slopkit/ui';
+import { CloseButton, Input, Stack } from '@solid-slopkit/components';
 
 export default function Sections() {
   const [query, setQuery] = createSignal('');

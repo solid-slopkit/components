@@ -1,4 +1,4 @@
-import { CloseButton, Group } from '@solid-slopkit/ui';
+import { CloseButton, Group } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

@@ -3,7 +3,7 @@
 A button that shows only an icon: a fixed-size square or circle [Button](../button/button.md), named by `label`.
 
 ```tsx
-import { ActionIcon } from '@solid-slopkit/ui';
+import { ActionIcon } from '@solid-slopkit/components';
 ```
 
 ## Usage

@@ -5,7 +5,7 @@ A star rating. Choosing, it's a `radiogroup` of hidden native radios, one per st
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Pointer** and **Keyboard** below.
 
 ```tsx
-import { Rating } from '@solid-slopkit/ui';
+import { Rating } from '@solid-slopkit/components';
 ```
 
 ## Usage

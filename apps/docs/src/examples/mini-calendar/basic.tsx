@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
-import { Stack, Text } from '@solid-slopkit/ui';
-import { MiniCalendar, createDay, useFormatDate } from '@solid-slopkit/ui/dates';
+import { Stack, Text } from '@solid-slopkit/components';
+import { MiniCalendar, createDay, useFormatDate } from '@solid-slopkit/components/dates';
 
 export default function Basic() {
   const [day, setDay] = createSignal(createDay(2026, 9, 14));

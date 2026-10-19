@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Anchor, Button, Drawer, Stack } from '@solid-slopkit/ui';
+import { Anchor, Button, Drawer, Stack } from '@solid-slopkit/components';
 
 const links = ['Dashboard', 'Projects', 'Invoices', 'Team', 'Settings'];
 

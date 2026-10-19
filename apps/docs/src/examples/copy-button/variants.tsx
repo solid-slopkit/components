@@ -1,4 +1,4 @@
-import { CopyButton, Group } from '@solid-slopkit/ui';
+import { CopyButton, Group } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

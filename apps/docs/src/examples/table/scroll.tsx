@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Table } from '@solid-slopkit/ui';
+import { Table } from '@solid-slopkit/components';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const rows = Array.from({ length: 12 }, (_, index) => ({

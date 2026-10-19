@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button, Group, Stack, Stepper, Text } from '@solid-slopkit/ui';
+import { Button, Group, Stack, Stepper, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [active, setActive] = createSignal(1);

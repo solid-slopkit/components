@@ -1,6 +1,6 @@
 import { ChevronDown } from '@lucide/solid';
 import { createSignal, For } from 'solid-js';
-import { Button, Combobox, createCombobox } from '@solid-slopkit/ui';
+import { Button, Combobox, createCombobox } from '@solid-slopkit/components';
 
 const groups = [
   { label: 'Fruit', items: ['Apple', 'Banana', 'Cherry'] },

@@ -3,7 +3,7 @@
 A number formatted for the reader's locale with `Intl.NumberFormat`: a `span` with the text.
 
 ```tsx
-import { NumberFormatter } from '@solid-slopkit/ui';
+import { NumberFormatter } from '@solid-slopkit/components';
 ```
 
 ## Usage

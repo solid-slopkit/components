@@ -3,7 +3,7 @@
 Links to the sections of the page, with the one being read marked as it scrolls.
 
 ```tsx
-import { TableOfContents, type TableOfContentsHeading } from '@solid-slopkit/ui';
+import { TableOfContents, type TableOfContentsHeading } from '@solid-slopkit/components';
 ```
 
 ## Usage

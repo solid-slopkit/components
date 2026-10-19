@@ -3,7 +3,7 @@
 A labelled field for JSON: a [Textarea](../textarea/textarea.md) in a monospace font that checks the text when the field loses focus, shows an error while it's invalid, and can format it.
 
 ```tsx
-import { JsonInput } from '@solid-slopkit/ui';
+import { JsonInput } from '@solid-slopkit/components';
 ```
 
 ## Usage

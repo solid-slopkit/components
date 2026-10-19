@@ -1,4 +1,4 @@
-import { RangeSlider } from '@solid-slopkit/ui';
+import { RangeSlider } from '@solid-slopkit/components';
 
 export default function Hours() {
   return (

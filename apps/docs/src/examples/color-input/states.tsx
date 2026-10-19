@@ -1,4 +1,4 @@
-import { ColorInput, Stack } from '@solid-slopkit/ui';
+import { ColorInput, Stack } from '@solid-slopkit/components';
 
 export default function States() {
   return (

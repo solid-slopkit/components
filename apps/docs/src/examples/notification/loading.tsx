@@ -1,5 +1,5 @@
 import { createSignal, onCleanup, onSettled } from 'solid-js';
-import { Button, Notification, Stack } from '@solid-slopkit/ui';
+import { Button, Notification, Stack } from '@solid-slopkit/components';
 import { Check } from '@lucide/solid';
 
 export default function Loading() {

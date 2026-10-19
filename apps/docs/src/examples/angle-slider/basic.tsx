@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { AngleSlider, Group } from '@solid-slopkit/ui';
+import { AngleSlider, Group } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [angle, setAngle] = createSignal(135);

@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Button } from '@solid-slopkit/ui';
+import { Button } from '@solid-slopkit/components';
 import { ArrowRight, Download } from '@lucide/solid';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;

@@ -1,5 +1,5 @@
 import { Eraser } from '@lucide/solid';
-import { CloseButton } from '@solid-slopkit/ui';
+import { CloseButton } from '@solid-slopkit/components';
 
 export default function Icon() {
   return (

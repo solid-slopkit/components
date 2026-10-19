@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Pagination, Stack, Text } from '@solid-slopkit/ui';
+import { Pagination, Stack, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [page, setPage] = createSignal(1);

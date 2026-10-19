@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Drawer, Group, Text, type DrawerPosition } from '@solid-slopkit/ui';
+import { Button, Drawer, Group, Text, type DrawerPosition } from '@solid-slopkit/components';
 
 const positions: DrawerPosition[] = ['left', 'right', 'top', 'bottom'];
 

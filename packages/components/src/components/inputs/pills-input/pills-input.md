@@ -5,7 +5,7 @@ A field box that holds pills and a text field after them, in rows that wrap. It'
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Focus** below.
 
 ```tsx
-import { Pill, PillsInput } from '@solid-slopkit/ui';
+import { Pill, PillsInput } from '@solid-slopkit/components';
 ```
 
 ## Usage

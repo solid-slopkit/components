@@ -1,5 +1,5 @@
 import { Copy, Pencil, Trash2 } from '@lucide/solid';
-import { ActionIcon, Group } from '@solid-slopkit/ui';
+import { ActionIcon, Group } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Highlight, Stack, Text } from '@solid-slopkit/ui';
+import { Highlight, Stack, Text } from '@solid-slopkit/components';
 
 const components = ['Badge', 'Blockquote', 'Button', 'Card', 'Code', 'Divider', 'Highlight', 'Kbd', 'List', 'Mark'];
 

@@ -3,7 +3,7 @@
 The frame of an app: a sidebar of navigation next to the main area. On a wide screen the sidebar collapses, off the canvas or down to its icons; on a narrow one (below 48em) it opens as a drawer over the page.
 
 ```tsx
-import { AppShell, useAppShell } from '@solid-slopkit/ui';
+import { AppShell, useAppShell } from '@solid-slopkit/components';
 ```
 
 ## Usage

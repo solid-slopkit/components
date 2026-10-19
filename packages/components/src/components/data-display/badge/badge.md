@@ -3,7 +3,7 @@
 A short label for a status, a category or a count: a `span`.
 
 ```tsx
-import { Badge } from '@solid-slopkit/ui';
+import { Badge } from '@solid-slopkit/components';
 ```
 
 ## Usage

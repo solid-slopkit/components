@@ -63,7 +63,7 @@ import {
   Text,
   TextInput,
   Title,
-} from '@solid-slopkit/ui';
+} from '@solid-slopkit/components';
 import { Bars } from '../charts';
 
 // A card title with a muted line under it, for the start of a Card.Header.

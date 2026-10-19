@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Modal, Stack, Text } from '@solid-slopkit/ui';
+import { Button, Modal, Stack, Text } from '@solid-slopkit/components';
 
 export default function FullScreen() {
   const [opened, setOpened] = createSignal(false);

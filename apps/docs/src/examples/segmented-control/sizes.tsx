@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { SegmentedControl } from '@solid-slopkit/ui';
+import { SegmentedControl } from '@solid-slopkit/components';
 
 export default function Sizes() {
   return (

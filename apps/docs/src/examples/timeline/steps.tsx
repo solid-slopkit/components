@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Group, Stack, Timeline } from '@solid-slopkit/ui';
+import { Button, Group, Stack, Timeline } from '@solid-slopkit/components';
 
 const steps = [
   { title: 'Create an account', text: 'Pick a name and a password.' },

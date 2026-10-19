@@ -1,4 +1,4 @@
-import { Anchor, Stack, Text } from '@solid-slopkit/ui';
+import { Anchor, Stack, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

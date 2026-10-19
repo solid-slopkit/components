@@ -3,7 +3,7 @@
 Where the current page sits in the site's hierarchy: links to the pages above it, in order, then the page itself.
 
 ```tsx
-import { Breadcrumbs } from '@solid-slopkit/ui';
+import { Breadcrumbs } from '@solid-slopkit/components';
 ```
 
 ## Usage

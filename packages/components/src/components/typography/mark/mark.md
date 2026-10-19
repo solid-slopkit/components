@@ -3,7 +3,7 @@
 Highlighted text: a `mark`, tinted with a color role.
 
 ```tsx
-import { Mark } from '@solid-slopkit/ui';
+import { Mark } from '@solid-slopkit/components';
 ```
 
 ## Usage

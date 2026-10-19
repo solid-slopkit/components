@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Group, Paper } from '@solid-slopkit/ui';
+import { Group, Paper } from '@solid-slopkit/components';
 
 export default function Shadows() {
   return (

@@ -45,7 +45,7 @@ import {
   Textarea,
   TextInput,
   Title,
-} from '@solid-slopkit/ui';
+} from '@solid-slopkit/components';
 import { GroupedBars } from '../charts';
 import './two-a.css';
 

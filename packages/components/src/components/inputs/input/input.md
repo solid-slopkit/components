@@ -3,7 +3,7 @@
 A field box: a control, an `input` by default or any element with `as`, with optional sections on either side. The building block of the text fields; for a labelled field, use it inside an [InputWrapper](../input-wrapper/input-wrapper.md), or use a field component such as TextInput.
 
 ```tsx
-import { Input } from '@solid-slopkit/ui';
+import { Input } from '@solid-slopkit/components';
 ```
 
 ## Usage

@@ -3,7 +3,7 @@
 Shows that something is loading: a `span` with `role="status"`, animated as a spinner, dots or bars.
 
 ```tsx
-import { Loader } from '@solid-slopkit/ui';
+import { Loader } from '@solid-slopkit/components';
 ```
 
 ## Usage

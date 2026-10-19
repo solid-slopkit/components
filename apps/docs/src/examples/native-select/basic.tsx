@@ -1,4 +1,4 @@
-import { NativeSelect } from '@solid-slopkit/ui';
+import { NativeSelect } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

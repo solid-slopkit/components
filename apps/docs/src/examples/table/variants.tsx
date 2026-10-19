@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Table } from '@solid-slopkit/ui';
+import { Table } from '@solid-slopkit/components';
 
 const people = [
   { name: 'Ada Lovelace', role: 'Analyst', team: 'Engines' },

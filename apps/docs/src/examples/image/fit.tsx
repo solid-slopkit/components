@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Image, Stack, Text } from '@solid-slopkit/ui';
+import { Image, Stack, Text } from '@solid-slopkit/components';
 
 const fits = ['cover', 'contain', 'fill', 'none', 'scale-down'] as const;
 

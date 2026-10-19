@@ -1,4 +1,4 @@
-import { Anchor, Divider, Group } from '@solid-slopkit/ui';
+import { Anchor, Divider, Group } from '@solid-slopkit/components';
 
 export default function Vertical() {
   return (

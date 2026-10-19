@@ -1,5 +1,5 @@
 import { createSignal, Show } from 'solid-js';
-import { Alert, Button } from '@solid-slopkit/ui';
+import { Alert, Button } from '@solid-slopkit/components';
 
 export default function Dismiss() {
   const [open, setOpen] = createSignal(true);

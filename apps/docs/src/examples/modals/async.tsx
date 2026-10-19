@@ -1,4 +1,4 @@
-import { Button, useModals } from '@solid-slopkit/ui';
+import { Button, useModals } from '@solid-slopkit/components';
 
 const save = () => new Promise((resolve) => setTimeout(resolve, 1500));
 

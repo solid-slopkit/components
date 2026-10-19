@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Avatar } from '@solid-slopkit/ui';
+import { Avatar } from '@solid-slopkit/components';
 
 const colors = [undefined, 'neutral', 'primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error'] as const;
 const variants = ['soft', 'solid', 'outline'] as const;

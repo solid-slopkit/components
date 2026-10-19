@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Chip, Text } from '@solid-slopkit/ui';
+import { Chip, Text } from '@solid-slopkit/components';
 
 export default function Single() {
   const [size, setSize] = createSignal('m');

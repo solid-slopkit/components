@@ -3,7 +3,7 @@
 A short message about something that happened: a card with `role="status"`, a title, and an icon or a colored bar. The look only: [Notifications](../notifications/notifications.md) shows, stacks and dismisses them.
 
 ```tsx
-import { Notification } from '@solid-slopkit/ui';
+import { Notification } from '@solid-slopkit/components';
 ```
 
 ## Usage

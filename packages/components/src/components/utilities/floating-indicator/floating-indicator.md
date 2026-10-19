@@ -3,7 +3,7 @@
 A box that covers one element of a group and glides to another when the target changes, such as the active tab or the selected option.
 
 ```tsx
-import { FloatingIndicator } from '@solid-slopkit/ui';
+import { FloatingIndicator } from '@solid-slopkit/components';
 ```
 
 ## Usage

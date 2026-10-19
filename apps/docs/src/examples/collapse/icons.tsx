@@ -1,4 +1,4 @@
-import { Collapse, Paper, Stack, Text } from '@solid-slopkit/ui';
+import { Collapse, Paper, Stack, Text } from '@solid-slopkit/components';
 
 export default function Icons() {
   return (

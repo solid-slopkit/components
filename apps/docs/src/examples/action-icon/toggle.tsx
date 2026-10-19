@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 import { Bold, Italic } from '@lucide/solid';
-import { ActionIcon, Group } from '@solid-slopkit/ui';
+import { ActionIcon, Group } from '@solid-slopkit/components';
 
 export default function Toggle() {
   const [bold, setBold] = createSignal(false);

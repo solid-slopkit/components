@@ -5,7 +5,7 @@ A labelled field of free-text tags, shown as pills: Enter or a comma adds what's
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see the Usage notes below.
 
 ```tsx
-import { TagsInput } from '@solid-slopkit/ui';
+import { TagsInput } from '@solid-slopkit/components';
 ```
 
 ## Usage

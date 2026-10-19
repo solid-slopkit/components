@@ -3,7 +3,7 @@
 Empty space between elements, for one-off gaps where a margin or a `Stack` would be awkward.
 
 ```tsx
-import { Space } from '@solid-slopkit/ui';
+import { Space } from '@solid-slopkit/components';
 ```
 
 ## Usage

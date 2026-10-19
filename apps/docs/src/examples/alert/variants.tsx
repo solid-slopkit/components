@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Alert, Stack } from '@solid-slopkit/ui';
+import { Alert, Stack } from '@solid-slopkit/components';
 import { Sparkles } from '@lucide/solid';
 
 const variants = ['soft', 'outline', 'solid'] as const;

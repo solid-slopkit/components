@@ -1,4 +1,4 @@
-import { FileInput } from '@solid-slopkit/ui';
+import { FileInput } from '@solid-slopkit/components';
 
 export default function Multiple() {
   return (

@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Paper, ScrollArea, Text } from '@solid-slopkit/ui';
+import { Paper, ScrollArea, Text } from '@solid-slopkit/components';
 
 const changes = Array.from({ length: 20 }, (_, index) => `Version 1.${20 - index}: fixes and small improvements.`);
 

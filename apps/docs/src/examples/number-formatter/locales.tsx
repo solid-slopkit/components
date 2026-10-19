@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { NumberFormatter, SlopkitUi, Table } from '@solid-slopkit/ui';
+import { NumberFormatter, SlopkitUi, Table } from '@solid-slopkit/components';
 
 const locales = ['en-US', 'de-DE', 'fr-FR', 'hi-IN', 'ja-JP'];
 

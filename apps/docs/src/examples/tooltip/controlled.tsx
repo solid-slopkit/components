@@ -1,5 +1,5 @@
 import { createSignal, onCleanup } from 'solid-js';
-import { Button, Tooltip } from '@solid-slopkit/ui';
+import { Button, Tooltip } from '@solid-slopkit/components';
 
 export default function Controlled() {
   const [opened, setOpened] = createSignal(false);

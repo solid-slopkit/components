@@ -1,4 +1,4 @@
-import { Chip, Group } from '@solid-slopkit/ui';
+import { Chip, Group } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

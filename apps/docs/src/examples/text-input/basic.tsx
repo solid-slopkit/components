@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Text, TextInput } from '@solid-slopkit/ui';
+import { Text, TextInput } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [name, setName] = createSignal('');

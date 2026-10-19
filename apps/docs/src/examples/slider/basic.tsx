@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Slider, Text } from '@solid-slopkit/ui';
+import { Slider, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [volume, setVolume] = createSignal(40);

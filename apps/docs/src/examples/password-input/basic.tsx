@@ -1,4 +1,4 @@
-import { PasswordInput } from '@solid-slopkit/ui';
+import { PasswordInput } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

@@ -5,7 +5,7 @@ A pill-shaped toggle: a `label` around a hidden native checkbox, or a radio in a
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see the Usage notes below.
 
 ```tsx
-import { Chip } from '@solid-slopkit/ui';
+import { Chip } from '@solid-slopkit/components';
 ```
 
 ## Usage

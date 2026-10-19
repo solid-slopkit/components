@@ -5,7 +5,7 @@ A labelled native `select` in an [Input](../input/input.md) box, with a chevron.
 That list can't be themed: only the closed box follows the theme, and the open list is the browser's and the operating system's. For a themed dropdown, prefer [Select](../select/select.md): it has tested keyboard and ARIA behavior, and binds with `bind(f.x)` from `@solid-slopkit/forms`. Choose NativeSelect when you want the operating system's picker (a wheel or a sheet on phones, the usual pick for mobile-first forms) and accept the browser's look.
 
 ```tsx
-import { NativeSelect } from '@solid-slopkit/ui';
+import { NativeSelect } from '@solid-slopkit/components';
 ```
 
 ## Usage

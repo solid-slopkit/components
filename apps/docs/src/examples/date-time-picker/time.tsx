@@ -1,4 +1,4 @@
-import { DateTimePicker, createDay } from '@solid-slopkit/ui/dates';
+import { DateTimePicker, createDay } from '@solid-slopkit/components/dates';
 
 export default function Time() {
   return (

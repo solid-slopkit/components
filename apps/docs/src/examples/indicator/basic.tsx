@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button, Indicator } from '@solid-slopkit/ui';
+import { Button, Indicator } from '@solid-slopkit/components';
 import { Inbox } from '@lucide/solid';
 
 export default function Basic() {

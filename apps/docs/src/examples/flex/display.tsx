@@ -1,4 +1,4 @@
-import { Box, Flex } from '@solid-slopkit/ui';
+import { Box, Flex } from '@solid-slopkit/components';
 
 const surface = { background: 'var(--slp-color-base-200)', padding: '0.5rem' };
 const item = { background: 'var(--slp-color-base-300)' };

@@ -3,7 +3,7 @@
 An image: an `img` that fills its box and can fall back to another source when it fails to load.
 
 ```tsx
-import { Image } from '@solid-slopkit/ui';
+import { Image } from '@solid-slopkit/components';
 ```
 
 ## Usage

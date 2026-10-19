@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Radio, SimpleGrid, Text } from '@solid-slopkit/ui';
+import { Radio, SimpleGrid, Text } from '@solid-slopkit/components';
 
 const options = [
   { value: 'standard', title: 'Standard', text: '3 to 5 working days. Free.' },

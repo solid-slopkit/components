@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Button, Card, SimpleGrid, Text } from '@solid-slopkit/ui';
+import { Button, Card, SimpleGrid, Text } from '@solid-slopkit/components';
 
 export default function Sizes() {
   return (

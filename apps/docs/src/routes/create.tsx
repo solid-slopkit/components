@@ -2,7 +2,7 @@ import { createMemo, createSignal, For, Show } from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import { Title } from '@solidjs/meta';
 import { Check, Code as CodeIcon, RotateCcw, Shuffle, SlidersHorizontal } from '@lucide/solid';
-import { Box, Button, ColorSwatch, Flex, Group, Menu, Modal, SimpleGrid, Stack } from '@solid-slopkit/ui';
+import { Box, Button, ColorSwatch, Flex, Group, Menu, Modal, SimpleGrid, Stack } from '@solid-slopkit/components';
 import { CodeBlock } from '../components/CodeBlock';
 import { ColorSchemeToggle } from '../layout/ColorSchemeToggle';
 // Before the pages, so the cards' own styles come after the shared ones.
@@ -111,8 +111,8 @@ export default function Create() {
           <Box display={{ base: 'none', sm: 'block' }}>
             <Group gap={4} class="create-header-nav" role="navigation" aria-label="Main">
               <a href="/">Docs</a>
-              <a href="/ui">Components</a>
-              <a href="/ui/theming">Theming</a>
+              <a href="/components">Components</a>
+              <a href="/components/theming">Theming</a>
               <a href="/create" aria-current="page">
                 Create
               </a>

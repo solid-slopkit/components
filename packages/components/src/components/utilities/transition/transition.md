@@ -3,7 +3,7 @@
 Animates content in and out as `mounted` changes. The content stays rendered until its exit animation has finished, then unmounts.
 
 ```tsx
-import { Transition } from '@solid-slopkit/ui';
+import { Transition } from '@solid-slopkit/components';
 ```
 
 ## Usage

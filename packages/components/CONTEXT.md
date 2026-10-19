@@ -1,4 +1,4 @@
-# UI (`@solid-slopkit/ui`)
+# Components (`@solid-slopkit/components`)
 
 The component library: components, their look, theming and the provider. Each component's API and look are chosen on their own merits. Terms shared by every package live in [CONTEXT-MAP.md](../../CONTEXT-MAP.md).
 
@@ -7,7 +7,7 @@ The component library: components, their look, theming and the provider. Each co
 ### Building blocks
 
 **Component**:
-Something an app renders from `@solid-slopkit/ui`, such as `Button` or `Select`. It has a look and a public prop API.
+Something an app renders from `@solid-slopkit/components`, such as `Button` or `Select`. It has a look and a public prop API.
 
 **Layout component**:
 A component whose job is arranging other content (Box, Flex, Stack, Group, Grid, …). Only layout components take style props.

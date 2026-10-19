@@ -1,4 +1,4 @@
-import { Spoiler, Text } from '@solid-slopkit/ui';
+import { Spoiler, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

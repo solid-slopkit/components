@@ -17,7 +17,7 @@ import {
   TextInput,
   ThemeIcon,
   Title,
-} from '@solid-slopkit/ui';
+} from '@solid-slopkit/components';
 import { For } from 'solid-js';
 
 import { AreaChart, TrackBars, Waveform } from '../charts';

@@ -3,7 +3,7 @@
 Centers its content horizontally, with a max width and inline padding. Wrap a page, or each full-width section of one, so content lines up on the same edges and never touches the screen edge.
 
 ```tsx
-import { Container } from '@solid-slopkit/ui';
+import { Container } from '@solid-slopkit/components';
 ```
 
 ## Usage

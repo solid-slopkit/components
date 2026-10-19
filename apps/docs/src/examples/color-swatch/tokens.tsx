@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { ColorSwatch } from '@solid-slopkit/ui';
+import { ColorSwatch } from '@solid-slopkit/components';
 
 const roles = ['neutral', 'primary', 'secondary', 'accent', 'info', 'success', 'warning', 'error'];
 

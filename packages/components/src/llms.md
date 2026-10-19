@@ -1,10 +1,10 @@
-# @solid-slopkit/ui
+# @solid-slopkit/components
 
 A component library for SolidJS 2.x, styled with plain CSS and CSS variables. Solid is not React: components run once, and reactivity comes from signals.
 
 Each link below is the reference for one component: its props, examples, and the selectors and CSS variables to customize it with. Paths are relative to this file.
 
-Task guides live next to `dist/` in the package, at `node_modules/@solid-slopkit/ui/skills/<area>/SKILL.md`:
+Task guides live next to `dist/` in the package, at `node_modules/@solid-slopkit/components/skills/<area>/SKILL.md`:
 
 - `skills/theming/SKILL.md`: change the look, write themes, light/dark toggle, customize one component.
 - `skills/layout/SKILL.md`: pick a layout component, style props, responsive values.
@@ -12,9 +12,9 @@ Task guides live next to `dist/` in the package, at `node_modules/@solid-slopkit
 ## Setup
 
 ```tsx
-import { SlopkitUi } from '@solid-slopkit/ui';
-import '@solid-slopkit/ui/styles/slopkit.css';
-import '@solid-slopkit/ui/styles/default-theme.css';
+import { SlopkitUi } from '@solid-slopkit/components';
+import '@solid-slopkit/components/styles/slopkit.css';
+import '@solid-slopkit/components/styles/default-theme.css';
 
 export function Root() {
   return <SlopkitUi>{/* your app */}</SlopkitUi>;
@@ -180,13 +180,13 @@ Every input here works with `@solid-slopkit/forms`: its binding reference, `node
 - [Spoiler](components/utilities/spoiler/spoiler.md): content cut to a height, with a control to show the rest
 - [Transition](components/utilities/transition/transition.md): enter and exit animations
 
-## Carousel (`@solid-slopkit/ui/carousel`)
+## Carousel (`@solid-slopkit/components/carousel`)
 
 A separate entry, because it needs `embla-carousel`, an optional peer dependency: install it next to the package (`pnpm add embla-carousel`). The main entry never imports it.
 
 - [Carousel](carousel/carousel.md): slides moved through by dragging, buttons, arrow keys or indicators, with Carousel.Slide
 
-## Dates (`@solid-slopkit/ui/dates`)
+## Dates (`@solid-slopkit/components/dates`)
 
 A separate entry for dates and the date components, on native `Date` and `Intl` with no date library.
 
@@ -205,7 +205,7 @@ A separate entry for dates and the date components, on native `Date` and `Intl` 
 - [TimeGrid](dates/time-grid/time-grid.md): a grid of times to choose one from, such as free slots
 - [DateTimePicker](dates/date-time-picker/date-time-picker.md): a field for a date and time, chosen in a calendar and a time picker
 
-## Primitives (`@solid-slopkit/ui/primitives`)
+## Primitives (`@solid-slopkit/components/primitives`)
 
 The behavior the components are built from, for building your own: overlays that animate, position, close and handle focus like the library's, and list keyboard navigation with typeahead.
 

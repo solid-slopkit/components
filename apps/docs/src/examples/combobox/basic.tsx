@@ -1,5 +1,5 @@
 import { createSignal, For, Show } from 'solid-js';
-import { Combobox, createCombobox, TextInput } from '@solid-slopkit/ui';
+import { Combobox, createCombobox, TextInput } from '@solid-slopkit/components';
 
 const countries = [
   'Austria',

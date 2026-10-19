@@ -5,7 +5,7 @@ A labelled text field with suggestions: what's typed is the value, and the sugge
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard** below.
 
 ```tsx
-import { Autocomplete } from '@solid-slopkit/ui';
+import { Autocomplete } from '@solid-slopkit/components';
 ```
 
 ## Usage

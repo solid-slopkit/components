@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { PasswordInput, Stack } from '@solid-slopkit/ui';
+import { PasswordInput, Stack } from '@solid-slopkit/components';
 
 // One visibility for both fields: either toggle shows or hides them together.
 export default function Together() {

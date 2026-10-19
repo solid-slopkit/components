@@ -1,4 +1,4 @@
-import { Paper, ScrollArea } from '@solid-slopkit/ui';
+import { Paper, ScrollArea } from '@solid-slopkit/components';
 
 const log = Array.from(
   { length: 12 },

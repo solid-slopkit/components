@@ -1,5 +1,5 @@
 import { Ellipsis, Plus } from '@lucide/solid';
-import { ActionIcon, Button, Group, Stack } from '@solid-slopkit/ui';
+import { ActionIcon, Button, Group, Stack } from '@solid-slopkit/components';
 
 export default function Sizes() {
   return (

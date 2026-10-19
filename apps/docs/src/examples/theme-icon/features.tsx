@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Group, Stack, Text, ThemeIcon } from '@solid-slopkit/ui';
+import { Group, Stack, Text, ThemeIcon } from '@solid-slopkit/components';
 import { Moon, Server, Zap } from '@lucide/solid';
 
 const features = [

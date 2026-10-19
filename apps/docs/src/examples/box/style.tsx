@@ -1,4 +1,4 @@
-import { Box } from '@solid-slopkit/ui';
+import { Box } from '@solid-slopkit/components';
 
 export default function Style() {
   return (

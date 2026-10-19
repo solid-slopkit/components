@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Autocomplete, Stack, Text } from '@solid-slopkit/ui';
+import { Autocomplete, Stack, Text } from '@solid-slopkit/components';
 
 export default function Groups() {
   const [ingredient, setIngredient] = createSignal('');

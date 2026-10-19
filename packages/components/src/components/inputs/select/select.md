@@ -7,7 +7,7 @@ Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Key
 The default for a dropdown: themed like the rest of the library, and bound with `bind(f.x)` from `@solid-slopkit/forms`. Use [NativeSelect](../native-select/native-select.md) instead only when you want the operating system's own picker (a wheel or a sheet on phones) and accept the browser's look for the list. For two to five options that stay in view, use [SegmentedControl](../segmented-control/segmented-control.md) or [Radio.Group](../radio/radio.md).
 
 ```tsx
-import { Select } from '@solid-slopkit/ui';
+import { Select } from '@solid-slopkit/components';
 ```
 
 ## Usage

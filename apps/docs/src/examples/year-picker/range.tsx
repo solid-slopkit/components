@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
-import { Stack, Text } from '@solid-slopkit/ui';
-import { YearPicker, createDay, useFormatDate } from '@solid-slopkit/ui/dates';
+import { Stack, Text } from '@solid-slopkit/components';
+import { YearPicker, createDay, useFormatDate } from '@solid-slopkit/components/dates';
 
 export default function Range() {
   const [range, setRange] = createSignal<[Date | null, Date | null]>([createDay(2027, 0, 1), createDay(2032, 0, 1)]);

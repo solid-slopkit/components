@@ -1,4 +1,4 @@
-import { Group, Stack, Text } from '@solid-slopkit/ui';
+import { Group, Stack, Text } from '@solid-slopkit/components';
 
 export default function Figures() {
   return (

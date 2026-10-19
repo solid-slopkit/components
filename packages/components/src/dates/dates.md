@@ -3,7 +3,7 @@
 Date utilities on native `Date` and `Intl`, with no date library. They live in their own entry with the date components, such as [Calendar](calendar/calendar.md):
 
 ```tsx
-import { addMonths, getMonthGrid, getWeekInfo, useFormatDate } from '@solid-slopkit/ui/dates';
+import { addMonths, getMonthGrid, getWeekInfo, useFormatDate } from '@solid-slopkit/components/dates';
 ```
 
 ## Days are local-midnight `Date`s
@@ -42,7 +42,7 @@ A day is a `Date` at local midnight in the runtime's time zone. Every function r
 `getMonthGrid(month, { firstDayOfWeek, fixedWeeks })` (options type `MonthGridOptions`) returns the weeks of the month as rows of seven days. The first and last rows are filled with days of the neighboring months; tell them apart with `isSameMonth(day, month)`. A month spans four to six weeks; `fixedWeeks: true` always gives six, so a calendar keeps its height.
 
 ```tsx
-const locale = useLocale(); // from '@solid-slopkit/ui'
+const locale = useLocale(); // from '@solid-slopkit/components'
 const weeks = () => getMonthGrid(month(), { firstDayOfWeek: getWeekInfo(locale()).firstDayOfWeek });
 ```
 

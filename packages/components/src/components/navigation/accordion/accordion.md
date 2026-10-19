@@ -3,7 +3,7 @@
 Sections whose content shows and hides under their headings: one open at a time, or several.
 
 ```tsx
-import { Accordion } from '@solid-slopkit/ui';
+import { Accordion } from '@solid-slopkit/components';
 ```
 
 ## Usage

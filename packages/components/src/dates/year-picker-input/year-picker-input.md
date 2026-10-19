@@ -5,7 +5,7 @@ A labelled field for a year, several years or a range: a button that shows the v
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Dropdown** below.
 
 ```tsx
-import { YearPickerInput } from '@solid-slopkit/ui/dates';
+import { YearPickerInput } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

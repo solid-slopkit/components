@@ -5,7 +5,7 @@ A code split into one field per character, such as a one-time code or a PIN: typ
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Typing** below.
 
 ```tsx
-import { PinInput } from '@solid-slopkit/ui';
+import { PinInput } from '@solid-slopkit/components';
 ```
 
 ## Usage

@@ -1,4 +1,4 @@
-import { Anchor, Avatar, Button, Group, HoverCard, Stack, Text } from '@solid-slopkit/ui';
+import { Anchor, Avatar, Button, Group, HoverCard, Stack, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

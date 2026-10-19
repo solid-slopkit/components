@@ -3,7 +3,7 @@
 Pins a dot or a small label to a corner or edge of its child. A `span` around the child.
 
 ```tsx
-import { Indicator } from '@solid-slopkit/ui';
+import { Indicator } from '@solid-slopkit/components';
 ```
 
 ## Usage

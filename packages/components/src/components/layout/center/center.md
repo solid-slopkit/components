@@ -3,7 +3,7 @@
 Centers its content horizontally and vertically: a [Flex](../flex/flex.md) with `align` and `justify` set to `center`.
 
 ```tsx
-import { Center } from '@solid-slopkit/ui';
+import { Center } from '@solid-slopkit/components';
 ```
 
 ## Usage

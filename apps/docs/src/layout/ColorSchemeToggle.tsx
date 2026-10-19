@@ -1,4 +1,4 @@
-import { Button, useColorScheme } from '@solid-slopkit/ui';
+import { Button, useColorScheme } from '@solid-slopkit/components';
 import { Moon, Sun } from '@lucide/solid';
 
 // With no saved choice the docs follow the OS. The icon is picked in CSS rather than from

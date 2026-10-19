@@ -3,7 +3,7 @@
 Shows how far a task has come as a half ring, a gauge: a `div` with `role="progressbar"`.
 
 ```tsx
-import { SemiCircleProgress } from '@solid-slopkit/ui';
+import { SemiCircleProgress } from '@solid-slopkit/components';
 ```
 
 ## Usage

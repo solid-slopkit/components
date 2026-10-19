@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Stepper } from '@solid-slopkit/ui';
+import { Stepper } from '@solid-slopkit/components';
 
 export default function Vertical() {
   const [active, setActive] = createSignal(1);

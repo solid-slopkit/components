@@ -1,4 +1,4 @@
-import { Alert } from '@solid-slopkit/ui';
+import { Alert } from '@solid-slopkit/components';
 import { Info } from '@lucide/solid';
 
 export default function Basic() {

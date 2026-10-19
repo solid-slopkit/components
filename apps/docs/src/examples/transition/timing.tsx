@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button, Paper, Stack, Text, Transition } from '@solid-slopkit/ui';
+import { Button, Paper, Stack, Text, Transition } from '@solid-slopkit/components';
 
 export default function Timing() {
   const [opened, setOpened] = createSignal(false);

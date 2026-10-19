@@ -1,6 +1,6 @@
 import { ArrowUp } from '@lucide/solid';
 import { createSignal, onSettled } from 'solid-js';
-import { Affix, Button, Text, Transition } from '@solid-slopkit/ui';
+import { Affix, Button, Text, Transition } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [scrolled, setScrolled] = createSignal(false);

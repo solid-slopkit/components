@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Combobox, createCombobox, Stack, Text, TextInput } from '@solid-slopkit/ui';
+import { Combobox, createCombobox, Stack, Text, TextInput } from '@solid-slopkit/components';
 
 const toppings = ['Basil', 'Mozzarella', 'Mushrooms', 'Olives', 'Onion', 'Pepperoni', 'Pineapple'];
 

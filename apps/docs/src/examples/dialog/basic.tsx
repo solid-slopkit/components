@@ -1,5 +1,5 @@
 import { createSignal, createUniqueId } from 'solid-js';
-import { Button, Dialog, Group, Stack, Text, TextInput } from '@solid-slopkit/ui';
+import { Button, Dialog, Group, Stack, Text, TextInput } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [opened, setOpened] = createSignal(false);

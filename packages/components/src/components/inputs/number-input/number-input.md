@@ -3,7 +3,7 @@
 A labelled number field: a text input with the `spinbutton` role, formatted for the locale. Arrow keys and the controls step it; leaving the field clamps and rounds it.
 
 ```tsx
-import { NumberInput } from '@solid-slopkit/ui';
+import { NumberInput } from '@solid-slopkit/components';
 ```
 
 ## Usage

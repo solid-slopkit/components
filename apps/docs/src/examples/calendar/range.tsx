@@ -1,4 +1,4 @@
-import { Calendar, compareDays, createDay, isSameDay } from '@solid-slopkit/ui/dates';
+import { Calendar, compareDays, createDay, isSameDay } from '@solid-slopkit/components/dates';
 
 const start = createDay(2026, 9, 26);
 const end = createDay(2026, 10, 6);

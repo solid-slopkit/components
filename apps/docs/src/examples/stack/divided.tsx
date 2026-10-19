@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Group, Stack, Text } from '@solid-slopkit/ui';
+import { Group, Stack, Text } from '@solid-slopkit/components';
 
 const ROWS = [
   ['Net royalties', '$1,240.00'],

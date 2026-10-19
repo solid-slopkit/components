@@ -1,4 +1,4 @@
-import { RingProgress } from '@solid-slopkit/ui';
+import { RingProgress } from '@solid-slopkit/components';
 import { Check } from '@lucide/solid';
 
 export default function Sizes() {

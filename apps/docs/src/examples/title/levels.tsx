@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Stack, Title } from '@solid-slopkit/ui';
+import { Stack, Title } from '@solid-slopkit/components';
 
 export default function Levels() {
   return (

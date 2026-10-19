@@ -1,5 +1,5 @@
 import { Check } from '@lucide/solid';
-import { Button, Group, useNotifications } from '@solid-slopkit/ui';
+import { Button, Group, useNotifications } from '@solid-slopkit/components';
 
 export default function Basic() {
   const notifications = useNotifications();

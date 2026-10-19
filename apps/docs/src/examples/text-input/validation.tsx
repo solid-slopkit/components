@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
 import { Mail } from '@lucide/solid';
-import { TextInput } from '@solid-slopkit/ui';
+import { TextInput } from '@solid-slopkit/components';
 
 export default function Validation() {
   const [email, setEmail] = createSignal('');

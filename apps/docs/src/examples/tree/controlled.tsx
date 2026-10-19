@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button, Group, Stack, Text, Tree, type TreeNodeData } from '@solid-slopkit/ui';
+import { Button, Group, Stack, Text, Tree, type TreeNodeData } from '@solid-slopkit/components';
 import { files } from './data';
 
 const branches = (nodes: readonly TreeNodeData[]): string[] =>

@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { ColorPicker, Group, Text } from '@solid-slopkit/ui';
+import { ColorPicker, Group, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [color, setColor] = createSignal('#1971c2');

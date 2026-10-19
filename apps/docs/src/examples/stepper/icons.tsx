@@ -1,5 +1,5 @@
 import { CreditCard, MapPin, ShieldCheck, User } from '@lucide/solid';
-import { Stepper } from '@solid-slopkit/ui';
+import { Stepper } from '@solid-slopkit/components';
 
 export default function Icons() {
   return (

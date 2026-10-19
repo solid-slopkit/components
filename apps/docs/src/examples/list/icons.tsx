@@ -1,4 +1,4 @@
-import { List } from '@solid-slopkit/ui';
+import { List } from '@solid-slopkit/components';
 import { CircleCheck, CircleX } from '@lucide/solid';
 
 export default function Icons() {

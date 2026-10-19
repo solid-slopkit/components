@@ -3,7 +3,7 @@
 A button with three lines that turn into an X while what it toggles, usually the navigation, is open.
 
 ```tsx
-import { Burger } from '@solid-slopkit/ui';
+import { Burger } from '@solid-slopkit/components';
 ```
 
 ## Usage

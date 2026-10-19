@@ -3,7 +3,7 @@
 A hierarchy of nodes, such as files in folders, that expand, collapse and can be selected.
 
 ```tsx
-import { Tree, type TreeNodeData } from '@solid-slopkit/ui';
+import { Tree, type TreeNodeData } from '@solid-slopkit/components';
 ```
 
 ## Usage

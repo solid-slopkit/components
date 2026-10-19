@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
-import { Stack, Text } from '@solid-slopkit/ui';
-import { MonthPicker, createDay, useFormatDate } from '@solid-slopkit/ui/dates';
+import { Stack, Text } from '@solid-slopkit/components';
+import { MonthPicker, createDay, useFormatDate } from '@solid-slopkit/components/dates';
 
 export default function Multiple() {
   const [months, setMonths] = createSignal([createDay(2026, 2, 1), createDay(2026, 5, 1)]);

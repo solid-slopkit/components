@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { DatePickerInput, createDay } from '@solid-slopkit/ui/dates';
+import { DatePickerInput, createDay } from '@solid-slopkit/components/dates';
 
 export default function Basic() {
   const [day, setDay] = createSignal<Date | null>(createDay(2026, 9, 15));

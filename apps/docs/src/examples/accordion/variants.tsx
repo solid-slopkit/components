@@ -1,5 +1,5 @@
 import { Plus } from '@lucide/solid';
-import { Accordion } from '@solid-slopkit/ui';
+import { Accordion } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

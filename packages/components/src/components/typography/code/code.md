@@ -3,7 +3,7 @@
 Code in a monospace font: inline `code`, or a `pre` block with `block`.
 
 ```tsx
-import { Code } from '@solid-slopkit/ui';
+import { Code } from '@solid-slopkit/components';
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ import { Code } from '@solid-slopkit/ui';
   Run <Code>pnpm install</Code> first.
 </Text>
 
-<Code block>{`import { Code } from '@solid-slopkit/ui';
+<Code block>{`import { Code } from '@solid-slopkit/components';
 
 export const answer = 42;`}</Code>
 ```

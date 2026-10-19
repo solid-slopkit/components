@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Carousel } from '@solid-slopkit/ui/carousel';
+import { Carousel } from '@solid-slopkit/components/carousel';
 
 const colors = ['primary', 'secondary', 'accent', 'info', 'success'];
 

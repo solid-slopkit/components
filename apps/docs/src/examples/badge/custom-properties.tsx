@@ -1,4 +1,4 @@
-import { Badge } from '@solid-slopkit/ui';
+import { Badge } from '@solid-slopkit/components';
 
 export default function CustomProperties() {
   return (

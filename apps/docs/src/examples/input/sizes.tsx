@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Button, Group, Input, Stack } from '@solid-slopkit/ui';
+import { Button, Group, Input, Stack } from '@solid-slopkit/components';
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
 

@@ -1,5 +1,5 @@
 import { createSignal, Show } from 'solid-js';
-import { Button, Dropzone, Stack, Text } from '@solid-slopkit/ui';
+import { Button, Dropzone, Stack, Text } from '@solid-slopkit/components';
 
 export default function Browse() {
   const [file, setFile] = createSignal<File | null>(null);

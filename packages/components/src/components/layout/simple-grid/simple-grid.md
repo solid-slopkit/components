@@ -3,7 +3,7 @@
 A `div` grid of equal-width columns. Each child takes one cell, and rows are added as needed.
 
 ```tsx
-import { SimpleGrid } from '@solid-slopkit/ui';
+import { SimpleGrid } from '@solid-slopkit/components';
 ```
 
 ## Usage

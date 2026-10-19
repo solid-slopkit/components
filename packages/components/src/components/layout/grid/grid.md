@@ -3,7 +3,7 @@
 A flex grid of 12 columns. Each `Grid.Col` spans some of them, and columns wrap to a new row when a row is full.
 
 ```tsx
-import { Grid } from '@solid-slopkit/ui';
+import { Grid } from '@solid-slopkit/components';
 ```
 
 `Grid.Col` is also exported as `GridCol`.

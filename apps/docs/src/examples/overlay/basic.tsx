@@ -1,5 +1,5 @@
 import { createSignal, Show } from 'solid-js';
-import { Overlay, Paper, Stack, Switch, Text } from '@solid-slopkit/ui';
+import { Overlay, Paper, Stack, Switch, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [visible, setVisible] = createSignal(true);

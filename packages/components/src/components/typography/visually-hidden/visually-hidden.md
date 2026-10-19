@@ -3,7 +3,7 @@
 Content that screen readers announce but the page doesn't show: a `span` by default, or any element with `as`.
 
 ```tsx
-import { VisuallyHidden } from '@solid-slopkit/ui';
+import { VisuallyHidden } from '@solid-slopkit/components';
 ```
 
 ## Usage

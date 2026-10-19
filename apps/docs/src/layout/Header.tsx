@@ -1,5 +1,5 @@
 import { createSignal, onSettled } from 'solid-js';
-import { AppShell } from '@solid-slopkit/ui';
+import { AppShell } from '@solid-slopkit/components';
 import { ColorSchemeToggle } from './ColorSchemeToggle';
 import { Search } from './Search';
 import { ThemeSwitcher } from './ThemeSwitcher';

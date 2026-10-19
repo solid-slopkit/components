@@ -1,4 +1,4 @@
-import { Group, RingProgress, Text } from '@solid-slopkit/ui';
+import { Group, RingProgress, Text } from '@solid-slopkit/components';
 
 export default function Stroke() {
   return (

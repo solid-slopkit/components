@@ -1,4 +1,4 @@
-import { Avatar, Indicator } from '@solid-slopkit/ui';
+import { Avatar, Indicator } from '@solid-slopkit/components';
 
 export default function AvatarStatus() {
   return (

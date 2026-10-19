@@ -1,4 +1,4 @@
-import { Box, SimpleGrid, Stack } from '@solid-slopkit/ui';
+import { Box, SimpleGrid, Stack } from '@solid-slopkit/components';
 import * as A from './cards/two-a';
 import * as B from './cards/two-b';
 import * as C from './cards/two-c';

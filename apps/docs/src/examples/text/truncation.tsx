@@ -1,4 +1,4 @@
-import { Stack, Text } from '@solid-slopkit/ui';
+import { Stack, Text } from '@solid-slopkit/components';
 
 const long =
   'A long description that keeps going well past the width of its column, so it has to be cut somewhere to keep the layout tidy and the card the same height as its neighbours.';

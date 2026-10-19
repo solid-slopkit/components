@@ -1,4 +1,4 @@
-import { Group, Rating, Stack, Text } from '@solid-slopkit/ui';
+import { Group, Rating, Stack, Text } from '@solid-slopkit/components';
 
 export default function Options() {
   return (

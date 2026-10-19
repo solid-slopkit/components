@@ -1,4 +1,4 @@
-import { ThemeIcon } from '@solid-slopkit/ui';
+import { ThemeIcon } from '@solid-slopkit/components';
 import { Rocket } from '@lucide/solid';
 
 export default function Sizes() {

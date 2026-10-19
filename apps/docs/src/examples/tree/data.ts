@@ -1,4 +1,4 @@
-import type { TreeNodeData } from '@solid-slopkit/ui';
+import type { TreeNodeData } from '@solid-slopkit/components';
 
 export const files: TreeNodeData[] = [
   {

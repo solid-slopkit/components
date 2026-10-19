@@ -5,7 +5,7 @@ A labelled field for a time of day, written by the locale in 12 or 24 hours: a s
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Typing** and **Keys** below.
 
 ```tsx
-import { TimePicker } from '@solid-slopkit/ui/dates';
+import { TimePicker } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

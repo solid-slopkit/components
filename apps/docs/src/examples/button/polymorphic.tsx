@@ -1,10 +1,10 @@
-import { Button } from '@solid-slopkit/ui';
+import { Button } from '@solid-slopkit/components';
 import { ArrowRight } from '@lucide/solid';
 
 export default function Polymorphic() {
   return (
     <>
-      <Button as="a" href="/ui" rightSection={<ArrowRight />}>
+      <Button as="a" href="/components" rightSection={<ArrowRight />}>
         Link styled as a button
       </Button>
       <Button as="div" color="primary" variant="soft">

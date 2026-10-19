@@ -3,7 +3,7 @@
 A small rounded tag for a value someone chose, such as a tag or a picked option, optionally with a button that removes it. PillsInput, MultiSelect and TagsInput show their values as pills.
 
 ```tsx
-import { Pill } from '@solid-slopkit/ui';
+import { Pill } from '@solid-slopkit/components';
 ```
 
 ## Usage

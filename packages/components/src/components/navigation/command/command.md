@@ -3,7 +3,7 @@
 A search over a list of commands: an input, then the items it finds. The keyboard moves through them and Enter selects one. Use it inline, or in a `CommandDialog` for a palette over the whole app, opened with ⌘K (Ctrl+K off Apple devices).
 
 ```tsx
-import { Command, CommandDialog } from '@solid-slopkit/ui';
+import { Command, CommandDialog } from '@solid-slopkit/components';
 ```
 
 ## Usage

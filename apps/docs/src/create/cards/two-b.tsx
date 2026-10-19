@@ -20,7 +20,7 @@ import {
   TextInput,
   Textarea,
   Title,
-} from '@solid-slopkit/ui';
+} from '@solid-slopkit/components';
 import { StackedBars } from '../charts';
 import './two-b.css';
 

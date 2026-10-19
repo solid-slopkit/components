@@ -3,7 +3,7 @@
 Shows how far a task has come: a `div` with `role="progressbar"`, a track and a bar.
 
 ```tsx
-import { Progress } from '@solid-slopkit/ui';
+import { Progress } from '@solid-slopkit/components';
 ```
 
 ## Usage

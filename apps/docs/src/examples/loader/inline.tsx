@@ -1,4 +1,4 @@
-import { Loader, Text, Title } from '@solid-slopkit/ui';
+import { Loader, Text, Title } from '@solid-slopkit/components';
 
 export default function Inline() {
   return (

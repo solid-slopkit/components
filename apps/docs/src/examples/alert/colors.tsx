@@ -1,4 +1,4 @@
-import { Alert, Stack } from '@solid-slopkit/ui';
+import { Alert, Stack } from '@solid-slopkit/components';
 import { CircleAlert, CircleCheck, Info, TriangleAlert } from '@lucide/solid';
 
 export default function Colors() {

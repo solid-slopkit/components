@@ -3,7 +3,7 @@
 Rich content about a target, such as a profile behind a username, shown in the browser's top layer while the target is hovered or has keyboard focus.
 
 ```tsx
-import { HoverCard } from '@solid-slopkit/ui';
+import { HoverCard } from '@solid-slopkit/components';
 ```
 
 ## Usage

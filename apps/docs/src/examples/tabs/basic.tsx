@@ -1,5 +1,5 @@
 import { Image, MessageCircle, Settings } from '@lucide/solid';
-import { Badge, Tabs, Text } from '@solid-slopkit/ui';
+import { Badge, Tabs, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

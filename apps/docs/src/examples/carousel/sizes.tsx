@@ -1,6 +1,6 @@
 import { For } from 'solid-js';
-import { Paper, Text, Title } from '@solid-slopkit/ui';
-import { Carousel } from '@solid-slopkit/ui/carousel';
+import { Paper, Text, Title } from '@solid-slopkit/components';
+import { Carousel } from '@solid-slopkit/components/carousel';
 
 const trips = [
   { title: 'Lisbon', days: 4 },

@@ -3,7 +3,7 @@
 A labelled multi-line text field: an [Input](../input/input.md) with a `textarea`, in an [InputWrapper](../input-wrapper/input-wrapper.md). With `autosize`, it grows and shrinks with its text.
 
 ```tsx
-import { Textarea } from '@solid-slopkit/ui';
+import { Textarea } from '@solid-slopkit/components';
 ```
 
 ## Usage

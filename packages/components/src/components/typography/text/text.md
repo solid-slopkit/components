@@ -3,7 +3,7 @@
 Body text: a paragraph by default, or any element with `as`. Sizes come from the type scale tokens.
 
 ```tsx
-import { Text } from '@solid-slopkit/ui';
+import { Text } from '@solid-slopkit/components';
 ```
 
 ## Usage

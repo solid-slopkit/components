@@ -3,14 +3,14 @@
 The provider. Required at the root of every app. It holds per-tree state: the CSS that components generate at runtime, the locale, the color scheme preference, the order of open overlays, the notifications, and the modals opened from code.
 
 ```tsx
-import { SlopkitUi, useColorScheme, useLocale, useModals, useNotifications } from '@solid-slopkit/ui';
+import { SlopkitUi, useColorScheme, useLocale, useModals, useNotifications } from '@solid-slopkit/components';
 ```
 
 ## Usage
 
 ```tsx
-import '@solid-slopkit/ui/styles/slopkit.css';
-import '@solid-slopkit/ui/styles/default-theme.css';
+import '@solid-slopkit/components/styles/slopkit.css';
+import '@solid-slopkit/components/styles/default-theme.css';
 
 export default function App() {
   return (

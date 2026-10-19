@@ -3,7 +3,7 @@
 Pins its content to a spot in the viewport, such as a button back to the top.
 
 ```tsx
-import { Affix } from '@solid-slopkit/ui';
+import { Affix } from '@solid-slopkit/components';
 ```
 
 ## Usage

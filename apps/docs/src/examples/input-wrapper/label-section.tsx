@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Anchor, Input, InputWrapper, Slider, Stack, Text } from '@solid-slopkit/ui';
+import { Anchor, Input, InputWrapper, Slider, Stack, Text } from '@solid-slopkit/components';
 
 export default function LabelSection() {
   const [payout, setPayout] = createSignal(2500);

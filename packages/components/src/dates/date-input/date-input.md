@@ -5,7 +5,7 @@ A labelled text field for a day: type it, or choose it in a [DatePicker](../date
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Calendar** below.
 
 ```tsx
-import { DateInput } from '@solid-slopkit/ui/dates';
+import { DateInput } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

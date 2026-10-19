@@ -3,7 +3,7 @@
 A thin line between content: an `hr`, horizontal or vertical.
 
 ```tsx
-import { Divider } from '@solid-slopkit/ui';
+import { Divider } from '@solid-slopkit/components';
 ```
 
 ## Usage

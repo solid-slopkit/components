@@ -3,7 +3,7 @@
 A placeholder for content that is loading: a `div`. Around children, it takes their size and hides them until `visible` is false; without children, size it with `style`.
 
 ```tsx
-import { Skeleton } from '@solid-slopkit/ui';
+import { Skeleton } from '@solid-slopkit/components';
 ```
 
 ## Usage

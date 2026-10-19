@@ -21,7 +21,7 @@ import {
   Text,
   Textarea,
   Tooltip,
-} from '@solid-slopkit/ui';
+} from '@solid-slopkit/components';
 import { Bars, QrCode } from '../charts';
 
 const CURRENCIES = [

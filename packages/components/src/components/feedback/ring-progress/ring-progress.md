@@ -3,7 +3,7 @@
 Shows how far a task has come as a ring: a `div` with `role="progressbar"`, with content in its center.
 
 ```tsx
-import { RingProgress } from '@solid-slopkit/ui';
+import { RingProgress } from '@solid-slopkit/components';
 ```
 
 ## Usage

@@ -5,7 +5,7 @@ A color picked on a panel: a saturation and brightness area, a hue slider, an al
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Pointer**, **Keyboard** and **Screen readers** below.
 
 ```tsx
-import { ColorPicker } from '@solid-slopkit/ui';
+import { ColorPicker } from '@solid-slopkit/components';
 ```
 
 ## Usage

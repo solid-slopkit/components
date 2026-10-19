@@ -1,5 +1,5 @@
 import { Hash } from '@lucide/solid';
-import { Pill, PillsInput, Stack } from '@solid-slopkit/ui';
+import { Pill, PillsInput, Stack } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

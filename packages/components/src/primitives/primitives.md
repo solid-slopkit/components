@@ -12,7 +12,7 @@ import {
   createScrollLock,
   createTypeahead,
   getTabbables,
-} from '@solid-slopkit/ui/primitives';
+} from '@solid-slopkit/components/primitives';
 ```
 
 ## Conventions
@@ -30,7 +30,7 @@ A panel in the top layer under its button: animated in and out, positioned, clos
 
 ```tsx
 import { createEffect, createSignal, type JSX } from 'solid-js';
-import { createDismissal, createFloating, createFocusScope, createPresence } from '@solid-slopkit/ui/primitives';
+import { createDismissal, createFloating, createFocusScope, createPresence } from '@solid-slopkit/components/primitives';
 
 function Details(props: { label: string; children: JSX.Element }) {
   const [open, setOpen] = createSignal(false, { name: 'Details.open' });

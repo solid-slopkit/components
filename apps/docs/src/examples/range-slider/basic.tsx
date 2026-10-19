@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { RangeSlider, Text } from '@solid-slopkit/ui';
+import { RangeSlider, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   const [price, setPrice] = createSignal<[number, number]>([20, 80]);

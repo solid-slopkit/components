@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Avatar, Button, Group, Skeleton, Stack, Text } from '@solid-slopkit/ui';
+import { Avatar, Button, Group, Skeleton, Stack, Text } from '@solid-slopkit/components';
 
 export default function Content() {
   const [loading, setLoading] = createSignal(true);

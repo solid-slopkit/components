@@ -1,4 +1,4 @@
-import { Blockquote, Stack } from '@solid-slopkit/ui';
+import { Blockquote, Stack } from '@solid-slopkit/components';
 
 export default function Colors() {
   return (

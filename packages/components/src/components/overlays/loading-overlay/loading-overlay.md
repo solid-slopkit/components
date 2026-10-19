@@ -3,7 +3,7 @@
 Covers its parent while something in it loads: an [Overlay](../overlay/overlay.md) with a [Loader](../../feedback/loader/loader.md) centered on it.
 
 ```tsx
-import { LoadingOverlay } from '@solid-slopkit/ui';
+import { LoadingOverlay } from '@solid-slopkit/components';
 ```
 
 ## Usage

@@ -1,4 +1,4 @@
-import { Image } from '@solid-slopkit/ui';
+import { Image } from '@solid-slopkit/components';
 
 export default function Fallback() {
   return (

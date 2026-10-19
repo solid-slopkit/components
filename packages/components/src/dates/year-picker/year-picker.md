@@ -5,7 +5,7 @@ A calendar to choose years with: one year, several, or a range from one year to 
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard and screen readers** below.
 
 ```tsx
-import { YearPicker } from '@solid-slopkit/ui/dates';
+import { YearPicker } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

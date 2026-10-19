@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Button, Group, HoverCard, Text, type HoverCardPosition } from '@solid-slopkit/ui';
+import { Button, Group, HoverCard, Text, type HoverCardPosition } from '@solid-slopkit/components';
 
 const positions: HoverCardPosition[] = ['top', 'right-start', 'bottom-end', 'left'];
 

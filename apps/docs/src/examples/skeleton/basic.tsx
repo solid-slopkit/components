@@ -1,4 +1,4 @@
-import { Group, Skeleton, Stack } from '@solid-slopkit/ui';
+import { Group, Skeleton, Stack } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

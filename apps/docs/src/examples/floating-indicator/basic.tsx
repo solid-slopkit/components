@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { FloatingIndicator } from '@solid-slopkit/ui';
+import { FloatingIndicator } from '@solid-slopkit/components';
 
 const periods = ['Day', 'Week', 'Month', 'Year'];
 

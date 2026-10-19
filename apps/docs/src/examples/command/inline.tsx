@@ -1,5 +1,5 @@
 import { Calculator, Calendar, CreditCard, Settings, Smile, User } from '@lucide/solid';
-import { Command, useNotifications } from '@solid-slopkit/ui';
+import { Command, useNotifications } from '@solid-slopkit/components';
 
 export default function Inline() {
   const notifications = useNotifications();

@@ -1,5 +1,5 @@
 import { FolderCog, Users } from '@lucide/solid';
-import { NavLink } from '@solid-slopkit/ui';
+import { NavLink } from '@solid-slopkit/components';
 
 export default function Nested() {
   return (

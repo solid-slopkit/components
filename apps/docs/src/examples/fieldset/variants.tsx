@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Fieldset, Input, InputWrapper, SimpleGrid } from '@solid-slopkit/ui';
+import { Fieldset, Input, InputWrapper, SimpleGrid } from '@solid-slopkit/components';
 
 export default function Variants() {
   return (

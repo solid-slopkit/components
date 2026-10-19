@@ -5,7 +5,7 @@ An area that takes files dropped on it, and opens the file picker when clicked. 
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard and screen readers** below.
 
 ```tsx
-import { Dropzone } from '@solid-slopkit/ui';
+import { Dropzone } from '@solid-slopkit/components';
 ```
 
 ## Usage

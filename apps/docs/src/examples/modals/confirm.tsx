@@ -1,4 +1,4 @@
-import { Button, Group, useModals, useNotifications } from '@solid-slopkit/ui';
+import { Button, Group, useModals, useNotifications } from '@solid-slopkit/components';
 
 export default function Confirm() {
   const modals = useModals();

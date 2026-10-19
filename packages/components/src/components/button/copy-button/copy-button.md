@@ -3,15 +3,15 @@
 An [ActionIcon](../action-icon/action-icon.md) that copies `value` to the clipboard, then shows a check and says so for a moment.
 
 ```tsx
-import { CopyButton } from '@solid-slopkit/ui';
+import { CopyButton } from '@solid-slopkit/components';
 ```
 
 ## Usage
 
 ```tsx
 <Group gap={2}>
-  <Code>npm i @solid-slopkit/ui</Code>
-  <CopyButton value="npm i @solid-slopkit/ui" size="sm" />
+  <Code>npm i @solid-slopkit/components</Code>
+  <CopyButton value="npm i @solid-slopkit/components" size="sm" />
 </Group>
 
 <CopyButton value={shareUrl()} label="Copy link" copiedLabel="Link copied" variant="soft" />

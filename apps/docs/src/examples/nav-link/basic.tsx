@@ -1,6 +1,6 @@
 import { createSignal, For } from 'solid-js';
 import { Gauge, Inbox, Settings } from '@lucide/solid';
-import { Badge, NavLink } from '@solid-slopkit/ui';
+import { Badge, NavLink } from '@solid-slopkit/components';
 
 const links = [
   { href: '#dashboard', label: 'Dashboard', icon: Gauge },

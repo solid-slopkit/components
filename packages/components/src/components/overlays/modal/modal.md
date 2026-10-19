@@ -3,7 +3,7 @@
 A dialog over the page: a modal `<dialog>` in the browser's top layer, which makes the rest of the page inert and keeps focus inside.
 
 ```tsx
-import { Modal } from '@solid-slopkit/ui';
+import { Modal } from '@solid-slopkit/components';
 ```
 
 ## Usage

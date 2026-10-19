@@ -1,6 +1,6 @@
 import { createSignal } from 'solid-js';
-import { Stack, Text } from '@solid-slopkit/ui';
-import { Calendar, createDay, isSameDay, useFormatDate } from '@solid-slopkit/ui/dates';
+import { Stack, Text } from '@solid-slopkit/components';
+import { Calendar, createDay, isSameDay, useFormatDate } from '@solid-slopkit/components/dates';
 
 export default function Basic() {
   const [picked, setPicked] = createSignal<Date>();

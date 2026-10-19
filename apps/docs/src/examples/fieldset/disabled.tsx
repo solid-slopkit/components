@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Button, Fieldset, Input, InputWrapper, Stack } from '@solid-slopkit/ui';
+import { Button, Fieldset, Input, InputWrapper, Stack } from '@solid-slopkit/components';
 
 export default function Disabled() {
   const [locked, setLocked] = createSignal(true);

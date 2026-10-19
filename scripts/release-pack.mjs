@@ -8,7 +8,7 @@ import { packages, sharedVersion } from './packages.mjs';
 const releaseDir = fileURLToPath(new URL('../release/', import.meta.url));
 const version = sharedVersion();
 
-// `pnpm pack` names the file after the package: @solid-slopkit/ui@1.2.3 -> solid-slopkit-ui-1.2.3.tgz.
+// `pnpm pack` names the file after the package: @solid-slopkit/components@1.2.3 -> solid-slopkit-components-1.2.3.tgz.
 const tarball = (name) => `${releaseDir}${name.replace('@', '').replace('/', '-')}-${version}.tgz`;
 const existing = packages().filter(({ name }) => existsSync(tarball(name)));
 if (existing.length) {

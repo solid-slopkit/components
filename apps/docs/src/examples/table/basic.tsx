@@ -1,5 +1,5 @@
 import { For } from 'solid-js';
-import { Table } from '@solid-slopkit/ui';
+import { Table } from '@solid-slopkit/components';
 
 const elements = [
   { position: 6, name: 'Carbon', symbol: 'C', mass: 12.011 },

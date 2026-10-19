@@ -1,4 +1,4 @@
-import { Paper, Text, Title } from '@solid-slopkit/ui';
+import { Paper, Text, Title } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

@@ -1,4 +1,4 @@
-import { Anchor, Blockquote } from '@solid-slopkit/ui';
+import { Anchor, Blockquote } from '@solid-slopkit/components';
 
 const source = 'https://en.wikipedia.org/wiki/Ada_Lovelace';
 

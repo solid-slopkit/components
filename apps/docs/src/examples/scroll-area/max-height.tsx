@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Button, Paper, ScrollArea, Stack, Text } from '@solid-slopkit/ui';
+import { Button, Paper, ScrollArea, Stack, Text } from '@solid-slopkit/components';
 
 export default function MaxHeight() {
   const [items, setItems] = createSignal(['Milk', 'Bread']);

@@ -1,4 +1,4 @@
-import { Avatar, Group, Stack, Text } from '@solid-slopkit/ui';
+import { Avatar, Group, Stack, Text } from '@solid-slopkit/components';
 
 export default function WithName() {
   return (

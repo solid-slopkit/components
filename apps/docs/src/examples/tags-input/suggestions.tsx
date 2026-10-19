@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { Stack, TagsInput, Text } from '@solid-slopkit/ui';
+import { Stack, TagsInput, Text } from '@solid-slopkit/components';
 
 export default function Suggestions() {
   const [skills, setSkills] = createSignal<string[]>(['TypeScript']);

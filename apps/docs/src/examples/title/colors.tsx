@@ -1,4 +1,4 @@
-import { Stack, Text, Title } from '@solid-slopkit/ui';
+import { Stack, Text, Title } from '@solid-slopkit/components';
 
 export default function Colors() {
   return (

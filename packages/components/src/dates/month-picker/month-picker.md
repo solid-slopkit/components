@@ -5,7 +5,7 @@ A calendar to choose months with: one month, several, or a range from one month 
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard and screen readers** below.
 
 ```tsx
-import { MonthPicker } from '@solid-slopkit/ui/dates';
+import { MonthPicker } from '@solid-slopkit/components/dates';
 ```
 
 ## Usage

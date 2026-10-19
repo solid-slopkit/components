@@ -1,4 +1,4 @@
-import { Stack, Text, VisuallyHidden } from '@solid-slopkit/ui';
+import { Stack, Text, VisuallyHidden } from '@solid-slopkit/components';
 
 export default function Heading() {
   return (

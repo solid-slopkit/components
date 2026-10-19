@@ -1,4 +1,4 @@
-import { Kbd, Text } from '@solid-slopkit/ui';
+import { Kbd, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

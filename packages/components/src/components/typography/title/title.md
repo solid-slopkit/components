@@ -3,7 +3,7 @@
 A heading, `h1` to `h6`, sized from the heading scale tokens.
 
 ```tsx
-import { Title } from '@solid-slopkit/ui';
+import { Title } from '@solid-slopkit/components';
 ```
 
 ## Usage

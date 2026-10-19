@@ -1,4 +1,4 @@
-import { Divider, Stack, Text } from '@solid-slopkit/ui';
+import { Divider, Stack, Text } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

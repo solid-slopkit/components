@@ -3,7 +3,7 @@
 Text with every match of a term wrapped in a [Mark](../mark/mark.md): a `span`.
 
 ```tsx
-import { Highlight } from '@solid-slopkit/ui';
+import { Highlight } from '@solid-slopkit/components';
 ```
 
 ## Usage

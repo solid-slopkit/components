@@ -1,4 +1,4 @@
-import { Button, Popover, Stack, TextInput } from '@solid-slopkit/ui';
+import { Button, Popover, Stack, TextInput } from '@solid-slopkit/components';
 
 export default function Basic() {
   return (

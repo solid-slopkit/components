@@ -9,7 +9,7 @@ import {
   type AppShellSidebarCollapsible,
   type AppShellSidebarPosition,
   type AppShellSidebarVariant,
-} from '@solid-slopkit/ui';
+} from '@solid-slopkit/components';
 
 const pages = [
   { label: 'Home', icon: House },

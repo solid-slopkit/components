@@ -20,8 +20,8 @@ import {
   TextInput,
   ThemeIcon,
   Title,
-} from '@solid-slopkit/ui';
-import { Calendar, isSameDay } from '@solid-slopkit/ui/dates';
+} from '@solid-slopkit/components';
+import { Calendar, isSameDay } from '@solid-slopkit/components/dates';
 import { AreaChart, Bars } from '../charts';
 
 function PayoutCard() {
