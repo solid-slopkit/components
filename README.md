@@ -42,7 +42,7 @@ An agent can run the whole release with the `release` skill (`.claude/skills/rel
 3. **Check it locally** (the workflow runs the same checks, so this only saves a round trip):
 
    ```bash
-   pnpm format:check && pnpm lint && pnpm release:pack && pnpm -r --filter "./packages/*" typecheck && pnpm test
+   pnpm format:check && pnpm lint && pnpm release:check && pnpm -r --filter "./packages/*" typecheck && pnpm test
    ```
 
 4. **Commit, tag and push.**
@@ -54,7 +54,7 @@ An agent can run the whole release with the `release` skill (`.claude/skills/rel
    git push origin main v0.2.0
    ```
 
-5. **Watch the workflow.** It checks that the tag matches the package's version and that no changesets are left unapplied, runs every check, packs the package, publishes the tarball to npm, and creates the GitHub Release with the changelog section as notes:
+5. **Watch the workflow.** It checks that the tag matches the package's version and that no changesets are left unapplied, runs every check, builds the package, publishes it to npm, and creates the GitHub Release with the changelog section as notes:
 
    ```bash
    gh run watch "$(gh run list --workflow release.yml --limit 1 --json databaseId --jq '.[0].databaseId')"
@@ -69,8 +69,8 @@ If the workflow fails before its "Publish to npm" step, nothing is published. Fi
 The workflow publishes with npm trusted publishing (GitHub OIDC), so the repo has no npm token. npm only lets a package trust a workflow once the package exists, so the first version is published by hand, by someone who owns the `@solid-slopkit` scope on npm:
 
 ```bash
-pnpm release:pack
-npm publish release/solid-slopkit-components-<version>.tgz --access public
+pnpm release:check
+cd packages/components && npm publish
 ```
 
 Then, on npmjs.com, open the package's Settings → Trusted publishing and add GitHub Actions with the repository `solid-slopkit/components` and the workflow `release.yml`. Push the version's tag as usual afterwards: the workflow sees the version on npm, skips the publish and creates the GitHub Release.

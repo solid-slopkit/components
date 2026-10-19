@@ -5,7 +5,7 @@ description: Release @solid-slopkit/components under a new version - apply chang
 
 # Releasing slopkit components
 
-`@solid-slopkit/components` is published to npm, one version per `v<version>` tag (ADR 0001). Changesets sets the version. Pushing the tag starts `.github/workflows/release.yml`, which runs every check, packs, publishes the tarball to npm through trusted publishing, and creates a GitHub Release with the changelog as notes. The README's "Releasing" section is the human version of these steps.
+`@solid-slopkit/components` is published to npm, one version per `v<version>` tag (ADR 0001). Changesets sets the version. Pushing the tag starts `.github/workflows/release.yml`, which runs every check, builds, publishes the package to npm through trusted publishing, and creates a GitHub Release with the changelog as notes. The README's "Releasing" section is the human version of these steps.
 
 Committing, tagging and pushing are the user's calls. Stop and ask before each one, show what will happen, and never force-push a tag the user hasn't told you to move.
 
@@ -48,14 +48,14 @@ The workflow runs these on a GPU-less Linux runner. Running them first saves a f
 ```bash
 pnpm format:check
 pnpm lint
-pnpm release:pack                       # builds and packs the package into release/
+pnpm release:check                      # builds the package and lists what npm would publish
 pnpm -r --filter "./packages/*" typecheck
 pnpm test
 pnpm --filter docs build && pnpm --filter docs typecheck
 node scripts/release-notes.mjs          # the release notes the workflow will publish
 ```
 
-`release:pack` refuses to pack over existing tarballs, so delete `release/` first if an earlier run left one. `release/` is gitignored.
+In `release:check`'s output, check the file list: `dist/source`, `dist/types`, `skills` and `package.json`, nothing from `src` or tests.
 
 If something fails, stop and report it with the output. Fixing it is a separate change, not part of the release commit.
 
@@ -92,7 +92,7 @@ Then check npm: `npm view @solid-slopkit/components@<version> version dist.tarba
 npm only lets a package trust a workflow once the package exists. If `npm view @solid-slopkit/components` says E404, tell the user before tagging that these one-time steps are theirs (they need their npm login and 2FA):
 
 1. Own the `@solid-slopkit` scope on npm (an npm organization of that name).
-2. Publish the first version by hand from the packed tarball: `pnpm release:pack && npm publish release/solid-slopkit-components-<version>.tgz --access public`. Then push the tag as usual: the workflow skips the publish and creates the GitHub Release.
+2. Publish the first version by hand: `pnpm release:check && cd packages/components && npm publish`. Then push the tag as usual: the workflow skips the publish and creates the GitHub Release.
 3. On npmjs.com, under the package's Settings → Trusted publishing, add GitHub Actions with the repository `solid-slopkit/components` and the workflow `release.yml`.
 
 Every later release publishes from the workflow.
@@ -100,6 +100,6 @@ Every later release publishes from the workflow.
 ## Don'ts
 
 - Don't edit versions in `package.json` by hand; changesets own them.
-- Don't publish from your machine (`npm publish`, `pnpm publish`, `changeset publish`). The workflow publishes the tarball it tested, with provenance. The one exception is the first publish below, and only when the user runs it.
+- Don't publish from your machine (`npm publish`, `pnpm publish`, `changeset publish`). The workflow publishes what it built and checked, with provenance. The one exception is the first publish below, and only when the user runs it.
 - Don't unpublish or deprecate versions on npm unless the user asks for it.
 - Don't tick roadmap boxes (`packages/components/docs/roadmap.md`) as part of a release unless the user asked for that roadmap step.
