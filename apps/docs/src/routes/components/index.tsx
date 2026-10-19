@@ -62,6 +62,30 @@ export function Toolbar() {
 }`}
       />
 
+      <H2 id="server-rendering">Server rendering in development</H2>
+      <p>
+        If the app renders on the server with the Vite dev server, through <code>@solidjs/vite-plugin</code> in start mode (
+        <code>solid(&#123; start: true, ssr: true &#125;)</code>), every component is unstyled for about a second after each
+        reload in dev. In dev, the plugin inlines the CSS it finds in the server module graph into <code>&lt;head&gt;</code>, but
+        it skips <code>node_modules</code> by default. The two stylesheets above are inlined because the app imports them itself.
+        Each component's own CSS module is imported from inside the package, so it only arrives once the client JS has loaded.
+      </p>
+      <p>
+        Add the package to the crawl in <code>vite.config.ts</code>. Everything else in <code>node_modules</code> stays excluded.
+        The object enables start mode too, so it replaces <code>start: true</code>.
+      </p>
+      <CodeBlock
+        code={`solid({
+  start: { css: { filter: { include: /@solid-slopkit\\/components/ } } },
+  ssr: true,
+  // …the app's other options
+}),`}
+      />
+      <p>
+        Production builds link the component CSS in the page's head, and client-only apps don't inline CSS at all, so neither
+        needs this.
+      </p>
+
       <H2 id="components">Components</H2>
       <For each={componentGroups}>
         {(group) => (

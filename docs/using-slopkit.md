@@ -41,6 +41,16 @@ export default function App() {
 ```
 
 - Component rules sit in `@layer slopkit.components`, so any unlayered app CSS overrides them. The template's `src/App.css` styles `body`, `main` and links. Remove what the app doesn't need, or it will fight the theme.
+- If the app renders on the server with the Vite dev server (`@solidjs/vite-plugin` in start mode: `solid({ start: true, ssr: true })`), add the package to the plugin's dev CSS crawl in `vite.config.ts`. Without it, every component is unstyled for about a second after each reload in dev. The plugin inlines the CSS it finds in the server module graph into `<head>`, but skips `node_modules` by default, so each component's CSS module (imported from inside the package) only arrives once the client JS has loaded. The two stylesheets above are not affected, because the app imports them itself. The object replaces `start: true` and enables start mode too; everything else in `node_modules` stays excluded. Production builds and client-only apps don't need this.
+
+  ```ts
+  solid({
+    start: { css: { filter: { include: /@solid-slopkit\/components/ } } },
+    ssr: true,
+    // …the app's other options
+  }),
+  ```
+
 - `@solid-slopkit/components` exports a `Title` component, and the templates already import `Title` from `@solidjs/meta` (the document title). Rename one of them on import where both are used: `import { Title as PageTitle } from '@solidjs/meta'`.
 
 ## 3. Make the package docs available to later sessions

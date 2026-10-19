@@ -12,6 +12,12 @@ The package is published to npm (ADR 0001). [docs/using-slopkit.md](./docs/using
 pnpm add @solid-slopkit/components
 ```
 
+An app that renders on the server with the Vite dev server (`@solidjs/vite-plugin` in start mode) shows every component unstyled for about a second after each reload in dev, because the plugin's dev CSS crawl skips `node_modules`. Add the package to the crawl in `vite.config.ts` (the object replaces `start: true`). Production builds and client-only apps don't need this:
+
+```ts
+solid({ start: { css: { filter: { include: /@solid-slopkit\/components/ } } }, ssr: true });
+```
+
 ## Developing
 
 Node comes from `mise.toml` (`mise install`), and pnpm 12 runs the workspace:

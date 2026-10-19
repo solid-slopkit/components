@@ -23,6 +23,16 @@ export function Root() {
 
 - [SlopkitUi](components/provider/slopkit-ui.md): the provider, required at the root. Locale (`useLocale()`) and the color scheme (`useColorScheme()`).
 
+Server rendering with the Vite dev server (`@solidjs/vite-plugin` in start mode, `solid({ start: true, ssr: true })`): every component is unstyled for about a second after each reload in dev, because the plugin's dev CSS crawl skips `node_modules`, so each component's CSS module only arrives once the client JS loads. Add the package to the crawl in `vite.config.ts`; the object replaces `start: true` and still enables start mode. Production builds and client-only apps don't need this.
+
+```ts
+solid({
+  start: { css: { filter: { include: /@solid-slopkit\/components/ } } },
+  ssr: true,
+  // …the app's other options
+}),
+```
+
 ## Conventions
 
 - `style` takes an object with kebab-case keys, on every component: `style={{ 'max-width': '20rem' }}`. A CSS string is a type error.
