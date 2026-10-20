@@ -12,7 +12,7 @@
     "test": "pnpm -r --if-present test",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "release:check": "pnpm -r --filter \"./packages/*\" build && pnpm -r --filter \"./packages/*\" exec npm pack --dry-run"
+    "release:check": "pnpm --filter @solid-slopkit/components build && pnpm --filter @solid-slopkit/components exec npm pack --dry-run"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
