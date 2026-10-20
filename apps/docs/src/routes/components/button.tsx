@@ -162,9 +162,9 @@ export default function ButtonPage() {
       <p>
         The root has the class <code>.slp-button</code>. State and variant are attributes on it: <code>data-variant</code>,{' '}
         <code>data-color</code>, <code>data-size</code>, <code>data-shape</code>, <code>data-disabled</code>,{' '}
-        <code>data-loading</code>, <code>data-active</code>, <code>data-full-width</code>, <code>data-with-left-section</code> and{' '}
-        <code>data-with-right-section</code>. Button renders no inner elements of its own, so it has no slots: sections and the
-        label are direct children. Its rules live in <code>@layer slopkit.components</code>, so unlayered CSS wins.
+        <code>data-loading</code>, <code>data-pressed</code>, <code>data-full-width</code>, <code>data-with-left-section</code>{' '}
+        and <code>data-with-right-section</code>. Button renders no inner elements of its own, so it has no slots: sections and
+        the label are direct children. Its rules live in <code>@layer slopkit.components</code>, so unlayered CSS wins.
       </p>
     </article>
   );

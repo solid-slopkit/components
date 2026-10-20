@@ -76,7 +76,7 @@ Write plain CSS against these selectors. Component rules live in `@layer slopkit
 
 - Root class: `.slp-button`.
 - No slots: Button renders no inner elements of its own. Sections and the label are direct children.
-- State and variant attributes on the root: `data-variant`, `data-color`, `data-size`, `data-shape`, `data-disabled`, `data-loading`, `data-active`, `data-full-width`, `data-with-left-section`, `data-with-right-section`.
+- State and variant attributes on the root: `data-variant`, `data-color`, `data-size`, `data-shape`, `data-disabled`, `data-loading`, `data-pressed`, `data-full-width`, `data-with-left-section`, `data-with-right-section`.
 
 CSS variables, set on the button or any ancestor. A value that maps to one declaration, such as the corner radius, has no variable: use a selector (`.slp-button { border-radius: 0 }`).
 

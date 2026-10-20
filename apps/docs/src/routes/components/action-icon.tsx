@@ -90,7 +90,7 @@ export default function ActionIconPage() {
       <p>
         The root has the classes <code>.slp-action-icon</code> and <code>.slp-button</code>, and Button's attributes and CSS
         variables: <code>data-variant</code>, <code>data-color</code>, <code>data-size</code>, <code>data-shape</code>,{' '}
-        <code>data-active</code>, <code>data-loading</code>, <code>data-disabled</code>, <code>--slp-button-color</code>,{' '}
+        <code>data-pressed</code>, <code>data-loading</code>, <code>data-disabled</code>, <code>--slp-button-color</code>,{' '}
         <code>--slp-button-content</code>. No slots: the icon is a direct child. Its rules live in{' '}
         <code>@layer slopkit.components</code>, so unlayered CSS wins.
       </p>

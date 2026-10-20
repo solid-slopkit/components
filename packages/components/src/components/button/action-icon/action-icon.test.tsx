@@ -5,6 +5,7 @@ import axe from 'axe-core';
 import { describe, expect, test, vi } from 'vitest';
 import { expectHydration } from '../../../../test/ssr';
 import { NO_DIAGNOSTICS } from '../../../../test/diagnostics';
+import { claimLinksAsCurrent } from '../../../../test/link-claims';
 import { ActionIcon, type ActionIconVariant } from './action-icon';
 
 const Icon = () => <svg aria-hidden="true" data-testid="icon" viewBox="0 0 24 24" />;
@@ -59,7 +60,7 @@ describe('<ActionIcon />', () => {
       </>
     ));
 
-    expect(getByRole('button', { name: 'Bold', pressed: true })).toHaveAttribute('data-active', '');
+    expect(getByRole('button', { name: 'Bold', pressed: true })).toHaveAttribute('data-pressed', '');
     expect(getByRole('button', { name: 'Saving' })).toHaveAttribute('aria-busy', 'true');
     expect(getByRole('button', { name: 'Saving' })).toBeDisabled();
     expect(getByRole('button', { name: 'Locked' })).toBeDisabled();
@@ -99,6 +100,24 @@ describe('<ActionIcon />', () => {
     expect(link).not.toHaveAttribute('as');
   });
 
+  test('as a link, it keeps its own pressed state when a router marks every link to this page', () => {
+    claimLinksAsCurrent();
+    const [active, setActive] = createSignal(false);
+    const { getByRole } = render(() => (
+      <ActionIcon as="a" href="/settings" label="Settings" active={active()}>
+        <Icon />
+      </ActionIcon>
+    ));
+    flush();
+    const link = getByRole('link', { name: 'Settings' });
+
+    expect(link).toHaveAttribute('data-active', '');
+    expect(link).not.toHaveAttribute('data-pressed');
+    setActive(true);
+    flush();
+    expect(link).toHaveAttribute('data-pressed', '');
+  });
+
   test('label is required', () => {
     // @ts-expect-error -- an icon alone has no accessible name
     render(() => <ActionIcon>{<Icon />}</ActionIcon>);
@@ -116,7 +135,7 @@ describe('<ActionIcon />', () => {
 
     const { artifact } = await captureArtifact(() => setOn(true), { scenario: 'action-icon-active' });
 
-    expect(button).toHaveAttribute('data-active', '');
+    expect(button).toHaveAttribute('data-pressed', '');
     expect(button).toHaveAttribute('aria-pressed', 'true');
     expect(artifact).toHaveNoDiagnostics(NO_DIAGNOSTICS);
     expect(artifact).toHaveNoWaste();

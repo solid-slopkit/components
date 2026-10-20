@@ -14,9 +14,9 @@ So a component that renders links, or an element that can be a link, owns their 
 
 - **Opt the links out of the router** with an attribute it skips (`target="_self"`, the browser's default, or `rel="external"`): rejected. The router also stops handling clicks on those links, so Pagination's pages would load as whole documents instead of navigating in the app. TableOfContents used `target="_self"` briefly, because its links only jump within the page, and moved to the rule above for consistency.
 - **Leave the state to the router:** rejected. It only knows paths, not a selected page passed as `value`, a section scrolled into view, or which NavLink the app considers current.
-- **Render links where the runtime doesn't claim them** (today, an element made through a spread isn't): rejected. It depends on how the runtime happens to create elements, which can change.
+- **Render links where the runtime doesn't claim them** (until Solid rc.15, an element made through a spread wasn't): rejected. It depends on how the runtime happens to create elements, which can change. It did: since rc.15 the runtime claims links made through a spread, `dynamic("a")` included.
 
 ## Consequences
 
 - `data-current` replaces `data-active` in Pagination's, NavLink's and TableOfContents' styling contract (ADR 0013).
-- Button and ActionIcon still mark `active` (their pressed look) with `data-active`. Rendered as a link through `as`, a router can set or remove it. They need the same treatment under another attribute name, which is not decided yet.
+- Button and ActionIcon mark `active` (their pressed look) with `data-pressed`, not `data-active`. Rendered as a link through `as`, the router writes `data-active` on them, and that no longer makes them look pressed.

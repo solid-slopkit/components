@@ -76,14 +76,14 @@
       outline: 2px solid var(--_btn-color, var(--slp-color-base-content));
     }
 
-    &:active:not([data-active]),
-    &[data-active] {
+    &:active:not([data-pressed]),
+    &[data-pressed] {
       --_btn-bg: color-mix(in oklab, var(--_btn-color, var(--slp-color-base-200)), #000 5%);
       --_btn-border: color-mix(in oklab, var(--_btn-color, var(--slp-color-base-200)), #000 7%);
       --_btn-shadow: 0 0 0 0 oklch(0% 0 0 / 0), 0 0 0 0 oklch(0% 0 0 / 0);
     }
 
-    &:active:not([data-active]) {
+    &:active:not([data-pressed]) {
       translate: 0 0.5px;
     }
 
@@ -157,19 +157,19 @@
     }
 
     /* Variants. soft/outline/dash/ghost fall back to the solid look while
-       hovered, focused, pressed or active. */
+       hovered, focused or pressed (`:active`, or `active` as `data-pressed`). */
     &:is([data-variant='soft'], [data-variant='outline'], [data-variant='dash'], [data-variant='ghost']):not(
         :hover,
         :focus-visible,
         :active,
-        [data-active],
+        [data-pressed],
         [data-disabled]
       ) {
       --_btn-shadow: 0 0 0 0 oklch(0% 0 0 / 0), 0 0 0 0 oklch(0% 0 0 / 0);
       box-shadow: none;
     }
 
-    &[data-variant='soft']:not(:hover, :focus-visible, :active, [data-active], [data-disabled]) {
+    &[data-variant='soft']:not(:hover, :focus-visible, :active, [data-pressed], [data-disabled]) {
       --_btn-fg: var(--_btn-color, var(--slp-color-base-content));
       --_btn-bg: color-mix(in oklab, var(--_btn-color, var(--slp-color-base-content)) 8%, var(--slp-color-base-100));
       --_btn-border: color-mix(in oklab, var(--_btn-color, var(--slp-color-base-content)) 10%, var(--slp-color-base-100));
@@ -177,7 +177,7 @@
 
     /* The border is a faded version of the text color: half the accent, or a fifth of the base text. Without an
        accent, --_btn-outline-border is invalid (it reads an unset --_btn-color), so the base fallback applies. */
-    &:is([data-variant='outline'], [data-variant='dash']):not(:hover, :focus-visible, :active, [data-active], [data-disabled]) {
+    &:is([data-variant='outline'], [data-variant='dash']):not(:hover, :focus-visible, :active, [data-pressed], [data-disabled]) {
       --_btn-outline-border: color-mix(in oklab, var(--_btn-color) 50%, transparent);
       --_btn-fg: var(--_btn-color, var(--slp-color-base-content));
       --_btn-bg: transparent;
@@ -203,7 +203,7 @@
       }
 
       &:active,
-      &[data-active] {
+      &[data-pressed] {
         --_btn-bg: color-mix(in oklab, var(--_btn-color, var(--slp-color-base-content)) 16%, transparent);
         --_btn-border: transparent;
       }
@@ -221,7 +221,7 @@
 
       &:hover,
       &:active,
-      &[data-active] {
+      &[data-pressed] {
         --_btn-bg: transparent;
         --_btn-border: transparent;
         text-decoration-line: underline;

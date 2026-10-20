@@ -52,5 +52,5 @@ Other props, such as `onClick` or `href`, are passed to the rendered element.
 Write plain CSS against these selectors. Component rules live in `@layer slopkit.components`, so unlayered CSS wins.
 
 - Root classes: `.slp-action-icon`, plus `.slp-button`. No slots: the icon is a direct child.
-- State and variant attributes on the root are Button's: `data-variant`, `data-color`, `data-size`, `data-shape`, `data-active`, `data-loading`, `data-disabled`.
+- State and variant attributes on the root are Button's: `data-variant`, `data-color`, `data-size`, `data-shape`, `data-pressed`, `data-loading`, `data-disabled`.
 - CSS variables are Button's: `--slp-button-color` and `--slp-button-content`.

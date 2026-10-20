@@ -7,6 +7,7 @@ import type { SlopColor, SlopSize } from '../../../core';
 import { expectHydration } from '../../../../test/ssr';
 import { Button, type ButtonVariant } from './button';
 import { NO_DIAGNOSTICS } from '../../../../test/diagnostics';
+import { claimLinksAsCurrent } from '../../../../test/link-claims';
 
 describe('<Button />', () => {
   test('renders a native button with defaults', () => {
@@ -34,7 +35,25 @@ describe('<Button />', () => {
     expect(button).toHaveAttribute('data-size', 'xs');
     expect(button).toHaveAttribute('data-shape', 'circle');
     expect(button).toHaveAttribute('data-full-width', '');
-    expect(button).toHaveAttribute('data-active', '');
+    expect(button).toHaveAttribute('data-pressed', '');
+  });
+
+  test('as a link, it keeps its own pressed state when a router marks every link to this page', () => {
+    claimLinksAsCurrent();
+    const [active, setActive] = createSignal(false);
+    const { getByRole } = render(() => (
+      <Button as="a" href="/docs" active={active()}>
+        Docs
+      </Button>
+    ));
+    flush();
+    const link = getByRole('link', { name: 'Docs' });
+
+    expect(link).toHaveAttribute('data-active', '');
+    expect(link).not.toHaveAttribute('data-pressed');
+    setActive(true);
+    flush();
+    expect(link).toHaveAttribute('data-pressed', '');
   });
 
   test('as="a" with href stays a link', () => {
