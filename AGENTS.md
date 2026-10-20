@@ -30,14 +30,13 @@ Use these whenever you are debugging reactivity (something doesn't update, updat
 
 Name your signals/memos/effects (the `{ name: "..." }` option) — attribution reports scopes by name.
 
-## Roadmap, decisions and vocabulary
+## Decisions and vocabulary
 
 Read only what your task touches:
 
 - `CONTEXT-MAP.md`: how this package relates to the other `@solid-slopkit` packages, the terms they share, and where repo-wide decisions are. Start here.
 - `packages/components/CONTEXT.md`: the package's vocabulary. Use its terms in code, docs and replies.
-- `packages/components/docs/adr/` and `docs/adr/`: architecture decisions for the package and for the whole family. Read the relevant ones before designing something, and don't silently go against one.
-- `packages/components/docs/roadmap.md`: the ordered steps to the package's 0.0.1. **Implement only the step you were asked for, by its ID.** Never continue into the next step or a whole milestone on your own.
+- `docs/adr/`: architecture decisions for the whole family. Read the relevant ones before designing something, and don't silently go against one.
 
 ## This library stands alone
 

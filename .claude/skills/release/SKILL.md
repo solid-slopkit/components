@@ -102,4 +102,3 @@ Every later release publishes from the workflow.
 - Don't edit versions in `package.json` by hand; changesets own them.
 - Don't publish from your machine (`npm publish`, `pnpm publish`, `changeset publish`). The workflow publishes what it built and checked, with provenance. The one exception is the first publish below, and only when the user runs it.
 - Don't unpublish or deprecate versions on npm unless the user asks for it.
-- Don't tick roadmap boxes (`packages/components/docs/roadmap.md`) as part of a release unless the user asked for that roadmap step.

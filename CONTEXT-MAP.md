@@ -4,12 +4,12 @@ slopkit is a family of packages for SolidJS 2.x. Each package is its own context
 
 ## Contexts
 
-- [Components](./packages/components/CONTEXT.md) (`@solid-slopkit/components`): components, their look, theming and the provider. Decisions in [packages/components/docs/adr](./packages/components/docs/adr), roadmap in [packages/components/docs/roadmap.md](./packages/components/docs/roadmap.md).
+- [Components](./packages/components/CONTEXT.md) (`@solid-slopkit/components`): components, their look, theming and the provider.
 - Forms (`@solid-slopkit/forms`): schema-driven form state over a Solid store. In another repository.
 - i18n (`@solid-slopkit/i18n`): translation files next to the code that uses them, and the active locale. In another repository.
 - threejs (`@solid-slopkit/threejs`): three.js scenes described with Solid components inside a **Canvas**. In another repository.
 
-Decisions that bind the whole family live in [docs/adr](./docs/adr): distribution (0001), dependencies (0002), browser baseline (0010), agent docs in the package (0012), no right-to-left support (0014) and package independence (0016). ADR numbers are unique across the family, so "ADR 0013" names one decision wherever it lives. A new ADR goes in `docs/adr` when it binds every package, otherwise in `packages/components/docs/adr`.
+Decisions that bind the whole family live in [docs/adr](./docs/adr): distribution (0001), dependencies (0002), browser baseline (0010), agent docs in the package (0012), no right-to-left support (0014) and package independence (0016). ADR numbers are unique across the family, so "ADR 0013" names one decision wherever it lives.
 
 ## Relationships
 
