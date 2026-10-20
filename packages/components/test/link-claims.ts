@@ -2,7 +2,7 @@ import { registerElementClaim } from '@solidjs/web';
 import { onTestFinished } from 'vitest';
 
 /**
- * Claims every link the runtime creates the way a router that marks links to the current page does (ADR 0015),
+ * Claims every link the runtime creates the way a router that marks links to the current page does,
  * in the worst case, where every link points at the current page: it sets `data-active` on each, and
  * `aria-current="page"` on each that has none of its own. Call it before rendering; it stops when the test ends.
  */

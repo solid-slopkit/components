@@ -1,5 +1,5 @@
 // The `@solid-slopkit/components/primitives` entry: the behavior primitives the components are composed from, for building
-// your own (ADR 0007). Only the stable, generally useful ones; the rest stay internal and may change shape.
+// your own. Only the stable, generally useful ones; the rest stay internal and may change shape.
 export {
   createDismissal,
   type DismissalOptions,

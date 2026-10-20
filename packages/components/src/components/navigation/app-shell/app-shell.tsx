@@ -462,7 +462,7 @@ function MenuRow(props: MenuRowProps) {
       role={link && props.disabled ? 'link' : undefined}
       aria-disabled={link && props.disabled ? 'true' : undefined}
       disabled={!link && props.disabled ? true : undefined}
-      // A link says it either way, so a router that marks links to the current page adds nothing (ADR 0015).
+      // A link says it either way, so a router that marks links to the current page adds nothing.
       aria-current={props.active && !props.disabled ? 'page' : link ? 'false' : undefined}
       data-current={props.active ? '' : undefined}
       data-disabled={props.disabled ? '' : undefined}

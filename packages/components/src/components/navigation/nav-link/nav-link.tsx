@@ -122,7 +122,7 @@ export function NavLink<T extends ValidComponent = 'a'>(props: NavLinkProps<T>) 
         href={own.disabled ? undefined : own.href}
         role={own.disabled ? 'link' : undefined}
         aria-disabled={own.disabled ? 'true' : undefined}
-        // Said either way, so a router that marks links to the current page adds nothing (ADR 0015).
+        // Said either way, so a router that marks links to the current page adds nothing.
         aria-current={own.active && !own.disabled ? 'page' : 'false'}
         data-current={own.active ? '' : undefined}
         data-disabled={own.disabled ? '' : undefined}

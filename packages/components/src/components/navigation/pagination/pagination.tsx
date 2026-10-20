@@ -181,8 +181,7 @@ export function Pagination(props: PaginationProps) {
         >
           {(getHref) => (
             // A link that goes nowhere has no href, so it keeps the link role explicitly and says it's disabled.
-            // Every link says whether it's current, so a router that marks links to the current page adds nothing
-            // (ADR 0015).
+            // Every link says whether it's current, so a router that marks links to the current page adds nothing.
             <a
               href={inert() ? undefined : getHref()(itemProps.target())}
               role={inert() ? 'link' : undefined}

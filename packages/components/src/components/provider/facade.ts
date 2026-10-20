@@ -14,7 +14,7 @@ export interface FacadeRegistry<T> {
 }
 
 /**
- * The stores of the mounted root providers, in mounting order, for a module-level facade (ADR 0009): it forwards
+ * The stores of the mounted root providers, in mounting order, for a module-level facade: it forwards
  * to the last, and back to the one before when that unmounts. On the server it reaches none.
  */
 export function createFacadeRegistry<T>(facade: string): FacadeRegistry<T> {

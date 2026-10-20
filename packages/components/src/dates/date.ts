@@ -1,5 +1,6 @@
-// Calendar-day arithmetic on native `Date` (ADR 0003). A day is a `Date` at local midnight; every function here
-// returns a new `Date` and never mutates its arguments. Times of day are dropped where a day is returned.
+// Calendar-day arithmetic on native `Date`, with no date library. A day is a `Date` at local midnight; every
+// function here returns a new `Date` and never mutates its arguments. Times of day are dropped where a day is
+// returned.
 
 /** A day of the week as `Date.prototype.getDay()` numbers it: 0 is Sunday, 6 is Saturday. */
 export type DayOfWeek = 0 | 1 | 2 | 3 | 4 | 5 | 6;

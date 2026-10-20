@@ -53,7 +53,7 @@ Most of the notes are about SSR, frames, server functions and hydration internal
 | Signal, memo or store semantics (writable derived values, holds)  | `createSignal(() => …)`, `createStore(fn)`, `createProjection`, `createOptimistic*`, `isPending`, `latest` |
 | JSX and compiler (event names, attributes, `style`, `class`)      | `on*` props, spreads, `dynamic()` / polymorphic `as`                                                       |
 | DOM runtime (form values, `select`, `value`, `checked`)           | Inputs: Checkbox, Radio, Switch, NativeSelect, and their tests                                             |
-| Element claims (`registerElementClaim`, link state)               | `test/link-claims.ts`, ADR 0015, every component that renders links or can render as one                   |
+| Element claims (`registerElementClaim`, link state)               | `test/link-claims.ts`, every component that renders links or can render as one                             |
 | Hydration and SSR                                                 | `test/ssr.tsx`, the `expectHydration` tests                                                                |
 | Diagnostics codes and matchers (`toHaveNoWaste`, budgets, checks) | `test/diagnostics.ts`, `captureArtifact` tests                                                             |
 | Renamed or removed exports and types                              | `grep -rn` for each name                                                                                   |

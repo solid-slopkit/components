@@ -168,7 +168,7 @@ export function TableOfContents(props: TableOfContentsProps) {
         <For each={entries}>
           {(entry) => (
             <li data-slot="table-of-contents-item" class={style.item}>
-              {/* Said either way, so a router that marks links to the current page adds nothing (ADR 0015). */}
+              {/* Said either way, so a router that marks links to the current page adds nothing. */}
               <a
                 href={`#${entry.id}`}
                 aria-current={activeSet[entry.id] ? 'location' : 'false'}

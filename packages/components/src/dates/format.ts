@@ -1,4 +1,5 @@
-// Formatting dates with `Intl.DateTimeFormat` in a locale, usually the provider's (ADR 0003, ADR 0009).
+// Formatting dates with `Intl.DateTimeFormat` in a locale, usually the provider's. `Intl` covers locale
+// formatting without shipping per-locale data.
 
 import { useLocale } from '../components/provider';
 import { addDays, createDay, type DayOfWeek } from './date';
