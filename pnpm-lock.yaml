@@ -40,7 +40,7 @@ importers:
         specifier: ^2.0.0-next.30
         version: 2.0.0-next.38(@solidjs/web@2.0.0-rc.14)(filesystem-routing@0.4.0)(solid-js@2.0.0-rc.14)
       '@solidjs/web':
-        specifier: ^2.0.0-rc.13
+        specifier: ^2.0.0-rc.14
         version: 2.0.0-rc.14(solid-js@2.0.0-rc.14)
       embla-carousel:
         specifier: ^8.6.0
@@ -49,11 +49,11 @@ importers:
         specifier: ^4.5.0
         version: 4.5.0
       solid-js:
-        specifier: ^2.0.0-rc.13
+        specifier: ^2.0.0-rc.14
         version: 2.0.0-rc.14
     devDependencies:
       '@solidjs/diagnostics':
-        specifier: ^2.0.0-rc.13
+        specifier: ^2.0.0-rc.14
         version: 2.0.0-rc.14(@solidjs/web@2.0.0-rc.14)(solid-js@2.0.0-rc.14)(vitest@5.0.3)
       '@solidjs/testing-library':
         specifier: ^1.0.0-beta.3
@@ -95,14 +95,14 @@ importers:
         specifier: ^1.7.0
         version: 1.8.0
       '@solidjs/web':
-        specifier: '>=2.0.0-rc.11 <3'
+        specifier: '>=2.0.0-rc.14 <3'
         version: 2.0.0-rc.14(solid-js@2.0.0-rc.14)
       solid-js:
-        specifier: '>=2.0.0-rc.11 <3'
+        specifier: '>=2.0.0-rc.14 <3'
         version: 2.0.0-rc.14
     devDependencies:
       '@solidjs/diagnostics':
-        specifier: ^2.0.0-rc.13
+        specifier: ^2.0.0-rc.14
         version: 2.0.0-rc.14(@solidjs/web@2.0.0-rc.14)(solid-js@2.0.0-rc.14)(vitest@5.0.3)
       '@solidjs/testing-library':
         specifier: ^1.0.0-beta.3
