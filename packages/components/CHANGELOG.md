@@ -1,5 +1,21 @@
 # @solid-slopkit/components
 
+## 0.2.0
+
+### Minor Changes
+
+- 6291dd2: Button and ActionIcon now mark `active` (the pressed look) with `data-pressed` instead of `data-active`. A router writes `data-active` on every link it claims, and since Solid rc.15 that includes a Button or ActionIcon rendered `as="a"`, which made links to the current page look pressed. Update custom CSS that targets `.slp-button[data-active]` to `[data-pressed]`.
+
+### Patch Changes
+
+- The package no longer ships the SSR test fixtures (`*.fixtures`), which added 240 files to `dist`.
+- 956a5b9: Requires `solid-js` and `@solidjs/web` 2.0.0-rc.15 or later.
+
+  - A Checkbox or Switch without a `value` now submits `on`, as documented. rc.15 leaves out an empty `value` attribute.
+  - A writable derived signal applies a write first and re-runs its function on the next source change (since rc.14). `Burger` and `PasswordInput` are tested against that order.
+
+- daabb60: Document the dev-only unstyled flash in apps that render on the server with `@solidjs/vite-plugin` start mode, and the `start.css.filter.include` setting that fixes it.
+
 ## 0.1.0
 
 ### Minor Changes
