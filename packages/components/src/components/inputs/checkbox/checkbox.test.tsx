@@ -102,6 +102,19 @@ describe('<Checkbox />', () => {
     expect(disabled).not.toBeChecked();
   });
 
+  test('a checked box submits its value, or "on" without one', () => {
+    const { container } = render(() => (
+      <form>
+        <Checkbox label="Terms" name="terms" defaultChecked />
+        <Checkbox label="News" name="news" value="weekly" defaultChecked />
+      </form>
+    ));
+    const data = new FormData(container.querySelector('form')!);
+
+    expect(data.get('terms')).toBe('on');
+    expect(data.get('news')).toBe('weekly');
+  });
+
   test('size, color and labelPosition', () => {
     const { container } = render(() => <Checkbox label="Big" size="xl" color="error" labelPosition="left" />);
     const root = container.firstElementChild!;

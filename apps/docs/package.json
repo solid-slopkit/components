@@ -16,14 +16,14 @@
     "@lucide/solid": "^1.52.0",
     "@solid-slopkit/components": "workspace:*",
     "@solidjs/meta": "^1.0.0-next.2",
-    "@solidjs/router": "^2.0.0-next.30",
-    "@solidjs/web": "^2.0.0-rc.14",
+    "@solidjs/router": "^2.0.0-next.40",
+    "@solidjs/web": "^2.0.0-rc.15",
     "embla-carousel": "^8.6.0",
     "shiki": "^4.5.0",
-    "solid-js": "^2.0.0-rc.14"
+    "solid-js": "^2.0.0-rc.15"
   },
   "devDependencies": {
-    "@solidjs/diagnostics": "^2.0.0-rc.14",
+    "@solidjs/diagnostics": "^2.0.0-rc.15",
     "@solidjs/testing-library": "^1.0.0-beta.3",
     "@solidjs/vite-plugin": "^3.0.0-next.46",
     "@testing-library/jest-dom": "^7.0.0",

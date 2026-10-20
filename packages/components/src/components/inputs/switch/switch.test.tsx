@@ -70,6 +70,19 @@ describe('<Switch />', () => {
     expect(control.closest('.slp-switch')).toHaveAttribute('data-disabled', '');
   });
 
+  test('a switch that is on submits its value, or "on" without one', () => {
+    const { container } = render(() => (
+      <form>
+        <Switch label="Wi-Fi" name="wifi" defaultChecked />
+        <Switch label="Bluetooth" name="bluetooth" value="enabled" defaultChecked />
+      </form>
+    ));
+    const data = new FormData(container.querySelector('form')!);
+
+    expect(data.get('wifi')).toBe('on');
+    expect(data.get('bluetooth')).toBe('enabled');
+  });
+
   test('Switch.Group holds the values of the switches that are on', () => {
     const onChange = vi.fn();
     const { getByRole } = render(() => (
