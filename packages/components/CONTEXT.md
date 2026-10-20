@@ -1,6 +1,6 @@
 # Components (`@solid-slopkit/components`)
 
-The component library: components, their look, theming and the provider. Each component's API and look are chosen on their own merits. Terms shared by every package live in [CONTEXT-MAP.md](../../CONTEXT-MAP.md).
+The component library: components, their look, theming and the provider. Each component's API and look are chosen on their own merits.
 
 ## Language
 
@@ -58,3 +58,13 @@ _Avoid_: skin, color scheme (a color scheme is the light/dark choice)
 **Color scheme**:
 Whether a part of the page renders light or dark. A theme supports one or both schemes; the user's **color scheme preference** (`light`, `dark` or `auto`) picks between them.
 _Avoid_: mode, dark theme (when you mean the scheme)
+
+### Agent docs
+
+**Skill**:
+A task-oriented guide for coding agents (`skills/<area>/SKILL.md`), shipped in the package.
+_Avoid_: guide, recipe
+
+**LLM reference**:
+Handwritten Markdown for agents next to the source, shipped in the package: one page per component and provider. `llms.md` is the package's index.
+_Avoid_: llms.txt (that is only the index), API docs
