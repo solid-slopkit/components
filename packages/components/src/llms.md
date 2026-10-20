@@ -114,13 +114,13 @@ Only layout components take style props, and each takes its own set. The Box ref
 ### Picking one value
 
 - **2–5 short options, always visible:** [SegmentedControl](components/inputs/segmented-control/segmented-control.md) (a compact row, like a view switcher) or [Radio.Group](components/inputs/radio/radio.md) (a labelled list, room for descriptions).
-- **A dropdown:** [Select](components/inputs/select/select.md). The default: themed, keyboard and ARIA behavior tested, optionally searchable and clearable, and bound with `bind(f.x)` from `@solid-slopkit/forms`.
+- **A dropdown:** [Select](components/inputs/select/select.md). The default: themed, keyboard and ARIA behavior tested, optionally searchable and clearable, and bound with `bind(f.x)` from `@solid-slopkit/signal-forms`.
 - **The operating system's own picker:** [NativeSelect](components/inputs/native-select/native-select.md), only when you want it (mobile-first forms) and accept the browser's look for the list, which can't be themed. Bound with `bind.nativeSelect(f.x)`.
 - **Several values:** [MultiSelect](components/inputs/multi-select/multi-select.md) from a dropdown, [Checkbox.Group](components/inputs/checkbox/checkbox.md) or [Chip.Group](components/inputs/chip/chip.md) `multiple` from a short visible list.
 - **Free text with suggestions:** [Autocomplete](components/inputs/autocomplete/autocomplete.md) for one value, [TagsInput](components/inputs/tags-input/tags-input.md) for several.
 - **On or off:** [Switch](components/inputs/switch/switch.md) for a setting that applies at once, [Checkbox](components/inputs/checkbox/checkbox.md) for a choice submitted with the form.
 
-Every input here works with `@solid-slopkit/forms`: its binding reference, `node_modules/@solid-slopkit/forms/dist/source/guides/binding.md`, gives the call and the field type for each one, the `dates` inputs included.
+Every input here works with `@solid-slopkit/signal-forms`: its binding reference, `node_modules/@solid-slopkit/signal-forms/dist/source/guides/binding.md`, gives the call and the field type for each one, the `dates` inputs included.
 
 ### Components
 

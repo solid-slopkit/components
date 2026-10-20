@@ -8,7 +8,7 @@ Docs site: https://solid-slopkit.github.io/components/. It is built from `main` 
 
 ## The package
 
-`@solid-slopkit/components` is the components, theming (CSS variables) and the `SlopkitUi` provider: layout, inputs, overlays, data display. It depends on no other `@solid-slopkit` package. Form state (`@solid-slopkit/forms`) and translations (`@solid-slopkit/i18n`) are separate packages that work with it through props: a forms binding fits an input, and i18n messages and the active locale go into components and the provider.
+`@solid-slopkit/components` is the components, theming (CSS variables) and the `SlopkitUi` provider: layout, inputs, overlays, data display. It depends on no other `@solid-slopkit` package. Form state (`@solid-slopkit/signal-forms`) and translations (`@solid-slopkit/i18n`) are separate packages that work with it through props: a forms binding fits an input, and i18n messages and the active locale go into components and the provider.
 
 It needs `solid-js` and `@solidjs/web` 2.x, which a Solid 2 app already has. It ships uncompiled JSX under the `solid` export condition, so the app compiles it with its own Solid plugin (`@solidjs/vite-plugin`). This needs no configuration.
 

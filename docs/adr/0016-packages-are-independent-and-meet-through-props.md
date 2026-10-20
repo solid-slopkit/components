@@ -1,6 +1,6 @@
 # Packages are independent and meet through props
 
-`@solid-slopkit/components` (components), `@solid-slopkit/forms` (form state) and `@solid-slopkit/i18n` (translations) are separate packages, each in its own repository. None of them depends on another at runtime. Forms and i18n are headless: no CSS and no components of their own besides i18n's provider. Where they work with the components, they produce values the components already take as props:
+`@solid-slopkit/components` (components), `@solid-slopkit/signal-forms` (form state) and `@solid-slopkit/i18n` (translations) are separate packages, each in its own repository. None of them depends on another at runtime. Forms and i18n are headless: no CSS and no components of their own besides i18n's provider. Where they work with the components, they produce values the components already take as props:
 
 - `bind()` from forms returns the props a slopkit input takes (`value`, `onChange(value)`, `error`, …).
 - A translation file's messages fill a component's text props, and the active locale is passed to `<SlopkitUi locale>`. The two providers don't know each other.

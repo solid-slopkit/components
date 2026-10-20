@@ -18,7 +18,7 @@ import { SegmentedControl } from '@solid-slopkit/components';
 
 - **Data:** `data` lists the options. A string is both the value and the label. An object takes a `value`, a `label` (any JSX) and `disabled`.
 - **Uncontrolled:** starts at `defaultValue`, or the first enabled option. Later changes to `data` or `defaultValue` do not reset the selection.
-- **Controlled:** pass `value` and `onChange`. The selection only changes when the parent updates `value`. The value type is inferred from `data`. With `@solid-slopkit/forms`, spread `bind(f.x)` on a `string` field.
+- **Controlled:** pass `value` and `onChange`. The selection only changes when the parent updates `value`. The value type is inferred from `data`. With `@solid-slopkit/signal-forms`, spread `bind(f.x)` on a `string` field.
 - **First render:** the option matching `value` or `defaultValue` is selected from the start, also when the control mounts hidden (in a closed tab or modal): the indicator appears over it once shown, without sliding in.
 
 ```tsx
