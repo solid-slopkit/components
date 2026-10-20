@@ -1,5 +1,11 @@
 # @solid-slopkit/components
 
+## 0.2.1
+
+### Patch Changes
+
+- 1220e49: The LLM references name the form-state package by its published name, `@solid-slopkit/signal-forms`, and the `llms.md` index points at its binding guide in `node_modules/@solid-slopkit/signal-forms/`.
+
 ## 0.2.0
 
 ### Minor Changes
