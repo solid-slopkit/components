@@ -1,5 +1,12 @@
 # @solid-slopkit/components
 
+## 0.4.0
+
+### Minor Changes
+
+- 6ce1ec9: NavLink and AppShell's MenuButton and MenuSubButton follow `@solidjs/router` like NavTabs: a link the router marks with `data-active` is drawn as current, and the router's `aria-current="page"` is left as it sets it. **Breaking:** they no longer take `active` or set `data-current` and `aria-current="false"`. Without the router, or on a button row, set `data-active` and `aria-current="page"` yourself. The router marks a link to a parent path on its child pages too, so give each link its own path.
+- edf83a0: NavTabs follows `@solidjs/router`: a link the router marks with `data-active` is drawn as the selected tab, and the router's `aria-current="page"` is left as it sets it. **Breaking:** NavTabs.Link no longer takes `active` or sets `data-current` and `aria-current="false"`; without the router, set `data-active` and `aria-current="page"` on the current link yourself. The router marks a link to a parent path on its child pages too, so give each tab its own path.
+
 ## 0.3.0
 
 ### Minor Changes
