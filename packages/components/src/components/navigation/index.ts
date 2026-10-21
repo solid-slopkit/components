@@ -3,6 +3,7 @@ export * from './accordion';
 export * from './breadcrumbs';
 export * from './command';
 export * from './nav-link';
+export * from './nav-tabs';
 export * from './pagination';
 export * from './stepper';
 export * from './table-of-contents';

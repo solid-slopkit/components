@@ -170,6 +170,7 @@ export const nav: NavSection[] = [
           { title: 'Breadcrumbs', href: '/components/breadcrumbs' },
           { title: 'Command', href: '/components/command' },
           { title: 'NavLink', href: '/components/nav-link' },
+          { title: 'NavTabs', href: '/components/nav-tabs' },
           { title: 'Pagination', href: '/components/pagination' },
           { title: 'Stepper', href: '/components/stepper' },
           { title: 'TableOfContents', href: '/components/table-of-contents' },

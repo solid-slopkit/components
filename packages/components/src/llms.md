@@ -162,10 +162,11 @@ Every input here works with `@solid-slopkit/signal-forms`: its binding reference
 - [Breadcrumbs](components/navigation/breadcrumbs/breadcrumbs.md): the path to the current page, its children in a list with separators
 - [Command](components/navigation/command/command.md): a search over a list of commands, with Command.Input, Command.List, Command.Item, Command.Group, Command.Separator, Command.Empty and Command.Shortcut; CommandDialog puts one in a modal opened with ⌘K
 - [NavLink](components/navigation/nav-link/nav-link.md): a link in a navigation list, active for the current page, or a parent of nested links
+- [NavTabs](components/navigation/nav-tabs/nav-tabs.md): links drawn as tabs, for navigation between pages, with NavTabs.Link
 - [Pagination](components/navigation/pagination/pagination.md): buttons or links to move between pages
 - [Stepper](components/navigation/stepper/stepper.md): progress through steps, the current step's content under them
 - [TableOfContents](components/navigation/table-of-contents/table-of-contents.md): links to the page's headings, the one being read marked as it scrolls
-- [Tabs](components/navigation/tabs/tabs.md): a tablist and its panels, with Tabs.List, Tabs.Tab and Tabs.Panel
+- [Tabs](components/navigation/tabs/tabs.md): a tablist and its panels, with Tabs.List, Tabs.Tab and Tabs.Panel; for tabs that navigate between pages, use NavTabs
 - [Tree](components/navigation/tree/tree.md): a hierarchy of nodes that expand, collapse and can be selected, from data
 
 ## Overlays

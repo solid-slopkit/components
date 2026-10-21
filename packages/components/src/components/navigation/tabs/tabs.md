@@ -2,6 +2,8 @@
 
 Tabs that switch between panels of content: a `tablist` of tab buttons, and a `tabpanel` for each.
 
+**Not for navigation.** When each tab goes to its own page or URL (a route, a link, a section of the app), use [NavTabs](../nav-tabs/nav-tabs.md) instead: it renders real links in a `nav`, with the current page marked, and looks the same. Tabs are only for panels on the same page; don't put links in Tabs.Tab or change the route from `onChange`.
+
 ```tsx
 import { Tabs } from '@solid-slopkit/components';
 ```

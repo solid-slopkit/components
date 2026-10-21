@@ -1,0 +1,53 @@
+# NavTabs
+
+Navigation drawn as tabs: a `nav` of links, with the current page's link marked as the selected tab.
+
+```tsx
+import { NavTabs } from '@solid-slopkit/components';
+```
+
+## Usage
+
+```tsx
+<NavTabs aria-label="Project">
+  <NavTabs.Link as={A} href="/project" active={location.pathname === '/project'}>
+    Overview
+  </NavTabs.Link>
+  <NavTabs.Link as={A} href="/project/activity" rightSection={<Badge size="xs">3</Badge>}>
+    Activity
+  </NavTabs.Link>
+  <NavTabs.Link href="/project/settings" disabled>
+    Settings
+  </NavTabs.Link>
+</NavTabs>
+```
+
+- **When:** NavTabs is for tabs that go to pages: each link has its own URL and the page it leads to is the content. For tabs that switch panels on the same page, use [Tabs](../tabs/tabs.md). The two look the same.
+- **Parts:** `NavTabs` is a `nav` holding the links in a list; name it with `aria-label` when the page has more than one `nav`. `NavTabs.Link` is a link in it.
+- **Current page:** `active` draws the link as the selected tab and sets `aria-current="page"`; other links get `aria-current="false"`. NavTabs doesn't know the route; set `active` from your router.
+- **Links:** an `a` by default; `as` renders a router's link component, which gets `href` and the rest. `leftSection` and `rightSection` hold an icon or a count. `disabled` removes the `href`, keeps `role="link"` with `aria-disabled="true"`, and ignores clicks. Other props go to the link.
+- **Keyboard:** the links are ordinary links: Tab moves between them and Enter follows one. There are no arrow keys and no `tablist` role, since the links aren't tabs of a panel.
+- **Look:** the same as Tabs. `variant` is `underline` (the default), `outline`, `pills` or `soft`; `color` is the current link's color role (default `primary`); `size` from `xs` to `xl` (default `md`); `orientation="vertical"` stacks the links in a column; `grow` shares the row's width between them.
+
+## Props
+
+| Prop          | Type                                            | Default        | Description                               |
+| ------------- | ----------------------------------------------- | -------------- | ----------------------------------------- |
+| `variant`     | `'underline' \| 'outline' \| 'pills' \| 'soft'` | `'underline'`  | How the current link is marked.           |
+| `color`       | `SlopColor`                                     | `'primary'`    | The current link's color role.            |
+| `size`        | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`          | `'md'`         | The links' height and text.               |
+| `orientation` | `'horizontal' \| 'vertical'`                    | `'horizontal'` | A row of links, or a column.              |
+| `grow`        | `boolean`                                       | `false`        | Shares the row's width between the links. |
+
+NavTabs passes other props to its `nav`.
+
+NavTabs.Link: `active`, `leftSection`, `rightSection`, `disabled`, and `as` (default `'a'`) for another link component.
+
+## Styling
+
+Component rules live in `@layer slopkit.components`, so unlayered CSS wins.
+
+- Root classes: `.slp-nav-tabs` (the `nav`, with `data-variant`, `data-color`, `data-size`, `data-orientation`), holding the `nav-tabs-list` slot (with `data-grow`); `.slp-nav-tabs-link` (`[data-slot="nav-tabs-link"]`, with `data-current` on the current page's link, and `data-disabled`).
+- Slots in a link: `nav-tabs-link-label`, and `nav-tabs-link-section` with `data-position="left"` or `"right"`.
+- The current link is `data-current`, not `data-active`: a router sets `data-active` on every link it claims.
+- Custom properties, shared with Tabs, on the nav tabs or an ancestor: `--slp-tabs-color` (the current link's color), `--slp-tabs-content` (the text on a current pill).
