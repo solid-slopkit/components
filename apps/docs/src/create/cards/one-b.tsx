@@ -65,6 +65,7 @@ import {
   Title,
 } from '@solid-slopkit/components';
 import { Bars } from '../charts';
+import { withBase } from '../../base';
 
 // A card title with a muted line under it, for the start of a Card.Header.
 function Heading(props: { title: string; subtitle?: string }) {
@@ -262,9 +263,10 @@ function NavCard(props: { label: string; groups: NavGroup[] }) {
                   <For each={group.links}>
                     {(link) => (
                       <NavLink
-                        href="#"
+                        // The router marks a link to the page it's on: the current one links to this page, the rest
+                        // go nowhere.
+                        href={link.active ? withBase('/create') : undefined}
                         label={link.label}
-                        active={link.active}
                         color="neutral"
                         leftSection={<link.icon aria-hidden="true" />}
                         class="create-one-b-nav-link"

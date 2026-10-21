@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { Folder, House, Inbox } from '@lucide/solid';
+import { House, LayoutGrid, PanelLeft } from '@lucide/solid';
 import {
   AppShell,
   Group,
@@ -10,11 +10,13 @@ import {
   type AppShellSidebarPosition,
   type AppShellSidebarVariant,
 } from '@solid-slopkit/components';
+import { withBase } from '../../base';
 
+// Links to pages of these docs: the router marks the row for this page.
 const pages = [
-  { label: 'Home', icon: House },
-  { label: 'Inbox', icon: Inbox },
-  { label: 'Projects', icon: Folder },
+  { path: '/', label: 'Introduction', icon: House },
+  { path: '/components/overview', label: 'Overview', icon: LayoutGrid },
+  { path: '/components/app-shell', label: 'AppShell', icon: PanelLeft },
 ];
 
 export default function Variants() {
@@ -56,9 +58,9 @@ export default function Variants() {
             <AppShell.Group label="Platform">
               <AppShell.Menu>
                 <For each={pages}>
-                  {(page, index) => (
+                  {(page) => (
                     <AppShell.MenuItem>
-                      <AppShell.MenuButton icon={<page.icon />} tooltip={page.label} active={index() === 0}>
+                      <AppShell.MenuButton href={withBase(page.path)} icon={<page.icon />} tooltip={page.label}>
                         {page.label}
                       </AppShell.MenuButton>
                     </AppShell.MenuItem>

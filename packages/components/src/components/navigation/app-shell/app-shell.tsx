@@ -387,8 +387,6 @@ export interface AppShellMenuButtonOwnProps {
   icon?: JSX.Element;
   /** The label. */
   children?: JSX.Element;
-  /** Marks the current page: drawn highlighted, with `aria-current="page"`. */
-  active?: boolean;
   /** Defaults to `md`. */
   size?: AppShellMenuButtonSize;
   /** Shown next to the row while the sidebar shows only its icons, usually the label again. */
@@ -400,8 +398,9 @@ export interface AppShellMenuButtonOwnProps {
 export type AppShellMenuButtonProps<T extends ValidComponent = 'a'> = PolymorphicProps<T, AppShellMenuButtonOwnProps>;
 
 /**
- * The row itself: a link with `href`, else a button; `as` renders another link component, such as a router's.
- * While the sidebar shows only its icons, it's a square around its icon, with `tooltip` shown beside it.
+ * The row itself: a link with `href`, else a button; `as` renders another link component. It's drawn highlighted while
+ * it has `data-active`, which `@solidjs/router` sets on the links it manages to the current page. While the sidebar
+ * shows only its icons, it's a square around its icon, with `tooltip` shown beside it.
  */
 export function AppShellMenuButton<T extends ValidComponent = 'a'>(props: AppShellMenuButtonProps<T>) {
   return <MenuRow {...(props as unknown as Omit<MenuRowProps, 'part'>)} part="menu-button" />;
@@ -423,21 +422,7 @@ type MenuRowProps = AppShellMenuButtonOwnProps &
   JSX.HTMLAttributes<HTMLElement> & { as?: ValidComponent; href?: string; part: 'menu-button' | 'menu-sub-button' };
 
 function MenuRow(props: MenuRowProps) {
-  const others = omit(
-    props,
-    'ref',
-    'as',
-    'class',
-    'href',
-    'icon',
-    'children',
-    'active',
-    'size',
-    'tooltip',
-    'disabled',
-    'part',
-    'onClick',
-  );
+  const others = omit(props, 'ref', 'as', 'class', 'href', 'icon', 'children', 'size', 'tooltip', 'disabled', 'part', 'onClick');
   // Read once: each decides what renders, and reading one doesn't create its elements.
   const { part, withIcon, withTooltip, link } = untrack(() => ({
     part: props.part,
@@ -462,9 +447,6 @@ function MenuRow(props: MenuRowProps) {
       role={link && props.disabled ? 'link' : undefined}
       aria-disabled={link && props.disabled ? 'true' : undefined}
       disabled={!link && props.disabled ? true : undefined}
-      // A link says it either way, so a router that marks links to the current page adds nothing.
-      aria-current={props.active && !props.disabled ? 'page' : link ? 'false' : undefined}
-      data-current={props.active ? '' : undefined}
       data-disabled={props.disabled ? '' : undefined}
       data-size={props.size ?? 'md'}
       class={joinClass([`slp-app-shell-${part}`, style.row, name], props.class)}

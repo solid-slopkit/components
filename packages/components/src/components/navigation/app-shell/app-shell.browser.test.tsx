@@ -24,7 +24,7 @@ function setup(sidebar: Partial<AppShellSidebarProps> = {}) {
             <AppShell.Group label="Platform">
               <AppShell.Menu>
                 <AppShell.MenuItem>
-                  <AppShell.MenuButton href="#home" icon={<Icon />} tooltip="Home" active>
+                  <AppShell.MenuButton href="#home" icon={<Icon />} tooltip="Home" data-active aria-current="page">
                     Home
                   </AppShell.MenuButton>
                   <AppShell.MenuBadge>24</AppShell.MenuBadge>

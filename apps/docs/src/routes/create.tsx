@@ -112,7 +112,7 @@ export default function Create() {
           <Box display={{ base: 'none', sm: 'block' }}>
             <Group gap={4} class="create-header-nav" role="navigation" aria-label="Main">
               <a href={withBase('/')}>Docs</a>
-              <a href={withBase('/components')}>Components</a>
+              <a href={withBase('/components/overview')}>Components</a>
               <a href={withBase('/components/theming')}>Theming</a>
               <a href={withBase('/create')} aria-current="page">
                 Create

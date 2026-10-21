@@ -3,7 +3,7 @@ import { NavLink } from '.';
 
 export const navLinks = () => (
   <nav>
-    <NavLink href="/" label="Home" leftSection={<span>*</span>} active class="mine" />
+    <NavLink href="/" label="Home" leftSection={<span>*</span>} data-active aria-current="page" class="mine" />
     <NavLink
       href="/inbox"
       label="Inbox"

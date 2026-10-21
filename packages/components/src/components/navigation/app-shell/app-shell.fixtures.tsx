@@ -13,7 +13,7 @@ const sidebar = () => (
         </AppShell.GroupAction>
         <AppShell.Menu>
           <AppShell.MenuItem>
-            <AppShell.MenuButton href="/" icon={<Icon />} tooltip="Home" active>
+            <AppShell.MenuButton href="/" icon={<Icon />} tooltip="Home" data-active aria-current="page">
               Home
             </AppShell.MenuButton>
             <AppShell.MenuBadge>24</AppShell.MenuBadge>

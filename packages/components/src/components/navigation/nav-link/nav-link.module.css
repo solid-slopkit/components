@@ -1,8 +1,9 @@
 /*
- * NavLink. A full-width row: sections on either side of a label with a muted description under it. The active link is
- * tinted with its color (`soft`) or filled with it (`solid`). A parent's children sit under it, indented, in a one-row
- * grid that goes from 0fr to 1fr, which CSS can animate where it can't animate a height to or from auto. Closed, they
- * are also `visibility: hidden`, out of the tab order and the accessibility tree without leaving the DOM.
+ * NavLink. A full-width row: sections on either side of a label with a muted description under it. A link the router
+ * marks as current (`[data-active]`) is tinted with its color (`soft`) or filled with it (`solid`). A parent's children
+ * sit under it, indented, in a one-row grid that goes from 0fr to 1fr, which CSS can animate where it can't animate a
+ * height to or from auto. Closed, they are also `visibility: hidden`, out of the tab order and the accessibility tree
+ * without leaving the DOM.
  *
  * Public custom properties (set on the nav link or any ancestor):
  *   --slp-nav-link-color          the active link's color, defaults to the `color` prop's theme token
@@ -38,19 +39,19 @@
       background-color 150ms ease,
       color 150ms ease;
 
-    &:hover:not([data-disabled], [data-current]) {
+    &:hover:not([data-disabled], [data-active]) {
       background-color: color-mix(in oklab, var(--slp-color-base-content) 6%, transparent);
     }
     &:focus-visible {
       outline: 2px solid var(--_nav-link-color);
       outline-offset: -2px;
     }
-    &[data-current][data-variant='soft'] {
+    &[data-active][data-variant='soft'] {
       background-color: color-mix(in oklab, var(--_nav-link-color) 14%, transparent);
       color: color-mix(in oklab, var(--_nav-link-color) 75%, var(--slp-color-base-content));
       font-weight: 500;
     }
-    &[data-current][data-variant='solid'] {
+    &[data-active][data-variant='solid'] {
       background-color: var(--_nav-link-color);
       color: var(--_nav-link-content);
       font-weight: 500;

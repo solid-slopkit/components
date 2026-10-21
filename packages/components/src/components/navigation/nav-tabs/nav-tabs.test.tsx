@@ -1,30 +1,13 @@
 import { fireEvent, render } from '@solidjs/testing-library';
 import { captureArtifact } from '@solidjs/diagnostics';
-import { createRouter, memoryHistory } from '@solidjs/router';
 import { flush } from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import axe from 'axe-core';
 import { describe, expect, test, vi } from 'vitest';
 import { expectHydration } from '../../../../test/ssr';
 import { NO_DIAGNOSTICS } from '../../../../test/diagnostics';
+import { renderInRouter } from '../../../../test/router';
 import { NavTabs } from './nav-tabs';
-
-/** Renders `children` in a router at `path`, with a page for each of `paths`. */
-function renderInRouter(path: string, paths: string[], children: () => JSX.Element) {
-  const history = memoryHistory(path);
-  const Router = createRouter({ routes: paths.map((page) => ({ path: page, component: () => null })), history });
-  const result = render(() => (
-    <Router>
-      {(props) => (
-        <>
-          {children()}
-          {props.children}
-        </>
-      )}
-    </Router>
-  ));
-  return { ...result, history };
-}
 
 const projectPaths = ['/project', '/project/activity', '/project/members'];
 const projectTabs = () => (

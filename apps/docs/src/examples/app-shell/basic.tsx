@@ -1,36 +1,42 @@
 import { createSignal, For, Show } from 'solid-js';
 import {
-  Calendar,
-  ChartPie,
+  BookOpen,
   ChevronRight,
   ChevronsUpDown,
   Ellipsis,
   Folder,
   GalleryVerticalEnd,
   House,
-  Inbox,
+  LayoutGrid,
+  PanelLeft,
+  Palette,
   Plus,
-  Settings,
 } from '@lucide/solid';
 import { AppShell, Avatar, Text } from '@solid-slopkit/components';
+import { withBase } from '../../base';
 
+// The rows link to pages of these docs: the router marks the row for this page, and the others go to theirs.
 const pages = [
-  { href: '#home', label: 'Home', icon: House },
-  { href: '#inbox', label: 'Inbox', icon: Inbox, count: 12 },
-  { href: '#calendar', label: 'Calendar', icon: Calendar },
-  { href: '#reports', label: 'Reports', icon: ChartPie },
+  { path: '/', label: 'Introduction', icon: House },
+  { path: '/components/overview', label: 'Overview', icon: LayoutGrid, count: 12 },
+  { path: '/components/app-shell', label: 'AppShell', icon: PanelLeft },
+  { path: '/components/theming', label: 'Theming', icon: Palette },
 ];
 
-const projects = ['Design system', 'Marketing site', 'Mobile app'];
+const guides = [
+  { path: '/components/nav-link', label: 'NavLink' },
+  { path: '/components/nav-tabs', label: 'NavTabs' },
+  { path: '/components/tabs', label: 'Tabs' },
+];
+
+const projects = [
+  { path: '/components/button', label: 'Button' },
+  { path: '/components/menu', label: 'Menu' },
+  { path: '/components/tooltip', label: 'Tooltip' },
+];
 
 export default function Basic() {
-  const [current, setCurrent] = createSignal('#home');
-  const [settingsOpened, setSettingsOpened] = createSignal(true);
-  // A link in the example only marks itself current, instead of leaving the page.
-  const go = (href: string) => (event: MouseEvent) => {
-    event.preventDefault();
-    setCurrent(href);
-  };
+  const [guidesOpened, setGuidesOpened] = createSignal(true);
 
   // The docs' own shell answers ⌘B / Ctrl+B.
   return (
@@ -52,18 +58,12 @@ export default function Basic() {
 
         <AppShell.SidebarContent>
           <nav aria-label="Main">
-            <AppShell.Group label="Platform">
+            <AppShell.Group label="Docs">
               <AppShell.Menu>
                 <For each={pages}>
                   {(page) => (
                     <AppShell.MenuItem>
-                      <AppShell.MenuButton
-                        href={page.href}
-                        icon={<page.icon />}
-                        tooltip={page.label}
-                        active={current() === page.href}
-                        onClick={go(page.href)}
-                      >
+                      <AppShell.MenuButton href={withBase(page.path)} icon={<page.icon />} tooltip={page.label}>
                         {page.label}
                       </AppShell.MenuButton>
                       <Show when={page.count}>{(count) => <AppShell.MenuBadge>{count()}</AppShell.MenuBadge>}</Show>
@@ -72,30 +72,25 @@ export default function Basic() {
                 </For>
                 <AppShell.MenuItem>
                   <AppShell.MenuButton
-                    icon={<Settings />}
-                    tooltip="Settings"
-                    aria-expanded={settingsOpened() ? 'true' : 'false'}
-                    onClick={() => setSettingsOpened(!settingsOpened())}
+                    icon={<BookOpen />}
+                    tooltip="Navigation"
+                    aria-expanded={guidesOpened() ? 'true' : 'false'}
+                    onClick={() => setGuidesOpened(!guidesOpened())}
                   >
-                    Settings
+                    Navigation
                     <ChevronRight
                       size={16}
-                      style={{ transform: settingsOpened() ? 'rotate(90deg)' : undefined, transition: 'transform 200ms' }}
+                      style={{ transform: guidesOpened() ? 'rotate(90deg)' : undefined, transition: 'transform 200ms' }}
                     />
                   </AppShell.MenuButton>
-                  <Show when={settingsOpened()}>
+                  <Show when={guidesOpened()}>
                     <AppShell.MenuSub>
-                      <For each={['General', 'Team', 'Billing']}>
-                        {(label) => {
-                          const href = `#settings-${label.toLowerCase()}`;
-                          return (
-                            <AppShell.MenuSubItem>
-                              <AppShell.MenuSubButton href={href} active={current() === href} onClick={go(href)}>
-                                {label}
-                              </AppShell.MenuSubButton>
-                            </AppShell.MenuSubItem>
-                          );
-                        }}
+                      <For each={guides}>
+                        {(guide) => (
+                          <AppShell.MenuSubItem>
+                            <AppShell.MenuSubButton href={withBase(guide.path)}>{guide.label}</AppShell.MenuSubButton>
+                          </AppShell.MenuSubItem>
+                        )}
                       </For>
                     </AppShell.MenuSub>
                   </Show>
@@ -103,31 +98,22 @@ export default function Basic() {
               </AppShell.Menu>
             </AppShell.Group>
 
-            <AppShell.Group label="Projects">
-              <AppShell.GroupAction label="Add project">
+            <AppShell.Group label="Components">
+              <AppShell.GroupAction label="Add component">
                 <Plus />
               </AppShell.GroupAction>
               <AppShell.Menu>
                 <For each={projects}>
-                  {(project) => {
-                    const href = `#${project.toLowerCase().replaceAll(' ', '-')}`;
-                    return (
-                      <AppShell.MenuItem>
-                        <AppShell.MenuButton
-                          href={href}
-                          icon={<Folder />}
-                          tooltip={project}
-                          active={current() === href}
-                          onClick={go(href)}
-                        >
-                          {project}
-                        </AppShell.MenuButton>
-                        <AppShell.MenuAction label={`More for ${project}`} showOnHover>
-                          <Ellipsis />
-                        </AppShell.MenuAction>
-                      </AppShell.MenuItem>
-                    );
-                  }}
+                  {(project) => (
+                    <AppShell.MenuItem>
+                      <AppShell.MenuButton href={withBase(project.path)} icon={<Folder />} tooltip={project.label}>
+                        {project.label}
+                      </AppShell.MenuButton>
+                      <AppShell.MenuAction label={`More for ${project.label}`} showOnHover>
+                        <Ellipsis />
+                      </AppShell.MenuAction>
+                    </AppShell.MenuItem>
+                  )}
                 </For>
               </AppShell.Menu>
             </AppShell.Group>
@@ -152,7 +138,7 @@ export default function Basic() {
       <AppShell.Main as="div">
         <header class="docs-app-shell-header">
           <AppShell.Trigger />
-          <Text weight="medium">{current()}</Text>
+          <Text weight="medium">AppShell</Text>
         </header>
         <div class="docs-app-shell-body">
           <Text>Press the button or the rail along the sidebar's edge to collapse it to its icons.</Text>

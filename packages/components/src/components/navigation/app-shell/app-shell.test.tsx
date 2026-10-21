@@ -6,7 +6,7 @@ import axe from 'axe-core';
 import { beforeAll, describe, expect, test, vi } from 'vitest';
 import { expectHydration } from '../../../../test/ssr';
 import { NO_DIAGNOSTICS } from '../../../../test/diagnostics';
-import { claimLinksAsCurrent } from '../../../../test/link-claims';
+import { renderInRouter } from '../../../../test/router';
 import { SlopkitUi } from '../../provider';
 import { AppShell, useAppShell, type AppShellProps, type AppShellSidebarProps, type UseAppShell } from './app-shell';
 
@@ -38,7 +38,7 @@ function setup(props: Partial<AppShellProps> = {}, sidebar: Partial<AppShellSide
               </AppShell.GroupAction>
               <AppShell.Menu>
                 <AppShell.MenuItem>
-                  <AppShell.MenuButton href="/" icon={<Icon />} tooltip="Home" active>
+                  <AppShell.MenuButton href="/" icon={<Icon />} tooltip="Home">
                     Home
                   </AppShell.MenuButton>
                   <AppShell.MenuBadge>24</AppShell.MenuBadge>
@@ -115,20 +115,20 @@ describe('<AppShell />', () => {
     expect(container.querySelector('.slp-app-shell-rail')).toHaveAttribute('aria-hidden', 'true');
   });
 
-  test('a menu button is a link with href, else a button; active marks the current page', () => {
+  test('a menu button is a link with href, else a button', () => {
     const { getByRole, container } = setup();
     const home = getByRole('link', { name: 'Home' });
     const projects = getByRole('button', { name: 'Projects' });
 
     expect(home).toHaveAttribute('href', '/');
-    expect(home).toHaveAttribute('aria-current', 'page');
-    expect(home).toHaveAttribute('data-current', '');
+    expect(home).not.toHaveAttribute('aria-current');
+    expect(home).not.toHaveAttribute('data-active');
     expect(home).toHaveAttribute('data-size', 'md');
     expect(home.querySelector('[data-slot="app-shell-menu-button-icon"] svg')).not.toBeNull();
     expect(home.querySelector('[data-slot="app-shell-menu-button-label"]')).toHaveTextContent('Home');
     expect(projects).toHaveAttribute('type', 'button');
     expect(projects).not.toHaveAttribute('aria-current');
-    expect(getByRole('link', { name: 'Design' })).toHaveAttribute('aria-current', 'false');
+    expect(getByRole('link', { name: 'Design' })).not.toHaveAttribute('aria-current');
     expect(container.querySelector('[data-slot="app-shell-menu-sub-button-label"]')).toHaveTextContent('Design');
     // The tooltip only describes the row while the label is hidden.
     expect(home).not.toHaveAttribute('aria-describedby');
@@ -186,20 +186,28 @@ describe('<AppShell />', () => {
 
     expect(link).toHaveAttribute('data-router', '');
     expect(link).toHaveClass('slp-app-shell-menu-button');
-    expect(link).toHaveAttribute('aria-current', 'false');
   });
 
-  test('keeps its own current state when a router marks every link to this page', () => {
-    claimLinksAsCurrent();
-    const [active, setActive] = createSignal(false);
-    const { getByRole } = render(() => (
+  test('the router marks the rows that link to the current page, and moves the mark as it navigates', async () => {
+    const { getByRole, history } = renderInRouter('/', ['/', '/projects/design'], () => (
       <SlopkitUi>
         <AppShell>
           <AppShell.Sidebar>
             <AppShell.Menu>
               <AppShell.MenuItem>
-                <AppShell.MenuButton href="#home" active={active()}>
-                  Home
+                <AppShell.MenuButton href="/">Home</AppShell.MenuButton>
+              </AppShell.MenuItem>
+              <AppShell.MenuItem>
+                <AppShell.MenuButton>Projects</AppShell.MenuButton>
+                <AppShell.MenuSub>
+                  <AppShell.MenuSubItem>
+                    <AppShell.MenuSubButton href="/projects/design">Design</AppShell.MenuSubButton>
+                  </AppShell.MenuSubItem>
+                </AppShell.MenuSub>
+              </AppShell.MenuItem>
+              <AppShell.MenuItem>
+                <AppShell.MenuButton href="/" disabled>
+                  Archive
                 </AppShell.MenuButton>
               </AppShell.MenuItem>
             </AppShell.Menu>
@@ -207,14 +215,22 @@ describe('<AppShell />', () => {
         </AppShell>
       </SlopkitUi>
     ));
-    const link = getByRole('link', { name: 'Home' });
+    const home = getByRole('link', { name: 'Home' });
+    const design = getByRole('link', { name: 'Design' });
 
-    expect(link).toHaveAttribute('aria-current', 'false');
-    expect(link).not.toHaveAttribute('data-current');
-    setActive(true);
+    expect(home).toHaveAttribute('data-active', '');
+    expect(home).toHaveAttribute('aria-current', 'page');
+    expect(design).not.toHaveAttribute('data-active');
+    // A disabled row has no href, so the router never marks it.
+    expect(getByRole('link', { name: 'Archive' })).not.toHaveAttribute('data-active');
+
+    fireEvent.click(design);
     flush();
-    expect(link).toHaveAttribute('aria-current', 'page');
-    expect(link).toHaveAttribute('data-current', '');
+    await expect.poll(() => history.get()).toBe('/projects/design');
+    expect(design).toHaveAttribute('data-active', '');
+    expect(design).toHaveAttribute('aria-current', 'page');
+    expect(home).not.toHaveAttribute('data-active');
+    expect(home).not.toHaveAttribute('aria-current');
   });
 
   test('the trigger collapses and expands the sidebar, and says whether it is expanded', () => {

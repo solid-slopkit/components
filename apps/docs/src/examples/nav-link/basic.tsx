@@ -1,35 +1,30 @@
-import { createSignal, For } from 'solid-js';
-import { Gauge, Inbox, Settings } from '@lucide/solid';
+import { For } from 'solid-js';
+import { Link, PanelLeft, PanelTop } from '@lucide/solid';
 import { Badge, NavLink } from '@solid-slopkit/components';
+import { withBase } from '../../base';
 
+// Links to pages of these docs: the router marks the link to this page, which NavLink draws as current.
 const links = [
-  { href: '#dashboard', label: 'Dashboard', icon: Gauge },
-  { href: '#inbox', label: 'Inbox', icon: Inbox, description: 'Messages from your team', count: 3 },
-  { href: '#settings', label: 'Settings', icon: Settings },
+  { path: '/components/nav-link', label: 'NavLink', icon: Link, description: 'A link in a navigation list' },
+  { path: '/components/nav-tabs', label: 'NavTabs', icon: PanelTop, badge: 'new' },
+  { path: '/components/app-shell', label: 'AppShell', icon: PanelLeft },
 ];
 
 export default function Basic() {
-  const [current, setCurrent] = createSignal('#dashboard');
-
   return (
     <nav aria-label="Example" style={{ width: '260px' }}>
       <For each={links}>
         {(link) => (
           <NavLink
-            href={link.href}
+            href={withBase(link.path)}
             label={link.label}
             description={link.description}
             leftSection={<link.icon />}
-            rightSection={link.count ? <Badge size="sm">{link.count}</Badge> : undefined}
-            active={current() === link.href}
-            onClick={(event: MouseEvent) => {
-              event.preventDefault();
-              setCurrent(link.href);
-            }}
+            rightSection={link.badge ? <Badge size="sm">{link.badge}</Badge> : undefined}
           />
         )}
       </For>
-      <NavLink href="#billing" label="Billing" disabled />
+      <NavLink href={withBase('/components/stepper')} label="Stepper" disabled />
     </nav>
   );
 }

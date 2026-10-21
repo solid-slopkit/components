@@ -86,7 +86,7 @@ Breakpoints are fixed; they can't be configured.
         <AppShell.Group label="Platform">
           <AppShell.Menu>
             <AppShell.MenuItem>
-              <AppShell.MenuButton href="/" icon={<House />} tooltip="Home" active>
+              <AppShell.MenuButton href="/" icon={<House />} tooltip="Home">
                 Home
               </AppShell.MenuButton>
             </AppShell.MenuItem>

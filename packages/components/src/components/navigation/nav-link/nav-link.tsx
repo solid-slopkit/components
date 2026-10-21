@@ -6,7 +6,7 @@ import { callHandler } from '../../../utils';
 import { joinClass } from '../../../style-props';
 import type { SlopColor } from '../../../core';
 
-/** How the active link is drawn: tinted with its color (`soft`) or filled with it (`solid`). */
+/** How the current page's link is drawn: tinted with its color (`soft`) or filled with it (`solid`). */
 export type NavLinkVariant = 'soft' | 'solid';
 
 export interface NavLinkOwnProps {
@@ -18,11 +18,9 @@ export interface NavLinkOwnProps {
   leftSection?: JSX.Element;
   /** Content after the label, such as a count. */
   rightSection?: JSX.Element;
-  /** Marks the current page: drawn in `color`, with `aria-current="page"` on a link. */
-  active?: boolean;
   /** Defaults to `soft`. */
   variant?: NavLinkVariant;
-  /** The active link's color role. Defaults to `primary`. */
+  /** The current page's link's color role. Defaults to `primary`. */
   color?: SlopColor;
   /** Keeps the link from being followed, or a parent from opening. */
   disabled?: boolean;
@@ -48,9 +46,9 @@ export interface NavLinkOwnProps {
 export type NavLinkProps<T extends ValidComponent = 'a'> = PolymorphicProps<T, NavLinkOwnProps>;
 
 /**
- * A link in a navigation list: a label, an optional description and sections, and the current page drawn as
- * `active`. `as` renders another link component, such as a router's. Given children, it's a `button` that shows
- * and hides those nested NavLinks under it instead.
+ * A link in a navigation list: a label, an optional description and sections. It's drawn in `color` while it has
+ * `data-active`, which `@solidjs/router` sets on the links it manages to the current page. `as` renders another link
+ * component. Given children, it's a `button` that shows and hides those nested NavLinks under it instead.
  */
 export function NavLink<T extends ValidComponent = 'a'>(props: NavLinkProps<T>) {
   const own = props as NavLinkOwnProps & JSX.HTMLAttributes<HTMLElement> & { as?: ValidComponent; href?: string };
@@ -63,7 +61,6 @@ export function NavLink<T extends ValidComponent = 'a'>(props: NavLinkProps<T>) 
     'description',
     'leftSection',
     'rightSection',
-    'active',
     'variant',
     'color',
     'disabled',
@@ -122,9 +119,6 @@ export function NavLink<T extends ValidComponent = 'a'>(props: NavLinkProps<T>) 
         href={own.disabled ? undefined : own.href}
         role={own.disabled ? 'link' : undefined}
         aria-disabled={own.disabled ? 'true' : undefined}
-        // Said either way, so a router that marks links to the current page adds nothing.
-        aria-current={own.active && !own.disabled ? 'page' : 'false'}
-        data-current={own.active ? '' : undefined}
         data-disabled={own.disabled ? '' : undefined}
         data-no-wrap={own.noWrap ? '' : undefined}
         data-variant={own.variant ?? 'soft'}
@@ -159,7 +153,6 @@ export function NavLink<T extends ValidComponent = 'a'>(props: NavLinkProps<T>) 
         aria-expanded={opened() ? 'true' : 'false'}
         aria-controls={childrenId}
         data-opened={opened() ? '' : undefined}
-        data-current={own.active ? '' : undefined}
         data-disabled={own.disabled ? '' : undefined}
         data-no-wrap={own.noWrap ? '' : undefined}
         data-variant={own.variant ?? 'soft'}

@@ -80,14 +80,16 @@ export default function AppShellPage() {
 
       <H2 id="rows">Rows</H2>
       <p>
-        <code>AppShell.MenuButton</code> is a link with <code>href</code> and a button without; <code>as</code> renders a router's
+        <code>AppShell.MenuButton</code> is a link with <code>href</code> and a button without; <code>as</code> renders another
         link component. <code>icon</code> goes before the label, and the label can hold more than text, such as two lines and a
-        chevron. <code>active</code> marks the current page with <code>aria-current="page"</code>; the other links say{' '}
-        <code>aria-current="false"</code>, so a router's own marking adds nothing. Next to it in its{' '}
-        <code>AppShell.MenuItem</code> go an <code>AppShell.MenuAction</code> (an icon button; <code>showOnHover</code> shows it
-        only while the row is hovered or has focus inside), an <code>AppShell.MenuBadge</code>, or an{' '}
-        <code>AppShell.MenuSub</code>, an indented list of <code>AppShell.MenuSubButton</code>s. To open a sub menu from its row,
-        give the row's button <code>aria-expanded</code> and render the sub menu while it's open.
+        chevron. The router marks the current page: <code>@solidjs/router</code> sets <code>data-active</code>, drawn highlighted,
+        on a row that links to the current page or to a parent of it, and <code>aria-current="page"</code> on one that links to
+        exactly the current page, so give each row its own path. A button row has no address, so without the router, or for a
+        button, set <code>data-active</code> yourself. Next to it in its <code>AppShell.MenuItem</code> go an{' '}
+        <code>AppShell.MenuAction</code> (an icon button; <code>showOnHover</code> shows it only while the row is hovered or has
+        focus inside), an <code>AppShell.MenuBadge</code>, or an <code>AppShell.MenuSub</code>, an indented list of{' '}
+        <code>AppShell.MenuSubButton</code>s. To open a sub menu from its row, give the row's button <code>aria-expanded</code>{' '}
+        and render the sub menu while it's open.
       </p>
 
       <H2 id="state">State</H2>
@@ -144,9 +146,8 @@ export default function AppShellPage() {
       <PropsTable
         rows={[
           { name: 'href', type: 'string', description: "Makes it a link; without it, it's a button." },
-          { name: 'as', type: 'ValidComponent', description: "Renders another link component, such as a router's." },
+          { name: 'as', type: 'ValidComponent', description: 'Renders another link component.' },
           { name: 'icon', type: 'JSX.Element', description: 'An icon before the label.' },
-          { name: 'active', type: 'boolean', default: 'false', description: 'Marks the current page.' },
           { name: 'disabled', type: 'boolean', default: 'false', description: 'Keeps it from being followed or pressed.' },
           {
             name: 'size',
@@ -175,7 +176,7 @@ export default function AppShellPage() {
         <code>-menu-sub-button</code>, <code>-trigger</code>, <code>-rail</code> and <code>-main</code>. The sidebar has{' '}
         <code>data-state</code>, <code>data-position</code>, <code>data-variant</code>, <code>data-collapsible</code> and{' '}
         <code>data-status</code>, and on a narrow screen a <code>::backdrop</code>; its visible panel is the slot{' '}
-        <code>app-shell-sidebar-panel</code>. Rows have <code>data-size</code>, <code>data-current</code> and{' '}
+        <code>app-shell-sidebar-panel</code>. Rows have <code>data-size</code>, <code>data-active</code> (set by the router) and{' '}
         <code>data-disabled</code>, and the slots <code>app-shell-menu-button-icon</code> and{' '}
         <code>app-shell-menu-button-label</code> (<code>menu-sub-button</code> for sub rows). The custom properties{' '}
         <code>--slp-app-shell-height</code>, <code>--slp-app-shell-sidebar-width</code>,{' '}

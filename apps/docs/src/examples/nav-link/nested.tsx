@@ -1,18 +1,19 @@
-import { FolderCog, Users } from '@lucide/solid';
+import { MousePointerClick, Navigation } from '@lucide/solid';
 import { NavLink } from '@solid-slopkit/components';
+import { withBase } from '../../base';
 
 export default function Nested() {
   return (
     <nav aria-label="Example" style={{ width: '260px' }}>
-      <NavLink label="Team" leftSection={<Users />} defaultOpened>
-        <NavLink href="#members" label="Members" active />
-        <NavLink href="#roles" label="Roles" />
+      <NavLink label="Navigation" leftSection={<Navigation />} defaultOpened>
+        <NavLink href={withBase('/components/nav-link')} label="NavLink" />
+        <NavLink href={withBase('/components/nav-tabs')} label="NavTabs" />
       </NavLink>
-      <NavLink label="Projects" leftSection={<FolderCog />}>
-        <NavLink href="#active" label="Active" />
-        <NavLink label="Archived">
-          <NavLink href="#2025" label="2025" />
-          <NavLink href="#2024" label="2024" />
+      <NavLink label="Buttons" leftSection={<MousePointerClick />}>
+        <NavLink href={withBase('/components/button')} label="Button" />
+        <NavLink label="Icons">
+          <NavLink href={withBase('/components/action-icon')} label="ActionIcon" />
+          <NavLink href={withBase('/components/close-button')} label="CloseButton" />
         </NavLink>
       </NavLink>
     </nav>

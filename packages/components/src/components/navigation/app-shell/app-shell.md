@@ -19,12 +19,12 @@ import { AppShell, useAppShell } from '@solid-slopkit/components';
         <AppShell.Group label="Platform">
           <AppShell.Menu>
             <AppShell.MenuItem>
-              <AppShell.MenuButton as={A} href="/" icon={<House />} tooltip="Home" active={isHome()}>
+              <AppShell.MenuButton href="/" icon={<House />} tooltip="Home">
                 Home
               </AppShell.MenuButton>
             </AppShell.MenuItem>
             <AppShell.MenuItem>
-              <AppShell.MenuButton as={A} href="/inbox" icon={<Inbox />} tooltip="Inbox">
+              <AppShell.MenuButton href="/inbox" icon={<Inbox />} tooltip="Inbox">
                 Inbox
               </AppShell.MenuButton>
               <AppShell.MenuBadge>12</AppShell.MenuBadge>
@@ -71,7 +71,7 @@ import { AppShell, useAppShell } from '@solid-slopkit/components';
 - **Look:** `variant` is `sidebar` (default: a full-height panel with a border), `floating` (a card with a gap around it), or `inset` (part of the background, with the main area as a raised card next to it). `position` is `left` (default) or `right`.
 - **Groups:** `AppShell.Group` is a section with an optional `label`, which names it (`role="group"`); `AppShell.GroupAction` is a small icon button at the end of the label, named by its required `label`.
 - **Menus:** `AppShell.Menu` is a `ul` of `AppShell.MenuItem` rows (`li`). In a row, `AppShell.MenuButton` is the row itself, `AppShell.MenuAction` an icon button at its end (`label` required; `showOnHover` shows it only while the row is hovered or has focus inside, always on touch screens), `AppShell.MenuBadge` a count at its end, and `AppShell.MenuSub` a nested, indented `ul` of `AppShell.MenuSubItem` rows holding `AppShell.MenuSubButton`s. To make a row open its sub menu, give its button `aria-expanded` and an `onClick`, and render the `MenuSub` while it's open.
-- **Rows:** `MenuButton` and `MenuSubButton` are a link with `href`, else a `button`; `as` renders a router's link component. `icon` goes before the label (the children, which can hold more than text: two lines, a chevron). `active` marks the current page, with `aria-current="page"`; other links get `aria-current="false"`, so a router's own marking adds nothing. `disabled` removes a link's `href` (keeping `role="link"` with `aria-disabled`) or disables a button. `size`: `sm`, `md` (default) or `lg` for a menu button (1.75, 2, 3rem), `sm` or `md` for a sub button (1.5, 1.75rem).
+- **Rows:** `MenuButton` and `MenuSubButton` are a link with `href`, else a `button`; `as` renders another link component. `icon` goes before the label (the children, which can hold more than text: two lines, a chevron). The router marks the current page: inside `@solidjs/router`, a row that links to the current page or to a parent of it gets `data-active`, drawn highlighted, and one that links to exactly the current page gets `aria-current="page"`. A link to a parent path is highlighted on its child pages too, so give each row its own path. A button row, or a disabled link, which has no `href`, is never marked by the router; without the router, or on a button row, set `data-active` and `aria-current="page"` yourself; on a link inside the router, the router decides `data-active`, so one set by hand doesn't last. `disabled` removes a link's `href` (keeping `role="link"` with `aria-disabled`) or disables a button. `size`: `sm`, `md` (default) or `lg` for a menu button (1.75, 2, 3rem), `sm` or `md` for a sub button (1.5, 1.75rem).
 - **Collapsed to icons:** rows become squares around their icon, their labels hidden from sight but still their accessible name. `tooltip` on a MenuButton is shown beside it then, on hover and keyboard focus, and describes it; otherwise it isn't shown. Group labels fade out; group actions, menu actions, badges and sub menus hide. The header and footer keep their content, so put rows there too.
 - **Persisting the state:** keep `opened` in a cookie that the server reads, so the first render is already right:
 
@@ -124,9 +124,8 @@ Other props go to the link or button.
 | Prop       | Type                   | Default | Description                                             |
 | ---------- | ---------------------- | ------- | ------------------------------------------------------- |
 | `href`     | `string`               | —       | Makes it a link; without it, it's a button.             |
-| `as`       | `ValidComponent`       | —       | Renders another link component, such as a router's.     |
+| `as`       | `ValidComponent`       | —       | Renders another link component.                         |
 | `icon`     | `JSX.Element`          | —       | An icon before the label.                               |
-| `active`   | `boolean`              | `false` | Marks the current page.                                 |
 | `disabled` | `boolean`              | `false` | Keeps it from being followed or pressed.                |
 | `size`     | `'sm' \| 'md' \| 'lg'` | `'md'`  | Row height; a sub button takes `sm` or `md`.            |
 | `tooltip`  | `JSX.Element`          | —       | MenuButton only: shown beside it while only icons show. |
@@ -145,6 +144,6 @@ Component rules live in `@layer slopkit.components`, so unlayered CSS wins.
 
 - Root classes, one per part: `.slp-app-shell` (with `data-state`), `.slp-app-shell-sidebar`, `-sidebar-header`, `-sidebar-content`, `-sidebar-footer`, `-group`, `-group-action`, `-menu`, `-menu-item`, `-menu-button`, `-menu-action`, `-menu-badge`, `-menu-sub`, `-menu-sub-item`, `-menu-sub-button`, `-trigger`, `-rail`, `-main`.
 - Attributes on the sidebar: `data-state` (`expanded`, `collapsed`), `data-position`, `data-variant`, `data-collapsible`, `data-status` (the drawer's presence). Its backdrop on a narrow screen is `.slp-app-shell-sidebar::backdrop`.
-- On a row: `data-size`, `data-current`, `data-disabled`. On a menu action: `data-show-on-hover`.
+- On a row: `data-size`, `data-active` (set by the router on the current page's row), `data-disabled`. On a menu action: `data-show-on-hover`.
 - Slots: `app-shell-sidebar-panel` (the visible panel inside the sidebar), `app-shell-group-label`, `app-shell-menu-button-icon`, `app-shell-menu-button-label`, `app-shell-menu-sub-button-icon`, `app-shell-menu-sub-button-label`, `app-shell-trigger-icon`.
 - Custom properties, on the shell or an ancestor: `--slp-app-shell-height` (default `100svh`), `--slp-app-shell-sidebar-width` (`16rem`), `--slp-app-shell-sidebar-width-icon` (`3rem`), `--slp-app-shell-drawer-width` (`18rem`, never wider than the screen minus 3rem).

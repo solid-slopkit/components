@@ -6,7 +6,7 @@ import axe from 'axe-core';
 import { describe, expect, test, vi } from 'vitest';
 import { expectHydration } from '../../../../test/ssr';
 import { NO_DIAGNOSTICS } from '../../../../test/diagnostics';
-import { claimLinksAsCurrent } from '../../../../test/link-claims';
+import { renderInRouter } from '../../../../test/router';
 import { NavLink } from './nav-link';
 
 describe('<NavLink />', () => {
@@ -27,7 +27,8 @@ describe('<NavLink />', () => {
     expect(link).toHaveClass('slp-nav-link', 'mine');
     expect(link).toHaveAttribute('data-variant', 'soft');
     expect(link).toHaveAttribute('data-color', 'primary');
-    expect(link).toHaveAttribute('aria-current', 'false');
+    expect(link).not.toHaveAttribute('aria-current');
+    expect(link).not.toHaveAttribute('data-active');
     expect(container.querySelector('[data-slot="nav-link-label"]')).toHaveTextContent('Inbox');
     expect(container.querySelector('[data-slot="nav-link-description"]')).toHaveTextContent('3 unread');
     expect(container.querySelector('[data-slot="nav-link-left-section"] svg')).not.toBeNull();
@@ -42,44 +43,49 @@ describe('<NavLink />', () => {
     expect(container.querySelector('[data-slot="nav-link-right-section"]')).toBeNull();
   });
 
-  test('active marks the current page', () => {
-    const [active, setActive] = createSignal(true);
-    const { getByRole } = render(() => <NavLink href="/" label="Home" active={active()} variant="solid" color="accent" />);
-    const link = getByRole('link', { name: 'Home' });
+  test('the router marks the link to the current page, and moves the mark as it navigates', async () => {
+    const { getByRole, history } = renderInRouter('/', ['/', '/inbox'], () => (
+      <nav>
+        <NavLink href="/" label="Home" />
+        <NavLink href="/inbox" label="Inbox" />
+      </nav>
+    ));
+    const home = getByRole('link', { name: 'Home' });
+    const inbox = getByRole('link', { name: 'Inbox' });
 
-    expect(link).toHaveAttribute('aria-current', 'page');
-    expect(link).toHaveAttribute('data-current', '');
-    expect(link).toHaveAttribute('data-variant', 'solid');
-    expect(link).toHaveAttribute('data-color', 'accent');
-    setActive(false);
+    expect(home).toHaveAttribute('data-active', '');
+    expect(home).toHaveAttribute('aria-current', 'page');
+    expect(inbox).not.toHaveAttribute('data-active');
+    expect(inbox).not.toHaveAttribute('aria-current');
+
+    fireEvent.click(inbox);
     flush();
-    expect(link).toHaveAttribute('aria-current', 'false');
-    expect(link).not.toHaveAttribute('data-current');
+    await expect.poll(() => history.get()).toBe('/inbox');
+    expect(inbox).toHaveAttribute('data-active', '');
+    expect(inbox).toHaveAttribute('aria-current', 'page');
+    expect(home).not.toHaveAttribute('data-active');
+    expect(home).not.toHaveAttribute('aria-current');
   });
 
-  test('keeps its own current state when a router marks every link to this page', () => {
-    claimLinksAsCurrent();
-    const [active, setActive] = createSignal(false);
-    // A link component that renders its own `a`, which the runtime claims, as a router's would.
-    const RouterLink = (props: { href: string; children?: JSX.Element }) => <a {...props} href={props.href} />;
-    const { getByRole } = render(() => <NavLink as={RouterLink} href="#home" label="Home" active={active()} />);
+  test('without a router, data-active and aria-current set by hand mark the current page', () => {
+    const { getByRole } = render(() => <NavLink href="/" label="Home" data-active aria-current="page" />);
     const link = getByRole('link', { name: 'Home' });
 
-    expect(link).toHaveAttribute('aria-current', 'false');
-    expect(link).not.toHaveAttribute('data-current');
-    setActive(true);
-    flush();
+    expect(link).toHaveAttribute('data-active');
     expect(link).toHaveAttribute('aria-current', 'page');
-    expect(link).toHaveAttribute('data-current', '');
   });
 
-  test('a disabled link has no href, says it is disabled, and ignores clicks', () => {
+  test('a disabled link has no href, says it is disabled, ignores clicks, and the router never marks it', () => {
     const onClick = vi.fn();
-    const { getByRole } = render(() => <NavLink href="/archive" label="Archive" disabled onClick={onClick} />);
+    const { getByRole } = renderInRouter('/archive', ['/archive'], () => (
+      <NavLink href="/archive" label="Archive" disabled onClick={onClick} />
+    ));
     const link = getByRole('link', { name: 'Archive' });
 
     expect(link).not.toHaveAttribute('href');
     expect(link).toHaveAttribute('aria-disabled', 'true');
+    expect(link).not.toHaveAttribute('data-active');
+    expect(link).not.toHaveAttribute('aria-current');
     expect(fireEvent.click(link)).toBe(false);
     expect(onClick).not.toHaveBeenCalled();
   });
@@ -168,10 +174,10 @@ describe('<NavLink />', () => {
   });
 
   test('has no axe violations, closed and open', async () => {
-    const { container, getByRole } = render(() => (
+    const { container, getByRole } = renderInRouter('/inbox', ['/', '/inbox'], () => (
       <nav aria-label="Main">
-        <NavLink href="/" label="Home" active />
-        <NavLink href="/inbox" label="Inbox" description="3 unread" variant="solid" active />
+        <NavLink href="/" label="Home" />
+        <NavLink href="/inbox" label="Inbox" description="3 unread" variant="solid" />
         <NavLink href="/archive" label="Archive" disabled />
         <NavLink label="Settings">
           <NavLink href="/profile" label="Profile" />
@@ -184,30 +190,31 @@ describe('<NavLink />', () => {
     expect((await axe.run(container)).violations).toEqual([]);
   });
 
-  test('opening and moving the active link have no diagnostics or waste', async () => {
-    const [current, setCurrent] = createSignal('/');
-    const { getByRole } = render(() => (
+  test('opening a parent and navigating have no diagnostics or waste', async () => {
+    const { getByRole, history } = renderInRouter('/', ['/', '/inbox', '/profile'], () => (
       <>
-        <NavLink href="/" label="Home" active={current() === '/'} />
-        <NavLink href="/inbox" label="Inbox" active={current() === '/inbox'} />
+        <NavLink href="/" label="Home" />
+        <NavLink href="/inbox" label="Inbox" />
         <NavLink label="Settings">
-          <NavLink href="/profile" label="Profile" active={current() === '/profile'} />
+          <NavLink href="/profile" label="Profile" />
         </NavLink>
       </>
     ));
 
     const { artifact } = await captureArtifact(
-      () => {
+      async () => {
         fireEvent.click(getByRole('button', { name: 'Settings' }));
         flush();
-        setCurrent('/profile');
+        fireEvent.click(getByRole('link', { name: 'Profile' }));
         flush();
+        await expect.poll(() => history.get()).toBe('/profile');
       },
       { scenario: 'nav-link-toggle' },
     );
 
     expect(artifact).toHaveNoDiagnostics(NO_DIAGNOSTICS);
-    expect(artifact).toHaveNoWaste();
+    // The router's own location memos recompute twice to the same value on a navigation; NavLink adds none.
+    expect(artifact).toHaveNoWaste({ maxWastedRuns: 2 });
   });
 
   test('hydrates the server render without mismatches or diagnostics', async () => {

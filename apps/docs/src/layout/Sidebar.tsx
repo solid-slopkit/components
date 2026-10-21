@@ -1,19 +1,15 @@
 import { For } from 'solid-js';
-import { useLocation } from '@solidjs/router';
 import { AppShell } from '@solid-slopkit/components';
 import { nav, type NavItem } from '../nav';
-import { isPath, withBase } from '../base';
+import { withBase } from '../base';
 
 function NavMenu(props: { items: NavItem[] }) {
-  const location = useLocation();
   return (
     <AppShell.Menu>
       <For each={props.items}>
         {(item) => (
           <AppShell.MenuItem>
-            <AppShell.MenuButton href={withBase(item.href)} active={isPath(location.pathname, item.href)}>
-              {item.title}
-            </AppShell.MenuButton>
+            <AppShell.MenuButton href={withBase(item.href)}>{item.title}</AppShell.MenuButton>
           </AppShell.MenuItem>
         )}
       </For>
@@ -21,7 +17,7 @@ function NavMenu(props: { items: NavItem[] }) {
   );
 }
 
-// Plain anchors, which the router navigates through; each row marks itself current from the location.
+// Plain anchors, which the router navigates through and marks as current.
 export function Sidebar() {
   return (
     <AppShell.Sidebar label="Navigation" class="docs-sidebar">

@@ -26,7 +26,7 @@ export const nav: NavSection[] = [
   {
     title: 'Components',
     items: [
-      { title: 'Overview', href: '/components' },
+      { title: 'Overview', href: '/components/overview' },
       { title: 'Theming', href: '/components/theming' },
       { title: 'Create a theme', href: '/create' },
     ],

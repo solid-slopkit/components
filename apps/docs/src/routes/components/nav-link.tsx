@@ -17,7 +17,7 @@ export default function NavLinkPage() {
       <Title>NavLink · slopkit</Title>
       <p class="docs-eyebrow">Components</p>
       <h1>NavLink</h1>
-      <p class="docs-lead">A link in a navigation list, such as a sidebar, with the current page drawn as active.</p>
+      <p class="docs-lead">A link in a navigation list, such as a sidebar, with the current page's link drawn in its color.</p>
 
       <H2 id="import">Import</H2>
       <CodeBlock code={`import { NavLink } from '@solid-slopkit/components';`} />
@@ -25,9 +25,12 @@ export default function NavLinkPage() {
       <H2 id="usage">Usage</H2>
       <p>
         A row as wide as its container: <code>label</code>, a smaller <code>description</code> under it, and a section on each
-        side. <code>active</code> marks the current page, with <code>aria-current="page"</code>; NavLink can't tell which page is
-        current, so set it from your router. A <code>disabled</code> link has no address. <code>as</code> renders a router's link
-        component instead of an <code>a</code>. Put the links in a <code>nav</code>.
+        side. The router marks the current page: <code>@solidjs/router</code> sets <code>data-active</code> on a link to the
+        current page or to a parent of it, drawn in <code>color</code>, and <code>aria-current="page"</code> on a link to exactly
+        the current page. Since a link to a parent path is drawn as current on its child pages too, give each link its own path.
+        Without the router, set <code>data-active</code> and <code>aria-current="page"</code> on the current link yourself. A{' '}
+        <code>disabled</code> link has no address, so the router never marks it. <code>as</code> renders another link component
+        instead of an <code>a</code>. Put the links in a <code>nav</code>.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -41,7 +44,7 @@ export default function NavLinkPage() {
 
       <H2 id="variants">Variants and colors</H2>
       <p>
-        The active link is tinted with its color (<code>soft</code>) or filled with it (<code>solid</code>).
+        The current page's link is tinted with its color (<code>soft</code>) or filled with it (<code>solid</code>).
       </p>
       <Example component={Variants} code={variantsCode} />
 
@@ -55,9 +58,8 @@ export default function NavLinkPage() {
           { name: 'description', type: 'JSX.Element', description: 'A second, smaller line under the label.' },
           { name: 'leftSection', type: 'JSX.Element', description: 'Content before the label, usually an icon.' },
           { name: 'rightSection', type: 'JSX.Element', description: 'Content after the label, such as a count.' },
-          { name: 'active', type: 'boolean', default: 'false', description: 'Marks the current page.' },
-          { name: 'variant', type: "'soft' | 'solid'", default: "'soft'", description: 'How the active link is drawn.' },
-          { name: 'color', type: 'SlopColor', default: "'primary'", description: "The active link's color role." },
+          { name: 'variant', type: "'soft' | 'solid'", default: "'soft'", description: "How the current page's link is drawn." },
+          { name: 'color', type: 'SlopColor', default: "'primary'", description: "The current page's link's color role." },
           { name: 'disabled', type: 'boolean', default: 'false', description: 'Keeps it from being followed or opened.' },
           { name: 'noWrap', type: 'boolean', default: 'false', description: 'Cuts long text with an ellipsis.' },
           { name: 'as', type: 'ValidComponent', default: "'a'", description: 'Renders another link component.' },
@@ -72,14 +74,14 @@ export default function NavLinkPage() {
 
       <H2 id="styling">Styling</H2>
       <p>
-        The root is <code>.slp-nav-link</code> (the link, or a parent's button), with <code>data-current</code>,{' '}
-        <code>data-variant</code>, <code>data-color</code>, <code>data-disabled</code>, <code>data-no-wrap</code> and, on a
-        parent, <code>data-opened</code> and <code>data-rotate</code> (unless <code>disableChevronRotation</code>). Inside are{' '}
+        The root is <code>.slp-nav-link</code> (the link, or a parent's button), with <code>data-active</code> (set by the
+        router), <code>data-variant</code>, <code>data-color</code>, <code>data-disabled</code>, <code>data-no-wrap</code> and, on
+        a parent, <code>data-opened</code> and <code>data-rotate</code> (unless <code>disableChevronRotation</code>). Inside are{' '}
         <code>[data-slot="nav-link-left-section"]</code>, <code>nav-link-body</code> holding <code>nav-link-label</code> and{' '}
         <code>nav-link-description</code>, <code>nav-link-right-section</code> and a parent's <code>nav-link-chevron</code>. A
         parent's children follow it in <code>.slp-nav-link-children</code>, whose <code>nav-link-children-body</code> sets the
-        indent. <code>--slp-nav-link-color</code> and <code>--slp-nav-link-content</code> set the active colors. The rules live in{' '}
-        <code>@layer slopkit.components</code>, so unlayered CSS wins.
+        indent. <code>--slp-nav-link-color</code> and <code>--slp-nav-link-content</code> set the current link's colors. The rules
+        live in <code>@layer slopkit.components</code>, so unlayered CSS wins.
       </p>
     </article>
   );
