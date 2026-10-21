@@ -1,5 +1,16 @@
 # @solid-slopkit/components
 
+## 0.3.0
+
+### Minor Changes
+
+- 4b5f79c: NavTabs: navigation drawn as tabs. A `nav` of `NavTabs.Link`s, plain links (or a router's, through `as`) with the current page's link marked by `active`, in every Tabs variant, color, size and orientation. Tabs now marks a disabled tab with `[data-disabled]` in its CSS instead of `:disabled`, which it already set.
+- afd6d33: Tabs takes `variant="soft"`: rounded tabs like `pills`, with the selected one tinted with its color instead of filled.
+
+### Patch Changes
+
+- ed2e91b: Tooltip no longer shows the moment it's enabled after its target was hovered while it was disabled. In AppShell, rows hovered while the sidebar was expanded no longer show their tooltips once it collapses to its icons.
+
 ## 0.2.1
 
 ### Patch Changes
