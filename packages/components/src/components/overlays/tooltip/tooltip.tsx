@@ -93,8 +93,10 @@ export function Tooltip(props: TooltipProps) {
 
   const [own, setOwn] = createSignal(false, { name: 'Tooltip.opened' });
   const opened = () => !props.disabled && (props.opened ?? own());
+  // Compared with the state under `disabled`, so hovering a disabled target leaves nothing to show once it's enabled.
   const setOpened = (next: boolean) => {
-    if (next === opened()) return;
+    if (next && props.disabled) return;
+    if (next === (props.opened ?? own())) return;
     if (props.opened === undefined) setOwn(next);
     props.onChange?.(next);
     flush();

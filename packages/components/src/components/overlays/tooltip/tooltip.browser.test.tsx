@@ -1,6 +1,6 @@
 import { render } from '@solidjs/testing-library';
 import { captureArtifact } from '@solidjs/diagnostics';
-import { flush } from 'solid-js';
+import { createSignal, flush } from 'solid-js';
 import { userEvent } from 'vitest/browser';
 import { describe, expect, test, vi } from 'vitest';
 import { SlopkitUi } from '../../provider';
@@ -67,6 +67,26 @@ describe('<Tooltip /> in a browser', () => {
 
     await userEvent.hover(target());
     await expect.poll(shown, { timeout: 1000 }).toBe(true);
+  });
+
+  test('hovered while disabled, it stays hidden once enabled', async () => {
+    const [disabled, setDisabled] = createSignal(true);
+    const { target, shown } = setup({
+      get disabled() {
+        return disabled();
+      },
+    });
+
+    await userEvent.hover(target());
+    await userEvent.unhover(target());
+    await wait(150);
+    setDisabled(false);
+    flush();
+    await wait(50);
+    expect(shown()).toBe(false);
+
+    await userEvent.hover(target());
+    await expect.poll(shown).toBe(true);
   });
 
   test('keyboard focus shows it, and blurring hides it; a click does not', async () => {
