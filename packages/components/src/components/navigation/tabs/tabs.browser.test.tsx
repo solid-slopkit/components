@@ -71,6 +71,21 @@ describe('<Tabs /> in a browser', () => {
     expect(getByRole('tabpanel').getBoundingClientRect().left).toBeGreaterThan(one.getBoundingClientRect().right - 1);
   });
 
+  test('soft: the selected tab is tinted, lighter than a pill, with its text in the color', () => {
+    const soft = setup({ variant: 'soft' });
+    const one = getComputedStyle(soft.getByRole('tab', { name: 'One' }));
+    const two = getComputedStyle(soft.getByRole('tab', { name: 'Two' }));
+    const tint = one.backgroundColor;
+    const softText = one.color;
+    soft.unmount();
+    const pill = getComputedStyle(setup({ variant: 'pills' }).getByRole('tab', { name: 'One' }));
+
+    expect(tint).not.toBe(two.backgroundColor);
+    expect(tint).not.toBe(pill.backgroundColor);
+    expect(softText).not.toBe(pill.color);
+    expect(one.borderTopLeftRadius).not.toBe('0px');
+  });
+
   test('grow shares the list between the tabs', () => {
     const { getByRole } = render(() => (
       <div style={{ width: '300px' }}>

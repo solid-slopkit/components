@@ -18,7 +18,7 @@ import { callHandler, type ElementProps } from '../../../utils';
 import { joinClass } from '../../../style-props';
 import type { SlopColor, SlopSize } from '../../../core';
 
-export type TabsVariant = 'underline' | 'outline' | 'pills';
+export type TabsVariant = 'underline' | 'outline' | 'pills' | 'soft';
 
 export type TabsOrientation = 'horizontal' | 'vertical';
 

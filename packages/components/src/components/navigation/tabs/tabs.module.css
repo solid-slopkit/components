@@ -1,7 +1,7 @@
 /*
  * Tabs. The list is a row (a column when vertical) of tab buttons; the selected one is marked by the variant:
  * `underline` draws a bar on the list's edge under it, `outline` lifts it into a bordered tab joined to the content,
- * `pills` fills it with the color. Panels have no look of their own.
+ * `pills` fills it with the color, `soft` tints it with the color. Panels have no look of their own.
  *
  * Public custom property (set on the tabs or any ancestor):
  *   --slp-tabs-color    the selected tab's color, defaults to the `color` prop's theme token
@@ -204,8 +204,9 @@
     }
   }
 
-  /* Pills: rounded tabs with a gap; the selected one is filled with the color. */
-  .tabs[data-variant='pills'] {
+  /* Pills and soft: rounded tabs with a gap; the selected one is filled with the color (pills) or tinted with it
+     (soft). */
+  .tabs:is([data-variant='pills'], [data-variant='soft']) {
     & > .list {
       gap: calc(var(--slp-spacing) * 1);
     }
@@ -217,13 +218,17 @@
         background-color: color-mix(in oklab, var(--slp-color-base-content) 8%, transparent);
       }
     }
-    & .tab[data-active] {
-      background-color: var(--_tabs-color);
-      color: var(--_tabs-content);
-    }
     & .tab:focus-visible {
       outline-offset: 2px;
     }
+  }
+  .tabs[data-variant='pills'] .tab[data-active] {
+    background-color: var(--_tabs-color);
+    color: var(--_tabs-content);
+  }
+  .tabs[data-variant='soft'] .tab[data-active] {
+    background-color: color-mix(in oklab, var(--_tabs-color) 14%, transparent);
+    color: color-mix(in oklab, var(--_tabs-color) 75%, var(--slp-color-base-content));
   }
 
   @media (prefers-reduced-motion: reduce) {

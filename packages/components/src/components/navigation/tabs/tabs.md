@@ -33,24 +33,24 @@ import { Tabs } from '@solid-slopkit/components';
 - **Keyboard:** the selected tab is the list's one tab stop. The arrows move between the tabs (Left and Right, or Up and Down when `orientation="vertical"`), Home and End to the first and last, skipping disabled tabs and looping (`loop={false}` stops at the ends). With `activation="automatic"` (the default) a tab is selected as the arrows reach it; with `manual`, only on Enter, Space or a click, for panels that are slow to show.
 - **Tabs:** `button`s with the `tab` role. `leftSection` and `rightSection` hold an icon or a count. `disabled` makes one unreachable. Other props go to the `button`.
 - **List:** `grow` shares its width between the tabs. Name it with `aria-label` when the page has more than one. Other props go to its `div`.
-- **Look:** `variant` is `underline` (a bar under the selected tab, the default), `outline` (the selected tab is a bordered tab joined to the content) or `pills` (the selected tab is filled). `color` is the selected tab's color role (default `primary`), `size` from `xs` to `xl` (default `md`, as tall as a Button).
+- **Look:** `variant` is `underline` (a bar under the selected tab, the default), `outline` (the selected tab is a bordered tab joined to the content), `pills` (the selected tab is filled) or `soft` (the selected tab is tinted with the color). `color` is the selected tab's color role (default `primary`), `size` from `xs` to `xl` (default `md`, as tall as a Button).
 - **Orientation:** `horizontal` puts the list above the panels; `vertical` puts it beside them, as a column.
 - The values become part of the ids, so any string works, spaces included.
 
 ## Props
 
-| Prop           | Type                                   | Default        | Description                                    |
-| -------------- | -------------------------------------- | -------------- | ---------------------------------------------- |
-| `value`        | `string \| null`                       | —              | The selected tab, when controlled.             |
-| `defaultValue` | `string \| null`                       | `null`         | The tab selected at first, when uncontrolled.  |
-| `onChange`     | `(value: string) => void`              | —              | Called when a tab is selected.                 |
-| `variant`      | `'underline' \| 'outline' \| 'pills'`  | `'underline'`  | How the selected tab is marked.                |
-| `color`        | `SlopColor`                            | `'primary'`    | The selected tab's color role.                 |
-| `size`         | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'` | `'md'`         | The tabs' height and text.                     |
-| `orientation`  | `'horizontal' \| 'vertical'`           | `'horizontal'` | The list above the panels, or beside them.     |
-| `activation`   | `'automatic' \| 'manual'`              | `'automatic'`  | Whether the arrows select, or only move focus. |
-| `loop`         | `boolean`                              | `true`         | Whether the arrows wrap around.                |
-| `keepMounted`  | `boolean`                              | `false`        | Keeps the other panels in the DOM, hidden.     |
+| Prop           | Type                                            | Default        | Description                                    |
+| -------------- | ----------------------------------------------- | -------------- | ---------------------------------------------- |
+| `value`        | `string \| null`                                | —              | The selected tab, when controlled.             |
+| `defaultValue` | `string \| null`                                | `null`         | The tab selected at first, when uncontrolled.  |
+| `onChange`     | `(value: string) => void`                       | —              | Called when a tab is selected.                 |
+| `variant`      | `'underline' \| 'outline' \| 'pills' \| 'soft'` | `'underline'`  | How the selected tab is marked.                |
+| `color`        | `SlopColor`                                     | `'primary'`    | The selected tab's color role.                 |
+| `size`         | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl'`          | `'md'`         | The tabs' height and text.                     |
+| `orientation`  | `'horizontal' \| 'vertical'`                    | `'horizontal'` | The list above the panels, or beside them.     |
+| `activation`   | `'automatic' \| 'manual'`                       | `'automatic'`  | Whether the arrows select, or only move focus. |
+| `loop`         | `boolean`                                       | `true`         | Whether the arrows wrap around.                |
+| `keepMounted`  | `boolean`                                       | `false`        | Keeps the other panels in the DOM, hidden.     |
 
 Tabs passes other props to its `div`.
 

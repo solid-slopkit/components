@@ -35,9 +35,10 @@ export default function TabsPage() {
       <H2 id="variants">Variants</H2>
       <p>
         <code>underline</code> (the default) draws a bar under the selected tab, <code>outline</code> lifts it into a bordered tab
-        joined to the content, and <code>pills</code> fills it. <code>color</code> is the selected tab's color role,{' '}
-        <code>primary</code> by default, and <code>size</code> goes from <code>xs</code> to <code>xl</code>, as tall as a Button
-        of the same size. <code>Tabs.List</code>'s <code>grow</code> shares its width between the tabs.
+        joined to the content, <code>pills</code> fills it, and <code>soft</code> tints it with the color. <code>color</code> is
+        the selected tab's color role, <code>primary</code> by default, and <code>size</code> goes from <code>xs</code> to{' '}
+        <code>xl</code>, as tall as a Button of the same size. <code>Tabs.List</code>'s <code>grow</code> shares its width between
+        the tabs.
       </p>
       <Example component={Variants} code={variantsCode} />
 
@@ -62,7 +63,7 @@ export default function TabsPage() {
           { name: 'onChange', type: '(value: string) => void', description: 'Called when a tab is selected.' },
           {
             name: 'variant',
-            type: "'underline' | 'outline' | 'pills'",
+            type: "'underline' | 'outline' | 'pills' | 'soft'",
             default: "'underline'",
             description: 'How the selected tab is marked.',
           },
