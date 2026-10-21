@@ -3,9 +3,9 @@
  * `underline` draws a bar on the list's edge under it, `outline` lifts it into a bordered tab joined to the content,
  * `pills` fills it with the color, `soft` tints it with the color. Panels have no look of their own.
  *
- * NavTabs shares this look with links: its root is `.tabs` and its links are `.tab`s. A selected tab is
- * `[role='tab'][data-active]`; a link to the current page is `[data-current]`, since a router sets `data-active` on
- * every link it claims. A disabled tab or link is `[data-disabled]`, since a link can't be `:disabled`.
+ * NavTabs shares this look with links: its root is `.tabs` and its links are `.tab`s. A selected tab, or a link the
+ * router marks as current, is `[data-active]`. A disabled tab or link is `[data-disabled]`, since a link can't be
+ * `:disabled`.
  *
  * Public custom properties (set on the tabs or any ancestor):
  *   --slp-tabs-color    the selected tab's color, defaults to the `color` prop's theme token
@@ -171,11 +171,11 @@
       box-shadow: inset -1px 0 0 var(--_tabs-border);
     }
 
-    & .tab:is([role='tab'][data-active], [data-current]) {
+    & .tab[data-active] {
       color: var(--_tabs-color);
       box-shadow: inset 0 -2px 0 var(--_tabs-color);
     }
-    &[data-orientation='vertical'] .tab:is([role='tab'][data-active], [data-current]) {
+    &[data-orientation='vertical'] .tab[data-active] {
       box-shadow: inset -2px 0 0 var(--_tabs-color);
     }
   }
@@ -197,13 +197,13 @@
     &[data-orientation='vertical'] .tab {
       border-radius: var(--_tabs-radius) 0 0 var(--_tabs-radius);
     }
-    & .tab:is([role='tab'][data-active], [data-current]) {
+    & .tab[data-active] {
       border-color: var(--_tabs-border);
       border-bottom-color: var(--slp-color-base-100);
       background-color: var(--slp-color-base-100);
       color: var(--slp-color-base-content);
     }
-    &[data-orientation='vertical'] .tab:is([role='tab'][data-active], [data-current]) {
+    &[data-orientation='vertical'] .tab[data-active] {
       border-bottom-color: var(--_tabs-border);
       border-right-color: var(--slp-color-base-100);
     }
@@ -219,7 +219,7 @@
     & .tab {
       border-radius: var(--_tabs-radius);
 
-      &:hover:not([data-disabled], [role='tab'][data-active], [data-current]) {
+      &:hover:not([data-disabled], [data-active]) {
         background-color: color-mix(in oklab, var(--slp-color-base-content) 8%, transparent);
       }
     }
@@ -227,11 +227,11 @@
       outline-offset: 2px;
     }
   }
-  .tabs[data-variant='pills'] .tab:is([role='tab'][data-active], [data-current]) {
+  .tabs[data-variant='pills'] .tab[data-active] {
     background-color: var(--_tabs-color);
     color: var(--_tabs-content);
   }
-  .tabs[data-variant='soft'] .tab:is([role='tab'][data-active], [data-current]) {
+  .tabs[data-variant='soft'] .tab[data-active] {
     background-color: color-mix(in oklab, var(--_tabs-color) 14%, transparent);
     color: color-mix(in oklab, var(--_tabs-color) 75%, var(--slp-color-base-content));
   }

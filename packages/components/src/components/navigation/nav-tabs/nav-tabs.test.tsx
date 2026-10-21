@@ -1,13 +1,41 @@
 import { fireEvent, render } from '@solidjs/testing-library';
 import { captureArtifact } from '@solidjs/diagnostics';
-import { createSignal, flush } from 'solid-js';
+import { createRouter, memoryHistory } from '@solidjs/router';
+import { flush } from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import axe from 'axe-core';
 import { describe, expect, test, vi } from 'vitest';
 import { expectHydration } from '../../../../test/ssr';
 import { NO_DIAGNOSTICS } from '../../../../test/diagnostics';
-import { claimLinksAsCurrent } from '../../../../test/link-claims';
 import { NavTabs } from './nav-tabs';
+
+/** Renders `children` in a router at `path`, with a page for each of `paths`. */
+function renderInRouter(path: string, paths: string[], children: () => JSX.Element) {
+  const history = memoryHistory(path);
+  const Router = createRouter({ routes: paths.map((page) => ({ path: page, component: () => null })), history });
+  const result = render(() => (
+    <Router>
+      {(props) => (
+        <>
+          {children()}
+          {props.children}
+        </>
+      )}
+    </Router>
+  ));
+  return { ...result, history };
+}
+
+const projectPaths = ['/project', '/project/activity', '/project/members'];
+const projectTabs = () => (
+  <NavTabs aria-label="Project">
+    <NavTabs.Link href="/project/activity">Activity</NavTabs.Link>
+    <NavTabs.Link href="/project/members">Members</NavTabs.Link>
+    <NavTabs.Link href="/project/settings" disabled>
+      Settings
+    </NavTabs.Link>
+  </NavTabs>
+);
 
 describe('<NavTabs />', () => {
   test('a nav of links, with their sections', () => {
@@ -32,7 +60,8 @@ describe('<NavTabs />', () => {
     expect(container.querySelector('[data-slot="nav-tabs-list"]')).toContainElement(overview);
     expect(overview).toHaveClass('slp-nav-tabs-link', 'link');
     expect(overview).toHaveAttribute('href', '/');
-    expect(overview).toHaveAttribute('aria-current', 'false');
+    expect(overview).not.toHaveAttribute('aria-current');
+    expect(overview).not.toHaveAttribute('data-active');
     expect(overview.querySelector('[data-slot="nav-tabs-link-section"][data-position="left"] svg')).not.toBeNull();
     expect(overview.querySelector('[data-slot="nav-tabs-link-label"]')).toHaveTextContent('Overview');
     expect(overview.querySelector('[data-position="right"]')).toBeNull();
@@ -55,47 +84,57 @@ describe('<NavTabs />', () => {
     expect(container.querySelector('[data-slot="nav-tabs-list"]')).toHaveAttribute('data-grow', '');
   });
 
-  test('active marks the current page', () => {
-    const [active, setActive] = createSignal(true);
-    const { getByRole } = render(() => (
-      <NavTabs>
-        <NavTabs.Link href="/" active={active()}>
-          Home
-        </NavTabs.Link>
-      </NavTabs>
-    ));
-    const link = getByRole('link', { name: 'Home' });
+  test('the router marks the link to the current page, and moves the mark as it navigates', async () => {
+    const { getByRole, history } = renderInRouter('/project/activity', projectPaths, projectTabs);
+    const activity = getByRole('link', { name: 'Activity' });
+    const members = getByRole('link', { name: 'Members' });
 
-    expect(link).toHaveAttribute('aria-current', 'page');
-    expect(link).toHaveAttribute('data-current', '');
-    setActive(false);
+    expect(activity).toHaveAttribute('data-active', '');
+    expect(activity).toHaveAttribute('aria-current', 'page');
+    expect(members).not.toHaveAttribute('data-active');
+    expect(members).not.toHaveAttribute('aria-current');
+
+    fireEvent.click(members);
     flush();
-    expect(link).toHaveAttribute('aria-current', 'false');
-    expect(link).not.toHaveAttribute('data-current');
+    await expect.poll(() => history.get()).toBe('/project/members');
+    expect(members).toHaveAttribute('data-active', '');
+    expect(members).toHaveAttribute('aria-current', 'page');
+    expect(activity).not.toHaveAttribute('data-active');
+    expect(activity).not.toHaveAttribute('aria-current');
   });
 
-  test('keeps its own current state when a router marks every link to this page', () => {
-    claimLinksAsCurrent();
-    // A link component that renders its own `a`, which the runtime claims, as a router's would.
-    const RouterLink = (props: { href: string; children?: JSX.Element }) => <a {...props} href={props.href} />;
+  test('the router marks a link to a parent of the current page too, without aria-current', () => {
+    const { getByRole } = renderInRouter('/project/activity', projectPaths, () => (
+      <NavTabs>
+        <NavTabs.Link href="/project">Overview</NavTabs.Link>
+        <NavTabs.Link href="/project/activity">Activity</NavTabs.Link>
+      </NavTabs>
+    ));
+    const overview = getByRole('link', { name: 'Overview' });
+
+    expect(overview).toHaveAttribute('data-active', '');
+    expect(overview).not.toHaveAttribute('aria-current');
+  });
+
+  test('without a router, data-active and aria-current set by hand mark the current page', () => {
     const { getByRole } = render(() => (
       <NavTabs>
-        <NavTabs.Link as={RouterLink} href="#home">
+        <NavTabs.Link href="/" data-active aria-current="page">
           Home
         </NavTabs.Link>
       </NavTabs>
     ));
     const link = getByRole('link', { name: 'Home' });
 
-    expect(link).toHaveAttribute('aria-current', 'false');
-    expect(link).not.toHaveAttribute('data-current');
+    expect(link).toHaveAttribute('data-active');
+    expect(link).toHaveAttribute('aria-current', 'page');
   });
 
-  test('a disabled link has no href, says it is disabled, and ignores clicks', () => {
+  test('a disabled link has no href, says it is disabled, ignores clicks, and the router never marks it', () => {
     const onClick = vi.fn();
-    const { getByRole } = render(() => (
+    const { getByRole } = renderInRouter('/settings', ['/settings'], () => (
       <NavTabs>
-        <NavTabs.Link href="/settings" disabled active onClick={onClick}>
+        <NavTabs.Link href="/settings" disabled onClick={onClick}>
           Settings
         </NavTabs.Link>
       </NavTabs>
@@ -105,7 +144,8 @@ describe('<NavTabs />', () => {
     expect(link).not.toHaveAttribute('href');
     expect(link).toHaveAttribute('aria-disabled', 'true');
     expect(link).toHaveAttribute('data-disabled', '');
-    expect(link).toHaveAttribute('aria-current', 'false');
+    expect(link).not.toHaveAttribute('data-active');
+    expect(link).not.toHaveAttribute('aria-current');
     expect(fireEvent.click(link)).toBe(false);
     expect(onClick).not.toHaveBeenCalled();
   });
@@ -127,43 +167,25 @@ describe('<NavTabs />', () => {
   });
 
   test('has no axe violations', async () => {
-    const { container } = render(() => (
-      <NavTabs aria-label="Project">
-        <NavTabs.Link href="/" active>
-          Overview
-        </NavTabs.Link>
-        <NavTabs.Link href="/activity">Activity</NavTabs.Link>
-        <NavTabs.Link href="/settings" disabled>
-          Settings
-        </NavTabs.Link>
-      </NavTabs>
-    ));
+    const { container } = renderInRouter('/project/activity', projectPaths, projectTabs);
     expect((await axe.run(container)).violations).toEqual([]);
   });
 
-  test('moving the current page has no diagnostics or waste', async () => {
-    const [current, setCurrent] = createSignal('/');
-    render(() => (
-      <NavTabs>
-        <NavTabs.Link href="/" active={current() === '/'}>
-          Overview
-        </NavTabs.Link>
-        <NavTabs.Link href="/activity" active={current() === '/activity'}>
-          Activity
-        </NavTabs.Link>
-      </NavTabs>
-    ));
+  test('navigating has no diagnostics or waste', async () => {
+    const { getByRole, history } = renderInRouter('/project/activity', projectPaths, projectTabs);
 
     const { artifact } = await captureArtifact(
-      () => {
-        setCurrent('/activity');
+      async () => {
+        fireEvent.click(getByRole('link', { name: 'Members' }));
         flush();
+        await expect.poll(() => history.get()).toBe('/project/members');
       },
-      { scenario: 'nav-tabs-current' },
+      { scenario: 'nav-tabs-navigate' },
     );
 
     expect(artifact).toHaveNoDiagnostics(NO_DIAGNOSTICS);
-    expect(artifact).toHaveNoWaste();
+    // The router's own location memos recompute twice to the same value on a navigation; NavTabs adds none.
+    expect(artifact).toHaveNoWaste({ maxWastedRuns: 2 });
   });
 
   test('hydrates the server render without mismatches or diagnostics', async () => {

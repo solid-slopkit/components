@@ -1,25 +1,31 @@
 import { render } from '@solidjs/testing-library';
-import type { JSX } from '@solidjs/web';
+import { createRouter, memoryHistory } from '@solidjs/router';
+import { userEvent } from 'vitest/browser';
 import { describe, expect, test } from 'vitest';
-import { claimLinksAsCurrent } from '../../../../test/link-claims';
 import { Tabs } from '../tabs';
 import { NavTabs, type NavTabsProps } from './nav-tabs';
 
-function setup(props: Partial<NavTabsProps> = {}, Link?: (props: { href: string; children?: JSX.Element }) => JSX.Element) {
+/** Three links in a router at `/one`: One is the current page's, Three is disabled. */
+function setup(props: Partial<NavTabsProps> = {}) {
+  const Router = createRouter({
+    routes: ['/one', '/two'].map((path) => ({ path, component: () => null })),
+    history: memoryHistory('/one'),
+  });
   return render(() => (
-    <div style={{ padding: '20px', width: '400px' }}>
-      <NavTabs aria-label="Project" {...props}>
-        <NavTabs.Link as={Link} href="#one" active>
-          One
-        </NavTabs.Link>
-        <NavTabs.Link as={Link} href="#two">
-          Two
-        </NavTabs.Link>
-        <NavTabs.Link as={Link} href="#three" disabled>
-          Three
-        </NavTabs.Link>
-      </NavTabs>
-    </div>
+    <Router>
+      {(page) => (
+        <div style={{ padding: '20px', width: '400px' }}>
+          <NavTabs aria-label="Project" {...props}>
+            <NavTabs.Link href="/one">One</NavTabs.Link>
+            <NavTabs.Link href="/two">Two</NavTabs.Link>
+            <NavTabs.Link href="/three" disabled>
+              Three
+            </NavTabs.Link>
+          </NavTabs>
+          {page.children}
+        </div>
+      )}
+    </Router>
   ));
 }
 
@@ -59,14 +65,18 @@ describe('<NavTabs /> in a browser', () => {
     expect(height).toBe(tab.getBoundingClientRect().height);
   });
 
-  test('a router marking every link leaves only the current one drawn as selected', () => {
-    claimLinksAsCurrent();
-    const RouterLink = (props: { href: string; children?: JSX.Element }) => <a {...props} href={props.href} />;
-    const { getByRole } = setup({ variant: 'pills' }, RouterLink);
+  test('the link the router marks is drawn as selected, and the selection follows navigation', async () => {
+    const { getByRole } = setup({ variant: 'pills' });
+    const one = getByRole('link', { name: 'One' });
+    const two = getByRole('link', { name: 'Two' });
+    const filled = (link: HTMLElement) => getComputedStyle(link).backgroundColor !== 'rgba(0, 0, 0, 0)';
 
-    expect(getByRole('link', { name: 'Two' })).toHaveAttribute('data-active');
-    expect(getComputedStyle(getByRole('link', { name: 'Two' })).backgroundColor).toBe('rgba(0, 0, 0, 0)');
-    expect(getComputedStyle(getByRole('link', { name: 'One' })).backgroundColor).not.toBe('rgba(0, 0, 0, 0)');
+    expect(filled(one)).toBe(true);
+    expect(filled(two)).toBe(false);
+
+    await userEvent.click(two);
+    await expect.poll(() => filled(two)).toBe(true);
+    await expect.poll(() => filled(one)).toBe(false);
   });
 
   test('vertical links stack in a column', () => {

@@ -24,10 +24,13 @@ export default function NavTabsPage() {
       <p>
         Use NavTabs when each tab goes to its own page, and <a href="/components/tabs">Tabs</a> when tabs switch panels on the
         same page; the two look the same. NavTabs is a <code>nav</code> of <code>NavTabs.Link</code>s, ordinary links that Tab
-        moves between. <code>active</code> marks the current page, with <code>aria-current="page"</code>; NavTabs can't tell which
-        page is current, so set it from your router. <code>as</code> renders a router's link component instead of an{' '}
-        <code>a</code>. Links take a <code>leftSection</code> and a <code>rightSection</code>, and a <code>disabled</code> link
-        has no address.
+        moves between. The router marks the current page: <code>@solidjs/router</code> sets <code>data-active</code> on a link to
+        the current page or to a parent of it, and <code>aria-current="page"</code> on a link to exactly the current page, and
+        NavTabs draws a link with <code>data-active</code> as the selected tab. Since a link to a parent path is marked on its
+        child pages too, give each tab its own path. Without the router, set <code>data-active</code> and{' '}
+        <code>aria-current="page"</code> on the current link yourself. <code>as</code> renders another link component instead of
+        an <code>a</code>. Links take a <code>leftSection</code> and a <code>rightSection</code>, and a <code>disabled</code> link
+        has no address, so the router never marks it.
       </p>
       <Example component={Basic} code={basicCode} />
 
@@ -41,9 +44,8 @@ export default function NavTabsPage() {
 
       <H2 id="props">Props</H2>
       <p>
-        NavTabs passes other props to its <code>nav</code>. <code>NavTabs.Link</code> takes <code>active</code>,{' '}
-        <code>leftSection</code>, <code>rightSection</code>, <code>disabled</code> and <code>as</code>, and passes the rest to its
-        link.
+        NavTabs passes other props to its <code>nav</code>. <code>NavTabs.Link</code> takes <code>leftSection</code>,{' '}
+        <code>rightSection</code>, <code>disabled</code> and <code>as</code>, and passes the rest to its link.
       </p>
       <PropsTable
         rows={[
@@ -69,7 +71,7 @@ export default function NavTabsPage() {
       <p>
         The root is <code>.slp-nav-tabs</code>, with <code>data-variant</code>, <code>data-color</code>, <code>data-size</code>{' '}
         and <code>data-orientation</code>, holding <code>[data-slot="nav-tabs-list"]</code> (with <code>data-grow</code>). Each
-        link is <code>.slp-nav-tabs-link</code>, with <code>data-current</code> on the current page's link and{' '}
+        link is <code>.slp-nav-tabs-link</code>, with <code>data-active</code> on the link the router marks as current and{' '}
         <code>data-disabled</code>; it holds <code>[data-slot="nav-tabs-link-label"]</code> and{' '}
         <code>[data-slot="nav-tabs-link-section"]</code> with <code>data-position="left"</code> or <code>"right"</code>. The
         custom properties are Tabs': <code>--slp-tabs-color</code> sets the current link's color and{' '}

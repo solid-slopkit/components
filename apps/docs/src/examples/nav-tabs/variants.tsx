@@ -1,12 +1,15 @@
-import { createSignal, For } from 'solid-js';
+import { For } from 'solid-js';
 import { NavTabs, Stack, type TabsVariant } from '@solid-slopkit/components';
+import { withBase } from '../../base';
 
 const variants: TabsVariant[] = ['underline', 'outline', 'pills', 'soft'];
-const links = ['Overview', 'Activity', 'Members'];
+const links = [
+  { path: '/components/nav-tabs', label: 'NavTabs' },
+  { path: '/components/tabs', label: 'Tabs' },
+  { path: '/components/nav-link', label: 'NavLink' },
+];
 
 export default function Variants() {
-  const [current, setCurrent] = createSignal('Overview');
-
   return (
     <Stack gap={6}>
       <For each={variants}>
@@ -16,20 +19,7 @@ export default function Variants() {
             color={variant === 'pills' || variant === 'soft' ? 'secondary' : 'primary'}
             aria-label={`${variant} links`}
           >
-            <For each={links}>
-              {(label) => (
-                <NavTabs.Link
-                  href={`#${label.toLowerCase()}`}
-                  active={current() === label}
-                  onClick={(event: MouseEvent) => {
-                    event.preventDefault();
-                    setCurrent(label);
-                  }}
-                >
-                  {label}
-                </NavTabs.Link>
-              )}
-            </For>
+            <For each={links}>{(link) => <NavTabs.Link href={withBase(link.path)}>{link.label}</NavTabs.Link>}</For>
           </NavTabs>
         )}
       </For>

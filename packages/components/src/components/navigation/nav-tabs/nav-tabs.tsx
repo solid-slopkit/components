@@ -23,8 +23,6 @@ export interface NavTabsOwnProps {
 export type NavTabsProps = ElementProps<JSX.HTMLAttributes<HTMLElement>, NavTabsOwnProps>;
 
 export interface NavTabsLinkOwnProps {
-  /** Marks the current page: drawn as the selected tab, with `aria-current="page"`. */
-  active?: boolean;
   /** Content before the label, usually an icon. */
   leftSection?: JSX.Element;
   /** Content after the label, such as a count. */
@@ -36,12 +34,12 @@ export interface NavTabsLinkOwnProps {
 export type NavTabsLinkProps<T extends ValidComponent = 'a'> = PolymorphicProps<T, NavTabsLinkOwnProps>;
 
 /**
- * A link drawn as a tab. `as` renders another link component, such as a router's. It doesn't know the route; set
- * `active` from your router.
+ * A link drawn as a tab. `as` renders another link component, such as a router's. It's drawn as the selected tab while
+ * it has `data-active`, which `@solidjs/router` sets on the links it manages to the current page.
  */
 export function NavTabsLink<T extends ValidComponent = 'a'>(props: NavTabsLinkProps<T>) {
   const own = props as NavTabsLinkOwnProps & JSX.HTMLAttributes<HTMLElement> & { as?: ValidComponent; href?: string };
-  const others = omit(own, 'as', 'class', 'href', 'children', 'active', 'leftSection', 'rightSection', 'disabled', 'onClick');
+  const others = omit(own, 'as', 'class', 'href', 'children', 'leftSection', 'rightSection', 'disabled', 'onClick');
   // A JSX prop creates its elements each time it's read, so a section is read only where it's rendered.
   const hasLeft = untrack(() => 'leftSection' in props);
   const hasRight = untrack(() => 'rightSection' in props);
@@ -54,9 +52,6 @@ export function NavTabsLink<T extends ValidComponent = 'a'>(props: NavTabsLinkPr
       href={own.disabled ? undefined : own.href}
       role={own.disabled ? 'link' : undefined}
       aria-disabled={own.disabled ? 'true' : undefined}
-      // Said either way, so a router that marks links to the current page adds nothing.
-      aria-current={own.active && !own.disabled ? 'page' : 'false'}
-      data-current={own.active ? '' : undefined}
       data-disabled={own.disabled ? '' : undefined}
       data-slot="nav-tabs-link"
       class={joinClass(['slp-nav-tabs-link', style.tab], own.class)}
@@ -84,8 +79,8 @@ export function NavTabsLink<T extends ValidComponent = 'a'>(props: NavTabsLinkPr
 }
 
 /**
- * Navigation drawn as tabs: a `nav` of NavTabs.Link, the current page's link marked as the selected tab. The links
- * are plain links, reached with Tab; the page they lead to is the content.
+ * Navigation drawn as tabs: a `nav` of NavTabs.Link, the current page's link, as the router marks it, drawn as the
+ * selected tab. The links are plain links, reached with Tab; the page they lead to is the content.
  */
 export function NavTabs(props: NavTabsProps) {
   const others = omit(props, 'class', 'children', 'variant', 'color', 'size', 'orientation', 'grow');

@@ -104,6 +104,9 @@ importers:
       '@solidjs/diagnostics':
         specifier: ^2.0.0-rc.15
         version: 2.0.0-rc.15(@solidjs/web@2.0.0-rc.15)(solid-js@2.0.0-rc.15)(vitest@5.0.3)
+      '@solidjs/router':
+        specifier: ^2.0.0-next.40
+        version: 2.0.0-next.40(@solidjs/web@2.0.0-rc.15)(filesystem-routing@0.4.0)(solid-js@2.0.0-rc.15)
       '@solidjs/testing-library':
         specifier: ^1.0.0-beta.3
         version: 1.0.0-beta.3(@solidjs/web@2.0.0-rc.15)(solid-js@2.0.0-rc.15)
