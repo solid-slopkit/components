@@ -6,8 +6,8 @@ import { PropsTable } from '../../components/PropsTable';
 
 import Basic from '../../examples/select/basic';
 import basicCode from '../../examples/select/basic.tsx?raw';
-import Searchable from '../../examples/select/searchable';
-import searchableCode from '../../examples/select/searchable.tsx?raw';
+import Groups from '../../examples/select/groups';
+import groupsCode from '../../examples/select/groups.tsx?raw';
 import States from '../../examples/select/states';
 import statesCode from '../../examples/select/states.tsx?raw';
 
@@ -17,7 +17,7 @@ export default function SelectPage() {
       <Title>Select · slopkit</Title>
       <p class="docs-eyebrow">Components</p>
       <h1>Select</h1>
-      <p class="docs-lead">A labelled field that picks one value from a list in a dropdown, optionally searchable.</p>
+      <p class="docs-lead">A labelled field that picks one value from a list in a dropdown, and behaves like a native select.</p>
 
       <H2 id="import">Import</H2>
       <CodeBlock code={`import { Select } from '@solid-slopkit/components';`} />
@@ -27,19 +27,19 @@ export default function SelectPage() {
         <code>data</code> holds the options. The field is a button with <code>role="combobox"</code> that shows the selected label
         or the <code>placeholder</code>. A press anywhere on it opens the list; a click on the label only focuses it. With the
         keyboard, Enter, Space and the arrows open it, typing a letter jumps to the first option that starts with it, Enter or
-        Space chooses, and Escape or Tab closes. Focus stays on the field throughout. The selected option has a check mark.
+        Space chooses, and Escape or Tab closes. Focus stays on the field throughout. The selected option has a check mark, and
+        choosing it again keeps it. There's no search and no clear button: to filter a list by typing, build the picker from
+        Combobox.
       </p>
       <Example component={Basic} code={basicCode} />
 
-      <H2 id="searchable">Searchable, grouped and clearable</H2>
+      <H2 id="groups">Items, groups and a controlled value</H2>
       <p>
-        <code>searchable</code> makes the field a text field that filters the options by their labels as you type and makes the
-        first match active; closing without choosing shows the selection again. Options can be strings, items with a{' '}
-        <code>value</code>, <code>label</code> and <code>disabled</code>, or groups under a heading. <code>clearable</code> adds a
-        button that clears the value. Controlled here with <code>value</code> and <code>onChange</code>, which gets the value and
-        its item, or <code>null</code> when cleared.
+        Options can be strings, items with a <code>value</code>, <code>label</code> and <code>disabled</code>, or groups under a
+        heading. Controlled here with <code>value</code> and <code>onChange</code>, which gets the value and its item when another
+        option is chosen.
       </p>
-      <Example component={Searchable} code={searchableCode} />
+      <Example component={Groups} code={groupsCode} />
 
       <H2 id="states">Sections, variants and states</H2>
       <p>
@@ -64,25 +64,10 @@ export default function SelectPage() {
           { name: 'defaultValue', type: 'string | null', default: 'null', description: 'The value it starts with.' },
           {
             name: 'onChange',
-            type: '(value: string | null, item: SelectItem | null) => void',
-            description: 'Called when the selection changes.',
+            type: '(value: string, item: SelectItem) => void',
+            description: 'Called when another option is chosen.',
           },
           { name: 'placeholder', type: 'string', description: 'Shown while nothing is selected.' },
-          { name: 'searchable', type: 'boolean', default: 'false', description: 'Lets typing filter the options. Read once.' },
-          { name: 'clearable', type: 'boolean', default: 'false', description: 'A button that clears the selection.' },
-          { name: 'clearLabel', type: 'string', default: "'Clear'", description: "The clear button's name." },
-          {
-            name: 'allowDeselect',
-            type: 'boolean',
-            default: 'false',
-            description: 'Choosing the selected option again clears it.',
-          },
-          {
-            name: 'nothingFoundMessage',
-            type: 'string',
-            default: "'Nothing found'",
-            description: 'Shown when no option matches the search.',
-          },
           { name: 'name', type: 'string', description: 'Submits the value with a form.' },
           { name: 'readOnly', type: 'boolean', default: 'false', description: 'Shows the value without letting it change.' },
           { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the field.' },
@@ -102,8 +87,8 @@ export default function SelectPage() {
         The root has the classes <code>.slp-select</code> and <code>.slp-input-wrapper</code>; the field box is an{' '}
         <code>.slp-input</code>, and the dropdown a Combobox's (<code>.slp-combobox</code>, <code>.slp-combobox-option</code>).
         Inside are <code>[data-slot="select-value"]</code> (with <code>data-placeholder</code> while nothing is selected),{' '}
-        <code>[data-slot="select-option-check"]</code>, <code>[data-slot="select-option-label"]</code> and{' '}
-        <code>[data-slot="select-clear"]</code>. The rules live in <code>@layer slopkit.components</code>, so unlayered CSS wins.
+        <code>[data-slot="select-option-check"]</code> and <code>[data-slot="select-option-label"]</code>. The rules live in{' '}
+        <code>@layer slopkit.components</code>, so unlayered CSS wins.
       </p>
     </article>
   );

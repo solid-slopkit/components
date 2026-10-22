@@ -114,7 +114,7 @@ Only layout components take style props, and each takes its own set. The Box ref
 ### Picking one value
 
 - **2–5 short options, always visible:** [SegmentedControl](components/inputs/segmented-control/segmented-control.md) (a compact row, like a view switcher) or [Radio.Group](components/inputs/radio/radio.md) (a labelled list, room for descriptions).
-- **A dropdown:** [Select](components/inputs/select/select.md). The default: themed, keyboard and ARIA behavior tested, optionally searchable and clearable, and bound with `bind(f.x)` from `@solid-slopkit/signal-forms`.
+- **A dropdown:** [Select](components/inputs/select/select.md). The default: themed, behaves like a native select (no search, no clear button), keyboard and ARIA behavior tested, and bound with `bind(f.x)` from `@solid-slopkit/signal-forms`.
 - **The operating system's own picker:** [NativeSelect](components/inputs/native-select/native-select.md), only when you want it (mobile-first forms) and accept the browser's look for the list, which can't be themed. Bound with `bind.nativeSelect(f.x)`.
 - **Several values:** [MultiSelect](components/inputs/multi-select/multi-select.md) from a dropdown, [Checkbox.Group](components/inputs/checkbox/checkbox.md) or [Chip.Group](components/inputs/chip/chip.md) `multiple` from a short visible list.
 - **Free text with suggestions:** [Autocomplete](components/inputs/autocomplete/autocomplete.md) for one value, [TagsInput](components/inputs/tags-input/tags-input.md) for several.
@@ -148,7 +148,7 @@ Every input here works with `@solid-slopkit/signal-forms`: its binding reference
 - [RangeSlider](components/inputs/range-slider/range-slider.md): two values, a range, picked on a track with two thumbs
 - [Rating](components/inputs/rating/rating.md): a star rating, whole or fractional stars, or read-only stars
 - [SegmentedControl](components/inputs/segmented-control/segmented-control.md): one value from 2–5 short options, always visible, as a row of segments with a sliding indicator
-- [Select](components/inputs/select/select.md): one value from a dropdown list, optionally searchable and clearable. The default dropdown: themed, keyboard and ARIA tested, binds with `bind()`
+- [Select](components/inputs/select/select.md): one value from a dropdown list, behaving like a native select. The default dropdown: themed, keyboard and ARIA tested, binds with `bind()`
 - [Slider](components/inputs/slider/slider.md): one number picked on a track, with optional marks and a value bubble
 - [Switch](components/inputs/switch/switch.md): one on/off setting that applies at once, with Switch.Group
 - [TagsInput](components/inputs/tags-input/tags-input.md): free-text tags as pills, added with Enter or a comma, with optional suggestions

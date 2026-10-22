@@ -1,17 +1,14 @@
 import { createSignal } from 'solid-js';
 import { Select, Stack, Text } from '@solid-slopkit/components';
 
-export default function Searchable() {
+export default function Groups() {
   const [city, setCity] = createSignal<string | null>('osl');
 
   return (
     <Stack style={{ width: '16rem' }}>
       <Select
         label="City"
-        placeholder="Search for a city"
-        searchable
-        clearable
-        nothingFoundMessage="No city matches"
+        placeholder="Pick a city"
         value={city()}
         onChange={(value) => setCity(value)}
         data={[

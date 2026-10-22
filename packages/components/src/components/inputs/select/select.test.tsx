@@ -144,22 +144,14 @@ describe('<Select />', () => {
     expect(field).toHaveTextContent('');
   });
 
-  test('allowDeselect: choosing the selected option clears it', () => {
-    const { key, onChange } = setup({ defaultValue: 'Apple', allowDeselect: true });
+  test('choosing the selected option again keeps it, without a change, and closes', () => {
+    const { field, key, onChange } = setup({ defaultValue: 'Apple' });
 
     key('Enter');
     key('Enter');
-    expect(onChange).toHaveBeenCalledWith(null, null);
-  });
-
-  test('clearable: a clear button while there is a value', () => {
-    const { getByRole, queryByRole, field, onChange } = setup({ defaultValue: 'Apple', clearable: true });
-
-    fireEvent.click(getByRole('button', { name: 'Clear' }));
-    flush();
-    expect(onChange).toHaveBeenCalledWith(null, null);
-    expect(field()).toHaveTextContent('Pick one');
-    expect(queryByRole('button', { name: 'Clear' })).toBeNull();
+    expect(onChange).not.toHaveBeenCalled();
+    expect(field()).toHaveTextContent('Apple');
+    expect(field()).toHaveAttribute('aria-expanded', 'false');
   });
 
   test('groups are named by their heading', () => {
@@ -201,53 +193,18 @@ describe('<Select />', () => {
     key('ArrowDown');
   });
 
-  test('searchable: a text field that filters as you type, with the first match active', () => {
-    const { field, active, getByText, queryByText, onChange } = setup({ searchable: true, defaultValue: 'Apple' });
-
-    expect(field().tagName).toBe('INPUT');
-    expect(field()).toHaveAttribute('aria-autocomplete', 'list');
-    expect(field()).toHaveValue('Apple');
-
-    fireEvent.input(field(), { target: { value: 'an' } });
-    flush();
-    expect(field()).toHaveAttribute('aria-expanded', 'true');
-    expect(active()).toBe('Banana');
-    expect(queryByText('Cherry')).toBeNull();
-
-    fireEvent.input(field(), { target: { value: 'zz' } });
-    flush();
-    expect(getByText('Nothing found')).toBeDefined();
-
-    fireEvent.input(field(), { target: { value: 'ch' } });
-    flush();
-    fireEvent.keyDown(field(), { key: 'Enter' });
-    flush();
-    expect(onChange).toHaveBeenLastCalledWith('cherry', expect.anything());
-    expect(field()).toHaveValue('Cherry');
-  });
-
-  test('searchable: closing without choosing shows the selection again', () => {
-    const { field } = setup({ searchable: true, defaultValue: 'Apple' });
-
-    fireEvent.input(field(), { target: { value: 'ban' } });
-    flush();
-    fireEvent.keyDown(field(), { key: 'Tab' });
-    flush();
-    expect(field()).toHaveValue('Apple');
-  });
-
-  test('has no axe violations, closed and open, plain and searchable', async () => {
-    const { container, key } = setup({ defaultValue: 'Apple', clearable: true, description: 'Your favorite' });
+  test('has no axe violations, closed and open, and with an error', async () => {
+    const { container, key } = setup({ defaultValue: 'Apple', description: 'Your favorite' });
     expect((await axe.run(container)).violations).toEqual([]);
     key('ArrowDown');
     expect((await axe.run(container)).violations).toEqual([]);
 
-    const searchable = render(() => (
+    const invalid = render(() => (
       <SlopkitUi>
-        <Select label="City" searchable data={['Oslo']} error="Required" />
+        <Select label="City" data={['Oslo']} error="Required" />
       </SlopkitUi>
     ));
-    expect((await axe.run(searchable.container)).violations).toEqual([]);
+    expect((await axe.run(invalid.container)).violations).toEqual([]);
   });
 
   test('moving and choosing have no diagnostics or waste', async () => {
@@ -265,24 +222,6 @@ describe('<Select />', () => {
 
     expect(artifact).toHaveNoDiagnostics(NO_DIAGNOSTICS);
     expect(artifact).toHaveNoWaste();
-  });
-
-  test('searching has no diagnostics', async () => {
-    const { field } = setup({ searchable: true });
-
-    const { artifact } = await captureArtifact(
-      () => {
-        fireEvent.input(field(), { target: { value: 'b' } });
-        flush();
-        fireEvent.input(field(), { target: { value: 'ba' } });
-        flush();
-        fireEvent.keyDown(field(), { key: 'Enter' });
-        flush();
-      },
-      { scenario: 'select-search' },
-    );
-
-    expect(artifact).toHaveNoDiagnostics(NO_DIAGNOSTICS);
   });
 
   test('hydrates the server render without mismatches or diagnostics', async () => {

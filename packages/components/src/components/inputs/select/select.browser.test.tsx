@@ -80,28 +80,6 @@ describe('<Select /> in a browser', () => {
     expect(getByText('After')).toHaveFocus();
   });
 
-  test('searchable: typing filters, the arrows move, Enter chooses', async () => {
-    const { field, onChange, getAllByRole } = setup({ searchable: true });
-
-    await userEvent.click(field());
-    await userEvent.keyboard('in');
-    expect(getAllByRole('option').map((option) => option.textContent)).toEqual(['Berlin', 'Dublin', 'Edinburgh']);
-    await userEvent.keyboard('{ArrowDown}{Enter}');
-
-    expect(onChange).toHaveBeenCalledWith('Dublin', expect.anything());
-    expect(field()).toHaveValue('Dublin');
-  });
-
-  test('clearable: the clear button clears it and focuses the field', async () => {
-    const { field, onChange, getByRole } = setup({ clearable: true, defaultValue: 'Berlin' });
-
-    await userEvent.click(getByRole('button', { name: 'Clear' }));
-    expect(onChange).toHaveBeenCalledWith(null, null);
-    expect(field()).toHaveTextContent('Pick a city');
-    expect(field()).toHaveFocus();
-    expect(field()).toHaveAttribute('aria-expanded', 'false');
-  });
-
   test('a long value is cut with an ellipsis inside the box', () => {
     const { field } = setup({
       data: ['A city with a name much too long for the field'],
