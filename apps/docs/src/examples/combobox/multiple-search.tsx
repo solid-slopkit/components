@@ -13,7 +13,7 @@ const languages = [
 export default function MultipleSearch() {
   const [picked, setPicked] = createSignal<string[]>([]);
   const [query, setQuery] = createSignal('');
-  const combobox = createCombobox({ onChange: () => setQuery('') });
+  const combobox = createCombobox({ onChange: (opened) => opened && setQuery('') });
   const toggle = (value: string) =>
     setPicked((list) => (list.includes(value) ? list.filter((item) => item !== value) : [...list, value]));
   const shown = () => languages.filter((language) => language.label.toLowerCase().includes(query().toLowerCase().trim()));

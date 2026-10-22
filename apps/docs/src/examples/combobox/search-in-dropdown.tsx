@@ -13,7 +13,7 @@ const languages = [
 export default function SearchInDropdown() {
   const [value, setValue] = createSignal<string>();
   const [query, setQuery] = createSignal('');
-  const combobox = createCombobox({ onChange: () => setQuery('') });
+  const combobox = createCombobox({ onChange: (opened) => opened && setQuery('') });
   const shown = () => languages.filter((language) => language.label.toLowerCase().includes(query().toLowerCase().trim()));
   const selected = () => languages.find((language) => language.value === value());
 

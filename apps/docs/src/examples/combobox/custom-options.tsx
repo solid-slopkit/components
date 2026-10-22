@@ -15,7 +15,7 @@ export default function CustomOptions() {
   const notifications = useNotifications();
   const [userId, setUserId] = createSignal<string>();
   const [query, setQuery] = createSignal('');
-  const combobox = createCombobox({ onChange: () => setQuery('') });
+  const combobox = createCombobox({ onChange: (opened) => opened && setQuery('') });
   const shown = () => users.filter((user) => user.username.includes(query().toLowerCase().trim()));
   const selected = () => users.find((user) => user.id === userId());
 

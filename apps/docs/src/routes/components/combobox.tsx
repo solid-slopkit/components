@@ -44,7 +44,8 @@ export default function ComboboxPage() {
         state, and the key handling. In the dropdown, <code>Combobox.Search</code> takes focus when it opens, makes the selected
         option active, and filters the options through your <code>onInput</code>; they go in <code>Combobox.Options</code>, a
         listbox you name with <code>aria-label</code>. Closing brings focus back to the button, and the store's{' '}
-        <code>onChange</code> clears the search.
+        <code>onChange</code> clears the search as it opens again; clearing it as it closes would bring the options back while it
+        fades out.
       </p>
       <Example component={SearchInDropdown} code={searchInDropdownCode} />
 

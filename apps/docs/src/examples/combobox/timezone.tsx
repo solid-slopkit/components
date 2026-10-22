@@ -42,7 +42,7 @@ export default function Timezone() {
   const notifications = useNotifications();
   const [value, setValue] = createSignal('America/New_York');
   const [query, setQuery] = createSignal('');
-  const combobox = createCombobox({ onChange: () => setQuery('') });
+  const combobox = createCombobox({ onChange: (opened) => opened && setQuery('') });
   // Each region with the timezones that match the search; regions without one are left out.
   const shown = () => {
     const words = query().toLowerCase().trim();

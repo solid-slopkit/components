@@ -182,7 +182,7 @@ describe('<Combobox /> in a browser', () => {
       const [query, setQuery] = createSignal('');
       const onOptionSubmit = vi.fn((picked: string) => setValue(picked));
       const result = render(() => {
-        const store = createCombobox({ onChange: () => setQuery('') });
+        const store = createCombobox({ onChange: (opened) => opened && setQuery('') });
         const shown = () => fruits.filter((fruit) => fruit.toLowerCase().includes(query().toLowerCase()));
         return (
           <SlopkitUi>
@@ -248,6 +248,31 @@ describe('<Combobox /> in a browser', () => {
       expect(button()).toHaveFocus();
       expect(button()).toHaveAttribute('aria-expanded', 'false');
       await expect.poll(dropdown).toBeNull();
+    });
+
+    test('choosing after a search adds no options back while it closes; opening again shows them all', async () => {
+      const { button, search, dropdown, getAllByRole } = setupSearch();
+
+      await userEvent.click(button());
+      await expect.poll(() => document.activeElement).toBe(search());
+      await userEvent.keyboard('ch');
+      expect(getAllByRole('option')).toHaveLength(1);
+      // Options rendered again while it closes would flash the unfiltered list for as long as it fades out.
+      const added: Node[] = [];
+      const observer = new MutationObserver((records) => {
+        for (const record of records)
+          added.push(...[...record.addedNodes].filter((node) => node instanceof Element && node.role === 'option'));
+      });
+      observer.observe(dropdown()!, { subtree: true, childList: true });
+      await userEvent.keyboard('{Enter}');
+      await expect.poll(dropdown).toBeNull();
+      observer.disconnect();
+      expect(added).toEqual([]);
+
+      await userEvent.click(button());
+      await expect.poll(() => document.activeElement).toBe(search());
+      expect(search()).toHaveValue('');
+      expect(getAllByRole('option')).toHaveLength(4);
     });
 
     test('ArrowUp on the target opens it on the selected option, and focus moves to the search field', async () => {
