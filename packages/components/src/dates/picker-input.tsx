@@ -1,20 +1,19 @@
 // The field of the picker inputs (DatePickerInput, MonthPickerInput, YearPickerInput): a button that shows the value
 // and opens a picker in a dropdown under it. Internal; not exported from the package.
-import { createSignal, createUniqueId, flush, omit, onCleanup, onSettled, Show, untrack, type Component } from 'solid-js';
+import { createSignal, createUniqueId, flush, omit, onSettled, Show, untrack, type Component } from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import style from './picker-input.module.css';
 import type { CalendarOwnProps } from './calendar';
 import { formatDate } from './format';
 import { emptyValue, type PickerType, type PickerUnit, type PickerValue } from './picker-value';
 import { useLocale } from '../components/provider';
-import { controlProps, FieldWrapper, type FieldWrapperProps } from '../components/inputs/field';
+import { controlProps, FieldDropdown, FieldWrapper, type FieldWrapperProps } from '../components/inputs/field';
 import { Input, type InputOwnProps } from '../components/inputs/input';
 import { useInputWrapper } from '../components/inputs/input-wrapper';
 import { CloseButton } from '../components/button/close-button';
 import { createDismissal, createFloating, createPresence, type FloatingPlacement } from '../components/primitives';
 import { transitionAttributes, type TransitionName } from '../components/utilities/transition/transition-attributes';
 import { callHandler, type ElementProps } from '../utils';
-import { joinClass } from '../style-props';
 
 type AnyValue = PickerValue<PickerType>;
 
@@ -223,36 +222,7 @@ function PickerInputField(props: PickerInputProps<object, PickerType> & { config
     control?.focus();
   };
 
-  function Dropdown() {
-    onSettled(() => {
-      dropdown?.showPopover();
-      floating.update();
-      // The calendar takes the focus, on its chosen cell, today or its first cell.
-      dropdown?.querySelector<HTMLElement>('[data-slot="calendar-grid"] [tabindex="0"]')?.focus();
-    });
-    onCleanup(() => (dropdown = undefined));
-    const Picker = config.picker;
-
-    return (
-      <div
-        ref={(element: HTMLDivElement) => (dropdown = element)}
-        id={dropdownId}
-        popover="manual"
-        role="dialog"
-        aria-labelledby={wrapper?.labelId()}
-        aria-label={wrapper?.labelId() ? undefined : (props['aria-label'] as string | undefined)}
-        data-slot={`${config.slug}-dropdown`}
-        data-placement={floating.placement()}
-        data-transition={animation['data-transition']}
-        data-status={animation['data-status']}
-        class={joinClass([`slp-${config.slug}-dropdown`, style.dropdown, animation.class], undefined)}
-        style={animation.style}
-        onFocusOut={onFocusOut}
-      >
-        <Picker {...pickerProps} type={type} value={value()} onChange={onPick} size={wrapper?.size()} />
-      </div>
-    );
-  }
+  const Picker = config.picker;
 
   return (
     <>
@@ -294,7 +264,22 @@ function PickerInputField(props: PickerInputProps<object, PickerType> & { config
         </span>
       </Input>
       <Show when={presence.mounted()}>
-        <Dropdown />
+        <FieldDropdown
+          ref={(element) => (dropdown = element)}
+          id={dropdownId}
+          slug={config.slug}
+          class={style.dropdown}
+          aria-label={props['aria-label'] as string | undefined}
+          floating={floating}
+          animation={animation}
+          onFocusOut={onFocusOut}
+          onShow={(element) => {
+            // The calendar takes the focus, on its chosen cell, today or its first cell.
+            element.querySelector<HTMLElement>('[data-slot="calendar-grid"] [tabindex="0"]')?.focus();
+          }}
+        >
+          <Picker {...pickerProps} type={type} value={value()} onChange={onPick} size={wrapper?.size()} />
+        </FieldDropdown>
       </Show>
       <Show when={props.name}>
         <input type="hidden" name={props.name} value={chosen().map(config.unit.key).join(',')} />

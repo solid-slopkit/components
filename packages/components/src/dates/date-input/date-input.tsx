@@ -1,4 +1,4 @@
-import { createSignal, createUniqueId, flush, omit, onCleanup, onSettled, Show, untrack } from 'solid-js';
+import { createSignal, createUniqueId, flush, omit, onSettled, Show, untrack } from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import style from '../picker-input.module.css';
 import type { CalendarOwnProps } from '../calendar';
@@ -7,14 +7,13 @@ import { compareDays, isSameDay, startOfMonth } from '../date';
 import { formatDate, parseDate } from '../format';
 import { DAY_UNIT } from '../picker-value';
 import { useLocale } from '../../components/provider';
-import { controlProps, FieldWrapper, type FieldWrapperProps } from '../../components/inputs/field';
+import { controlProps, FieldDropdown, FieldWrapper, type FieldWrapperProps } from '../../components/inputs/field';
 import { Input, type InputOwnProps } from '../../components/inputs/input';
 import { useInputWrapper } from '../../components/inputs/input-wrapper';
 import { CloseButton } from '../../components/button/close-button';
 import { createDismissal, createFloating, createPresence, type FloatingPlacement } from '../../components/primitives';
 import { transitionAttributes, type TransitionName } from '../../components/utilities/transition/transition-attributes';
 import { callHandler, type ElementProps } from '../../utils';
-import { joinClass } from '../../style-props';
 
 export interface DateInputOwnProps
   extends
@@ -226,49 +225,6 @@ function DateInputField(props: DateInputProps) {
     field?.focus();
   };
 
-  function Dropdown() {
-    onSettled(() => {
-      dropdown?.showPopover();
-      floating.update();
-    });
-    onCleanup(() => (dropdown = undefined));
-
-    return (
-      <div
-        ref={(element: HTMLDivElement) => (dropdown = element)}
-        id={dropdownId}
-        popover="manual"
-        role="dialog"
-        aria-labelledby={wrapper?.labelId()}
-        aria-label={wrapper?.labelId() ? undefined : props['aria-label']}
-        data-slot="date-input-dropdown"
-        data-placement={floating.placement()}
-        data-transition={animation['data-transition']}
-        data-status={animation['data-status']}
-        class={joinClass(['slp-date-input-dropdown', style.dropdown, animation.class], undefined)}
-        style={animation.style}
-        onFocusOut={onFocusOut}
-      >
-        <DatePicker
-          {...pickerProps}
-          date={props.date ?? shown()}
-          onDateChange={(date) => {
-            setShown(date);
-            props.onDateChange?.(date);
-          }}
-          value={value()}
-          onChange={(next) => {
-            setDraft(undefined);
-            setValue(next);
-            // After the click: the calendar focuses the day it chose once the click's handlers are done.
-            queueMicrotask(() => close());
-          }}
-          size={wrapper?.size()}
-        />
-      </div>
-    );
-  }
-
   return (
     <>
       <Input
@@ -327,7 +283,33 @@ function DateInputField(props: DateInputProps) {
         }}
       />
       <Show when={presence.mounted()}>
-        <Dropdown />
+        <FieldDropdown
+          ref={(element) => (dropdown = element)}
+          id={dropdownId}
+          slug="date-input"
+          class={style.dropdown}
+          aria-label={props['aria-label']}
+          floating={floating}
+          animation={animation}
+          onFocusOut={onFocusOut}
+        >
+          <DatePicker
+            {...pickerProps}
+            date={props.date ?? shown()}
+            onDateChange={(date) => {
+              setShown(date);
+              props.onDateChange?.(date);
+            }}
+            value={value()}
+            onChange={(next) => {
+              setDraft(undefined);
+              setValue(next);
+              // After the click: the calendar focuses the day it chose once the click's handlers are done.
+              queueMicrotask(() => close());
+            }}
+            size={wrapper?.size()}
+          />
+        </FieldDropdown>
       </Show>
       <Show when={props.name}>
         <input type="hidden" name={props.name} value={value() ? DAY_UNIT.key(value()!) : ''} />

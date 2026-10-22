@@ -1,16 +1,15 @@
-import { createMemo, createSignal, createUniqueId, flush, For, omit, onCleanup, onSettled, Show, untrack } from 'solid-js';
+import { createMemo, createSignal, createUniqueId, flush, For, omit, onSettled, Show, untrack } from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import style from './time-picker.module.css';
 import { getDayPeriodLabels, getHourCycle, parseTime, timeToSeconds, timeToString } from '../time';
 import { useLocale } from '../../components/provider';
-import { controlProps, FieldWrapper, type FieldWrapperProps } from '../../components/inputs/field';
+import { controlProps, FieldDropdown, FieldWrapper, type FieldWrapperProps } from '../../components/inputs/field';
 import { Input, type InputOwnProps } from '../../components/inputs/input';
 import { useInputWrapper } from '../../components/inputs/input-wrapper';
 import { CloseButton } from '../../components/button/close-button';
 import { createDismissal, createFloating, createPresence, type FloatingPlacement } from '../../components/primitives';
 import { transitionAttributes, type TransitionName } from '../../components/utilities/transition/transition-attributes';
 import { callHandler, mergeRefs, type ElementProps } from '../../utils';
-import { joinClass } from '../../style-props';
 
 export interface TimePickerOwnProps
   extends FieldWrapperProps, Pick<InputOwnProps, 'variant' | 'leftSection' | 'rightSection' | 'disabled' | 'readOnly'> {
@@ -345,63 +344,6 @@ function TimePickerField(props: TimePickerProps) {
     else update({ ...current, [segment]: option });
   };
 
-  function Dropdown() {
-    onSettled(() => {
-      dropdown?.showPopover();
-      floating.update();
-      // Each column shows its chosen option.
-      for (const column of dropdown?.querySelectorAll<HTMLElement>('[role="listbox"]') ?? []) {
-        const chosen = column.querySelector<HTMLElement>('[aria-selected="true"]');
-        if (chosen) column.scrollTop = chosen.offsetTop - column.clientHeight / 2 + chosen.offsetHeight / 2;
-      }
-    });
-    onCleanup(() => (dropdown = undefined));
-
-    return (
-      <div
-        ref={(element: HTMLDivElement) => (dropdown = element)}
-        id={`${id}-dropdown`}
-        popover="manual"
-        role="dialog"
-        aria-labelledby={wrapper?.labelId()}
-        aria-label={wrapper?.labelId() ? undefined : props['aria-label']}
-        data-slot="time-picker-dropdown"
-        data-placement={floating.placement()}
-        data-transition={animation['data-transition']}
-        data-status={animation['data-status']}
-        class={joinClass(['slp-time-picker-dropdown', style.dropdown, animation.class], undefined)}
-        style={animation.style}
-        onFocusOut={onFocusOut}
-      >
-        <div class={style.columns}>
-          <For each={segments()} keyed={false}>
-            {(segment) => (
-              <div role="listbox" aria-label={label(segment())} data-slot="time-picker-column" class={style.column}>
-                <For each={options(segment())} keyed={false}>
-                  {(option) => (
-                    <button
-                      type="button"
-                      role="option"
-                      tabindex={-1}
-                      aria-selected={isChosen(segment(), option()) ? 'true' : 'false'}
-                      data-slot="time-picker-option"
-                      class={style.option}
-                      // The focus stays in the field.
-                      onMouseDown={(event: MouseEvent) => event.preventDefault()}
-                      onClick={() => choose(segment(), option())}
-                    >
-                      {optionText(segment(), option())}
-                    </button>
-                  )}
-                </For>
-              </div>
-            )}
-          </For>
-        </div>
-      </div>
-    );
-  }
-
   const longestPeriod = () => periods().reduce((longest, name) => (name.length > longest.length ? name : longest), '');
 
   return (
@@ -501,7 +443,49 @@ function TimePickerField(props: TimePickerProps) {
         </For>
       </Input>
       <Show when={presence.mounted()}>
-        <Dropdown />
+        <FieldDropdown
+          ref={(element) => (dropdown = element)}
+          id={`${id}-dropdown`}
+          slug="time-picker"
+          class={style.dropdown}
+          aria-label={props['aria-label']}
+          floating={floating}
+          animation={animation}
+          onFocusOut={onFocusOut}
+          onShow={(element) => {
+            // Each column shows its chosen option.
+            for (const column of element.querySelectorAll<HTMLElement>('[role="listbox"]')) {
+              const chosen = column.querySelector<HTMLElement>('[aria-selected="true"]');
+              if (chosen) column.scrollTop = chosen.offsetTop - column.clientHeight / 2 + chosen.offsetHeight / 2;
+            }
+          }}
+        >
+          <div class={style.columns}>
+            <For each={segments()} keyed={false}>
+              {(segment) => (
+                <div role="listbox" aria-label={label(segment())} data-slot="time-picker-column" class={style.column}>
+                  <For each={options(segment())} keyed={false}>
+                    {(option) => (
+                      <button
+                        type="button"
+                        role="option"
+                        tabindex={-1}
+                        aria-selected={isChosen(segment(), option()) ? 'true' : 'false'}
+                        data-slot="time-picker-option"
+                        class={style.option}
+                        // The focus stays in the field.
+                        onMouseDown={(event: MouseEvent) => event.preventDefault()}
+                        onClick={() => choose(segment(), option())}
+                      >
+                        {optionText(segment(), option())}
+                      </button>
+                    )}
+                  </For>
+                </div>
+              )}
+            </For>
+          </div>
+        </FieldDropdown>
       </Show>
       <Show when={props.name}>
         <input type="hidden" name={props.name} value={value()} />

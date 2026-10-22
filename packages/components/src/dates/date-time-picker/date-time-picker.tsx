@@ -1,4 +1,4 @@
-import { createSignal, createUniqueId, flush, omit, onCleanup, onSettled, Show, untrack } from 'solid-js';
+import { createSignal, createUniqueId, flush, omit, onSettled, Show, untrack } from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import inputStyle from '../picker-input.module.css';
 import style from './date-time-picker.module.css';
@@ -9,7 +9,7 @@ import { DAY_UNIT } from '../picker-value';
 import { parseTime, timeToString, type TimeParts } from '../time';
 import { TimePicker, type TimePickerProps } from '../time-picker';
 import { useLocale } from '../../components/provider';
-import { controlProps, FieldWrapper, type FieldWrapperProps } from '../../components/inputs/field';
+import { controlProps, FieldDropdown, FieldWrapper, type FieldWrapperProps } from '../../components/inputs/field';
 import { Input, type InputOwnProps } from '../../components/inputs/input';
 import { useInputWrapper } from '../../components/inputs/input-wrapper';
 import { Button } from '../../components/button/button';
@@ -17,7 +17,6 @@ import { CloseButton } from '../../components/button/close-button';
 import { createDismissal, createFloating, createPresence, type FloatingPlacement } from '../../components/primitives';
 import { transitionAttributes, type TransitionName } from '../../components/utilities/transition/transition-attributes';
 import { callHandler, type ElementProps } from '../../utils';
-import { joinClass } from '../../style-props';
 
 export interface DateTimePickerOwnProps
   extends
@@ -237,55 +236,6 @@ function DateTimePickerField(props: DateTimePickerProps) {
     return current ? `${DAY_UNIT.key(current)}T${timeToString(timeOf(current), props.withSeconds)}` : '';
   };
 
-  function Dropdown() {
-    onSettled(() => {
-      dropdown?.showPopover();
-      floating.update();
-      // The calendar takes the focus, on the chosen day, today or its first day.
-      dropdown?.querySelector<HTMLElement>('[data-slot="calendar-grid"] [tabindex="0"]')?.focus();
-    });
-    onCleanup(() => (dropdown = undefined));
-
-    return (
-      <div
-        ref={(element: HTMLDivElement) => (dropdown = element)}
-        id={dropdownId}
-        popover="manual"
-        role="dialog"
-        aria-labelledby={wrapper?.labelId()}
-        aria-label={wrapper?.labelId() ? undefined : props['aria-label']}
-        data-slot="date-time-picker-dropdown"
-        data-placement={floating.placement()}
-        data-transition={animation['data-transition']}
-        data-status={animation['data-status']}
-        class={joinClass(['slp-date-time-picker-dropdown', inputStyle.dropdown, animation.class], undefined)}
-        style={animation.style}
-        onFocusOut={onFocusOut}
-      >
-        <div class={style.panel}>
-          <DatePicker {...pickerProps} value={value()} onChange={chooseDay} size={wrapper?.size()} />
-          <div class={style.footer}>
-            <TimePicker
-              {...props.timePickerProps}
-              label={props.timeLabel ?? 'Time'}
-              size={wrapper?.size()}
-              withSeconds={props.withSeconds}
-              locale={props.locale}
-              value={
-                value() ? timeToString(time(), props.withSeconds) : heldTime() ? timeToString(heldTime()!, props.withSeconds) : ''
-              }
-              onChange={chooseTime}
-              data-slot="date-time-picker-time"
-            />
-            <Button size={wrapper?.size() ?? 'md'} onClick={close} data-slot="date-time-picker-submit">
-              {props.submitLabel ?? 'Done'}
-            </Button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <Input
@@ -326,7 +276,45 @@ function DateTimePickerField(props: DateTimePickerProps) {
         </span>
       </Input>
       <Show when={presence.mounted()}>
-        <Dropdown />
+        <FieldDropdown
+          ref={(element) => (dropdown = element)}
+          id={dropdownId}
+          slug="date-time-picker"
+          class={inputStyle.dropdown}
+          aria-label={props['aria-label']}
+          floating={floating}
+          animation={animation}
+          onFocusOut={onFocusOut}
+          onShow={(element) => {
+            // The calendar takes the focus, on the chosen day, today or its first day.
+            element.querySelector<HTMLElement>('[data-slot="calendar-grid"] [tabindex="0"]')?.focus();
+          }}
+        >
+          <div class={style.panel}>
+            <DatePicker {...pickerProps} value={value()} onChange={chooseDay} size={wrapper?.size()} />
+            <div class={style.footer}>
+              <TimePicker
+                {...props.timePickerProps}
+                label={props.timeLabel ?? 'Time'}
+                size={wrapper?.size()}
+                withSeconds={props.withSeconds}
+                locale={props.locale}
+                value={
+                  value()
+                    ? timeToString(time(), props.withSeconds)
+                    : heldTime()
+                      ? timeToString(heldTime()!, props.withSeconds)
+                      : ''
+                }
+                onChange={chooseTime}
+                data-slot="date-time-picker-time"
+              />
+              <Button size={wrapper?.size() ?? 'md'} onClick={close} data-slot="date-time-picker-submit">
+                {props.submitLabel ?? 'Done'}
+              </Button>
+            </div>
+          </div>
+        </FieldDropdown>
       </Show>
       <Show when={props.name}>
         <input type="hidden" name={props.name} value={isoValue()} />

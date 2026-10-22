@@ -82,6 +82,78 @@ function ControlIcon(props: { control: Control }) {
   );
 }
 
+interface PaginationItemProps {
+  /** The page it goes to. */
+  target: number;
+  label: string;
+  current?: boolean;
+  control?: Control;
+  /** The current page and the number of pages. */
+  page: number;
+  total: number;
+  disabled?: boolean;
+  getPageHref?: (page: number) => string;
+  onGo: (page: number) => void;
+  children?: JSX.Element;
+}
+
+// A page or a control: a link with `getPageHref`, a button otherwise. One that goes nowhere is disabled.
+function PaginationItem(props: PaginationItemProps) {
+  // Disabled, out of range, or a control that would stay on this page (first on the first, last on the last).
+  const inert = () =>
+    !!props.disabled || props.target < 1 || props.target > props.total || (!!props.control && props.target === props.page);
+  const shared = {
+    get 'aria-label'() {
+      return props.label;
+    },
+    get 'data-current'() {
+      return props.current ? '' : undefined;
+    },
+    get 'data-disabled'() {
+      return inert() ? '' : undefined;
+    },
+    get 'data-slot'() {
+      return props.control ? `pagination-${props.control}` : 'pagination-page';
+    },
+    class: style.item,
+    onClick: (event: MouseEvent) => {
+      if (inert()) {
+        event.preventDefault();
+        return;
+      }
+      props.onGo(props.target);
+    },
+  };
+  const content = () => (props.control ? <ControlIcon control={props.control} /> : props.children);
+
+  return (
+    <li class={style.entry}>
+      <Show
+        when={props.getPageHref}
+        fallback={
+          <button type="button" disabled={inert()} aria-current={props.current ? 'page' : undefined} {...shared}>
+            {content()}
+          </button>
+        }
+      >
+        {(getHref) => (
+          // A link that goes nowhere has no href, so it keeps the link role explicitly and says it's disabled.
+          // Every link says whether it's current, so a router that marks links to the current page adds nothing.
+          <a
+            href={inert() ? undefined : getHref()(props.target)}
+            role={inert() ? 'link' : undefined}
+            aria-disabled={inert() ? 'true' : undefined}
+            aria-current={props.current ? 'page' : 'false'}
+            {...shared}
+          >
+            {content()}
+          </a>
+        )}
+      </Show>
+    </li>
+  );
+}
+
 /**
  * Pages of content, and a row of buttons (or links) to move between them: the first and last pages, the pages around
  * the current one, a gap where pages are left out, and previous and next. A `nav` named `Pagination`.
@@ -131,72 +203,6 @@ export function Pagination(props: PaginationProps) {
 
   const pageLabel = (number: number) => props.pageLabel?.(number) ?? `Page ${number}`;
 
-  // A page or a control: a link with `getPageHref`, a button otherwise. One that goes nowhere is disabled.
-  function Item(itemProps: {
-    target: () => number;
-    label: () => string;
-    current?: () => boolean;
-    control?: Control;
-    children?: JSX.Element;
-  }) {
-    // Disabled, out of range, or a control that would stay on this page (first on the first, last on the last).
-    const inert = () =>
-      !!props.disabled ||
-      itemProps.target() < 1 ||
-      itemProps.target() > total() ||
-      (!!itemProps.control && itemProps.target() === page());
-    const shared = {
-      get 'aria-label'() {
-        return itemProps.label();
-      },
-      get 'data-current'() {
-        return itemProps.current?.() ? '' : undefined;
-      },
-      get 'data-disabled'() {
-        return inert() ? '' : undefined;
-      },
-      get 'data-slot'() {
-        return itemProps.control ? `pagination-${itemProps.control}` : 'pagination-page';
-      },
-      class: style.item,
-      onClick: (event: MouseEvent) => {
-        if (inert()) {
-          event.preventDefault();
-          return;
-        }
-        go(itemProps.target());
-      },
-    };
-    const content = () => (itemProps.control ? <ControlIcon control={itemProps.control} /> : itemProps.children);
-
-    return (
-      <li class={style.entry}>
-        <Show
-          when={props.getPageHref}
-          fallback={
-            <button type="button" disabled={inert()} aria-current={itemProps.current?.() ? 'page' : undefined} {...shared}>
-              {content()}
-            </button>
-          }
-        >
-          {(getHref) => (
-            // A link that goes nowhere has no href, so it keeps the link role explicitly and says it's disabled.
-            // Every link says whether it's current, so a router that marks links to the current page adds nothing.
-            <a
-              href={inert() ? undefined : getHref()(itemProps.target())}
-              role={inert() ? 'link' : undefined}
-              aria-disabled={inert() ? 'true' : undefined}
-              aria-current={itemProps.current?.() ? 'page' : 'false'}
-              {...shared}
-            >
-              {content()}
-            </a>
-          )}
-        </Show>
-      </li>
-    );
-  }
-
   return (
     <Show when={!props.hideWithOnePage || total() > 1}>
       <nav
@@ -209,17 +215,44 @@ export function Pagination(props: PaginationProps) {
       >
         <ul data-slot="pagination-list" class={style.list}>
           <Show when={props.withEdges}>
-            <Item control="first" target={() => 1} label={() => props.firstLabel ?? 'First page'} />
+            <PaginationItem
+              control="first"
+              target={1}
+              label={props.firstLabel ?? 'First page'}
+              page={page()}
+              total={total()}
+              disabled={props.disabled}
+              getPageHref={props.getPageHref}
+              onGo={go}
+            />
           </Show>
           <Show when={props.withControls ?? true}>
-            <Item control="previous" target={() => page() - 1} label={() => props.previousLabel ?? 'Previous page'} />
+            <PaginationItem
+              control="previous"
+              target={page() - 1}
+              label={props.previousLabel ?? 'Previous page'}
+              page={page()}
+              total={total()}
+              disabled={props.disabled}
+              getPageHref={props.getPageHref}
+              onGo={go}
+            />
           </Show>
           <For each={items()}>
             {(item) =>
               typeof item === 'number' ? (
-                <Item target={() => item} label={() => pageLabel(item)} current={() => item === page()}>
+                <PaginationItem
+                  target={item}
+                  label={pageLabel(item)}
+                  current={item === page()}
+                  page={page()}
+                  total={total()}
+                  disabled={props.disabled}
+                  getPageHref={props.getPageHref}
+                  onGo={go}
+                >
                   {item}
-                </Item>
+                </PaginationItem>
               ) : (
                 <li data-slot="pagination-dots" aria-hidden="true" class={joinClass([style.entry, style.dots], undefined)}>
                   …
@@ -228,10 +261,28 @@ export function Pagination(props: PaginationProps) {
             }
           </For>
           <Show when={props.withControls ?? true}>
-            <Item control="next" target={() => page() + 1} label={() => props.nextLabel ?? 'Next page'} />
+            <PaginationItem
+              control="next"
+              target={page() + 1}
+              label={props.nextLabel ?? 'Next page'}
+              page={page()}
+              total={total()}
+              disabled={props.disabled}
+              getPageHref={props.getPageHref}
+              onGo={go}
+            />
           </Show>
           <Show when={props.withEdges}>
-            <Item control="last" target={total} label={() => props.lastLabel ?? 'Last page'} />
+            <PaginationItem
+              control="last"
+              target={total()}
+              label={props.lastLabel ?? 'Last page'}
+              page={page()}
+              total={total()}
+              disabled={props.disabled}
+              getPageHref={props.getPageHref}
+              onGo={go}
+            />
           </Show>
         </ul>
       </nav>

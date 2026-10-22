@@ -65,6 +65,52 @@ const chevron = (direction: 'previous' | 'next') => (
   </svg>
 );
 
+interface MiniCalendarDayProps {
+  date: Date;
+  locale: string;
+  /** Whether it takes Tab. */
+  tabbable: boolean;
+  selected: boolean;
+  today: boolean;
+  disabled: boolean;
+  onChoose: (date: Date) => void;
+  /** Called with the day when it takes the focus. */
+  onMove: (date: Date) => void;
+  onKeyDown: (event: KeyboardEvent, date: Date) => void;
+}
+
+function MiniCalendarDay(props: MiniCalendarDayProps) {
+  const key = () => dayKey(props.date);
+  const disabled = createMemo(() => props.disabled, { name: 'MiniCalendar.disabled' });
+  return (
+    <button
+      type="button"
+      role="option"
+      data-slot="mini-calendar-day"
+      class={style.day}
+      tabindex={props.tabbable ? 0 : -1}
+      disabled={disabled()}
+      aria-selected={props.selected ? 'true' : 'false'}
+      aria-label={formatDate(props.date, props.locale, { dateStyle: 'full' })}
+      aria-current={props.today ? 'date' : undefined}
+      data-date={key()}
+      data-selected={props.selected ? '' : undefined}
+      data-today={props.today ? '' : undefined}
+      data-disabled={disabled() ? '' : undefined}
+      onClick={() => props.onChoose(props.date)}
+      onFocus={() => props.onMove(props.date)}
+      onKeyDown={(event: KeyboardEvent) => props.onKeyDown(event, props.date)}
+    >
+      <span data-slot="mini-calendar-weekday" class={style.weekday} aria-hidden="true">
+        {formatDate(props.date, props.locale, { weekday: 'short' })}
+      </span>
+      <span data-slot="mini-calendar-number" class={style.number} aria-hidden="true">
+        {formatDate(props.date, props.locale, { day: 'numeric' })}
+      </span>
+    </button>
+  );
+}
+
 /**
  * A strip of days to choose one from, between previous and next buttons that move it by its length. A listbox named
  * after the days it shows; the arrow keys move through the days, past either end, and Enter, Space or a click chooses.
@@ -239,40 +285,6 @@ export function MiniCalendar(props: MiniCalendarProps) {
     return count() === 1 ? format.format(start()) : format.formatRange(start(), last());
   };
 
-  function Day(dayProps: { date: Date }) {
-    const key = () => dayKey(dayProps.date);
-    const disabled = createMemo(() => isDisabled(dayProps.date), { name: 'MiniCalendar.disabled' });
-    const isSelected = () => selected[key()] === true;
-    const isToday = () => todayKey[key()] === true;
-    return (
-      <button
-        type="button"
-        role="option"
-        data-slot="mini-calendar-day"
-        class={style.day}
-        tabindex={tabbable[key()] === true ? 0 : -1}
-        disabled={disabled()}
-        aria-selected={isSelected() ? 'true' : 'false'}
-        aria-label={formatDate(dayProps.date, locale(), { dateStyle: 'full' })}
-        aria-current={isToday() ? 'date' : undefined}
-        data-date={key()}
-        data-selected={isSelected() ? '' : undefined}
-        data-today={isToday() ? '' : undefined}
-        data-disabled={disabled() ? '' : undefined}
-        onClick={() => choose(dayProps.date)}
-        onFocus={() => setMoved(dayProps.date)}
-        onKeyDown={(event: KeyboardEvent) => onKeyDown(event, dayProps.date)}
-      >
-        <span data-slot="mini-calendar-weekday" class={style.weekday} aria-hidden="true">
-          {formatDate(dayProps.date, locale(), { weekday: 'short' })}
-        </span>
-        <span data-slot="mini-calendar-number" class={style.number} aria-hidden="true">
-          {formatDate(dayProps.date, locale(), { day: 'numeric' })}
-        </span>
-      </button>
-    );
-  }
-
   return (
     <div
       data-size={props.size ?? 'md'}
@@ -304,7 +316,19 @@ export function MiniCalendar(props: MiniCalendarProps) {
         class={style.days}
       >
         <For each={days()} keyed={false}>
-          {(date) => <Day date={date()} />}
+          {(date) => (
+            <MiniCalendarDay
+              date={date()}
+              locale={locale()}
+              tabbable={tabbable[dayKey(date())] === true}
+              selected={selected[dayKey(date())] === true}
+              today={todayKey[dayKey(date())] === true}
+              disabled={isDisabled(date())}
+              onChoose={choose}
+              onMove={setMoved}
+              onKeyDown={onKeyDown}
+            />
+          )}
         </For>
       </div>
       <button

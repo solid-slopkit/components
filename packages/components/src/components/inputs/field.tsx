@@ -1,9 +1,11 @@
 // Shared by the field components (TextInput, Textarea, …): an InputWrapper around a control, from one props
-// object. Internal; not exported from the package.
-import { omit } from 'solid-js';
+// object, and the dropdown a field opens under it. Internal; not exported from the package.
+import { omit, onCleanup, onSettled } from 'solid-js';
 import { type JSX } from '@solidjs/web';
 import { joinClass } from '../../style-props';
-import { InputWrapper, type InputWrapperOwnProps } from './input-wrapper';
+import { InputWrapper, useInputWrapper, type InputWrapperOwnProps } from './input-wrapper';
+import type { Floating } from '../primitives';
+import type { TransitionStyleAttributes } from '../utilities/transition/transition-attributes';
 
 /**
  * The props a field passes to its InputWrapper. `class`, `style` and `data-slot` go to the wrapper too: the whole
@@ -56,5 +58,63 @@ export function FieldWrapper(props: { field: FieldWrapperProps; rootClass: strin
     >
       {props.children}
     </InputWrapper>
+  );
+}
+
+/** The props of the dropdown a field opens under it. */
+export interface FieldDropdownProps {
+  /** Called with the dropdown as it mounts, and with `undefined` as it unmounts. */
+  ref: (element: HTMLDivElement | undefined) => void;
+  id: string;
+  /** The field's root class and slot prefix: `color-input`. */
+  slug: string;
+  /** The field's own class for the dropdown. */
+  class: string;
+  /** The dropdown's accessible name when the field has no label. */
+  'aria-label'?: JSX.HTMLAttributes<HTMLDivElement>['aria-label'];
+  floating: Floating;
+  animation: TransitionStyleAttributes;
+  onFocusOut: (event: FocusEvent) => void;
+  /** Called once the dropdown is shown and placed, to move the focus or scroll into it. */
+  onShow?: (dropdown: HTMLDivElement) => void;
+  children: JSX.Element;
+}
+
+/**
+ * The dropdown a field opens under it: a popover dialog named by the field's label. Render it while the field's
+ * presence is mounted; it shows itself once mounted.
+ */
+export function FieldDropdown(props: FieldDropdownProps) {
+  const wrapper = useInputWrapper();
+  let dropdown: HTMLDivElement | undefined;
+  onSettled(() => {
+    if (!dropdown) return;
+    dropdown.showPopover();
+    props.floating.update();
+    props.onShow?.(dropdown);
+  });
+  onCleanup(() => props.ref(undefined));
+
+  return (
+    <div
+      ref={(element: HTMLDivElement) => {
+        dropdown = element;
+        props.ref(element);
+      }}
+      id={props.id}
+      popover="manual"
+      role="dialog"
+      aria-labelledby={wrapper?.labelId()}
+      aria-label={wrapper?.labelId() ? undefined : props['aria-label']}
+      data-slot={`${props.slug}-dropdown`}
+      data-placement={props.floating.placement()}
+      data-transition={props.animation['data-transition']}
+      data-status={props.animation['data-status']}
+      class={joinClass([`slp-${props.slug}-dropdown`, props.class, props.animation.class], undefined)}
+      style={props.animation.style}
+      onFocusOut={(event: FocusEvent) => props.onFocusOut(event)}
+    >
+      {props.children}
+    </div>
   );
 }

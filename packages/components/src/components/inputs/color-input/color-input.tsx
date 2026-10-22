@@ -1,9 +1,9 @@
-import { createSignal, createUniqueId, flush, omit, onCleanup, onSettled, Show, untrack } from 'solid-js';
+import { createSignal, createUniqueId, flush, omit, onSettled, Show, untrack } from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import style from './color-input.module.css';
 import { ColorPicker } from '../color-picker';
 import { formatColor, hasAlpha, parseColor, type ColorFormat } from '../color-picker/color';
-import { controlProps, FieldWrapper, type FieldWrapperProps } from '../field';
+import { controlProps, FieldDropdown, FieldWrapper, type FieldWrapperProps } from '../field';
 import { Input, type InputOwnProps } from '../input';
 import { useInputWrapper } from '../input-wrapper';
 import { ActionIcon } from '../../button/action-icon';
@@ -11,7 +11,6 @@ import { ColorSwatch } from '../../data-display/color-swatch';
 import { createDismissal, createFloating, createPresence, type FloatingPlacement } from '../../primitives';
 import { transitionAttributes, type TransitionName } from '../../utilities/transition/transition-attributes';
 import { callHandler, mergeRefs, type ElementProps } from '../../../utils';
-import { joinClass } from '../../../style-props';
 import type { SlopSize } from '../../../core';
 
 /** The global the browser's eye dropper is on, where it has one. */
@@ -223,45 +222,6 @@ function ColorInputField(props: ColorInputProps) {
       </ActionIcon>
     ) : undefined);
 
-  function Dropdown() {
-    onSettled(() => {
-      dropdown?.showPopover();
-      floating.update();
-    });
-    onCleanup(() => (dropdown = undefined));
-
-    return (
-      <div
-        ref={(element: HTMLDivElement) => (dropdown = element)}
-        id={dropdownId}
-        popover="manual"
-        role="dialog"
-        aria-labelledby={wrapper?.labelId()}
-        aria-label={wrapper?.labelId() ? undefined : props['aria-label']}
-        data-slot="color-input-dropdown"
-        data-placement={floating.placement()}
-        data-transition={animation['data-transition']}
-        data-status={animation['data-status']}
-        class={joinClass(['slp-color-input-dropdown', style.dropdown, animation.class], undefined)}
-        style={animation.style}
-        onFocusOut={onFocusOut}
-      >
-        <ColorPicker
-          value={value()}
-          onChange={(next) => {
-            setDraft(undefined);
-            setValue(next);
-          }}
-          onChangeEnd={(next) => props.onChangeEnd?.(next)}
-          format={format()}
-          swatches={props.swatches}
-          swatchesPerRow={props.swatchesPerRow}
-          size={wrapper?.size()}
-        />
-      </div>
-    );
-  }
-
   return (
     <>
       <Input
@@ -322,7 +282,29 @@ function ColorInputField(props: ColorInputProps) {
         }}
       />
       <Show when={presence.mounted()}>
-        <Dropdown />
+        <FieldDropdown
+          ref={(element) => (dropdown = element)}
+          id={dropdownId}
+          slug="color-input"
+          class={style.dropdown}
+          aria-label={props['aria-label']}
+          floating={floating}
+          animation={animation}
+          onFocusOut={onFocusOut}
+        >
+          <ColorPicker
+            value={value()}
+            onChange={(next) => {
+              setDraft(undefined);
+              setValue(next);
+            }}
+            onChangeEnd={(next) => props.onChangeEnd?.(next)}
+            format={format()}
+            swatches={props.swatches}
+            swatchesPerRow={props.swatchesPerRow}
+            size={wrapper?.size()}
+          />
+        </FieldDropdown>
       </Show>
     </>
   );

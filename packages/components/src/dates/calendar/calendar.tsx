@@ -1,4 +1,16 @@
-import { createMemo, createProjection, createSignal, flush, For, omit, onSettled, Show, untrack } from 'solid-js';
+import {
+  createContext,
+  createMemo,
+  createProjection,
+  createSignal,
+  flush,
+  For,
+  omit,
+  onSettled,
+  Show,
+  untrack,
+  useContext,
+} from 'solid-js';
 import type { JSX } from '@solidjs/web';
 import style from './calendar.module.css';
 import { useLocale } from '../../components/provider';
@@ -154,6 +166,162 @@ const chevron = (direction: 'previous' | 'next') => (
     <path d={direction === 'previous' ? 'm15 18-6-6 6-6' : 'm9 18 6-6-6-6'} />
   </svg>
 );
+
+/** What a calendar's grids and cells read from the calendar around them. */
+interface CalendarGridContextValue {
+  locale: () => string;
+  firstDayOfWeek: () => DayOfWeek;
+  weekendDays: () => DayOfWeek[];
+  fixedWeeks: () => boolean;
+  weekdayFormat: () => 'narrow' | 'short';
+  hideWeekdays: () => boolean;
+  /** Whether a month grid leaves out the days of the months around it. */
+  hideOutside: () => boolean;
+  /** What the cells of a decade or a year are. */
+  cellLevel: () => DateGridLevel;
+  /** The cells a period shows, in order. */
+  cellsOf: (period: Date) => Date[];
+  cellState: (cellLevel: DateGridLevel, date: Date) => CalendarCellState;
+  /** Disabled by the limits or excludeDate. */
+  isExcluded: (cellLevel: DateGridLevel, date: Date) => boolean;
+  /** The cell that takes Tab, by key. */
+  tabbable: Record<string, true>;
+  /** Today's day, month and year, by key. */
+  todayKeys: Record<string, true>;
+  renderDay: () => CalendarOwnProps['renderDay'];
+  onCellClick: (cellLevel: DateGridLevel, date: Date, event: MouseEvent) => void;
+  onCellFocus: (date: Date) => void;
+  onCellKeyDown: (date: Date, event: KeyboardEvent) => void;
+}
+
+const CalendarGridContext = createContext<CalendarGridContextValue | null>(null);
+
+function useCalendarGrid() {
+  const context = useContext(CalendarGridContext);
+  if (!context) throw new Error('A calendar grid must be inside a Calendar.');
+  return context;
+}
+
+function CalendarCell(props: { date: Date; outside?: boolean; cellLevel: DateGridLevel }) {
+  const grid = useCalendarGrid();
+  const key = () => cellKey(props.cellLevel, props.date);
+  const state = createMemo(() => grid.cellState(props.cellLevel, props.date), { name: 'Calendar.cell' });
+  // No memo of its own: the state memo already re-runs when getDayProps changes.
+  const disabled = () => grid.isExcluded(props.cellLevel, props.date) || !!state().disabled;
+  const isToday = () => grid.todayKeys[key()] === true;
+  const slot = () => `calendar-${props.cellLevel === 'day' ? 'day' : props.cellLevel === 'month' ? 'month' : 'year'}`;
+  const weekend = () => props.cellLevel === 'day' && grid.weekendDays().includes(props.date.getDay() as DayOfWeek);
+
+  const label = () =>
+    props.cellLevel === 'day'
+      ? formatDate(props.date, grid.locale(), { dateStyle: 'full' })
+      : props.cellLevel === 'month'
+        ? formatDate(props.date, grid.locale(), { month: 'long', year: 'numeric' })
+        : undefined;
+  const text = () =>
+    props.cellLevel === 'day'
+      ? formatDate(props.date, grid.locale(), { day: 'numeric' })
+      : props.cellLevel === 'month'
+        ? formatDate(props.date, grid.locale(), { month: 'short' })
+        : formatDate(props.date, grid.locale(), { year: 'numeric' });
+
+  return (
+    <td class={style.cell} aria-selected={state().selected ? 'true' : undefined}>
+      <button
+        type="button"
+        data-slot={slot()}
+        class={style.control}
+        tabindex={!props.outside && grid.tabbable[key()] === true ? 0 : -1}
+        disabled={disabled()}
+        aria-label={label()}
+        aria-current={isToday() ? 'date' : undefined}
+        data-date={key()}
+        data-outside={props.outside ? '' : undefined}
+        data-weekend={weekend() ? '' : undefined}
+        data-today={isToday() ? '' : undefined}
+        data-selected={state().selected ? '' : undefined}
+        data-in-range={state().inRange ? '' : undefined}
+        data-first-in-range={state().firstInRange ? '' : undefined}
+        data-last-in-range={state().lastInRange ? '' : undefined}
+        data-disabled={disabled() ? '' : undefined}
+        onClick={(event: MouseEvent) => {
+          if (!disabled()) grid.onCellClick(props.cellLevel, props.date, event);
+        }}
+        onFocus={() => grid.onCellFocus(props.date)}
+        onKeyDown={(event: KeyboardEvent) => grid.onCellKeyDown(props.date, event)}
+      >
+        {props.cellLevel === 'day' && grid.renderDay() ? grid.renderDay()!(props.date) : text()}
+      </button>
+    </td>
+  );
+}
+
+function CalendarMonthGrid(props: { period: Date; label: string }) {
+  const grid = useCalendarGrid();
+  const weeks = createMemo(
+    () => getMonthGrid(props.period, { firstDayOfWeek: grid.firstDayOfWeek(), fixedWeeks: grid.fixedWeeks() }),
+    { name: 'Calendar.weeks' },
+  );
+  const weekdays = createMemo(
+    () => ({
+      short: getWeekdayNames(grid.locale(), grid.firstDayOfWeek(), grid.weekdayFormat()),
+      long: getWeekdayNames(grid.locale(), grid.firstDayOfWeek(), 'long'),
+    }),
+    { name: 'Calendar.weekdays' },
+  );
+  return (
+    <table role="grid" data-slot="calendar-grid" class={style.grid} aria-label={props.label}>
+      <Show when={!grid.hideWeekdays()}>
+        <thead>
+          <tr>
+            <For each={weekdays().short} keyed={false}>
+              {(name, index) => (
+                <th scope="col" data-slot="calendar-weekday" class={style.weekday} abbr={weekdays().long[index]}>
+                  {name()}
+                </th>
+              )}
+            </For>
+          </tr>
+        </thead>
+      </Show>
+      <tbody>
+        <For each={weeks()} keyed={false}>
+          {(week) => (
+            <tr>
+              <For each={week()} keyed={false}>
+                {(day) => (
+                  <Show when={isSameMonth(day(), props.period) || !grid.hideOutside()} fallback={<td class={style.cell} />}>
+                    <CalendarCell date={day()} cellLevel="day" outside={!isSameMonth(day(), props.period)} />
+                  </Show>
+                )}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </table>
+  );
+}
+
+function CalendarListGrid(props: { period: Date; label: string }) {
+  const grid = useCalendarGrid();
+  const rows = createMemo(() => chunk(grid.cellsOf(props.period), 3), { name: 'Calendar.rows' });
+  return (
+    <table role="grid" data-slot="calendar-grid" class={style.grid} aria-label={props.label}>
+      <tbody>
+        <For each={rows()} keyed={false}>
+          {(row) => (
+            <tr>
+              <For each={row()} keyed={false}>
+                {(date) => <CalendarCell date={date()} cellLevel={grid.cellLevel()} />}
+              </For>
+            </tr>
+          )}
+        </For>
+      </tbody>
+    </table>
+  );
+}
 
 /**
  * A calendar: the days of a month, the months of a year, or the years of a decade, in grids moved through with the
@@ -384,138 +552,37 @@ export function Calendar(props: CalendarProps) {
     focusActive();
   };
 
-  function Cell(cellProps: { date: Date; outside?: boolean; cellLevel: DateGridLevel }) {
-    const key = () => cellKey(cellProps.cellLevel, cellProps.date);
-    const state = createMemo(() => cellState(cellProps.cellLevel, cellProps.date), { name: 'Calendar.cell' });
-    // No memo of its own: the state memo already re-runs when getDayProps changes.
-    const disabled = () => isExcluded(cellProps.cellLevel, cellProps.date) || !!state().disabled;
-    const isToday = () => todayKeys[key()] === true;
-    const slot = () => `calendar-${cellProps.cellLevel === 'day' ? 'day' : cellProps.cellLevel === 'month' ? 'month' : 'year'}`;
-    const weekend = () => cellProps.cellLevel === 'day' && weekendDays().includes(cellProps.date.getDay() as DayOfWeek);
-
-    const label = () =>
-      cellProps.cellLevel === 'day'
-        ? formatDate(cellProps.date, locale(), { dateStyle: 'full' })
-        : cellProps.cellLevel === 'month'
-          ? formatDate(cellProps.date, locale(), { month: 'long', year: 'numeric' })
-          : undefined;
-    const text = () =>
-      cellProps.cellLevel === 'day'
-        ? formatDate(cellProps.date, locale(), { day: 'numeric' })
-        : cellProps.cellLevel === 'month'
-          ? formatDate(cellProps.date, locale(), { month: 'short' })
-          : formatDate(cellProps.date, locale(), { year: 'numeric' });
-
-    const onClick = (event: MouseEvent) => {
-      if (disabled()) return;
-      const date = cellProps.date;
-      if (cellProps.cellLevel === 'day') {
+  const grid: CalendarGridContextValue = {
+    locale,
+    firstDayOfWeek,
+    weekendDays,
+    fixedWeeks: () => props.fixedWeeks ?? true,
+    weekdayFormat: () => props.weekdayFormat ?? 'short',
+    hideWeekdays: () => !!props.hideWeekdays,
+    hideOutside,
+    cellLevel: () => CELL_LEVEL[level()],
+    cellsOf,
+    cellState,
+    isExcluded,
+    tabbable,
+    todayKeys,
+    renderDay: () => props.renderDay,
+    onCellClick: (cellLevel, date, event) => {
+      if (cellLevel === 'day') {
         props.onDayClick?.(date, event);
         moveTo(date);
       } else {
-        if (cellProps.cellLevel === 'month') props.onMonthClick?.(date, event);
+        if (cellLevel === 'month') props.onMonthClick?.(date, event);
         else props.onYearClick?.(date, event);
         drillDown(date);
       }
-    };
-
-    return (
-      <td class={style.cell} aria-selected={state().selected ? 'true' : undefined}>
-        <button
-          type="button"
-          data-slot={slot()}
-          class={style.control}
-          tabindex={!cellProps.outside && tabbable[key()] === true ? 0 : -1}
-          disabled={disabled()}
-          aria-label={label()}
-          aria-current={isToday() ? 'date' : undefined}
-          data-date={key()}
-          data-outside={cellProps.outside ? '' : undefined}
-          data-weekend={weekend() ? '' : undefined}
-          data-today={isToday() ? '' : undefined}
-          data-selected={state().selected ? '' : undefined}
-          data-in-range={state().inRange ? '' : undefined}
-          data-first-in-range={state().firstInRange ? '' : undefined}
-          data-last-in-range={state().lastInRange ? '' : undefined}
-          data-disabled={disabled() ? '' : undefined}
-          onClick={onClick}
-          onFocus={() => setMoved(cellProps.date)}
-          onKeyDown={(event: KeyboardEvent) => {
-            pressedOn = cellProps.date;
-            navigation.onKeyDown(event);
-          }}
-        >
-          {cellProps.cellLevel === 'day' && props.renderDay ? props.renderDay(cellProps.date) : text()}
-        </button>
-      </td>
-    );
-  }
-
-  function MonthGrid(gridProps: { period: Date; label: string }) {
-    const weeks = createMemo(
-      () => getMonthGrid(gridProps.period, { firstDayOfWeek: firstDayOfWeek(), fixedWeeks: props.fixedWeeks ?? true }),
-      { name: 'Calendar.weeks' },
-    );
-    const weekdays = createMemo(
-      () => ({
-        short: getWeekdayNames(locale(), firstDayOfWeek(), props.weekdayFormat ?? 'short'),
-        long: getWeekdayNames(locale(), firstDayOfWeek(), 'long'),
-      }),
-      { name: 'Calendar.weekdays' },
-    );
-    return (
-      <table role="grid" data-slot="calendar-grid" class={style.grid} aria-label={gridProps.label}>
-        <Show when={!props.hideWeekdays}>
-          <thead>
-            <tr>
-              <For each={weekdays().short} keyed={false}>
-                {(name, index) => (
-                  <th scope="col" data-slot="calendar-weekday" class={style.weekday} abbr={weekdays().long[index]}>
-                    {name()}
-                  </th>
-                )}
-              </For>
-            </tr>
-          </thead>
-        </Show>
-        <tbody>
-          <For each={weeks()} keyed={false}>
-            {(week) => (
-              <tr>
-                <For each={week()} keyed={false}>
-                  {(day) => (
-                    <Show when={isSameMonth(day(), gridProps.period) || !hideOutside()} fallback={<td class={style.cell} />}>
-                      <Cell date={day()} cellLevel="day" outside={!isSameMonth(day(), gridProps.period)} />
-                    </Show>
-                  )}
-                </For>
-              </tr>
-            )}
-          </For>
-        </tbody>
-      </table>
-    );
-  }
-
-  function ListGrid(gridProps: { period: Date; label: string }) {
-    const rows = createMemo(() => chunk(cellsOf(gridProps.period), 3), { name: 'Calendar.rows' });
-    const cellLevel = () => CELL_LEVEL[level()];
-    return (
-      <table role="grid" data-slot="calendar-grid" class={style.grid} aria-label={gridProps.label}>
-        <tbody>
-          <For each={rows()} keyed={false}>
-            {(row) => (
-              <tr>
-                <For each={row()} keyed={false}>
-                  {(date) => <Cell date={date()} cellLevel={cellLevel()} />}
-                </For>
-              </tr>
-            )}
-          </For>
-        </tbody>
-      </table>
-    );
-  }
+    },
+    onCellFocus: (date) => setMoved(date),
+    onCellKeyDown: (date, event) => {
+      pressedOn = date;
+      navigation.onKeyDown(event);
+    },
+  };
 
   return (
     <div
@@ -572,9 +639,11 @@ export function Calendar(props: CalendarProps) {
                 </button>
               </Show>
             </div>
-            <Show when={level() === 'month'} fallback={<ListGrid period={period()} label={periodLabel(period())} />}>
-              <MonthGrid period={period()} label={periodLabel(period())} />
-            </Show>
+            <CalendarGridContext value={grid}>
+              <Show when={level() === 'month'} fallback={<CalendarListGrid period={period()} label={periodLabel(period())} />}>
+                <CalendarMonthGrid period={period()} label={periodLabel(period())} />
+              </Show>
+            </CalendarGridContext>
           </div>
         )}
       </For>
