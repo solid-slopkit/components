@@ -1,5 +1,12 @@
 # @solid-slopkit/components
 
+## 0.5.0
+
+### Minor Changes
+
+- d9cf523: Combobox has a search field for the dropdown: `Combobox.Search`, for a target that can't take text, such as a button. It takes focus when the dropdown opens, makes the selected option active (else the first), takes the same keys as the target, and makes the first option active as you type. Closing brings focus back to the target, and focus leaving the dropdown closes it. Its box has the class `.slp-combobox-search` (slot `combobox-search`).
+- 4f037e1: Select behaves like a native select: the field is always a button, choosing the selected option again keeps it without calling `onChange`, and the check mark on the selected option moves to the end of the row. **Breaking:** Select no longer takes `searchable`, `clearable`, `clearLabel`, `allowDeselect` or `nothingFoundMessage`, and drops the `select-clear` slot. `onChange` is now `(value: string, item: SelectItem) => void`, since the select can't clear its value; a controlled `value` of `null` still shows the placeholder. To filter a list by typing, build the picker from Combobox.
+
 ## 0.4.0
 
 ### Minor Changes
