@@ -2,6 +2,36 @@
 
 This is a SolidJS 2.x project. Solid is not React: components run once (there is no re-render), reactivity is fine-grained through signals, and effects/memos have Solid-specific semantics. Do not port React patterns.
 
+## Never define a component inside another component
+
+Every component is a top-level function that gets its data through props. Do not declare a component (or a JSX-returning helper) inside another component's body and let it read the parent's props or signals through the closure.
+
+Wrong:
+
+```tsx
+function List(props: { items: string[] }) {
+  function ListItem(index: number) {
+    return <div>{props.items[index]}</div>;
+  }
+
+  return <For each={props.items}>{(_, i) => ListItem(i())}</For>;
+}
+```
+
+Right:
+
+```tsx
+function List(props: { items: string[] }) {
+  return <For each={props.items}>{(item) => <ListItem item={item()} />}</For>;
+}
+
+function ListItem(props: { item: string }) {
+  return <div>{props.item}</div>;
+}
+```
+
+The nested version hides what the inner component depends on, cannot be reused or tested on its own, and blurs which scope owns which reactive reads. If the inner piece needs the parent's state, pass it as props (or through context), never through the closure.
+
 ## Versioned skills (in node_modules — read on demand)
 
 The installed packages ship agent skills that match their exact installed versions:
