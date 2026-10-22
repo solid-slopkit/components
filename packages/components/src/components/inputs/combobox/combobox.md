@@ -1,6 +1,6 @@
 # Combobox
 
-The building block for picking from a list of options while focus stays on a field or a button: a target with `role="combobox"`, and a dropdown with a `listbox` in the browser's top layer. Select, Autocomplete, MultiSelect and TagsInput are built from it; use it directly for a picker they don't cover.
+The building block for picking from a list of options with a field or a button, optionally with a search field in the dropdown: a target with `role="combobox"`, and a dropdown with a `listbox` in the browser's top layer. Select, Autocomplete, MultiSelect and TagsInput are built from it; use it directly for a picker they don't cover.
 
 Keyboard and ARIA behavior are tested, in jsdom and in a real browser; see **Keyboard** and **Focus** below.
 
@@ -9,6 +9,42 @@ import { Combobox, createCombobox } from '@solid-slopkit/components';
 ```
 
 ## Usage
+
+A button with a search field in the dropdown:
+
+```tsx
+const [value, setValue] = createSignal<string>();
+const [query, setQuery] = createSignal('');
+const combobox = createCombobox({ onChange: () => setQuery('') });
+const shown = () => languages.filter((language) => language.toLowerCase().includes(query().toLowerCase()));
+
+<Combobox store={combobox} onOptionSubmit={setValue}>
+  <Combobox.Target>
+    {(target) => (
+      <Button {...target} aria-label="Language" variant="outline" onClick={() => combobox.toggle()}>
+        {value() ?? 'Select language…'}
+      </Button>
+    )}
+  </Combobox.Target>
+  <Combobox.Dropdown>
+    <Combobox.Search aria-label="Search language" value={query()} onInput={(event) => setQuery(event.currentTarget.value)} />
+    <Combobox.Options aria-label="Languages">
+      <For each={shown()}>
+        {(language) => (
+          <Combobox.Option value={language} selected={value() === language}>
+            {language}
+          </Combobox.Option>
+        )}
+      </For>
+    </Combobox.Options>
+    <Show when={shown().length === 0}>
+      <Combobox.Empty>No language found.</Combobox.Empty>
+    </Show>
+  </Combobox.Dropdown>
+</Combobox>;
+```
+
+An input that filters as you type:
 
 ```tsx
 const combobox = createCombobox();
@@ -45,13 +81,14 @@ const shown = () => countries.filter((country) => country.toLowerCase().includes
 ```
 
 - **Store:** `createCombobox()` holds the state: whether it's open, and which option is active. Create it in the component that renders the Combobox and pass it as `store`; call its methods from your handlers (below). One store drives one Combobox. Options: `opened` (an accessor, for a controlled one), `defaultOpened`, `onChange(opened)` (called whenever it opens or closes), `loop` (an accessor, default `true`).
-- **Parts:** `Combobox.Target`, `Combobox.Dropdown`, and inside the dropdown `Combobox.Options` (the `listbox`) with `Combobox.Option`s, optionally in `Combobox.Group`s, and `Combobox.Empty` next to the options. Inside `<SlopkitUi>`. The parts throw outside a Combobox.
+- **Parts:** `Combobox.Target`, `Combobox.Dropdown`, and inside the dropdown an optional `Combobox.Search`, `Combobox.Options` (the `listbox`) with `Combobox.Option`s, optionally in `Combobox.Group`s, and `Combobox.Empty` next to the options. Inside `<SlopkitUi>`. The parts throw outside a Combobox.
 - **Target:** its child is a function that gets the attributes; spread them on an input or a button that takes a ref: `ref`, `role="combobox"`, `aria-haspopup="listbox"`, `aria-expanded`, `aria-controls` (while the listbox is rendered), `aria-activedescendant` and `onKeyDown`. To add your own key handler, call `target.onKeyDown(event)` from it. The function runs once: values that change go in JSX expressions (`value={query()}`), not in variables read before the JSX. Spread `target` in the JSX itself; an object spread (`{ ...target }`) reads its getters once. Opening on a click, on focus or on input is up to you: `onClick={() => combobox.open()}`. Set `aria-autocomplete="list"` on an input that filters.
 - **Keyboard** (on the target): ArrowDown and ArrowUp open it on the selected option, else the first or last, and then move the active option (looping, unless `loop` is off); Alt+ArrowDown opens it without an active option and Alt+ArrowUp closes it; Home and End go to the first and last option, except in a text field, where they move the caret; Enter chooses the active option; Escape closes it; Tab closes it and moves on. Disabled options are skipped.
-- **Focus** stays on the target the whole time: the active option is announced through `aria-activedescendant`, marked with `data-active`, and scrolled into view in the listbox. Pressing an option or the dropdown's padding doesn't take focus; a field inside the dropdown does.
+- **Focus** stays on the target the whole time, unless there's a Combobox.Search (below): the active option is announced through `aria-activedescendant`, marked with `data-active`, and scrolled into view in the listbox. Pressing an option or the dropdown's padding doesn't take focus; a field inside the dropdown does.
+- **Search in the dropdown:** for a target that can't take text, such as a button, put `Combobox.Search` above Combobox.Options. It's an [Input](../input/input.md) (`ghost`, `sm`, with a search icon `leftSection` replaces) with `role="combobox"` that controls the listbox. When the dropdown opens, focus moves to it and the selected option becomes active, else the first (opening from the target's arrow keys keeps the one they chose). It takes the same keys as the target. Typing makes the first option active after your `onInput`; the query is yours (`value`, `onInput`), so clear it on close: `createCombobox({ onChange: () => setQuery('') })`. Closing brings focus back to the target; Tab moves on to a field or button lower in the dropdown, and focus leaving the dropdown closes it. Named `'Search'` by default; pass `aria-label`. Other props go to the Input.
 - **Choosing:** a click on an option, or Enter on the active one, calls `onOptionSubmit(value)` and closes it (`closeOnOptionSubmit={false}` keeps it open, for picking several). The pointer over an option makes it active.
 - **Options:** `value` (what `onOptionSubmit` gets), `selected` (`aria-selected="true"`; where the keyboard starts when it opens), `disabled`. Other props, such as children with icons or a description, go to the `div`. Mark several selected and set `aria-multiselectable="true"` on Combobox.Options for a multiple choice.
-- **Names:** name Combobox.Options with `aria-label` or `aria-labelledby`. Combobox.Group's `label` names the group.
+- **Names:** name Combobox.Options with `aria-label` or `aria-labelledby`. A button target shows the value, which doesn't name a combobox: give it an `aria-label` or `aria-labelledby` too. Combobox.Group's `label` names the group.
 - **Closing:** Escape and a press outside the target and the dropdown close it (`closeOnEscape`, `closeOnClickOutside`), the innermost first with nested overlays.
 - **Position:** under the target and as wide as it by default (`position`, `offset` default 4, `matchTargetWidth` default `true`). It flips when there's no room and follows the target on scroll. The listbox scrolls past 15rem.
 - **Animation:** `transition` takes [Transition](../../utilities/transition/transition.md)'s presets (default `fade`), `transitionDuration` (ms, default 150). None under `prefers-reduced-motion`.
@@ -88,13 +125,13 @@ The `activate*` methods render pending changes first, so calling one right after
 | `transition`          | `TransitionName`          | `'fade'`   | The dropdown's animation.                       |
 | `transitionDuration`  | `number`                  | `150`      | Duration of the animation, in ms.               |
 
-Combobox.Dropdown, Combobox.Options, Combobox.Group and Combobox.Empty pass other props to their `div`; Combobox.Option takes `value`, `selected` and `disabled`, and passes the rest to its `div`.
+Combobox.Search takes Input's props and passes the rest to the `input`. Combobox.Dropdown, Combobox.Options, Combobox.Group and Combobox.Empty pass other props to their `div`; Combobox.Option takes `value`, `selected` and `disabled`, and passes the rest to its `div`.
 
 ## Styling
 
 Component rules live in `@layer slopkit.components`, so unlayered CSS wins.
 
-- Root classes: `.slp-combobox` (the dropdown, also `[data-slot="combobox-dropdown"]`), `.slp-combobox-options` (also `[data-slot="combobox-options"]`), `.slp-combobox-option`, `.slp-combobox-group`, `.slp-combobox-empty`.
+- Root classes: `.slp-combobox` (the dropdown, also `[data-slot="combobox-dropdown"]`), `.slp-combobox-search` (around the search field's Input, also `[data-slot="combobox-search"]`), `.slp-combobox-options` (also `[data-slot="combobox-options"]`), `.slp-combobox-option`, `.slp-combobox-group`, `.slp-combobox-empty`.
 - Slot: `combobox-group-label`.
 - Attributes: on the dropdown `data-placement`, `data-status`, `data-transition`; on an option `data-value`, `data-active`, `data-selected`, `data-disabled`.
 - The listbox's height: `.slp-combobox-options { max-height: 15rem }`.

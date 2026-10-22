@@ -15,7 +15,13 @@ export default function ButtonTarget() {
     <Combobox store={combobox} onOptionSubmit={setValue} matchTargetWidth={false} position="bottom-start">
       <Combobox.Target>
         {(target) => (
-          <Button {...target} variant="outline" rightSection={<ChevronDown />} onClick={() => combobox.toggle()}>
+          <Button
+            {...target}
+            aria-label="Produce"
+            variant="outline"
+            rightSection={<ChevronDown />}
+            onClick={() => combobox.toggle()}
+          >
             {value()}
           </Button>
         )}

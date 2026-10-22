@@ -375,6 +375,57 @@ describe('<Combobox />', () => {
     expect(artifact).toHaveNoDiagnostics(NO_DIAGNOSTICS);
   });
 
+  test('Combobox.Search is a combobox in the dropdown that controls the listbox, without axe violations or diagnostics', async () => {
+    let store!: ComboboxStore;
+    const [query, setQuery] = createSignal('');
+    const result = render(() => {
+      store = createCombobox();
+      const shown = () => fruits.filter((fruit) => fruit.toLowerCase().includes(query().toLowerCase()));
+      return (
+        <SlopkitUi>
+          <Combobox store={store}>
+            <Combobox.Target>
+              {(target) => (
+                <button {...target} type="button" aria-label="Fruit">
+                  Apple
+                </button>
+              )}
+            </Combobox.Target>
+            <Combobox.Dropdown>
+              <Combobox.Search value={query()} onInput={(event) => setQuery(event.currentTarget.value)} />
+              <Combobox.Options aria-label="Fruits">
+                <For each={shown()}>{(fruit) => <Combobox.Option value={fruit}>{fruit}</Combobox.Option>}</For>
+              </Combobox.Options>
+            </Combobox.Dropdown>
+          </Combobox>
+        </SlopkitUi>
+      );
+    });
+    store.open();
+    flush();
+    const search = result.getByRole('combobox', { name: 'Search', hidden: true }) as HTMLInputElement;
+    const listbox = result.getByRole('listbox', { hidden: true });
+
+    expect(search.closest('[data-slot="combobox-search"]')).toHaveClass('slp-combobox-search');
+    expect(search).toHaveAttribute('aria-expanded', 'true');
+    expect(search).toHaveAttribute('aria-controls', listbox.id);
+    expect(search).toHaveAttribute('aria-autocomplete', 'list');
+
+    const { artifact } = await captureArtifact(
+      () => {
+        fireEvent.input(search, { target: { value: 'a' } });
+        flush();
+        fireEvent.keyDown(search, { key: 'ArrowDown' });
+        flush();
+      },
+      { scenario: 'combobox-search' },
+    );
+    expect(artifact).toHaveNoDiagnostics(NO_DIAGNOSTICS);
+    expect(search).toHaveAttribute('aria-activedescendant', result.getByText('Banana').id);
+    const results = await axe.run(result.container);
+    expect(results.violations).toEqual([]);
+  });
+
   test('hydrates the server render without mismatches or diagnostics', async () => {
     await expectHydration('./combobox.fixtures.tsx', 'comboboxes');
   });

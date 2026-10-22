@@ -2,9 +2,11 @@ import { createContext, createUniqueId, omit, onCleanup, onSettled, Show, untrac
 import type { JSX } from '@solidjs/web';
 import style from './combobox.module.css';
 import { comboboxInternals, type ComboboxInternals, type ComboboxStore } from './create-combobox';
+import { Input, type InputProps } from '../input';
 import {
   createDismissal,
   createFloating,
+  createFocusScope,
   createPresence,
   type Floating,
   type FloatingPlacement,
@@ -50,8 +52,11 @@ interface ComboboxContextValue {
   submit: (value: string) => void;
   transition: () => TransitionName;
   transitionDuration: () => number;
+  target: () => HTMLElement | undefined;
   setTarget: (element: HTMLElement | undefined) => void;
   setDropdown: (element: HTMLElement | undefined) => void;
+  /** A Combobox.Search is rendered: focus moves into the dropdown while it's open, and back when it closes. */
+  registerSearch: () => void;
 }
 
 const ComboboxContext = createContext<ComboboxContextValue | null>(null);
@@ -83,14 +88,11 @@ const isTextField = (element: EventTarget | null) =>
   (element instanceof HTMLInputElement && !['button', 'checkbox', 'radio', 'submit', 'reset'].includes(element.type));
 
 /**
- * The element that keeps focus while the combobox is used, and that the dropdown is positioned against. It handles
- * the keys; opening it on a click or on input is up to you, through the store.
+ * The keys of the element that has focus while the combobox is used: the target, or Combobox.Search. Tab closes it
+ * from the target; from the search field, focus leaving the dropdown does.
  */
-export function ComboboxTarget(props: ComboboxTargetProps) {
-  const context = useCombobox('Combobox.Target');
-  const { store } = context;
-
-  const onKeyDown = (event: KeyboardEvent) => {
+function createKeyHandler(store: ComboboxStore, closeOnTab: boolean) {
+  return (event: KeyboardEvent) => {
     if (event.defaultPrevented || event.isComposing || event.ctrlKey || event.metaKey) return;
     const opened = store.opened();
     switch (event.key) {
@@ -127,10 +129,20 @@ export function ComboboxTarget(props: ComboboxTargetProps) {
         }
         return;
       case 'Tab':
-        if (opened) store.close();
+        if (opened && closeOnTab) store.close();
         return;
     }
   };
+}
+
+/**
+ * The element that has focus while the combobox is used, unless a Combobox.Search takes it, and that the dropdown is
+ * positioned against. It handles the keys; opening it on a click or on input is up to you, through the store.
+ */
+export function ComboboxTarget(props: ComboboxTargetProps) {
+  const context = useCombobox('Combobox.Target');
+  const { store } = context;
+  const onKeyDown = createKeyHandler(store, true);
 
   const attributes: ComboboxTargetAttributes = {
     ref: (element) => context.setTarget(element),
@@ -170,7 +182,7 @@ export function ComboboxDropdown(props: ComboboxDropdownProps) {
 
 function ComboboxDropdownElement(props: ComboboxDropdownProps) {
   const context = useCombobox('Combobox.Dropdown');
-  const others = omit(props, 'ref', 'class', 'style', 'children', 'onMouseDown');
+  const others = omit(props, 'ref', 'class', 'style', 'children', 'onMouseDown', 'onFocusOut');
   const animation = transitionAttributes(context.presence, {
     transition: context.transition,
     duration: context.transitionDuration,
@@ -210,12 +222,81 @@ function ComboboxDropdownElement(props: ComboboxDropdownProps) {
           event.preventDefault();
         }
       }}
+      // Focus moving on from a field inside, such as Combobox.Search, to somewhere else on the page closes it. Back to
+      // the target, or to nowhere (a press outside, which the dismissal handles), it stays. Closed once focus has
+      // landed there: closing before would find it nowhere and bring it back to the target.
+      onFocusOut={(event: FocusEvent) => {
+        callHandler(props.onFocusOut, event);
+        const next = event.relatedTarget;
+        if (next instanceof HTMLElement && !element?.contains(next) && next !== context.target()) {
+          next.addEventListener('focusin', () => context.store.close(), { once: true });
+        }
+      }}
       {...others}
     >
       {props.children}
     </div>
   );
 }
+
+export type ComboboxSearchProps = Omit<InputProps<'input'>, 'role' | 'type'>;
+
+/**
+ * A search field inside the dropdown, for a target that can't take text, such as a button. It takes focus when the
+ * dropdown opens, makes the selected option active (else the first), and handles the keys as the target does; focus
+ * goes back to the target when it closes. Typing makes the first option active, after your `onInput` filtered them.
+ * Other props go to the Input; name it with `aria-label` (default `'Search'`).
+ */
+export function ComboboxSearch(props: ComboboxSearchProps) {
+  const context = useCombobox('Combobox.Search');
+  const { store } = context;
+  const others = omit(props, 'onInput', 'onKeyDown', 'leftSection');
+  const onKeyDown = createKeyHandler(store, false);
+
+  context.registerSearch();
+  // After the options are rendered. Opening from the target's keys has made one active already, which stays.
+  onSettled(() => {
+    queueMicrotask(() => {
+      if (store.opened() && store.activeId() === undefined && !store.activateSelected()) store.activateFirst();
+    });
+  });
+
+  return (
+    <div data-slot="combobox-search" class={`slp-combobox-search ${style.search}`}>
+      <Input
+        variant="ghost"
+        size="sm"
+        leftSection={props.leftSection === undefined ? <SearchIcon /> : props.leftSection}
+        aria-label={props['aria-labelledby'] ? undefined : 'Search'}
+        data-autofocus
+        autocomplete="off"
+        spellcheck={false}
+        {...others}
+        type="text"
+        role="combobox"
+        aria-expanded={store.opened() ? 'true' : 'false'}
+        aria-controls={context.internals.listboxId}
+        aria-autocomplete="list"
+        aria-activedescendant={store.activeId()}
+        onInput={(event: InputEvent & { currentTarget: HTMLInputElement; target: HTMLInputElement }) => {
+          callHandler(props.onInput, event);
+          store.activateFirst();
+        }}
+        onKeyDown={(event: KeyboardEvent & { currentTarget: HTMLInputElement; target: Element }) => {
+          callHandler(props.onKeyDown, event);
+          onKeyDown(event);
+        }}
+      />
+    </div>
+  );
+}
+
+const SearchIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.5-3.5" />
+  </svg>
+);
 
 export type ComboboxOptionsProps = Omit<ElementProps<JSX.HTMLAttributes<HTMLDivElement>>, 'id'>;
 
@@ -336,6 +417,17 @@ export function Combobox(props: ComboboxProps) {
     offset: () => props.offset ?? 4,
     sameWidth: () => props.matchTargetWidth ?? true,
   });
+  // Whether the dropdown has a Combobox.Search, read as it opens and closes: with one, focus moves into the dropdown
+  // while it's open, and back to the target once it closes. Without one, focus is left alone. It stays set once the
+  // search has been rendered: without an exit animation, the search is gone by the time the dropdown has closed.
+  let hasSearch = false;
+  createFocusScope({
+    open: () => store.opened() && presence.mounted(),
+    element: () => dropdown,
+    autoFocus: () => hasSearch,
+    restoreFocus: () => hasSearch,
+    restoreTarget: () => target,
+  });
   createDismissal('Combobox', {
     open: store.opened,
     elements: () => [target, dropdown],
@@ -355,8 +447,10 @@ export function Combobox(props: ComboboxProps) {
     },
     transition: () => props.transition ?? 'fade',
     transitionDuration: () => props.transitionDuration ?? 150,
+    target: () => target,
     setTarget: (element) => (target = element),
     setDropdown: (element) => (dropdown = element),
+    registerSearch: () => (hasSearch = true),
   };
 
   return <ComboboxContext value={context}>{props.children}</ComboboxContext>;
@@ -364,6 +458,7 @@ export function Combobox(props: ComboboxProps) {
 
 Combobox.Target = ComboboxTarget;
 Combobox.Dropdown = ComboboxDropdown;
+Combobox.Search = ComboboxSearch;
 Combobox.Options = ComboboxOptions;
 Combobox.Option = ComboboxOption;
 Combobox.Group = ComboboxGroup;

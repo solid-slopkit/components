@@ -20,6 +20,19 @@
     font: inherit;
   }
 
+  /* The search field: a ghost Input over a rule that runs the dropdown's full width. */
+  .search {
+    margin: calc(var(--slp-spacing) * -1) calc(var(--slp-spacing) * -1) calc(var(--slp-spacing) * 1);
+    padding: calc(var(--slp-spacing) * 1);
+    border-bottom: 1px solid color-mix(in oklab, var(--slp-color-base-content) 12%, transparent);
+
+    /* The dropdown is the field's box: no ring of its own while it has focus, which it has the whole time. */
+    & > [data-variant]:focus-within {
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+
   .options {
     max-height: 15rem;
     overflow-y: auto;

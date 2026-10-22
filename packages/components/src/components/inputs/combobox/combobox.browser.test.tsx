@@ -172,4 +172,138 @@ describe('<Combobox /> in a browser', () => {
     expect(onOptionSubmit).toHaveBeenCalledWith('m');
     expect(button).toHaveFocus();
   });
+
+  describe('with Combobox.Search', () => {
+    const fruits = ['Apple', 'Banana', 'Cherry', 'Date'];
+
+    /** A button showing the fruit, a search field in the dropdown, a button under the options, and one after it all. */
+    function setupSearch(transitionDuration?: number) {
+      const [value, setValue] = createSignal('Cherry');
+      const [query, setQuery] = createSignal('');
+      const onOptionSubmit = vi.fn((picked: string) => setValue(picked));
+      const result = render(() => {
+        const store = createCombobox({ onChange: () => setQuery('') });
+        const shown = () => fruits.filter((fruit) => fruit.toLowerCase().includes(query().toLowerCase()));
+        return (
+          <SlopkitUi>
+            <Combobox store={store} onOptionSubmit={onOptionSubmit} transitionDuration={transitionDuration}>
+              <Combobox.Target>
+                {(target) => (
+                  <button {...target} type="button" onClick={() => store.toggle()}>
+                    {value()}
+                  </button>
+                )}
+              </Combobox.Target>
+              <Combobox.Dropdown data-testid="dropdown">
+                <Combobox.Search
+                  aria-label="Search fruit"
+                  value={query()}
+                  onInput={(event) => setQuery(event.currentTarget.value)}
+                />
+                <Combobox.Options aria-label="Fruits">
+                  <For each={shown()}>
+                    {(fruit) => (
+                      <Combobox.Option value={fruit} selected={value() === fruit}>
+                        {fruit}
+                      </Combobox.Option>
+                    )}
+                  </For>
+                </Combobox.Options>
+                <button type="button">Add fruit</button>
+              </Combobox.Dropdown>
+            </Combobox>
+            <button type="button">After</button>
+          </SlopkitUi>
+        );
+      });
+      const button = () => result.getAllByRole('combobox')[0];
+      const search = () => result.getByRole('combobox', { name: 'Search fruit' }) as HTMLInputElement;
+      const dropdown = () => result.queryByTestId('dropdown');
+      const option = (name: string) => result.getByRole('option', { name });
+      return { ...result, button, search, dropdown, option, onOptionSubmit };
+    }
+
+    test('a click opens it with focus in the search field, on the selected option', async () => {
+      const { button, search, option } = setupSearch();
+
+      await userEvent.click(button());
+      await expect.poll(() => document.activeElement).toBe(search());
+      await expect.poll(() => search().getAttribute('aria-activedescendant')).toBe(option('Cherry').id);
+      expect(search()).toHaveAttribute('aria-expanded', 'true');
+      expect(search()).toHaveAttribute('aria-controls', search().closest('[popover]')!.querySelector('[role="listbox"]')!.id);
+    });
+
+    test('typing filters and makes the first match active; the arrows move; Enter chooses and focus goes back', async () => {
+      const { button, search, option, dropdown, onOptionSubmit } = setupSearch();
+
+      await userEvent.click(button());
+      await expect.poll(() => document.activeElement).toBe(search());
+      await userEvent.keyboard('a');
+      expect(search()).toHaveAttribute('aria-activedescendant', option('Apple').id);
+      await userEvent.keyboard('{ArrowDown}');
+      expect(search()).toHaveAttribute('aria-activedescendant', option('Banana').id);
+      await userEvent.keyboard('{Enter}');
+
+      expect(onOptionSubmit).toHaveBeenCalledWith('Banana');
+      expect(button()).toHaveFocus();
+      expect(button()).toHaveAttribute('aria-expanded', 'false');
+      await expect.poll(dropdown).toBeNull();
+    });
+
+    test('ArrowUp on the target opens it on the selected option, and focus moves to the search field', async () => {
+      const { button, search, option } = setupSearch();
+
+      button().focus();
+      await userEvent.keyboard('{ArrowUp}');
+      await expect.poll(() => document.activeElement).toBe(search());
+      expect(search()).toHaveAttribute('aria-activedescendant', option('Cherry').id);
+    });
+
+    test('Escape closes it and focus goes back to the target', async () => {
+      const { button, search, dropdown } = setupSearch();
+
+      await userEvent.click(button());
+      await expect.poll(() => document.activeElement).toBe(search());
+      await userEvent.keyboard('{Escape}');
+
+      expect(button()).toHaveFocus();
+      await expect.poll(dropdown).toBeNull();
+    });
+
+    test('without an exit animation, Escape still brings focus back to the target', async () => {
+      const { button, search, dropdown } = setupSearch(0);
+
+      await userEvent.click(button());
+      await expect.poll(() => document.activeElement).toBe(search());
+      await userEvent.keyboard('{Escape}');
+
+      expect(dropdown()).toBeNull();
+      expect(button()).toHaveFocus();
+    });
+
+    test('Tab reaches a button in the dropdown and keeps it open; Tab out of the dropdown closes it', async () => {
+      const { button, search, getByText } = setupSearch();
+
+      await userEvent.click(button());
+      await expect.poll(() => document.activeElement).toBe(search());
+      await userEvent.tab();
+      expect(getByText('Add fruit')).toHaveFocus();
+      expect(button()).toHaveAttribute('aria-expanded', 'true');
+      await userEvent.tab();
+
+      expect(button()).toHaveAttribute('aria-expanded', 'false');
+      expect(getByText('After')).toHaveFocus();
+    });
+
+    test('a press outside closes it', async () => {
+      const { button, search, getByText } = setupSearch();
+
+      await userEvent.click(button());
+      await expect.poll(() => document.activeElement).toBe(search());
+      await userEvent.click(getByText('After'));
+
+      expect(button()).toHaveAttribute('aria-expanded', 'false');
+      expect(getByText('After')).toHaveFocus();
+    });
+  });
 });

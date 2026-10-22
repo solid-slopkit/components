@@ -130,7 +130,7 @@ Every input here works with `@solid-slopkit/signal-forms`: its binding reference
 - [Chip](components/inputs/chip/chip.md): a toggle pill, with Chip.Group for one value or several from a short, always visible list
 - [ColorInput](components/inputs/color-input/color-input.md): a color as text, with a swatch, a ColorPicker dropdown and an eye dropper
 - [ColorPicker](components/inputs/color-picker/color-picker.md): a color picked on an inline panel: saturation and brightness area, hue and alpha sliders, swatches. In a field, use ColorInput
-- [Combobox](components/inputs/combobox/combobox.md): the building block for pickers, with createCombobox(), Combobox.Target, Combobox.Dropdown, Combobox.Options, Combobox.Option, Combobox.Group and Combobox.Empty
+- [Combobox](components/inputs/combobox/combobox.md): the building block for pickers, with createCombobox(), Combobox.Target, Combobox.Dropdown, Combobox.Search, Combobox.Options, Combobox.Option, Combobox.Group and Combobox.Empty
 - [Dropzone](components/inputs/dropzone/dropzone.md): an area that takes dropped or picked files, checks them, and shows whether it would take a drag, with Dropzone.Idle, Dropzone.Accept and Dropzone.Reject
 - [Fieldset](components/inputs/fieldset/fieldset.md): a group of related fields with a legend
 - [FileInput](components/inputs/file-input/file-input.md): a labelled field whose control opens the browser's file picker and shows the chosen names
