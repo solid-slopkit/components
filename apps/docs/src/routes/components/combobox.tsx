@@ -4,6 +4,8 @@ import { Example } from '../../components/Example';
 import { H2 } from '../../components/Heading';
 import { PropsTable } from '../../components/PropsTable';
 
+import AsyncSearch from '../../examples/combobox/async-search';
+import asyncSearchCode from '../../examples/combobox/async-search.tsx?raw';
 import Basic from '../../examples/combobox/basic';
 import basicCode from '../../examples/combobox/basic.tsx?raw';
 import ButtonTarget from '../../examples/combobox/button-target';
@@ -101,6 +103,15 @@ export default function ComboboxPage() {
         The button lists the picked ones.
       </p>
       <Example component={MultipleSearch} code={multipleSearchCode} />
+
+      <H2 id="async-search">Results from a server</H2>
+      <p>
+        The options can come from a request: here a promise that answers after a moment stands in for one. The results are an
+        async memo of the query, so each change of the query asks again, and the options shown stay until the answer lands.{' '}
+        <code>Loading</code> covers the first answer, <code>isPending</code> shows a loader in the search field while a later one
+        is on its way, and an effect makes the first result active once it lands.
+      </p>
+      <Example component={AsyncSearch} code={asyncSearchCode} />
 
       <H2 id="popover-command">From Popover and Command</H2>
       <p>
