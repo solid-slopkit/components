@@ -8,9 +8,5 @@ export const defaultsAndProps = () => (
       <span>b</span>
     </Stack>
     <span>c</span>
-    <Stack divided gap={3} style={{ color: 'red' }}>
-      <span>d</span>
-      <span>e</span>
-    </Stack>
   </Stack>
 );

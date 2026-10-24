@@ -60,6 +60,16 @@
   background: var(--slp-color-warning);
 }
 
+/* Preferences: settings rows with a line between them. */
+
+.create-one-a-setting {
+  padding-block: 0.75rem;
+
+  & + & {
+    border-top: 1px solid var(--slp-color-base-300);
+  }
+}
+
 /* Savings goal */
 
 .create-one-a-donut {

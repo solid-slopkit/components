@@ -269,20 +269,20 @@ export function Column2() {
                 </Badge>
               </div>
             </Stack>
-            <Stack divided gap={5} class="create-inset">
-              <Group justify="space-between" wrap="nowrap" gap={4}>
+            <div class="create-inset">
+              <Group justify="space-between" wrap="nowrap" gap={4} class="create-kv">
                 <span class="create-muted">Net Royalties</span>
                 <span>$0.00</span>
               </Group>
-              <Group justify="space-between" wrap="nowrap" gap={4}>
+              <Group justify="space-between" wrap="nowrap" gap={4} class="create-kv">
                 <span class="create-muted">Processing Fee</span>
                 <span>-$0.00</span>
               </Group>
-              <Group justify="space-between" wrap="nowrap" gap={4}>
+              <Group justify="space-between" wrap="nowrap" gap={4} class="create-kv">
                 <span class="create-muted">Total Ready to Claim</span>
                 <strong>$0.00 USD</strong>
               </Group>
-            </Stack>
+            </div>
           </Stack>
         </Card.Body>
         <Card.Footer>
@@ -304,8 +304,9 @@ export function Column2() {
         <Card.Body>
           <Stack>
             <Select label="Default Currency" size="sm" data={CURRENCIES} defaultValue="usd" />
-            <Stack divided gap={6}>
+            <div>
               <Switch
+                class="create-one-a-setting"
                 labelPosition="left"
                 size="sm"
                 label="Public Statistics"
@@ -313,13 +314,14 @@ export function Column2() {
                 defaultChecked
               />
               <Switch
+                class="create-one-a-setting"
                 labelPosition="left"
                 size="sm"
                 label="Email Notifications"
                 description="Monthly royalty reports and distribution updates"
                 defaultChecked
               />
-            </Stack>
+            </div>
           </Stack>
         </Card.Body>
         <Card.Footer>
@@ -349,20 +351,18 @@ export function Column2() {
         </Card.Body>
         <Divider />
         <Card.Body>
-          <Stack divided gap={5}>
-            <Group justify="space-between" wrap="nowrap" gap={4}>
-              <span class="create-muted">Projected Finish</span>
-              <strong>October 2024</strong>
-            </Group>
-            <Group justify="space-between" wrap="nowrap" gap={4}>
-              <span class="create-muted">Monthly Average</span>
-              <strong>$1,250</strong>
-            </Group>
-            <Group justify="space-between" wrap="nowrap" gap={4}>
-              <span class="create-muted">Top Contributor</span>
-              <strong>Auto-Transfer</strong>
-            </Group>
-          </Stack>
+          <Group justify="space-between" wrap="nowrap" gap={4} class="create-kv">
+            <span class="create-muted">Projected Finish</span>
+            <strong>October 2024</strong>
+          </Group>
+          <Group justify="space-between" wrap="nowrap" gap={4} class="create-kv">
+            <span class="create-muted">Monthly Average</span>
+            <strong>$1,250</strong>
+          </Group>
+          <Group justify="space-between" wrap="nowrap" gap={4} class="create-kv">
+            <span class="create-muted">Top Contributor</span>
+            <strong>Auto-Transfer</strong>
+          </Group>
         </Card.Body>
       </Card>
 
