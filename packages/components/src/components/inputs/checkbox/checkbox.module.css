@@ -132,7 +132,7 @@
 
   /* Checkbox.Card */
   .card {
-    --_choice-size: 1.25rem;
+    --_choice-size: 1rem;
 
     position: relative;
     display: flex;
@@ -185,6 +185,8 @@
   .indicator {
     position: relative;
     flex-shrink: 0;
+    /* Centered on the content's first line. */
+    margin-block-start: max(0px, calc((1lh - var(--_choice-size)) / 2));
 
     & > .icon {
       [data-checked] > & {
