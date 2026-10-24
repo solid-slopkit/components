@@ -1,5 +1,15 @@
 # @solid-slopkit/components
 
+## 0.6.0
+
+### Minor Changes
+
+- 648b7b0: **Breaking:** Stack no longer takes `divided` or sets `data-divided`. A Stack only spaces its children and never changes their padding, margin or borders; for lines between children, put a Divider between them.
+
+### Patch Changes
+
+- b70dceb: Radio.Card's and Checkbox.Card's indicators are now 16px instead of 20px, centered on the first line of the content.
+
 ## 0.5.0
 
 ### Minor Changes
