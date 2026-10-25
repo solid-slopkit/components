@@ -396,6 +396,7 @@ export function Calendar(props: CalendarProps) {
   );
   // The first period shown, as its first cell date.
   const start = createMemo(() => START[level()](props.date ?? ownDate()), { name: 'Calendar.start' });
+  // oxlint-disable-next-line solid/reactivity -- Array.from calls the mapper synchronously, inside the memo
   const periods = createMemo(() => Array.from({ length: columns() }, (_, column) => STEP[level()](start(), column)), {
     name: 'Calendar.periods',
   });
@@ -453,7 +454,10 @@ export function Calendar(props: CalendarProps) {
   });
   const active = createMemo(
     () => {
+      // The helpers below are called only during this run, which repeats when level or periods change.
+      // oxlint-disable-next-line solid/reactivity -- read within this memo run
       const cellLevel = CELL_LEVEL[level()];
+      // oxlint-disable-next-line solid/reactivity -- read within this memo run
       const first = periods()[0];
       const key = (date: Date) => cellKey(cellLevel, date);
       const usable = (date: Date | undefined): date is Date =>

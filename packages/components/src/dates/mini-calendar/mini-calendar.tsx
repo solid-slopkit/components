@@ -150,6 +150,7 @@ export function MiniCalendar(props: MiniCalendarProps) {
     { name: 'MiniCalendar.date', equals: sameDay },
   );
   const start = () => startOfDay(props.date ?? ownDate());
+  // oxlint-disable-next-line solid/reactivity -- Array.from calls the mapper synchronously, inside the memo
   const days = createMemo(() => Array.from({ length: count() }, (_, index) => addDays(start(), index)), {
     name: 'MiniCalendar.days',
   });
@@ -194,11 +195,15 @@ export function MiniCalendar(props: MiniCalendarProps) {
       { name },
     );
   };
+  // keyed reads each source inside its projection, a tracked scope.
+  // oxlint-disable-next-line solid/reactivity -- read inside keyed's projection
   const tabbable = keyed(active, 'MiniCalendar.tabbable');
+  // oxlint-disable-next-line solid/reactivity -- read inside keyed's projection
   const selected = keyed(() => {
     const chosen = value();
     return chosen ? dayKey(chosen) : undefined;
   }, 'MiniCalendar.selected');
+  // oxlint-disable-next-line solid/reactivity -- read inside keyed's projection
   const todayKey = keyed(() => {
     const day = today();
     return day ? dayKey(day) : undefined;
@@ -254,6 +259,7 @@ export function MiniCalendar(props: MiniCalendarProps) {
         target = days().find((day) => !isDisabled(day));
         break;
       case 'End':
+        // oxlint-disable-next-line solid/reactivity -- findLast calls the callback synchronously, in this handler
         target = days().findLast((day) => !isDisabled(day));
         break;
       default:
