@@ -1,5 +1,6 @@
 import { createContext, createMemo, createSignal, untrack, useContext, type Accessor } from 'solid-js';
 import { isServer, useHead, type HeadTag, type JSX } from '@solidjs/web';
+import { I18nContext, type I18nContextValue } from '@solid-slopkit/i18n';
 import { createColorScheme, type ColorSchemeOptions, type UseColorScheme } from './color-scheme';
 import { createOverlayStack, type OverlayStack } from './overlay-stack';
 import {
@@ -25,9 +26,9 @@ interface SlopkitUiContextValue {
 
 export interface SlopkitUiProps extends ColorSchemeOptions {
   /**
-   * The BCP 47 locale components format numbers and dates with, through `Intl`. Defaults to the enclosing
-   * provider's, or `en-US` at the root, never the runtime's: the server and the browser would format
-   * differently and break hydration.
+   * The BCP 47 locale components format numbers and dates with, through `Intl`. Defaults to the active locale
+   * of the nearest `<I18nProvider>`, then the enclosing provider's, then `en-US`, never the runtime's: the
+   * server and the browser would format differently and break hydration.
    */
   locale?: string;
   children?: JSX.Element;
@@ -43,6 +44,15 @@ function canonicalLocale(locale: string): string {
   }
 }
 
+/** The nearest `<I18nProvider>`, if any. Its context throws when read with no provider above. */
+function useI18n(): I18nContextValue | undefined {
+  try {
+    return useContext(I18nContext);
+  } catch {
+    return undefined;
+  }
+}
+
 const SlopkitUiContext = createContext<SlopkitUiContextValue | null>(null);
 
 /**
@@ -51,7 +61,8 @@ const SlopkitUiContext = createContext<SlopkitUiContextValue | null>(null);
  * whose last component unmounts keeps its rule. On the server, each request renders its own provider, so
  * styles never leak between requests.
  *
- * It holds the locale (`useLocale()`), which a nested provider inherits unless it sets its own.
+ * It holds the locale (`useLocale()`): the `locale` prop, else the active locale of the nearest
+ * `<I18nProvider>`, else the enclosing provider's.
  *
  * It also owns the color scheme preference (`useColorScheme()`), stored in localStorage and applied as
  * `data-slp-color-scheme` on <html>, by a head script before first paint and by the hook afterwards.
@@ -62,8 +73,15 @@ const SlopkitUiContext = createContext<SlopkitUiContextValue | null>(null);
  */
 export function SlopkitUi(props: SlopkitUiProps) {
   const parent = useContext(SlopkitUiContext);
+  const i18n = useI18n();
   const locale = createMemo(
-    () => (props.locale !== undefined ? canonicalLocale(props.locale) : (parent?.locale() ?? DEFAULT_LOCALE)),
+    () => {
+      if (props.locale !== undefined) return canonicalLocale(props.locale);
+      // An uncontrolled <I18nProvider> with no initial locale reports ''.
+      const active = i18n?.locale();
+      if (active) return canonicalLocale(active);
+      return parent?.locale() ?? DEFAULT_LOCALE;
+    },
     { name: 'SlopkitUi.locale' },
   );
 

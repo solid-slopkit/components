@@ -23,7 +23,7 @@ export default function App() {
 
 - Components that generate CSS (such as Box) register it with the nearest provider, which renders it in one `<style>` in the head. They throw `<Name> must be rendered inside <SlopkitUi>.` without one.
 - On the server each request renders its own provider, so no state leaks between requests.
-- Providers can nest. A nested provider inherits the locale unless it sets its own.
+- Providers can nest. A nested provider inherits the locale unless it sets its own or an `<I18nProvider>` sits between them.
 - Overlays (popovers, menus, modals) join the provider's order when they open. Escape closes only the topmost one, and a press outside closes, from the top down, each overlay it's outside of. A nested provider shares its root's order, so overlays in it nest correctly with those outside it.
 - Notifications are kept here: `useNotifications()` shows them, a `<Notifications>` region renders them, and the `notifications` facade reaches the most recently mounted root provider. A nested provider shares its root's. See [Notifications](../feedback/notifications/notifications.md).
 - Modals opened from code are kept here the same way: `useModals()` and the `modals` facade open them, a `<Modals>` host shows them. See [Modals](../overlays/modals/modals.md).
@@ -31,16 +31,35 @@ export default function App() {
 
 ## Props
 
-| Prop                    | Type                          | Default                | Description                                        |
-| ----------------------- | ----------------------------- | ---------------------- | -------------------------------------------------- |
-| `locale`                | `string`                      | parent's, or `'en-US'` | BCP 47 locale for `Intl` formatting.               |
-| `defaultColorScheme`    | `'light' \| 'dark' \| 'auto'` | `'auto'`               | Preference used when nothing is stored. Read once. |
-| `colorSchemeStorageKey` | `string`                      | `'slp-color-scheme'`   | localStorage key of the preference. Read once.     |
-| `children`              | `JSX.Element`                 | —                      | The app.                                           |
+| Prop                    | Type                          | Default               | Description                                        |
+| ----------------------- | ----------------------------- | --------------------- | -------------------------------------------------- |
+| `locale`                | `string`                      | see [Locale](#locale) | BCP 47 locale for `Intl` formatting.               |
+| `defaultColorScheme`    | `'light' \| 'dark' \| 'auto'` | `'auto'`              | Preference used when nothing is stored. Read once. |
+| `colorSchemeStorageKey` | `string`                      | `'slp-color-scheme'`  | localStorage key of the preference. Read once.     |
+| `children`              | `JSX.Element`                 | —                     | The app.                                           |
 
 ## Locale
 
 `useLocale()` returns an `Accessor<string>` with the locale of the nearest provider. Pass it to `Intl` formatters.
+
+The provider's locale is the first of:
+
+1. its `locale` prop;
+2. the active locale of the nearest `<I18nProvider>` from `@solid-slopkit/i18n`, a peer dependency;
+3. the enclosing `<SlopkitUi>`'s locale;
+4. `en-US`.
+
+An app that translates sets the locale once, on the i18n provider:
+
+```tsx
+import { I18nProvider } from '@solid-slopkit/i18n';
+
+<I18nProvider initialLocale="de-DE">
+  <SlopkitUi>
+    <Router />
+  </SlopkitUi>
+</I18nProvider>;
+```
 
 ```tsx
 const locale = useLocale();
@@ -49,7 +68,8 @@ const price = () => new Intl.NumberFormat(locale(), { style: 'currency', currenc
 
 - Defaults to `en-US`, never the runtime's locale, so the server and the browser format the same and hydration matches.
 - The tag is canonicalized: `locale="DE-de"` gives `de-DE`. An invalid tag throws a `RangeError`.
-- Reactive: changing the `locale` prop updates `locale()`, including in nested providers that inherit it.
+- Reactive: changing the `locale` prop or the `<I18nProvider>` locale updates `locale()`, including in nested providers that inherit it.
+- The i18n locale must be a BCP 47 tag (`de-DE`, `de`). An `<I18nProvider>` with no locale yet (`''`) is skipped.
 - Throws outside `<SlopkitUi>`.
 
 ## Color scheme
